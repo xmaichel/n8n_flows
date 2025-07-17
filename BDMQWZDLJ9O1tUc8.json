@@ -1,0 +1,686 @@
+{
+  "active": false,
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Delete a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete a file": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-05T10:43:40.656Z",
+  "id": "BDMQWZDLJ9O1tUc8",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Ok",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "https://drive.google.com/drive/u/0/folders/1bDZjTB_ozo7Zay7aBodrVRES9Dc4-WTo",
+          "mode": "url"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        -20
+      ],
+      "id": "7cc98a86-827b-443f-8c38-99dd5b633eba",
+      "name": "Google Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "jPN4Utjptc1uCR6T",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "060bd20d-3cb6-4693-bb44-6dfe79d77cc2",
+              "name": "doc_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "d1b10654-d56d-4eb9-9c85-2842e534749f",
+              "name": "doc_type",
+              "value": "={{ $json.mimeType }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -120,
+        -20
+      ],
+      "id": "5f20de83-830b-4e06-8305-ec8022f7f7b0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        100,
+        -20
+      ],
+      "id": "e8d0d56e-9f5c-47a3-a991-d2353d166815",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.doc_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        360,
+        60
+      ],
+      "id": "06cb01cf-109e-4f02-9c41-a7c02ea8f9e4",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "jPN4Utjptc1uCR6T",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Edit Fields').item.json.doc_type }}",
+                    "rightValue": "spreadsheet",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "3e70f139-cb95-419b-b6b3-7ac37354cfdd"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "sheet"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "95e392da-9025-4620-82bb-d8860cb6b791",
+                    "leftValue": "={{ $('Edit Fields').item.json.doc_type }}",
+                    "rightValue": "spreadsheet",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notContains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "otro"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        420,
+        -120
+      ],
+      "id": "051fae21-8fc6-4ed9-9896-dc8beeeb08f0",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "xlsx",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -140
+      ],
+      "id": "b7955496-86c8-4562-a7dd-db732468f9cc",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -140
+      ],
+      "id": "e0098b8f-7510-406c-9164-1913abd39b6e",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "concatenate",
+              "field": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        1060,
+        -140
+      ],
+      "id": "bc8f3215-14e7-4970-b159-12ab6d32f45a",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $('Edit Fields').item.json.doc_id }}/copy",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "name",
+              "value": "={{ $('Google Drive Trigger').item.json.name }}"
+            },
+            {
+              "name": "mimeType",
+              "value": "application/vnd.google-apps.document"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        100
+      ],
+      "id": "23f570c7-df81-421a-bd2c-5af4188561cc",
+      "name": "HTTP Request",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "jPN4Utjptc1uCR6T",
+          "name": "Google Drive account"
+        }
+      },
+      "notes": "para los ficheros de tip doc antiguos los convertimos en doc de google"
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Edit Fields').item.json.doc_id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        100
+      ],
+      "id": "17fc2857-5142-4db4-8d21-4754b8b55a53",
+      "name": "Delete a file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "jPN4Utjptc1uCR6T",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        1280,
+        -40
+      ],
+      "id": "1f63fdc5-1560-4c07-bf85-72c664b6c240",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "JINSruCUS3bWLd8G",
+          "name": "Supabase wb"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1280,
+        140
+      ],
+      "id": "ca072677-dd1d-4f38-9a5c-b0aa22db9497",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "XtNAsrV9NVuklAFu",
+          "name": "Personalizar_email"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.data || $json.text || $json.concatenated_data }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "doc_id",
+                "value": "={{ $('Edit Fields').item.json.doc_id }}"
+              },
+              {
+                "name": "doc_nombre",
+                "value": "={{ $('Google Drive Trigger').item.json.name}}"
+              },
+              {
+                "name": "doc_type",
+                "value": "={{ $('Edit Fields').item.json.doc_type }}"
+              },
+              {
+                "name": "doc_creado",
+                "value": "={{ $('Google Drive Trigger').item.json.createdTime}}"
+              },
+              {
+                "name": "doc_modificado",
+                "value": "={{ $('Google Drive Trigger').item.json.modifiedTime}}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        1400,
+        140
+      ],
+      "id": "f4178bff-0c66-4460-b22a-b0d343613da3",
+      "name": "Default Data Loader"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Edit Fields": [
+      {
+        "json": {
+          "doc_id": "1VFRtfPYZQ4W0jASo_LuS5GVmNJAdZFCuNJSO69jtzRo",
+          "doc_type": "application/vnd.google-apps.spreadsheet"
+        }
+      }
+    ],
+    "Google Drive Trigger": [
+      {
+        "json": {
+          "parents": [
+            "1bDZjTB_ozo7Zay7aBodrVRES9Dc4-WTo"
+          ],
+          "lastModifyingUser": {
+            "displayName": "Juan Esteban Castillo Acevedo",
+            "kind": "drive#user",
+            "me": true,
+            "permissionId": "11374339190587061715",
+            "emailAddress": "xmaichel@gmail.com",
+            "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocLurBXzhfe3lCV1ppmhGXFLqbxVSMZKbcsr1lD0rgPV5KSBeoi0=s64"
+          },
+          "owners": [
+            {
+              "displayName": "Juan Esteban Castillo Acevedo",
+              "kind": "drive#user",
+              "me": true,
+              "permissionId": "11374339190587061715",
+              "emailAddress": "xmaichel@gmail.com",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocLurBXzhfe3lCV1ppmhGXFLqbxVSMZKbcsr1lD0rgPV5KSBeoi0=s64"
+            }
+          ],
+          "permissions": [
+            {
+              "kind": "drive#permission",
+              "id": "11374339190587061715",
+              "type": "user",
+              "emailAddress": "xmaichel@gmail.com",
+              "role": "owner",
+              "displayName": "Juan Esteban Castillo Acevedo",
+              "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocLurBXzhfe3lCV1ppmhGXFLqbxVSMZKbcsr1lD0rgPV5KSBeoi0=s64",
+              "deleted": false,
+              "pendingOwner": false
+            }
+          ],
+          "spaces": [
+            "drive"
+          ],
+          "capabilities": {
+            "canAcceptOwnership": false,
+            "canAddChildren": false,
+            "canAddMyDriveParent": false,
+            "canChangeCopyRequiresWriterPermission": true,
+            "canChangeItemDownloadRestriction": true,
+            "canChangeSecurityUpdateEnabled": false,
+            "canChangeViewersCanCopyContent": true,
+            "canComment": true,
+            "canCopy": true,
+            "canDelete": true,
+            "canDisableInheritedPermissions": false,
+            "canDownload": true,
+            "canEdit": true,
+            "canEnableInheritedPermissions": true,
+            "canListChildren": false,
+            "canModifyContent": true,
+            "canModifyContentRestriction": true,
+            "canModifyEditorContentRestriction": true,
+            "canModifyOwnerContentRestriction": true,
+            "canModifyLabels": false,
+            "canMoveChildrenWithinDrive": false,
+            "canMoveItemIntoTeamDrive": true,
+            "canMoveItemOutOfDrive": true,
+            "canMoveItemWithinDrive": true,
+            "canReadLabels": false,
+            "canReadRevisions": true,
+            "canRemoveChildren": false,
+            "canRemoveContentRestriction": false,
+            "canRemoveMyDriveParent": true,
+            "canRename": true,
+            "canShare": true,
+            "canTrash": true,
+            "canUntrash": true
+          },
+          "permissionIds": [
+            "11374339190587061715"
+          ],
+          "linkShareMetadata": {
+            "securityUpdateEligible": false,
+            "securityUpdateEnabled": true
+          },
+          "downloadRestrictions": {
+            "itemDownloadRestriction": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            },
+            "effectiveDownloadRestrictionWithContext": {
+              "restrictedForReaders": false,
+              "restrictedForWriters": false
+            }
+          },
+          "kind": "drive#file",
+          "id": "1z_mRqmdjFfY94PEXLsiKWphlWfaoGmbE",
+          "name": "HU_J.xlsx",
+          "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "starred": false,
+          "trashed": false,
+          "explicitlyTrashed": false,
+          "version": "15",
+          "webContentLink": "https://drive.google.com/uc?id=1z_mRqmdjFfY94PEXLsiKWphlWfaoGmbE&export=download",
+          "webViewLink": "https://docs.google.com/spreadsheets/d/1z_mRqmdjFfY94PEXLsiKWphlWfaoGmbE/edit?usp=drivesdk&ouid=104288318406416553544&rtpof=true&sd=true",
+          "iconLink": "https://drive-thirdparty.googleusercontent.com/16/type/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "hasThumbnail": true,
+          "thumbnailLink": "https://lh3.googleusercontent.com/drive-storage/AJQWtBNSasyVt8b48DT0w4RhNl4PYHVJAq9j7Ww9pkVM58eYrT21ZIEVohnSLzCHiRLccNJQiCLAKqqx9iRpTVvFEsX4QRmw1vvK90o97vVT_uasKEU=s220",
+          "thumbnailVersion": "4",
+          "viewedByMe": true,
+          "viewedByMeTime": "2025-07-04T22:27:34.126Z",
+          "createdTime": "2025-07-04T21:44:44.808Z",
+          "modifiedTime": "2025-07-04T22:27:34.126Z",
+          "modifiedByMeTime": "2025-07-04T22:27:34.126Z",
+          "modifiedByMe": true,
+          "shared": false,
+          "ownedByMe": true,
+          "viewersCanCopyContent": true,
+          "copyRequiresWriterPermission": false,
+          "writersCanShare": true,
+          "originalFilename": "HU_J.xlsx",
+          "fullFileExtension": "xlsx",
+          "fileExtension": "xlsx",
+          "md5Checksum": "2c659f3c51f70b6de0b33a04dd66a2ef",
+          "size": "111037",
+          "quotaBytesUsed": "295882",
+          "headRevisionId": "0B30Ep_nROci6cTVPTTZuREpHcElBMWVWZGQ2Wlp6QmZaaWxvPQ",
+          "isAppAuthorized": false,
+          "inheritedPermissionsDisabled": false
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-07-05T10:35:47.041Z",
+      "updatedAt": "2025-07-05T10:35:47.041Z",
+      "id": "g0vLqdpchMXVZj03",
+      "name": "Social Media Automation"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-05T16:54:35.000Z",
+  "versionId": "8b75e963-2a1f-44f4-a39f-8e13b14605ab"
+}
