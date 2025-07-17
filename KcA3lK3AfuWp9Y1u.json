@@ -1,0 +1,417 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-28T12:08:06.415Z",
+  "id": "KcA3lK3AfuWp9Y1u",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7,
+              "triggerAtMinute": 7
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        -48
+      ],
+      "id": "2f067711-5fb7-44b3-a6e7-0b558a816339",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1HDBxpsxHh67HNeTaG--roHMa7yDlLsp357ZvLnSGv7E/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HDBxpsxHh67HNeTaG--roHMa7yDlLsp357ZvLnSGv7E/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -64,
+        -48
+      ],
+      "id": "60398ddc-2324-46f6-bef5-a096f1ff1b12",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ldnZTM96qp82NGXf",
+          "name": "Google Sheets JuanEsteban"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Crea un mensaje para enviar por whatsApp de feliz cumpleaños.\nIncluye 4 emojis.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        416,
+        -48
+      ],
+      "id": "dcdc1a0e-c827-407b-9f3d-875db20eee26",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        544,
+        176
+      ],
+      "id": "b973c907-65e2-4b8c-a6ba-c6c097f80671",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        368,
+        192
+      ],
+      "id": "7941e10f-97ec-4bfd-a536-7a6dfb231cff",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "1JPVydCqx6qSQLyj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        128,
+        -48
+      ],
+      "id": "8f92191d-c79d-49a5-b018-9f8acfb3eff8",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -16
+      ],
+      "id": "349fe043-7f53-4cb1-9669-3edb74a61422"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://ssevoapiss.castillo.click/message/sendText/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        832,
+        -48
+      ],
+      "id": "36cbfefe-8ca8-4f6c-86ab-26085bfeec15",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "content": "## Trigers\nIniciadores",
+        "height": 496
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -288,
+        288
+      ],
+      "typeVersion": 1,
+      "id": "fd9c763f-a376-4acf-af34-a72c869cbc18",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Nodos especials\n",
+        "height": 352,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        608,
+        304
+      ],
+      "typeVersion": 1,
+      "id": "7ff2909f-28ab-425f-aae2-84b8bd39ed87",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8,
+              "triggerAtMinute": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        464
+      ],
+      "id": "404c4364-57b9-4a7d-a059-6eb7cdeb8ded",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "815bdfee-08e9-4b9d-9b3c-3ae1d12c3120",
+              "name": "pront1",
+              "value": "Genera un saludo corto",
+              "type": "string"
+            },
+            {
+              "id": "a4dc5885-f8fe-467b-b042-37ea622a6722",
+              "name": "pront2",
+              "value": "Genera una suma de 1+ 10",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        464
+      ],
+      "id": "2f12d40d-dc7e-452b-9d8a-911ead2fab40",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://router.huggingface.co/featherless-ai/v1/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $HF_TOKEN"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "mistralai/Devstral-Small-2507"
+            },
+            {
+              "name": "prompt",
+              "value": "\"Can you please let us know more details about your \""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        464
+      ],
+      "id": "5a47b56a-1d6e-44df-875f-f725c9b15851",
+      "name": "HTTP Request1"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Get row(s) in sheet": [
+      {
+        "json": {
+          "row_number": 2,
+          "Fecha": "29/06/2025",
+          "Nombre": "juan",
+          "Tipo": "Amigo",
+          "dateSend": ""
+        }
+      },
+      {
+        "json": {
+          "row_number": 3,
+          "Fecha": "29/06/2025",
+          "Nombre": "omar",
+          "Tipo": "Primo",
+          "dateSend": ""
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-07-17T16:48:35.887Z",
+      "updatedAt": "2025-07-17T16:48:35.887Z",
+      "id": "uMnyBMrQKh9AqG3c",
+      "name": "aprender"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-17T17:05:59.000Z",
+  "versionId": "c8fd40c3-0207-4fee-89d4-9850ce83aadf"
+}
