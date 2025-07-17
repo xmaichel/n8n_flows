@@ -1,0 +1,809 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cal.com Trigger": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message2": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Create an opportunity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-29T20:09:01.722Z",
+  "id": "1yg40U9LiRS6x3Zu",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "empodera_mm",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Test Micromanagement",
+        "formDescription": "Evaluación de habilidades gerenciales",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nombres y apellidos",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Teléfono",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Correo electrónico",
+              "fieldType": "email",
+              "placeholder": "tucorre@gmail.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Asignas responsabilidades basándote en el diseño del flujo de trabajo y las capacidades de la gente y no en los nombres de los cargos?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Las personas con roles de supervisión gozan de credibilidad y aplican criterios exigentes en el desempeño de su trabajo?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Tu planificación se parece al guión de una película de tal manera que no tienes que gastar tiempo de más explicandola a todos?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Tienes herramientas y protocolos para moldear cómo se trabaja?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Frecuentemente estás satisfecho con el trabajo de tus colaboradores?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "N0"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿No hace falta que estés copiado en todos los correos para tener mejor control y estar enterado de cada detalle?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Los procesos y decisiones que pasan por tus manos para aprobación son únicamente aquellas de alta importancia o criticidad?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Agendas máximo 2 reuniones durante la semana con tu equipo de trabajo?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿La rotación de personal en tu equipo de trabajo es menor o igual que en el resto de la organización?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "¿Das retroalimentación al equipo al menos 4 veces al año?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Si"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "customCss": ":root {\n\t--font-family: 'Open Sans', sans-serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 12px;\n\t--font-size-label: 14px;\n\t--font-size-test-notice: 12px;\n\t--font-size-input: 14px;\n\t--font-size-header: 20px;\n\t--font-size-paragraph: 14px;\n\t--font-size-link: 12px;\n\t--font-size-error: 12px;\n\t--font-size-html-h1: 28px;\n\t--font-size-html-h2: 20px;\n\t--font-size-html-h3: 16px;\n\t--font-size-html-h4: 14px;\n\t--font-size-html-h5: 12px;\n\t--font-size-html-h6: 10px;\n\t--font-size-subheader: 14px;\n\n\t/* Colors */\n\t--color-background: #fbfcfe;\n\t--color-test-notice-text: #e6a23d;\n\t--color-test-notice-bg: #fefaf6;\n\t--color-test-notice-border: #f6dcb7;\n\t--color-card-bg: #ffffff;\n\t--color-card-border: #dbdfe7;\n\t--color-card-shadow: rgba(99, 77, 255, 0.06);\n\t--color-link: #7e8186;\n\t--color-header: #525356;\n\t--color-label: #555555;\n\t--color-input-border: #dbdfe7;\n\t--color-input-text: #71747A;\n\t--color-focus-border: rgb(90, 76, 194);\n\t--color-submit-btn-bg: #ff6d5a;\n\t--color-submit-btn-text: #ffffff;\n\t--color-error: #ea1f30;\n\t--color-required: #ff6d5a;\n\t--color-clear-button-bg: #7e8186;\n\t--color-html-text: #555;\n\t--color-html-link: #ff6d5a;\n\t--color-header-subtext: #7e8186;\n\n\t/* Border Radii */\n\t--border-radius-card: 8px;\n\t--border-radius-input: 6px;\n\t--border-radius-clear-btn: 50%;\n\t--card-border-radius: 8px;\n\n\t/* Spacing */\n\t--padding-container-top: 24px;\n\t--padding-card: 24px;\n\t--padding-test-notice-vertical: 12px;\n\t--padding-test-notice-horizontal: 24px;\n\t--margin-bottom-card: 16px;\n\t--padding-form-input: 12px;\n\t--card-padding: 24px;\n\t--card-margin-bottom: 16px;\n\n\t/* Dimensions */\n\t--container-width: 448px;\n\t--submit-btn-height: 48px;\n\t--checkbox-size: 18px;\n\n\t/* Others */\n\t--box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n\t--opacity-placeholder: 0.5;\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -660,
+        -180
+      ],
+      "id": "e9fe89e3-7dee-4ba2-b423-e00def84c5b9",
+      "name": "On form submission",
+      "webhookId": "8f3b1786-fbc7-4bf8-bbbd-c6ee616e8198"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-NANO"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "Eres un consultor de negocios experto en formación de habilidades gerenciales para líderes.  \n",
+              "role": "system"
+            },
+            {
+              "content": "=A partir de las respuestas del cuestionario debes generar un diagnóstico sobre las habilidades gerenciales de esta persona y emitir una calificación argumentada según una escala de tres rangos que estimes conveniente siendo uno de estos el de mayor nivel de desarrollo que requeriría poco acompañamiento o formación, uno intermedio que requiere un plan de acción de mediana intensidad y uno de gran oportunidad de mejora con necesidad de abordaje de herramientas de capacitación y coaching.\nCon este diagnóstico genera un correo electrónico, en el cual se señale el resultado del test, la valoración diagnóstica y unas recomendaciones básicas a implementar de manera inmediata.\nInvitar al usuario a agendar una sesión virtual si desea profundizar en alguno de los aspectos de desarrollo a abordar.\n\nNo incluya asunto.\n\nNombre:{{ $json['Nombres y apellidos'] }}\n\nLos datos del cuetioanrio son los siguientes:\n¿Asignas responsabilidades basándote en el diseño del flujo de trabajo y las capacidades de la gente y no en los nombres de los cargos?:{{ $json['¿Asignas responsabilidades basándote en el diseño del flujo de trabajo y las capacidades de la gente y no en los nombres de los cargos?'] }}\n¿Las personas con roles de supervisión gozan de credibilidad y aplican criterios exigentes en el desempeño de su trabajo?:{{ $json['¿Las personas con roles de supervisión gozan de credibilidad y aplican criterios exigentes en el desempeño de su trabajo?'] }}\n¿Tu planificación se parece al guión de una película de tal manera que no tienes que gastar tiempo de más explicandola a todos?:{{ $json['¿Tu planificación se parece al guión de una película de tal manera que no tienes que gastar tiempo de más explicandola a todos?'] }}\n¿Tienes herramientas y protocolos para moldear cómo se trabaja?:\n¿Frecuentemente estás satisfecho con el trabajo de tus colaboradores?:{{ $json['¿Tienes herramientas y protocolos para moldear cómo se trabaja?'] }}\n¿No hace falta que estés copiado en todos los correos para tener mejor control y estar enterado de cada detalle?:{{ $json['¿No hace falta que estés copiado en todos los correos para tener mejor control y estar enterado de cada detalle?'] }}\n¿Los procesos y decisiones que pasan por tus manos para aprobación son únicamente aquellas de alta importancia o criticidad?:{{ $json['¿Los procesos y decisiones que pasan por tus manos para aprobación son únicamente aquellas de alta importancia o criticidad?'] }}\n¿Agendas máximo 2 reuniones durante la semana con tu equipo de trabajo?:{{ $json['¿Agendas máximo 2 reuniones durante la semana con tu equipo de trabajo?'] }}\n¿La rotación de personal en tu equipo de trabajo es menor o igual que en el resto de la organización?:{{ $json['¿La rotación de personal en tu equipo de trabajo es menor o igual que en el resto de la organización?'] }}\n¿Das retroalimentación al equipo al menos 4 veces al año?:{{ $json['¿Das retroalimentación al equipo al menos 4 veces al año?'] }}\n\n\nrespecta la estructura del enlace para agendar y manten la misma url.\n\n---------\n\nEjemplo de correo, emplealo a modo de referencia pero no lo uses de manera absoluta.\n\n\"Gracias por confiar en Grupo Empodera para acompañarte en el proceso de crecimiento y profesionalización de tu modelo de negocio.  A continuación encontrarás la valoración diagnóstica a partir del cuestionario que respondiste y algunas recomendaciones preliminares\n\n<Colocar aqui el diagnóstico >\n\nPuede agendar una sesion para mejorar aqui: https://cal.com/belquiss-nunez-meza-qpxurx/empodera?overlayCalendar=true\n\nAgenda en el siguiente enalce: \nCordial saludo\nBelquiss Nuñez Meza\nGrupo Empodera\n\""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -420,
+        -180
+      ],
+      "id": "b87e47c7-8b29-4967-8c6d-ac55ed1b2487",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "XtNAsrV9NVuklAFu",
+          "name": "Personalizar_email"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "events": [
+          "BOOKING_CREATED"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.calTrigger",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        60
+      ],
+      "id": "70de40c2-c7e1-443a-a4c1-5fd1f2f7515f",
+      "name": "Cal.com Trigger",
+      "webhookId": "3513ba9f-64ef-4467-889b-a67d354b387c",
+      "credentials": {
+        "calApi": {
+          "id": "G7jJOGk3StcmmKy6",
+          "name": "Cal account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "={{ $('On form submission').item.json['Correo electrónico'] }}",
+        "subject": "Valoración diagnóstica habilidades gerenciales",
+        "bodyContent": "={{ $json.message.content }}",
+        "additionalFields": {
+          "ccRecipients": "xmaichel@gmail.com"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        -180
+      ],
+      "id": "1987904e-3bf6-4e5c-a45d-9be0b1333a9c",
+      "name": "Send a message2",
+      "webhookId": "4fc2057c-f03f-4c7f-bb41-964d107318f0",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "uk0xgpYAKssI5OpP",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Correo Electrónico": "={{ $('Cal.com Trigger').item.json.attendees[0].email }}",
+            "Nombre": "={{ $('Cal.com Trigger').item.json.attendees[0].name }}",
+            "Fase": "Agendado",
+            "Agenda": "={{ $('Cal.com Trigger').item.json.startTime.toDateTime().format('yyyy-MM-dd HH:mm') }}",
+            "Notas Calendario": "={{ $('Cal.com Trigger').item.json.additionalNotes }}"
+          },
+          "matchingColumns": [
+            "Correo Electrónico"
+          ],
+          "schema": [
+            {
+              "id": "Correo Electrónico",
+              "displayName": "Correo Electrónico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Agenda",
+              "displayName": "Agenda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Diagnostico",
+              "displayName": "Diagnostico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notas Calendario",
+              "displayName": "Notas Calendario",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -360,
+        60
+      ],
+      "id": "5b741848-7cb3-4dee-a4b3-c3c64a2efccc",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ldnZTM96qp82NGXf",
+          "name": "Google Sheets JuanEsteban"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ $('On form submission').item.json['Nombres y apellidos'] }}",
+            "Diagnostico": "={{ $('Message a model').item.json.message.content }}",
+            "Fase": "Cliente potencial",
+            "Teléfono": "={{ $('On form submission').item.json['Teléfono'] }}",
+            "Correo Electrónico": "={{ $('On form submission').item.json['Correo electrónico'] }}",
+            "Fecha": "={{ $('On form submission').item.json.submittedAt.toDateTime().format('yyyy-MM-dd HH:mm') }}"
+          },
+          "matchingColumns": [
+            "Correo Electrónico"
+          ],
+          "schema": [
+            {
+              "id": "Correo Electrónico",
+              "displayName": "Correo Electrónico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Agenda",
+              "displayName": "Agenda",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Diagnostico",
+              "displayName": "Diagnostico",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        220,
+        -180
+      ],
+      "id": "a85964bb-2903-4b76-92a4-77e884087c14",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ldnZTM96qp82NGXf",
+          "name": "Google Sheets JuanEsteban"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "opportunity",
+        "opportunityName": "={{ $json.Nombre }}",
+        "additionalFields": {
+          "email_from": "={{ $json['Correo Electrónico'] }}"
+        }
+      },
+      "type": "n8n-nodes-base.odoo",
+      "typeVersion": 1,
+      "position": [
+        440,
+        -180
+      ],
+      "id": "8cdcd645-a2fa-4c4f-b1bf-603572b8ce3a",
+      "name": "Create an opportunity",
+      "credentials": {
+        "odooApi": {
+          "id": "z9uae8x9RGL4FhWB",
+          "name": "Odoo account"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "Nombres y apellidos": "BNM",
+          "Teléfono": 3185216099,
+          "Correo electrónico": "belquiss.nm@gmail.com",
+          "¿Asignas responsabilidades basándote en el diseño del flujo de trabajo y las capacidades de la gente y no en los nombres de los cargos?": "Si",
+          "¿Las personas con roles de supervisión gozan de credibilidad y aplican criterios exigentes en el desempeño de su trabajo?": "No",
+          "¿Tu planificación se parece al guión de una película de tal manera que no tienes que gastar tiempo de más explicandola a todos?": "No",
+          "¿Tienes herramientas y protocolos para moldear cómo se trabaja?": "No",
+          "¿Frecuentemente estás satisfecho con el trabajo de tus colaboradores?": "N0",
+          "¿No hace falta que estés copiado en todos los correos para tener mejor control y estar enterado de cada detalle?": "Si",
+          "¿Los procesos y decisiones que pasan por tus manos para aprobación son únicamente aquellas de alta importancia o criticidad?": "Si",
+          "¿Agendas máximo 2 reuniones durante la semana con tu equipo de trabajo?": "Si",
+          "¿La rotación de personal en tu equipo de trabajo es menor o igual que en el resto de la organización?": "No",
+          "¿Das retroalimentación al equipo al menos 4 veces al año?": "No",
+          "submittedAt": "2025-06-29T16:23:47.599-04:00",
+          "formMode": "test"
+        }
+      }
+    ],
+    "Cal.com Trigger": [
+      {
+        "json": {
+          "triggerEvent": "BOOKING_CREATED",
+          "createdAt": "2025-06-30T12:01:41.188Z",
+          "bookerUrl": "https://cal.com",
+          "title": "Empodera between Belquiss Nuñez Meza and Juan Esteban Castillo Acevedo",
+          "startTime": "2025-07-02T15:00:00Z",
+          "endTime": "2025-07-02T15:30:00Z",
+          "additionalNotes": "hola bel",
+          "type": "empodera",
+          "description": "hola bel",
+          "eventTypeId": 2749204,
+          "hideCalendarNotes": false,
+          "hideCalendarEventDetails": false,
+          "hideOrganizerEmail": false,
+          "schedulingType": null,
+          "seatsPerTimeSlot": null,
+          "seatsShowAttendees": true,
+          "seatsShowAvailabilityCount": true,
+          "customReplyToEmail": null,
+          "organizer": {
+            "id": 1606514,
+            "name": "Belquiss Nuñez Meza",
+            "email": "bnunez@co.grupoempodera.com",
+            "username": "belquiss-nunez-meza-qpxurx",
+            "timeZone": "America/Bogota",
+            "language": {
+              "locale": "en"
+            },
+            "timeFormat": "h:mma",
+            "utcOffset": -300
+          },
+          "attendees": [
+            {
+              "email": "xmaichel@gmail.com",
+              "name": "Juan Esteban Castillo Acevedo",
+              "firstName": "",
+              "lastName": "",
+              "timeZone": "America/Bogota",
+              "language": {
+                "locale": "es"
+              },
+              "utcOffset": -300
+            }
+          ],
+          "customInputs": {},
+          "responses": {
+            "name": {
+              "label": "your_name",
+              "value": "Juan Esteban Castillo Acevedo",
+              "isHidden": false
+            },
+            "email": {
+              "label": "email_address",
+              "value": "xmaichel@gmail.com",
+              "isHidden": false
+            },
+            "attendeePhoneNumber": {
+              "label": "phone_number",
+              "isHidden": true
+            },
+            "location": {
+              "label": "location",
+              "value": {
+                "optionValue": "",
+                "value": "integrations:office365_video"
+              },
+              "isHidden": false
+            },
+            "title": {
+              "label": "what_is_this_meeting_about",
+              "isHidden": true
+            },
+            "notes": {
+              "label": "additional_notes",
+              "value": "hola bel",
+              "isHidden": false
+            },
+            "guests": {
+              "label": "additional_guests",
+              "value": [],
+              "isHidden": false
+            },
+            "rescheduleReason": {
+              "label": "reason_for_reschedule",
+              "isHidden": false
+            }
+          },
+          "userFieldsResponses": {},
+          "location": "integrations:office365_video",
+          "conferenceCredentialId": 1114665,
+          "destinationCalendar": [
+            {
+              "id": 676241,
+              "integration": "office365_calendar",
+              "externalId": "AAMkAGFkN2U3NmUwLThhN2MtNGNiNC05Njc3LWUzZGM3YTNhMTEzNgBGAAAAAAAZEPUPomCLQLoct9qnTtdSBwDGsYPQwJGBS5YVnEhxx5pPAAAAAAEGAADGsYPQwJGBS5YVnEhxx5pPAAAAZJAuAAA=",
+              "primaryEmail": "bnunez@co.grupoempodera.com",
+              "userId": null,
+              "eventTypeId": 2749204,
+              "credentialId": 1114670,
+              "delegationCredentialId": null,
+              "domainWideDelegationCredentialId": null
+            }
+          ],
+          "iCalUID": "040000008200E00074C5B7101A82E0080000000036B8B4BCB6E9DB0100000000000000001000000038D822743CAFEA4DBF54A9AB418A541F",
+          "iCalSequence": 0,
+          "requiresConfirmation": false,
+          "oneTimePassword": null,
+          "uid": "hSrHa3TW71PXp1qWNkaL8R",
+          "conferenceData": {
+            "createRequest": {
+              "requestId": "928381d5-f372-5646-9145-0aa351854108"
+            }
+          },
+          "videoCallData": {
+            "type": "office365_video",
+            "id": "MSowNjM3MzdiNi02N2Y4LTQyNDYtOWIxMy04YmU5ZjIyOTVlNTMqMCoqMTk6bWVldGluZ19NVFZtTTJOaFpEWXRZelJoTXkwME5UTXdMVGhrTm1FdE1UUTJPV0l6T1dOaU5qSmtAdGhyZWFkLnYy",
+            "password": "",
+            "url": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTVmM2NhZDYtYzRhMy00NTMwLThkNmEtMTQ2OWIzOWNiNjJk%40thread.v2/0?context=%7b%22Tid%22%3a%2249eb2ec0-5742-40a4-b4b5-dccede3ac095%22%2c%22Oid%22%3a%22063737b6-67f8-4246-9b13-8be9f2295e53%22%7d"
+          },
+          "appsStatus": [
+            {
+              "appName": "msteams",
+              "type": "office365_video",
+              "success": 1,
+              "failures": 0,
+              "errors": []
+            },
+            {
+              "appName": "office365-calendar",
+              "type": "office365_calendar",
+              "success": 1,
+              "failures": 0,
+              "errors": [],
+              "warnings": []
+            }
+          ],
+          "eventTitle": "Empodera",
+          "eventDescription": "",
+          "price": 0,
+          "currency": "usd",
+          "length": 30,
+          "bookingId": 8920229,
+          "metadata": {
+            "videoCallUrl": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MTVmM2NhZDYtYzRhMy00NTMwLThkNmEtMTQ2OWIzOWNiNjJk%40thread.v2/0?context=%7b%22Tid%22%3a%2249eb2ec0-5742-40a4-b4b5-dccede3ac095%22%2c%22Oid%22%3a%22063737b6-67f8-4246-9b13-8be9f2295e53%22%7d"
+          },
+          "status": "ACCEPTED"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Cal.com Trigger": {}
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-07-17T20:14:10.000Z",
+  "versionId": "cae0f1d6-fcef-413b-9430-3d188eecc2a0"
+}
