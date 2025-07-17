@@ -1,0 +1,986 @@
+{
+  "active": false,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "error rq",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "validación RQ": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ValidatePersonSEAS": {
+      "main": [
+        [
+          {
+            "node": "validación RQ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Response": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HC TUV PRUEB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HC TUV PRUEB": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Param Tacticos": {
+      "main": [
+        [
+          {
+            "node": "Calculo Riesgo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculo Riesgo": {
+      "main": [
+        [
+          {
+            "node": "Cupos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Param Tacticos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cupos": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HC TUV1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-08T21:01:29.170Z",
+  "id": "Ntq2ocyejhvMpeJL",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SEAS",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# PRACTICA",
+        "height": 864,
+        "width": 1964
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -976,
+        -3264
+      ],
+      "typeVersion": 1,
+      "id": "e661d026-687f-4ea6-a66d-e54c49df7a03",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Servicios UAT",
+        "height": 520,
+        "width": 640,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -352,
+        -1568
+      ],
+      "typeVersion": 1,
+      "id": "d299e477-440b-4fd6-a2af-30fea9703882",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# Servicio ValidatePersonSEAS",
+        "height": 520,
+        "width": 780,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -560
+      ],
+      "id": "bb96a844-00db-447e-8498-bdd76393d46d",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://tucoapplicationserviceuat.transunion.co/ws/v1/rest/informacionComercial/consulta",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"tipoIdentificacion\":\"1\",\n    \"numeroIdentificacion\":\"1000973536\",\n    \"motivoConsulta\": \"23\",\n    \"codigoInformacion\":\"5743\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -288,
+        -1472
+      ],
+      "id": "03c37a1e-d738-4d95-847e-d65071a8e26c",
+      "name": "HC TUV",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "c7t2jSRzR6U2MiGu",
+          "name": "TUV"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# SEAS\n## Sistema de Evaluación y Análisis de Scoring\n## Scoring Evaluation and Analysis System",
+        "width": 640,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        -752
+      ],
+      "typeVersion": 1,
+      "id": "1cd4dee0-fdfd-433d-845d-81b12f776b1d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dbadaf70-ecc4-4f44-a2fe-b6c1d7eb89aa",
+              "leftValue": "={{ $json.validacion }}",
+              "rightValue": "valido",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        208,
+        -464
+      ],
+      "id": "bf63469c-4dc5-4198-92d1-0b69425341c1",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "Ejemplo RQ:\n\n{\n  \"input\": {\n    \"customer_identification\": {\n      \"tipo_identificacion\": \"CC\",\n      \"numero_identificacion\": \"1000973536\",\n      \"fecha_expedicion\": \"2020-11-23\"\n    },\n    \"customer_data\": {\n      \"primer_apellido\": \"CARDONA\",\n      \"riesgo_entrante\": \"BR\",\n      \"fecha_validacion_entrante\": \"2025-01-10\"\n    },\n    \"transaction_info\": {\n      \"transaccion\": \"009\",\n      \"servicios_activos\": [\n        {\n          \"nombre\": \"Plan Postpago 50GB\",\n          \"valor\": 85000\n        },\n        {\n          \"nombre\": \"Netflix Premium\",\n          \"valor\": 35000\n        }\n      ],\n      \"servicio_nuevo\": [\n        {\n          \"nombre\": \"Internet Fibra 100MB\",\n          \"valor\": 120000\n        }\n      ],\n      \"valor_mora\": 45000,\n      \"dias_mora\": 21,\n      \"procedencia\": \"BYOD\"\n    },\n    \"location_data\": {\n      \"regional\": \"11\",\n      \"ciudad\": \"BOGOTA\"\n    },\n    \"sales_data\": {\n      \"codigo_vendedor\": \"321432\",\n      \"regional_vendedor\": \"11\",\n      \"ciudad_vendedor\": \"BOGOTA\",\n      \"canal_comercial\": \"0027\",\n      \"canal_negocio\": \"601\",\n      \"oficina_vendedor\": \"OFICINA_CENTRO_001\"\n    }\n  }\n}",
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -304,
+        -256
+      ],
+      "typeVersion": 1,
+      "id": "65df0c8d-f82d-469b-bde3-494b64207f09",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "jsCode": "// SEAS Request Validator para n8n Code Node (JavaScript)\n// Obtener el request del input de n8n\nconst request = $input.first().json.body;\n\n// Función para validar fechas\nfunction isValidDate(dateString) {\n    if (typeof dateString !== 'string') return false;\n    const dateRegex = /^\\d{4}-\\d{2}-\\d{2}$/;\n    if (!dateRegex.test(dateString)) return false;\n    const date = new Date(dateString);\n    return date instanceof Date && !isNaN(date) && date.toISOString().slice(0, 10) === dateString;\n}\n\n// Función de validación principal\nfunction validateSEASRequest(request) {\n    const result = {\n        validacion: \"valido\",\n        errores: []\n    };\n\n    try {\n        if (!request.input) {\n            result.errores.push(\"Falta la estructura principal 'input'\");\n            result.validacion = \"no valido\";\n            return result;\n        }\n\n        const input = request.input;\n\n        // 1. Validar customer_identification\n        if (!input.customer_identification) {\n            result.errores.push(\"customer_identification es obligatorio\");\n            result.validacion = \"no valido\";\n        } else {\n            const ci = input.customer_identification;\n            \n            if (!ci.tipo_identificacion) {\n                result.errores.push(\"tipo_identificacion es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!ci.numero_identificacion) {\n                result.errores.push(\"numero_identificacion es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!ci.fecha_expedicion) {\n                result.errores.push(\"fecha_expedicion es obligatorio\");\n                result.validacion = \"no valido\";\n            } else if (!isValidDate(ci.fecha_expedicion)) {\n                result.errores.push(\"fecha_expedicion debe ser una fecha válida (YYYY-MM-DD)\");\n                result.validacion = \"no valido\";\n            }\n        }\n\n        // 2. Validar customer_data\n        if (!input.customer_data) {\n            result.errores.push(\"customer_data es obligatorio\");\n            result.validacion = \"no valido\";\n        } else {\n            const cd = input.customer_data;\n            \n            if (!cd.primer_apellido) {\n                result.errores.push(\"primer_apellido es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n\n            // Validar riesgo_entrante y fecha_validacion_entrante (opcionales pero dependientes)\n            const hasRiesgo = cd.riesgo_entrante !== undefined && cd.riesgo_entrante !== null;\n            const hasFecha = cd.fecha_validacion_entrante !== undefined && cd.fecha_validacion_entrante !== null;\n\n            if (hasRiesgo && !hasFecha) {\n                result.errores.push(\"Si riesgo_entrante está presente, fecha_validacion_entrante es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (hasFecha && !hasRiesgo) {\n                result.errores.push(\"Si fecha_validacion_entrante está presente, riesgo_entrante es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (hasFecha && !isValidDate(cd.fecha_validacion_entrante)) {\n                result.errores.push(\"fecha_validacion_entrante debe ser una fecha válida (YYYY-MM-DD)\");\n                result.validacion = \"no valido\";\n            }\n        }\n\n        // 3. Validar transaction_info\n        if (!input.transaction_info) {\n            result.errores.push(\"transaction_info es obligatorio\");\n            result.validacion = \"no valido\";\n        } else {\n            const ti = input.transaction_info;\n            \n            if (!ti.transaccion) {\n                result.errores.push(\"transaccion es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n\n            // Validar servicios_activos (opcional)\n            if (ti.servicios_activos !== undefined && !Array.isArray(ti.servicios_activos)) {\n                result.errores.push(\"servicios_activos debe ser un ARRAY\");\n                result.validacion = \"no valido\";\n            }\n\n            // Validar servicio_nuevo (obligatorio)\n            if (!ti.servicio_nuevo) {\n                result.errores.push(\"servicio_nuevo es obligatorio\");\n                result.validacion = \"no valido\";\n            } else if (!Array.isArray(ti.servicio_nuevo)) {\n                result.errores.push(\"servicio_nuevo debe ser un ARRAY\");\n                result.validacion = \"no valido\";\n            } else if (ti.servicio_nuevo.length === 0) {\n                result.errores.push(\"servicio_nuevo no puede ser un array vacío\");\n                result.validacion = \"no valido\";\n            }\n\n            // Validar valor_mora (opcional)\n            if (ti.valor_mora !== undefined && (typeof ti.valor_mora !== 'number' || ti.valor_mora < 0)) {\n                result.errores.push(\"valor_mora debe ser un número no negativo\");\n                result.validacion = \"no valido\";\n            }\n\n            // Validar dias_mora (opcional)\n            if (ti.dias_mora !== undefined && (typeof ti.dias_mora !== 'number' || ti.dias_mora < 0)) {\n                result.errores.push(\"dias_mora debe ser un número no negativo\");\n                result.validacion = \"no valido\";\n            }\n\n            // Validar procedencia (obligatorio)\n            if (!ti.procedencia) {\n                result.errores.push(\"procedencia es obligatorio\");\n                result.validacion = \"no valido\";\n            } else if (!['BYOD', 'BUY', 'VAC'].includes(ti.procedencia)) {\n                result.errores.push(\"procedencia debe ser BYOD, BUY o VAC\");\n                result.validacion = \"no valido\";\n            }\n        }\n\n        // 4. Validar location_data\n        if (!input.location_data) {\n            result.errores.push(\"location_data es obligatorio\");\n            result.validacion = \"no valido\";\n        } else {\n            const ld = input.location_data;\n            \n            if (!ld.regional) {\n                result.errores.push(\"regional es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!ld.ciudad) {\n                result.errores.push(\"ciudad es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n        }\n\n        // 5. Validar sales_data\n        if (!input.sales_data) {\n            result.errores.push(\"sales_data es obligatorio\");\n            result.validacion = \"no valido\";\n        } else {\n            const sd = input.sales_data;\n            \n            if (!sd.codigo_vendedor) {\n                result.errores.push(\"codigo_vendedor es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!sd.regional_vendedor) {\n                result.errores.push(\"regional_vendedor es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!sd.ciudad_vendedor) {\n                result.errores.push(\"ciudad_vendedor es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!sd.canal_comercial) {\n                result.errores.push(\"canal_comercial es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!sd.canal_negocio) {\n                result.errores.push(\"canal_negocio es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n            if (!sd.oficina_vendedor) {\n                result.errores.push(\"oficina_vendedor es obligatorio\");\n                result.validacion = \"no valido\";\n            }\n        }\n\n    } catch (error) {\n        result.validacion = \"no valido\";\n        result.errores.push(`Error de validación: ${error.message}`);\n    }\n\n    return result;\n}\n\n// Ejecutar la validación y retornar el resultado en formato n8n\nconst validationResult = validateSEASRequest(request);\n\n// Retornar array de objetos como requiere n8n\nreturn [{\n    json: {\n        validacion: validationResult.validacion,\n        errores: validationResult.errores,\n        request_original: request\n    }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -464
+      ],
+      "id": "1891756a-035b-4851-bbff-5797c62372ec",
+      "name": "validación RQ"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "validatePerson",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -304,
+        -464
+      ],
+      "id": "7ce1d6c3-d926-45b0-99c9-565717fd970b",
+      "name": "ValidatePersonSEAS",
+      "webhookId": "d6385f71-5f72-4d0b-8d44-470bee155c1b"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"validacion\": \"{{ $json.validacion }}\",\n  \"errores\": {{ $json.errores.toJsonString() }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        208,
+        -208
+      ],
+      "id": "42b01a18-950c-407a-ac4b-2015a44280e6",
+      "name": "error rq"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"output\": {\n    \"decision_result\": {\n      \"decision_final\": {{ JSON.stringify($json.decision_final) }},\n      \"informacion_decision_final\": {{ JSON.stringify($json.informacion_decision_final) }},\n      \"codigo_politica\": {{ JSON.stringify($json.codigo_politica) }},\n      \"mensaje_final\": {{ JSON.stringify($json.mensaje_final) }}\n    },\n    \"credit_limits\": {\n      \"cupo_servicio\": {{ $('Cupos').item.json.cupo_servicio }},\n      \"cupo_equipo\": {{ $('Cupos').item.json.cupo_equipo }}\n    },\n    \"risk_assessment\": {\n      \"nivel_riesgo_saliente\": {{ JSON.stringify($('Calculo Riesgo').item.json.nivel_riesgo) }},\n      \"fecha_validacion\": \"{{ $now }}\"\n    },\n    \"verification_requirements\": {\n      \"verificador_primario\": \"C\",\n      \"formulario_verificador_primario\": \"1234\",\n      \"verificador_secundario\": \"E\",\n      \"formulario_verificador_secundario\": \"4321\"\n    },\n    \"sugerencia_ia\": {{ JSON.stringify($('AI Agent1').item.json.output) }}\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        2944,
+        -288
+      ],
+      "id": "b30f5604-d9c0-4ec6-a0d1-68bf05f68903",
+      "name": "Response"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f5e8f225-82be-4c20-b4b6-bc6be6ad738e",
+              "name": "tipo_identificacion",
+              "value": "={{ \n  $('ValidatePersonSEAS').item.json.body.input.customer_identification.tipo_identificacion === 'CC' ? '1' : \n  $('ValidatePersonSEAS').item.json.body.input.customer_identification.tipo_identificacion === 'CE' ? '3' : \n  $('ValidatePersonSEAS').item.json.body.input.customer_identification.tipo_identificacion === 'PAS' ? '5' : \n  $('ValidatePersonSEAS').item.json.body.input.customer_identification.tipo_identificacion \n}}",
+              "type": "string"
+            },
+            {
+              "id": "18a40ebc-cfe8-4cee-8965-75ce68adf0ac",
+              "name": "numero_identificacion",
+              "value": "={{ $('ValidatePersonSEAS').item.json.body.input.customer_identification.numero_identificacion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        544,
+        -288
+      ],
+      "id": "80a58643-be6d-4994-84fe-7aa6b8ac376b",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "## HC TUV\n1 = CC\n3 = CE\n5 = PAS",
+        "height": 400,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        480,
+        -448
+      ],
+      "typeVersion": 1,
+      "id": "ad56e75e-5eb3-479c-b71d-4700a68ae505",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "- Salario minimo",
+        "height": 400,
+        "width": 420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1504,
+        -448
+      ],
+      "typeVersion": 1,
+      "id": "930bbc04-5bd8-482d-839d-72ad820d8cff",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://tucoapplicationserviceuat.transunion.co/ws/v1/rest/informacionComercial/consulta",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"tipoIdentificacion\":\"{{ $json.tipo_identificacion }}\",\n    \"numeroIdentificacion\":\"{{ $json.numero_identificacion }}\",\n    \"motivoConsulta\": \"23\",\n    \"codigoInformacion\":\"5743\"\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        784,
+        -288
+      ],
+      "id": "e1c686a1-b8ec-464c-8c5c-36896ddeb6de",
+      "name": "HC TUV PRUEB",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "c7t2jSRzR6U2MiGu",
+          "name": "TUV"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ab0caada-875b-4447-99d4-906225c28271",
+              "name": "nivel_riesgo",
+              "value": "={{\n  $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje < 439 ? 'AR' :\n  $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje >= 439 && $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje < 499 ? 'MA' :\n  $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje >= 499 && $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje < 549 ? 'MB' :\n  $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje >= 549 && $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje < 594 ? 'BM' :\n  $('HC TUV PRUEB').item.json.Tercero.Score.Puntaje >= 594 ? 'BR' : 'ERROR'\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2000,
+        -288
+      ],
+      "id": "3d9b201c-27fc-4d25-8ff2-abb72d3268e8",
+      "name": "Calculo Riesgo"
+    },
+    {
+      "parameters": {
+        "content": "## Llamado servicios",
+        "height": 80,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        480,
+        -560
+      ],
+      "typeVersion": 1,
+      "id": "cca1cc31-55b6-4e01-9cee-73974cabf657",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## Parametros tacticos",
+        "height": 80,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1504,
+        -560
+      ],
+      "typeVersion": 1,
+      "id": "44017834-99a3-48ae-8de0-1098aafd8b78",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "\n- AR ( LO - <439 )\n- MA ( >= 439 - <499 )\n- MB ( >= 499 - <549 )\n- BM ( >= 549 - <594 )\n- BR ( >= 594 - HI )",
+        "height": 400,
+        "width": 420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1968,
+        -448
+      ],
+      "typeVersion": 1,
+      "id": "e8268297-ef43-41c3-adee-7ee1bd9c0ad6",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2355028c-e335-4b93-ae73-d38268dd5906",
+              "name": "salario_minimo",
+              "value": 1423500,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1648,
+        -288
+      ],
+      "id": "ad1004c3-31df-4638-8e69-938d81fd848a",
+      "name": "Param Tacticos"
+    },
+    {
+      "parameters": {
+        "content": "## Calculo Score Riesgo y Cupos",
+        "height": 80,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1968,
+        -560
+      ],
+      "typeVersion": 1,
+      "id": "e7791621-4a62-4959-84a0-b9e0769b5faf",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c42e9f17-b89c-458c-81fd-fbbaeb777fdd",
+              "name": "cupo_servicio",
+              "value": "={{\n  Math.round($('Param Tacticos').item.json.salario_minimo * (\n    $json.nivel_riesgo === 'AR' ? 0.2 :\n    $json.nivel_riesgo === 'MA' ? 0.4 :\n    $json.nivel_riesgo === 'MB' ? 0.6 :\n    $json.nivel_riesgo === 'BM' ? 0.8 :\n    $json.nivel_riesgo === 'BR' ? 1 : 0\n  ))\n}}",
+              "type": "number"
+            },
+            {
+              "id": "0d21ef63-4a79-40fb-8924-4fed3366b93b",
+              "name": "cupo_equipo",
+              "value": "={{\n  Math.round($('Param Tacticos').item.json.salario_minimo * (\n    $json.nivel_riesgo === 'AR' ? 0 :\n    $json.nivel_riesgo === 'MA' ? 0.5 :\n    $json.nivel_riesgo === 'MB' ? 0.8 :\n    $json.nivel_riesgo === 'BM' ? 1 :\n    $json.nivel_riesgo === 'BR' ? 2 : 0\n  ))\n}}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2224,
+        -288
+      ],
+      "id": "6344fe7c-4467-44b6-be1d-79fffd20da36",
+      "name": "Cupos"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Eres un experto en riesgo crediticio y tienes que validar una historia de credito y dar un comentario del cliente en un parrafo maximo de 200 caracteres.\n\nEsta es la historia de credito:  {{ JSON.stringify($json.Tercero, null, 2) }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1088,
+        -400
+      ],
+      "id": "42def201-419d-4e7f-9dd9-6344dcbcd7cf",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        -192
+      ],
+      "id": "65b2fca0-3f29-43cb-8658-f598836e89d6",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "1JPVydCqx6qSQLyj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 400,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        992,
+        -448
+      ],
+      "typeVersion": 1,
+      "id": "f2dd590b-1d45-4dd8-8298-3a7c67917cee",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "## IA",
+        "height": 80,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        992,
+        -560
+      ],
+      "typeVersion": 1,
+      "id": "3d1c2483-3580-49ce-b48a-a0123c286e9a",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 400,
+        "width": 420
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2432,
+        -448
+      ],
+      "typeVersion": 1,
+      "id": "b86eea06-1620-492a-8e24-65aaaede2912",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "## Politicas",
+        "height": 80,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2432,
+        -560
+      ],
+      "typeVersion": 1,
+      "id": "1591d346-699c-46d1-95ab-a6c148baa695",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener datos de entrada\nconst nivel_riesgo = $('Calculo Riesgo').first().json.nivel_riesgo;\nconst cupo_servicio = $input.first().json.cupo_servicio;\nconst valor_servicio_nuevo = $('ValidatePersonSEAS').first().json.body.input.transaction_info.servicio_nuevo[0].valor;\n\n// Registro de políticas rechazadas\nlet politicas_rechazadas = [];\nlet mensajes_rechazo = [];\n\nfunction registrar_rechazo(codigo_politica, mensaje) {\n    politicas_rechazadas.push(codigo_politica);\n    mensajes_rechazo.push(mensaje);\n}\n\nfunction evaluar_politica_POI28() {\n    if (nivel_riesgo === 'AR') {\n        registrar_rechazo(\"POI28\", \"Rechazado cliente alto riesgo\");\n    }\n}\n\nfunction evaluar_politica_POI40() {\n    if (valor_servicio_nuevo > cupo_servicio) {\n        registrar_rechazo(\"POI40\", \"Cliente sin cupo\");\n    }\n}\n\nfunction evaluar_politica_POI50() {\n    if (nivel_riesgo === 'MR' && valor_servicio_nuevo > 1000000) {\n        registrar_rechazo(\"POI50\", \"Monto excede límite para medio riesgo\");\n    }\n}\n\nfunction evaluar_politica_POI60() {\n    if (nivel_riesgo === 'BR' && valor_servicio_nuevo > 5000000) {\n        registrar_rechazo(\"POI60\", \"Bajo riesgo con monto muy alto requiere validación adicional\");\n    }\n}\n\n// Limpiar registros previos\npoliticas_rechazadas = [];\nmensajes_rechazo = [];\n\n// Ejecutar todas las políticas\nevaluar_politica_POI28();\nevaluar_politica_POI40();\nevaluar_politica_POI50();\nevaluar_politica_POI60();\n\n// Agregar más políticas aquí cuando se creen:\n// evaluar_politica_POI70();\n// evaluar_politica_POI80();\n\n// Generar resultado final\nlet decision_final;\nlet informacion_decision_final;\nlet codigo_politica;\nlet mensaje_final;\n\nif (politicas_rechazadas.length > 0) {\n    // CASO: RECHAZADO\n    decision_final = \"RECHAZADO\";\n    informacion_decision_final = \"RCH\";\n    codigo_politica = politicas_rechazadas.join(\",\");\n    mensaje_final = mensajes_rechazo.join(\" | \");\n} else {\n    // CASO: APROBADO\n    decision_final = \"APROBADO\";\n    informacion_decision_final = \"APR\";\n    codigo_politica = \"PD01\";\n    mensaje_final = \"Cliente aprobado\";\n}\n\n// Resultado final\nconst resultado = {\n    decision_final: decision_final,\n    informacion_decision_final: informacion_decision_final,\n    codigo_politica: codigo_politica,\n    mensaje_final: mensaje_final,\n    detalle_evaluacion: {\n        total_politicas_rechazadas: politicas_rechazadas.length,\n        lista_politicas_rechazadas: politicas_rechazadas,\n        lista_mensajes_rechazo: mensajes_rechazo,\n        datos_entrada: {\n            nivel_riesgo: nivel_riesgo,\n            cupo_servicio: cupo_servicio,\n            valor_servicio_nuevo: valor_servicio_nuevo\n        }\n    }\n};\n\nreturn resultado;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2576,
+        -288
+      ],
+      "id": "ccc412ed-853e-49f1-96e2-baac18544ea6",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "content": "## Variables de salida\n1. Decisión final\n2. Información Decisión final\n3. Código política\n4. Mensaje Final\n5. Cupo servicio\n6. Cupo equipo\n7. Nivel de riesgo saliente\n8. Fecha validación\n9. Verificador primario\n10. Formulario verificador primario\n11. Verificador secundario\n12. Formulario verificador secundario",
+        "height": 320,
+        "width": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "126b054b-65de-46f1-a51a-8dd4bd118c7a",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Variables de entrada\n1. Tipo identificacion\n2. Numero identificacion\n3. Fecha expedicion\n4. Primer apellido\n5. Riesgo entrante\n6. Fecha validacion entrante\n7. Transaccion\n8. Servicios activos (nombre y valor)\n9. Servicio nuevo (nombre y valor)\n10. Valor Mora\n11. Dias mora\n12. Procedencia (BYOD, BUY o VAC)\n12. Regional\n11. Ciudad\n12. Codigo vendedor Vendedor\n13. Regional vendedor\n14. Ciudad vendedor\n15. Canal comercial\n16. Canal de negocio\n17. Oficina vendedor",
+        "height": 500,
+        "width": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "a686e8c1-ea29-4ebd-b652-e9d793790e74",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e6f29cd9-8320-49a6-a4bf-276a67aab1ff",
+              "name": "identificacion",
+              "value": "={{ $json.Tercero.IdentificadorLinea }}",
+              "type": "string"
+            },
+            {
+              "id": "5dca95b7-7756-4def-9e93-0ac5c12f865a",
+              "name": "nombre_completo",
+              "value": "={{ $json.Tercero.NombreTitular }}",
+              "type": "string"
+            },
+            {
+              "id": "9939ce98-2a27-4dd3-aa55-9efcf0009d85",
+              "name": "fecha_expedicion",
+              "value": "={{ $json.Tercero.FechaExpedicion }}",
+              "type": "string"
+            },
+            {
+              "id": "0b76ab42-0bea-4a9d-9171-e8f29eafee6c",
+              "name": "tipo_identificacion",
+              "value": "={{ $json.Tercero.TipoIdentificacion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -464,
+        -2992
+      ],
+      "id": "e33a10df-04d4-40e7-ac89-e8b3358b27f1",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://tucoapplicationserviceuat.transunion.co/ws/v1/rest/informacionComercial/consulta",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"tipoIdentificacion\":\"1\",\n    \"numeroIdentificacion\":\"1000973536\",\n    \"motivoConsulta\": \"23\",\n    \"codigoInformacion\":\"5743\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -720,
+        -2992
+      ],
+      "id": "2597943c-c33e-4407-aac3-88c39f0cf747",
+      "name": "HC TUV1",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "c7t2jSRzR6U2MiGu",
+          "name": "TUV"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Agentes IA",
+        "height": 520,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        320,
+        -1568
+      ],
+      "typeVersion": 1,
+      "id": "8a3bed71-a792-4bf1-a2c2-30ba5be50bcf",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        384,
+        -1312
+      ],
+      "id": "8f8d1ea5-b7ab-472e-ac0e-6be6d373762e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "1JPVydCqx6qSQLyj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Quien eres?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        384,
+        -1488
+      ],
+      "id": "7f2a2e89-84ca-4fa9-a748-39aa1d2057b8",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -2896
+      ],
+      "id": "543e8e34-2882-4ea8-93bb-ee3490e9b469",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "1JPVydCqx6qSQLyj",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Quien eres?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        320,
+        -3120
+      ],
+      "id": "1ae2c38f-89c5-4fb5-adaa-1de8f2ad90d8",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7505e7ef-d6fa-40d8-a4c3-657c9adb1aa5",
+              "leftValue": "={{ $json.tipo_identificacion }}",
+              "rightValue": "C.C.",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        -2992
+      ],
+      "id": "2b08b52f-8a03-4851-8d79-336b908ccdd0",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "92242814-b831-46a2-9d06-2686bea206b7",
+              "name": "nombre_final",
+              "value": "={{ $json.nombre_completo }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        -3120
+      ],
+      "id": "62d9da8d-8c2d-4b2a-af67-3645c3138e2e",
+      "name": "Edit Fields2"
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-16T22:03:52.000Z",
+  "versionId": "71318bf1-f9dc-424c-9999-1e26d3afdc38"
+}
