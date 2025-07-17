@@ -1,0 +1,217 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-30T13:08:36.514Z",
+  "id": "YoMbaR2O6NUwWjtn",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "ChatBot_senndCorreo",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "Eres un agente especializado en escribir correos para esto tienes una herramienta gmail.\n\nDebes enviarlo al correo que solicite el usuario, debes crear un subject y el cuerpo del correo.\n\nManten una escritura para html\n\nDespidete con lo siguiente \n\"Cordial Saludo\nJuan Esteban Castillo\n\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        -80
+      ],
+      "id": "17b1de63-f9a8-4727-9e89-60e446c9e152",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -280,
+        120
+      ],
+      "id": "46631ba8-6304-4983-b89c-7cb2ea1cbffd",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "XtNAsrV9NVuklAFu",
+          "name": "Personalizar_email"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -140,
+        140
+      ],
+      "id": "bd4dadce-ab40-451c-80c7-704f69a11e19",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        100,
+        100
+      ],
+      "id": "05dc2638-337f-40d1-8907-2298b0fb8e69",
+      "name": "Send a message in Gmail",
+      "webhookId": "848daa7c-70a3-474a-a973-76080b972e40",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "U7IUuHqHanwnbSxQ",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -500,
+        -60
+      ],
+      "id": "620d51e3-43c5-4e9f-8d1e-86db109daf7a",
+      "name": "Telegram Trigger",
+      "webhookId": "71cfd93a-e129-4af7-98fc-9bf835feaea7",
+      "credentials": {
+        "telegramApi": {
+          "id": "MTL4bVitATYCrvpo",
+          "name": "botN8n send correos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        140,
+        -80
+      ],
+      "id": "1955b87e-2fbe-4818-9c7b-c69d97f4c72b",
+      "name": "Send a text message",
+      "webhookId": "65e1637c-bcf9-4a56-9430-82a36f9dfcca",
+      "credentials": {
+        "telegramApi": {
+          "id": "MTL4bVitATYCrvpo",
+          "name": "botN8n send correos"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-07-01T00:08:24.213Z",
+      "updatedAt": "2025-07-01T00:08:24.213Z",
+      "id": "JdqprwXO1FrIslb6",
+      "name": "Telegram"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-17T20:14:07.000Z",
+  "versionId": "0d57cb6e-790a-4cc6-bd59-0359747ba4f5"
+}
