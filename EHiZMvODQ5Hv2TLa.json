@@ -1,0 +1,342 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-10T10:39:28.877Z",
+  "id": "EHiZMvODQ5Hv2TLa",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "El mayorista",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "numero",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -440,
+        -80
+      ],
+      "id": "6afa4638-29d5-4e51-bfd1-94403f341ed6",
+      "name": "Webhook",
+      "webhookId": "f362d22f-64a8-4516-ae92-df66fb3975dd"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ab51ca12-102b-496e-a82c-848dab75d176",
+              "name": "id_chat",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "7cc35ba9-b454-4f81-91c4-1ae7af50f16c",
+              "name": "instance",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "e3ede519-69bf-450d-a14f-cd285ecae8e4",
+              "name": "apikey",
+              "value": "={{ $json.body.apikey }}",
+              "type": "string"
+            },
+            {
+              "id": "6c66f681-a3cb-4658-9a81-568893bda9d7",
+              "name": "server_url",
+              "value": "={{ $json.body.server_url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -220,
+        -80
+      ],
+      "id": "bd53b221-190b-4dbd-bad4-cd63ea26c266",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Rol y Objetivo:\nActúa como \"Max\", un asistente virtual experto de los supermercados MAxiMercado y MaxiMayorista (no es necesario nombrar los almacenes) en ventas para nuestro canal de WhatsApp. Tu principal objetivo es atender a los clientes de manera eficiente, profesional y amable. Debes proporcionar información precisa sobre precios, catálogos, promociones y, lo más importante, tomar pedidos de forma estructurada, procurar por mensajes cortos.\nMantener la coversacion.\n\nContexto:\nEstás respondiendo a un mensaje de un cliente que ha llegado a través de WhatsApp. El mensaje del cliente que debes procesar es: {{ $('Webhook').item.json.body.data.message.conversation }}\n\nInstrucciones Específicas:\n\nSaludo e Identidad: Si es el primer contacto o el inicio de una conversación, preséntate siempre. Ejemplo: \"¡Hola! Soy Max, ¿En qué puedo ayudarte hoy?\", puede incluir emojis.\n\nEvita repetir el saludo\n\nSi el usuario te pide Precios (no es ncesario seguir saludando), puede usar algo como \"Exclente\", \"Perefcto\":\n\npara esto tiene en las tools, la lista de precios en una hoja de calculo que puedes consultar\n\nSi un cliente pregunta por el precio de un producto, responde de forma clara y directa: \"El precio de [Nombre del Producto] es $[Precio]\".\n\nSi no tienes la información de un producto específico, responde: \"No tengo el precio ahora pero a la brevedad nos pondremos en contacto con la informacion.\"\n\nCompartir Catálogo:\n\nSi un cliente solicita el catálogo, proporciona el enlace que se te ha configurado: \"¡Por supuesto! Puedes explorar nuestro catálogo completo aquí: [Pega aquí el enlace a tu catálogo digital, ya sea una web, un PDF o una imagen].\"\n\nInformar Promociones:\n\nSi te preguntan por promociones, informa únicamente sobre las ofertas vigentes que tengas programadas.\n\nSi no hay promociones activas, responde: \"Actualmente no tenemos promociones especiales, pero te garantizo que nuestros precios son siempre los mejores del mercado mayorista.\"\n\nComaprtir puntos de venta:\n\nEntregar las direcciones donde esta ubicado los supermercados.\nCra 20 # 45-89 al lado de la iglesia uno\nCalle 22 #6-78 barrio Espranza\n\nTomar Pedidos (Proceso Crítico):\n\nPaso A - Inicio: Cuando un cliente quiera hacer un pedido, inicia el proceso: \"¡Excelente! Con gusto tomaré tu pedido. Necesitaré que me proporciones los siguientes datos, por favor.\"\n\nPaso B - Recopilación de Datos: Solicita la siguiente información de manera ordenada, uno por uno si es necesario para mantener la conversación fluida:\n\nNombre completo.\n\nLista de productos y cantidades deseadas.\n\nNúmero de cédula o NIT.\n\nDirección de entrega completa (incluyendo ciudad y detalles adicionales).\n\nForma de pago \n\nPaso C - Confirmación: Antes de finalizar, resume el pedido para que el cliente lo valide: \"Perfecto, [Nombre del Cliente]. Resumo tu pedido para confirmar: [Lista de productos con cantidades]. Se entregará en [Dirección]. ¿Es todo correcto?\"\n\nPaso D - Cierre Exitoso: Una vez confirmado, cierra el proceso: \"¡Tu pedido ha sido registrado con éxito! Un asesor de nuestro equipo se comunicará contigo muy pronto para coordinar el pago y la logística de entrega. ¡Gracias por confiar en El Mayorista!\"\n\nRestricciones Obligatorias (Reglas Inquebrantables):\n\n🚫 CERO DESCUENTOS: Bajo NINGUNA circunstancia debes ofrecer, sugerir o negociar descuentos. Si un cliente insiste, tu respuesta debe ser amable pero firme: \"Nuestros precios ya son de mayorista y están ajustados para ofrecerte el mejor valor posible. No manejo descuentos adicionales.\"\n\nMANTÉN EL ENFOQUE: Tu única función es la venta. Si el cliente desvía la conversación a temas no relacionados, redirígelo cortésmente: \"Estoy programado para ayudarte con tus compras. ¿Hay algún producto en el que estés interesado?\"\n\nNO INVENTES INFORMACIÓN: Si no sabes algo (ej. disponibilidad de stock, especificaciones técnicas), no adivines. Escala la consulta diciendo: \"Esa es una excelente pregunta. Dejaré que uno de nuestros asesores te contacte directamente para darte esa información precisa.\"\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        20,
+        -80
+      ],
+      "id": "d2dc618a-3bea-4db7-a396-8a5edd555d4a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -120,
+        140
+      ],
+      "id": "23ceeb00-8c94-4b59-bca3-02632ca6f7a8",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "XtNAsrV9NVuklAFu",
+          "name": "Personalizar_email"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Edit Fields').item.json.id_chat }}",
+        "contextWindowLength": 7
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        140
+      ],
+      "id": "69d3222c-0dfa-4753-8d22-f3c5982d9911",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Edit Fields').item.json.server_url }}/message/sendText/{{ $('Edit Fields').item.json.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Edit Fields').item.json.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Edit Fields').item.json.id_chat }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        -80
+      ],
+      "id": "96a5a2ac-d819-4e51-9ac7-350dc37f3876",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1MzlV1yW5_57A7B5ZEOo9U4G8TsIAGmSN-b2m4MwnRxc/edit?usp=sharing",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1567605794,
+          "mode": "list",
+          "cachedResultName": "productos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzlV1yW5_57A7B5ZEOo9U4G8TsIAGmSN-b2m4MwnRxc/edit#gid=1567605794"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        300,
+        120
+      ],
+      "id": "10d54d03-ab83-4dfe-90d0-1139e8e4e6d7",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ldnZTM96qp82NGXf",
+          "name": "Google Sheets JuanEsteban"
+        }
+      }
+    }
+  ],
+  "origin": "n8n",
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "sspaneln8nss.castillo.click",
+            "user-agent": "axios/1.7.9",
+            "content-length": "966",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "sspaneln8nss.castillo.click",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "05c4526ab75b",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "test",
+            "data": {
+              "key": {
+                "remoteJid": "573165296900@s.whatsapp.net",
+                "fromMe": false,
+                "id": "3EB0740BCABDF597660B66"
+              },
+              "pushName": "Juanes",
+              "status": "DELIVERY_ACK",
+              "message": {
+                "conversation": "dame precio del arguardiente",
+                "messageContextInfo": {
+                  "deviceListMetadata": {
+                    "senderKeyHash": "uL0m1NzS+dR7bQ==",
+                    "senderTimestamp": "1751943266",
+                    "senderAccountType": "E2EE",
+                    "receiverAccountType": "E2EE",
+                    "recipientKeyHash": "yp79xwCtnCWC3g==",
+                    "recipientTimestamp": "1752168502"
+                  },
+                  "deviceListMetadataVersion": 2,
+                  "messageSecret": "BlfBhv38yUA3FGI/eWOD8XzHBE1j9x1A9iJXPCFuCyc="
+                }
+              },
+              "messageType": "conversation",
+              "messageTimestamp": 1752238340,
+              "instanceId": "db347508-ba49-4a75-8488-764feaf005c0",
+              "source": "web"
+            },
+            "destination": "https://sspaneln8nss.castillo.click/webhook/numero",
+            "date_time": "2025-07-11T09:52:20.715Z",
+            "sender": "573019453093@s.whatsapp.net",
+            "server_url": "https://auto-evolution-api.ylosbk.easypanel.host",
+            "apikey": "BCF74FD870DB-4A20-8477-51D120C2E945"
+          },
+          "webhookUrl": "https://sspaneln8nss.castillo.click/webhook/numero",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-07-10T12:16:58.161Z",
+      "updatedAt": "2025-07-10T12:16:58.161Z",
+      "id": "Vc8vGuMSS8I0Tlky",
+      "name": "evolution"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-17T20:13:55.000Z",
+  "versionId": "3baf6993-70b2-436e-aea5-557fa84cc907"
+}
