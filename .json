@@ -1,3 +1,18 @@
 {
-  "error": "The resource you are requesting could not be found"
+  "_links": {
+    "self": "https://api.github.com/repos/xmaichel/n8n_flows/contents/.json?ref=main",
+    "git": "https://api.github.com/repos/xmaichel/n8n_flows/git/blobs/dd518ff0784d6574aabd191b2989ebd7df920d3b",
+    "html": "https://github.com/xmaichel/n8n_flows/blob/main/.json"
+  },
+  "content": "ewogICJlcnJvciI6ICJUaGUgcmVzb3VyY2UgeW91IGFyZSByZXF1ZXN0aW5n\nIGNvdWxkIG5vdCBiZSBmb3VuZCIKfQ==\n",
+  "download_url": "https://raw.githubusercontent.com/xmaichel/n8n_flows/main/.json",
+  "encoding": "base64",
+  "git_url": "https://api.github.com/repos/xmaichel/n8n_flows/git/blobs/dd518ff0784d6574aabd191b2989ebd7df920d3b",
+  "html_url": "https://github.com/xmaichel/n8n_flows/blob/main/.json",
+  "name": ".json",
+  "path": ".json",
+  "sha": "dd518ff0784d6574aabd191b2989ebd7df920d3b",
+  "size": 67,
+  "type": "file",
+  "url": "https://api.github.com/repos/xmaichel/n8n_flows/contents/.json?ref=main"
 }
