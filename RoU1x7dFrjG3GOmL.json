@@ -1,5 +1,201 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-05T21:33:24.604Z",
+    "createdAt": "2025-12-05T21:33:24.604Z",
+    "versionId": "0a73f027-1aee-4dc0-b2df-5359a7c2bb4e",
+    "workflowId": "RoU1x7dFrjG3GOmL",
+    "nodes": [
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.message.text }}",
+          "options": {
+            "systemMessage": "Eres un agente especializado en escribir correos para esto tienes una herramienta gmail.\n\nDebes enviarlo al correo que solicite el usuario, debes crear un subject y el cuerpo del correo.\n\nManten una escritura para html\n\nDespidete con lo siguiente \n\"Cordial Saludo\nJuan Esteban Castillo\n\""
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2,
+        "position": [
+          0,
+          0
+        ],
+        "id": "26738fe3-7b80-4a0d-b714-799985ba0ee3",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4.1-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -64,
+          208
+        ],
+        "id": "199ac967-08f1-43b7-bc65-3802fc2122eb",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sessionIdType": "customKey",
+          "sessionKey": "={{ $json.message.chat.id }}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
+        "position": [
+          80,
+          224
+        ],
+        "id": "9b466933-d33c-435c-ab59-c2441fc70a93",
+        "name": "Simple Memory"
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+          "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+          "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+          "options": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          320,
+          192
+        ],
+        "id": "f257f6e9-4453-428d-88c9-cfd03a20c646",
+        "name": "Send a message in Gmail",
+        "webhookId": "1e101c88-ffea-4c34-a4bf-1e6e54402f7e",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "kTicbSOlrM56HEmj",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "updates": [
+            "message"
+          ],
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegramTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -288,
+          32
+        ],
+        "id": "bcefd447-57ce-4a9e-969c-87e1c3fed372",
+        "name": "Telegram Trigger",
+        "webhookId": "3bee3a55-d93a-419a-a3f9-54312cf93c0c",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+          "text": "={{ $json.output }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          368,
+          0
+        ],
+        "id": "8470b6cb-80c0-4742-bfe1-0e74ecdccfe4",
+        "name": "Send a text message",
+        "webhookId": "20d8bde0-1d0f-470d-a4c3-07ca598aa1be",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Simple Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a message in Gmail": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Telegram Trigger": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "0a73f027-1aee-4dc0-b2df-5359a7c2bb4e",
   "connections": {
     "OpenAI Chat Model": {
       "ai_languageModel": [
@@ -204,8 +400,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-10-05T11:31:03.025Z",
       "updatedAt": "2025-10-05T11:31:03.025Z",
+      "createdAt": "2025-10-05T11:31:03.025Z",
       "role": "workflow:owner",
       "workflowId": "RoU1x7dFrjG3GOmL",
       "projectId": "TWUdlmfp5jAL6XiA"
@@ -214,8 +410,8 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2025-10-05T11:30:47.138Z",
       "updatedAt": "2025-10-05T11:30:47.138Z",
+      "createdAt": "2025-10-05T11:30:47.138Z",
       "id": "8kH0lewudRwSi32l",
       "name": "Telegram"
     }
