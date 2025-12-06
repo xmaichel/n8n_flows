@@ -1,5 +1,1083 @@
 {
   "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-05T21:33:24.604Z",
+    "createdAt": "2025-12-05T21:33:24.604Z",
+    "versionId": "edb6249b-4ddc-42fa-bec7-4267d23792f5",
+    "workflowId": "Np0fQfv5jzteiERu",
+    "nodes": [
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "gpt-5-mini",
+            "mode": "list",
+            "cachedResultName": "GPT-5-MINI"
+          },
+          "messages": {
+            "values": [
+              {
+                "content": "Eres un consultor de negocios experto en estrategia empresarial y financiera",
+                "role": "system"
+              },
+              {
+                "content": "=A partir de las respuestas del cuestionario debes generar: \n1. Diagnóstico General: Elabora un diagnóstico conciso pero profundo de la situación actual de la empresa. Importante resaltar las principales fortalezas, debilidades y áreas de oportunidad en cuanto a gestión financiera, de personas, comercial y de procesos.\n2. Priorización de Áreas Clave: Identifica las 2 áreas más críticas que requieren atención inmediata para mejorar la salud y el rendimiento general del negocio. Justifica brevemente por qué estas áreas son prioritarias.\n3. Recomendaciones Estratégicas de Implementación Inmediata:Para cada una de las áreas clave priorizadas, proporciona al menos dos recomendaciones estratégicas específicas, accionables y de implementación inmediata que no demanden tantos recursos económicos ni humanos. Cada recomendación debe incluir una breve explicación de cómo puede impactar positivamente el negocio.\n\nInvitar al usuario a agendar una sesión virtual si desea profundizar en alguno de los aspectos de desarrollo a abordar.\n\nNo incluya asunto.\n\nNombre:{{ $json['Nombres y apellidos'] }}\n\nLos datos del cuetionario son los siguientes:\n¿A qué sector económico pertenece la empresa?:{{ $json['¿A qué sector económico pertenece la empresa?'] }}\nVolumen anual de ingresos expresados en dólares:{{ $json['Volumen anual de ingresos expresados en dólares'] }}\nCantidad de trabajadores:{{ $json['Número de trabajadores'] }}\n¿Cuál es tu margen EBITDA (%) sobre los ingresos y cómo ha evolucionado en los últimos 12 meses?:{{ $json['¿Cuál es tu margen EBITDA (%) sobre los ingresos y cómo ha evolucionado en los últimos 12 meses?'] }}\n¿Qué porcentaje de sus ingresos operativos mensuales destina al servicio de deuda (capital + intereses)?:{{ $json['¿Qué porcentaje de sus ingresos operativos mensuales destina al servicio de deuda (capital + intereses)?'] }}\n¿De cuántos días es el ciclo de conversión de caja de tu empresa?: {{ $json['3.\t¿De cuántos días es el ciclo de conversión de caja de tu empresa? (Se obtiene sumando los días que tardan tus clientes en pagarle más los días que tardas en vender tu inventario y restando los días que tomas para pagarle a tus proveedores).  '] }}\n¿Cuál fue el porcentaje de rotación de personal en el último año?:{{ $json['¿Cuál fue el porcentaje de rotación de personal en el último año?'] }} \n¿El plan de compensación está alineado con el desempeño y los resultados del negocio?: {{ $json['¿El plan de compensación está alineado con el desempeño y los resultados del negocio?'] }}\n¿Tienes claridad sobre en qué momento del ciclo laboral un colaborador comienza a generar retorno neto?:{{ $json['¿Tienes claridad sobre en qué momento del ciclo laboral un colaborador comienza a generar retorno neto?'] }}\n¿La empresa cuenta con objetivos comerciales anuales claramente definidos?:{{ $json['¿La empresa cuenta con objetivos comerciales anuales claramente definidos?'] }}\n¿Se cuenta con herramientas digitales para seguimiento de ventas (CRM u otros)?:{{ $json['¿Se cuenta con herramientas digitales para seguimiento de ventas (CRM u otros)?'] }}\n¿La empresa cuenta con presupuesto y forecast de ventas anual?:{{ $json['¿La empresa cuenta con presupuesto y forecast de ventas anual?'] }}\n¿La gestión contable y tributaria se desarrolla internamente o de manera tercerizada?:{{ $json['¿La gestión contable y tributaria se desarrolla internamente o de manera tercerizada?'] }} \n¿Los procesos de Facturación, Contabilidad y Tesorería se manejan todos en un mismo sistema?:{{ $json['¿Los procesos de Facturación, Contabilidad y Tesorería se manejan todos en un mismo sistema?'] }}\n¿Existen políticas documentadas de gestión de caja menor, compras, pago a proveedores, entre otros?:{{ $json['¿Existen políticas documentadas de gestión de caja menor, compras, pago a proveedores, entre otros?'] }} \n¿Has afrontado procesos de fiscalización en el último año por parte de las autoridades tributarias del país? (SAT, DIAN, SRI, SUNAT u otros):{{ $json['¿Has afrontado procesos de fiscalización en el último año por parte de las autoridades tributarias del país? (SAT, DIAN, SRI, SUNAT u otros'] }}\n¿Utilizas reportes financieros para toma de decisiones gerenciales de manera recurrente?:{{ $json['¿Utilizas reportes financieros para toma de decisiones gerenciales de manera recurrente?'] }}\n\nRespeta la estructura del enlace para agendar y manten la misma url.\n\nNo incluyas asteriscos (*) ni guiones (-) en la respuesta para resaltar títulos o subtítulos.\n\nGenera una propuesta de alto valor en las recomendaciones, no te limites a repetir la necesidad de corregir los aspectos identificados como riesgos o debilidades porque suena muy redundante.\n\n---------\n\nLa estructura del correo debe ser la siguiente:\n\n\"Estimado(a) {{ $json['Nombres y apellidos'] }}\n\nGracias por confiar en Grupo Empodera para acompañarte en el proceso de crecimiento y profesionalización de tu modelo de negocio.  A continuación encontrarás la valoración diagnóstica a partir del cuestionario que respondiste y algunas recomendaciones preliminares:\n\n<Colocar aqui el diagnóstico y las recomendaciones según lo indicado previamente>\n\nSi deseas profundizar en alguno de estos aspectos y explorar un plan de acción personalizado, te invito a agendar una sesión virtual con nuestros especialistas:\n\nPara temas de Gestión financiera: https://cal.com/belquiss-nunez-meza-qpxurx/empodera?overlayCalendar=true\n\nPara temas de Gestión comercial: https://cal.com/andrea-villacis-qpxurx/empodera?overlayCalendar=true\n\nPara temas de Optimización de procesos y estrategia: https://cal.com/felipe-paz-qpxurx/empodera?overlayCalendar=true\n\nCordial saludo\nGrupo Empodera\n\""
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 1.8,
+        "position": [
+          240,
+          0
+        ],
+        "id": "2c50e0a3-e1da-4193-ba29-448d57470d51",
+        "name": "Message a model",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "toRecipients": "={{ $('On form linkedin').item.json['Correo electrónico'] }}",
+          "subject": "Diagnóstico empresarial",
+          "bodyContent": "={{ $json.message.content }}",
+          "additionalFields": {
+            "ccRecipients": "bnunez@co.grupoempodera.com"
+          }
+        },
+        "type": "n8n-nodes-base.microsoftOutlook",
+        "typeVersion": 2,
+        "position": [
+          592,
+          0
+        ],
+        "id": "80d4a0fd-ffb8-4134-b12b-880b5866dce0",
+        "name": "Send a message2",
+        "webhookId": "4fc2057c-f03f-4c7f-bb41-964d107318f0",
+        "credentials": {
+          "microsoftOutlookOAuth2Api": {
+            "id": "vX7nmzDz1gUGJmM0",
+            "name": "Microsoft Outlook account 2"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit?usp=sharing",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Correo Electrónico": "={{ $('Cal.com Trigger Bel').item.json.attendees[0].email }}",
+              "Nombre": "={{ $('Cal.com Trigger Bel').item.json.attendees[0].name }}",
+              "Fase": "Agendado",
+              "Agenda": "={{ $('Cal.com Trigger Bel').item.json.startTime.toDateTime().format('yyyy-MM-dd HH:mm') }}",
+              "Notas Calendario": "={{ $('Cal.com Trigger Bel').item.json.additionalNotes }}"
+            },
+            "matchingColumns": [
+              "Correo Electrónico"
+            ],
+            "schema": [
+              {
+                "id": "Correo Electrónico",
+                "displayName": "Correo Electrónico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Teléfono",
+                "displayName": "Teléfono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fecha",
+                "displayName": "Fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Agenda",
+                "displayName": "Agenda",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Diagnostico",
+                "displayName": "Diagnostico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Notas Calendario",
+                "displayName": "Notas Calendario",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          288,
+          240
+        ],
+        "id": "0cebf408-3c2b-4353-9ee5-1099c9fa45db",
+        "name": "Append or update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit?usp=sharing",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Nombre": "={{ $('On form linkedin').item.json['Nombres y apellidos'] }}",
+              "Diagnostico": "={{ $('Message a model').item.json.message.content }}",
+              "Fase": "Cliente potencial",
+              "Teléfono": "={{ $('On form linkedin').item.json['Teléfono'] }}",
+              "Correo Electrónico": "={{ $('On form linkedin').item.json['Correo electrónico'] }}",
+              "Fecha": "={{ $('On form linkedin').item.json.submittedAt.toDateTime().format('yyyy-MM-dd HH:mm') }}"
+            },
+            "matchingColumns": [
+              "Correo Electrónico"
+            ],
+            "schema": [
+              {
+                "id": "Correo Electrónico",
+                "displayName": "Correo Electrónico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Teléfono",
+                "displayName": "Teléfono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fecha",
+                "displayName": "Fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Agenda",
+                "displayName": "Agenda",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Diagnostico",
+                "displayName": "Diagnostico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          880,
+          0
+        ],
+        "id": "eb6f3a8b-d7e6-4a30-9b51-21ef42eaf134",
+        "name": "Append or update row in sheet1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "# To Do´s:\n1. Crear un subdominio en la web de Empodera\n2. Login cuentas del Teams/cal.com\n3. Database Name Odoo",
+          "height": 336,
+          "width": 368
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          976,
+          336
+        ],
+        "typeVersion": 1,
+        "id": "994623ba-5d8c-4537-9192-20929e56ff14",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "formTitle": "Diagnóstico empresarial",
+          "formDescription": "Completa el siguiente formulario y, en solo unos minutos, recibirás un diagnóstico general de tu empresa junto con recomendaciones estratégicas prácticas que podrás aplicar de inmediato.\nEste informe ha sido desarrollado por Grupo Empodera, con base en metodologías de consultoría comprobadas y aplicadas en organizaciones de alto impacto en América Latina.",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "Nombres y apellidos",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Teléfono",
+                "fieldType": "number"
+              },
+              {
+                "fieldLabel": "Correo electrónico",
+                "fieldType": "email",
+                "placeholder": "tucorre@gmail.com",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿A qué sector económico pertenece la empresa?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Servicios"
+                    },
+                    {
+                      "option": "Comercio"
+                    },
+                    {
+                      "option": "Industria"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Volumen anual de ingresos expresados en dólares",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Menor de US$500.000 "
+                    },
+                    {
+                      "option": "Entre US$500.001 – US$1.000.000"
+                    },
+                    {
+                      "option": "Entre US$1.000.001 – US$2.000.000"
+                    },
+                    {
+                      "option": "Mayor a US$2.000.000 "
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Número de trabajadores",
+                "fieldType": "number",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Cuál es tu margen EBITDA (%) sobre los ingresos y cómo ha evolucionado en los últimos 12 meses?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Margen negativo y empeorando "
+                    },
+                    {
+                      "option": "Margen negativo pero mejorando"
+                    },
+                    {
+                      "option": "Margen positivo (1-5%) pero decreciendo "
+                    },
+                    {
+                      "option": "Margen positivo (5-15%) y estable "
+                    },
+                    {
+                      "option": "Margen positivo (>15%) y creciendo"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Qué porcentaje de sus ingresos operativos mensuales destina al servicio de deuda (capital + intereses)?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Más del 50%"
+                    },
+                    {
+                      "option": "Entre 30% y 50%"
+                    },
+                    {
+                      "option": "Entre 15% y 30%"
+                    },
+                    {
+                      "option": "Entre 5% y 15%"
+                    },
+                    {
+                      "option": "Menos del 5%"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "3.\t¿De cuántos días es el ciclo de conversión de caja de tu empresa? (Se obtiene sumando los días que tardan tus clientes en pagarle más los días que tardas en vender tu inventario y restando los días que tomas para pagarle a tus proveedores).  ",
+                "fieldType": "number",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Cuál fue el porcentaje de rotación de personal en el último año?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Menor al 10%"
+                    },
+                    {
+                      "option": "Entre 10% y 20%"
+                    },
+                    {
+                      "option": "Mayor al 20%"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿El plan de compensación está alineado con el desempeño y los resultados del negocio?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Si"
+                    },
+                    {
+                      "option": "No"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Tienes claridad sobre en qué momento del ciclo laboral un colaborador comienza a generar retorno neto?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Si"
+                    },
+                    {
+                      "option": "No"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿La empresa cuenta con objetivos comerciales anuales claramente definidos?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    },
+                    {
+                      "option": "Parcialmente"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Se cuenta con herramientas digitales para seguimiento de ventas (CRM u otros)?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    },
+                    {
+                      "option": "Parcialmente"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿La empresa cuenta con presupuesto y forecast de ventas anual?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    },
+                    {
+                      "option": "Parcialmente"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿La gestión contable y tributaria se desarrolla internamente o de manera tercerizada?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "Interna"
+                    },
+                    {
+                      "option": "Tercerizada"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Los procesos de Facturación, Contabilidad y Tesorería se manejan todos en un mismo sistema?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Existen políticas documentadas de gestión de caja menor, compras, pago a proveedores, entre otros?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    },
+                    {
+                      "option": "Parcialmente"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Has afrontado procesos de fiscalización en el último año por parte de las autoridades tributarias del país? (SAT, DIAN, SRI, SUNAT u otros",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "¿Utilizas reportes financieros para toma de decisiones gerenciales de manera recurrente?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "SI"
+                    },
+                    {
+                      "option": "NO"
+                    },
+                    {
+                      "option": "Parcialmente"
+                    }
+                  ]
+                },
+                "requiredField": true
+              }
+            ]
+          },
+          "options": {
+            "appendAttribution": false,
+            "customCss": ":root {\n\t--font-family: 'Open Sans', sans-serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 12px;\n\t--font-size-label: 14px;\n\t--font-size-test-notice: 12px;\n\t--font-size-input: 14px;\n\t--font-size-header: 20px;\n\t--font-size-paragraph: 14px;\n\t--font-size-link: 12px;\n\t--font-size-error: 12px;\n\t--font-size-html-h1: 28px;\n\t--font-size-html-h2: 20px;\n\t--font-size-html-h3: 16px;\n\t--font-size-html-h4: 14px;\n\t--font-size-html-h5: 12px;\n\t--font-size-html-h6: 10px;\n\t--font-size-subheader: 14px;\n\n\t/* Colors */\n\t--color-background: #fbfcfe;\n\t--color-test-notice-text: #e6a23d;\n\t--color-test-notice-bg: #fefaf6;\n\t--color-test-notice-border: #f6dcb7;\n\t--color-card-bg: #ffffff;\n\t--color-card-border: #dbdfe7;\n\t--color-card-shadow: rgba(99, 77, 255, 0.06);\n\t--color-link: #7e8186;\n\t--color-header: #525356;\n\t--color-label: #555555;\n\t--color-input-border: #dbdfe7;\n\t--color-input-text: #71747A;\n\t--color-focus-border: rgb(90, 76, 194);\n\t--color-submit-btn-bg: #ff6d5a;\n\t--color-submit-btn-text: #ffffff;\n\t--color-error: #ea1f30;\n\t--color-required: #ff6d5a;\n\t--color-clear-button-bg: #7e8186;\n\t--color-html-text: #555;\n\t--color-html-link: #ff6d5a;\n\t--color-header-subtext: #7e8186;\n\n\t/* Border Radii */\n\t--border-radius-card: 8px;\n\t--border-radius-input: 6px;\n\t--border-radius-clear-btn: 50%;\n\t--card-border-radius: 8px;\n\n\t/* Spacing */\n\t--padding-container-top: 24px;\n\t--padding-card: 24px;\n\t--padding-test-notice-vertical: 12px;\n\t--padding-test-notice-horizontal: 24px;\n\t--margin-bottom-card: 16px;\n\t--padding-form-input: 12px;\n\t--card-padding: 24px;\n\t--card-margin-bottom: 16px;\n\n\t/* Dimensions */\n\t--container-width: 448px;\n\t--submit-btn-height: 48px;\n\t--checkbox-size: 18px;\n\n\t/* Others */\n\t--box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n\t--opacity-placeholder: 0.5;\n}"
+          }
+        },
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2.2,
+        "position": [
+          0,
+          0
+        ],
+        "id": "f8b20765-b5b5-458a-9608-bb97bbc83dff",
+        "name": "On form linkedin",
+        "webhookId": "8f3b1786-fbc7-4bf8-bbbd-c6ee616e8198"
+      },
+      {
+        "parameters": {
+          "events": [
+            "BOOKING_CREATED"
+          ],
+          "options": {}
+        },
+        "type": "n8n-nodes-base.calTrigger",
+        "typeVersion": 2,
+        "position": [
+          0,
+          240
+        ],
+        "id": "46fe3d11-b76b-49c7-a727-fd0645c001ed",
+        "name": "Cal.com Trigger Bel",
+        "webhookId": "3513ba9f-64ef-4467-889b-a67d354b387c",
+        "credentials": {
+          "calApi": {
+            "id": "GPt4HxGmTlfMUPRS",
+            "name": "Cal account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit?usp=sharing",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Correo Electrónico": "={{ $('Cal.com Trigger Andrea').item.json.attendees[0].email }}",
+              "Nombre": "={{ $('Cal.com Trigger Andrea').item.json.attendees[0].name }}",
+              "Fase": "Agendado",
+              "Agenda": "={{ $('Cal.com Trigger Andrea').item.json.startTime.toDateTime().format('yyyy-MM-dd HH:mm') }}",
+              "Notas Calendario": "={{ $('Cal.com Trigger Andrea').item.json.additionalNotes }}"
+            },
+            "matchingColumns": [
+              "Correo Electrónico"
+            ],
+            "schema": [
+              {
+                "id": "Correo Electrónico",
+                "displayName": "Correo Electrónico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Teléfono",
+                "displayName": "Teléfono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fecha",
+                "displayName": "Fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Agenda",
+                "displayName": "Agenda",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Diagnostico",
+                "displayName": "Diagnostico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Notas Calendario",
+                "displayName": "Notas Calendario",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          288,
+          432
+        ],
+        "id": "e69a4ef6-6096-4a1e-b647-50538294d7dd",
+        "name": "Append or update row in sheet2",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit?usp=sharing",
+            "mode": "url"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pN98ZefWlvhZzZ5A8FiUi4VWEUqH9PCf40NGdl2f9os/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Correo Electrónico": "={{ $('Cal.com Trigger Felipe').item.json.attendees[0].email }}",
+              "Nombre": "={{ $('Cal.com Trigger Felipe').item.json.attendees[0].name }}",
+              "Fase": "Agendado",
+              "Agenda": "={{ $('Cal.com Trigger Felipe').item.json.startTime.toDateTime().format('yyyy-MM-dd HH:mm') }}",
+              "Notas Calendario": "={{ $('Cal.com Trigger Felipe').item.json.additionalNotes }}"
+            },
+            "matchingColumns": [
+              "Correo Electrónico"
+            ],
+            "schema": [
+              {
+                "id": "Correo Electrónico",
+                "displayName": "Correo Electrónico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Teléfono",
+                "displayName": "Teléfono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fecha",
+                "displayName": "Fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Agenda",
+                "displayName": "Agenda",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Diagnostico",
+                "displayName": "Diagnostico",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Notas Calendario",
+                "displayName": "Notas Calendario",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.6,
+        "position": [
+          288,
+          608
+        ],
+        "id": "4dbfe25a-e6d1-4981-84e2-24d11dd30145",
+        "name": "Append or update row in sheet3",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "events": [
+            "BOOKING_CREATED"
+          ],
+          "options": {}
+        },
+        "type": "n8n-nodes-base.calTrigger",
+        "typeVersion": 2,
+        "position": [
+          0,
+          432
+        ],
+        "id": "9492174a-1bd7-4069-bd39-1dd48d8e2419",
+        "name": "Cal.com Trigger Andrea",
+        "webhookId": "3513ba9f-64ef-4467-889b-a67d354b387c",
+        "credentials": {
+          "calApi": {
+            "id": "GPt4HxGmTlfMUPRS",
+            "name": "Cal account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "events": [
+            "BOOKING_CREATED"
+          ],
+          "options": {}
+        },
+        "type": "n8n-nodes-base.calTrigger",
+        "typeVersion": 2,
+        "position": [
+          0,
+          608
+        ],
+        "id": "3ac5aab5-4bcd-4ecc-a54a-f62140c99f95",
+        "name": "Cal.com Trigger Felipe",
+        "webhookId": "3513ba9f-64ef-4467-889b-a67d354b387c",
+        "credentials": {
+          "calApi": {
+            "id": "GPt4HxGmTlfMUPRS",
+            "name": "Cal account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "## Datos cal.com\nPara adiciona\n\nhttps://app.cal.com/event-type\n\nesta con la cuenta de google belquiss.nm",
+          "height": 288,
+          "width": 368
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -496,
+          240
+        ],
+        "typeVersion": 1,
+        "id": "1d931973-6082-4519-95ed-4abf866a3536",
+        "name": "Sticky Note1"
+      }
+    ],
+    "connections": {
+      "Message a model": {
+        "main": [
+          [
+            {
+              "node": "Send a message2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a message2": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "On form linkedin": {
+        "main": [
+          [
+            {
+              "node": "Message a model",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cal.com Trigger Bel": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cal.com Trigger Andrea": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Cal.com Trigger Felipe": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet3",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "system migration",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "edb6249b-4ddc-42fa-bec7-4267d23792f5",
   "connections": {
     "Message a model": {
       "main": [
@@ -1120,8 +2198,8 @@
   },
   "shared": [
     {
-      "createdAt": "2025-08-20T17:56:26.911Z",
       "updatedAt": "2025-08-20T17:56:26.911Z",
+      "createdAt": "2025-08-20T17:56:26.911Z",
       "role": "workflow:owner",
       "workflowId": "Np0fQfv5jzteiERu",
       "projectId": "TWUdlmfp5jAL6XiA"
@@ -1140,20 +2218,20 @@
   },
   "tags": [
     {
-      "createdAt": "2025-08-27T02:32:53.805Z",
       "updatedAt": "2025-08-27T02:32:53.805Z",
+      "createdAt": "2025-08-27T02:32:53.805Z",
       "id": "OQQq6eqfQ662GHrl",
       "name": "googleSheets"
     },
     {
-      "createdAt": "2025-08-27T02:32:24.288Z",
       "updatedAt": "2025-08-27T02:32:24.288Z",
+      "createdAt": "2025-08-27T02:32:24.288Z",
       "id": "kOYgXbC3US2hjxds",
       "name": "CAL"
     },
     {
-      "createdAt": "2025-08-27T02:32:34.550Z",
       "updatedAt": "2025-08-27T02:32:34.550Z",
+      "createdAt": "2025-08-27T02:32:34.550Z",
       "id": "pIwkmYhm1tCuzn9b",
       "name": "OutLook"
     }
