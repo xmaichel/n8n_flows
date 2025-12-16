@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-14T22:52:46.706Z",
-    "createdAt": "2025-12-14T22:52:46.706Z",
-    "versionId": "b49c2357-44d5-4a33-8910-99788c8a2149",
+    "updatedAt": "2025-12-15T17:11:28.621Z",
+    "createdAt": "2025-12-15T17:11:28.621Z",
+    "versionId": "ef524bef-8024-4a84-b704-4fbb38b68948",
     "workflowId": "cFb60M6EZXg6qU1a",
     "nodes": [
       {
@@ -333,6 +333,16 @@
                 "canBeUsedToMatch": true
               },
               {
+                "id": "Stop-Loss ",
+                "displayName": "Stop-Loss ",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
                 "id": "Precio Salida",
                 "displayName": "Precio Salida",
                 "required": false,
@@ -562,7 +572,7 @@
     "name": null,
     "description": null
   },
-  "activeVersionId": "b49c2357-44d5-4a33-8910-99788c8a2149",
+  "activeVersionId": "ef524bef-8024-4a84-b704-4fbb38b68948",
   "connections": {
     "Schedule Trigger": {
       "main": [
@@ -1022,6 +1032,16 @@
               "canBeUsedToMatch": true
             },
             {
+              "id": "Stop-Loss ",
+              "displayName": "Stop-Loss ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
               "id": "Precio Salida",
               "displayName": "Precio Salida",
               "required": false,
@@ -1170,6 +1190,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-14T22:52:46.704Z",
-  "versionId": "b49c2357-44d5-4a33-8910-99788c8a2149"
+  "updatedAt": "2025-12-15T17:11:28.616Z",
+  "versionId": "ef524bef-8024-4a84-b704-4fbb38b68948"
 }
