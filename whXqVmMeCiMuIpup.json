@@ -1,0 +1,2915 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-16T01:18:42.414Z",
+    "createdAt": "2025-12-16T01:18:42.414Z",
+    "versionId": "68bc3062-ac4a-477d-933b-f7ea2cdb3eb1",
+    "workflowId": "whXqVmMeCiMuIpup",
+    "nodes": [
+      {
+        "parameters": {
+          "updates": [
+            "message"
+          ],
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegramTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -32,
+          304
+        ],
+        "id": "2f90a5e2-eb8f-44ec-a547-1a71ae0ddf57",
+        "name": "Telegram Trigger",
+        "webhookId": "19df45d0-4543-4ad4-a96a-3caa311f61ae",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 10,
+                "triggerAtMinute": 30
+              },
+              {}
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          -32,
+          -16
+        ],
+        "id": "c48a0730-12b4-4542-bf46-159d280308c0",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          640,
+          -16
+        ],
+        "id": "3da7e90f-15e7-4ef4-9cb6-1311d9338b6f",
+        "name": "Get row(s) in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "## Herrameintas\nhttps://chart-img.com/\n\n### video tutorial \nhttps://youtu.be/TSVFRWT3QjM?si=kBSvsVpsC95uDjU2",
+          "height": 272,
+          "width": 384
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -64,
+          -368
+        ],
+        "typeVersion": 1,
+        "id": "1fa5e767-b326-43d4-b118-95f09669456d",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "x-api-key",
+                "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "response": {
+              "response": {
+                "responseFormat": "json"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1328,
+          -48
+        ],
+        "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
+        "name": "HTTP Request1"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+                "name": "ticket",
+                "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "f932144b-efbd-4fab-99c0-69d11eec804a",
+                "name": "mercado",
+                "value": "={{ $json.Mercado }}",
+                "type": "string"
+              },
+              {
+                "id": "864ee666-6fe2-4536-a133-97a347defd7d",
+                "name": "accion",
+                "value": "={{ $json.Accion }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          800,
+          -16
+        ],
+        "id": "6f95aa05-94c4-47cb-9d70-c39cdf67e4b1",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "resource": "image",
+          "operation": "analyze",
+          "modelId": {
+            "__rl": true,
+            "value": "gpt-4o",
+            "mode": "list",
+            "cachedResultName": "GPT-4O"
+          },
+          "text": "=Actúa como un **Analista Técnico de Trading Experto** de Wall Street, especializado en la interpretación profunda de patrones de velas japonesas, estructuras de mercado y acción del precio (Price Action). Tu análisis debe ser objetivo, fundamentado y orientado a la toma de decisiones.\n\n**## I. Contexto del Análisis**\n\n* **Activo:** [NOMBRE DEL ACTIVO] (e.g., BTC/USD, EUR/JPY, SPY)\n* **Marco de Tiempo:** Gráfico de **Velas Diarias (1D)**\n* **Datos Clave del Gráfico (Proporcionados por el usuario, asume que puedes ver el gráfico):**\n    * Tendencia predominante (Macro): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"El precio ha estado en una clara tendencia bajista desde el máximo de X, pero ha rebotado en el soporte clave de Y.\"]\n    * Niveles de Soporte y Resistencia (Identificados): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Soporte fuerte en $Z, Resistencia clave en $W.\"]\n    * Patrones de Velas de las últimas 5 sesiones: [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Ayer se formó un Doji de piernas largas seguido de una vela envolvente alcista (Bullish Engulfing) hoy.\"]\n\n**## II. Análisis Estructurado (Chain-of-Thought)**\n\nRealiza un análisis paso a paso, aplicando tu conocimiento en *Price Action* y patrones de velas japonesas.\n\n1.  **Interpretación de Patrones de Velas:** Identifica y describe el patrón de velas más significativo de los últimos días (e.g., Martillo, Estrella Fugaz, Engulfing). Explica su significado psicológico y su implicación a corto plazo. \n2.  **Estructura del Mercado (S/R y Tendencia):** Evalúa dónde se encuentra el precio en relación con los niveles clave de Soporte/Resistencia (S/R) y la línea de tendencia. ¿Estamos en una zona de consolidación, ruptura (breakout) o rechazo (rejection)?\n3.  **Confluencia de Factores:** Justifica cómo la interpretación de las velas se alinea o contradice con la estructura general del mercado.\n\n**## III. Escenarios y Proyección (Proyección a Corto Plazo)**\n\nProporciona una proyección de precios realista para la próxima semana, cubriendo los dos escenarios más probables.\n\n| Escenario | Condición (Trigger) | Objetivo de Precio (Target) | Justificación (Basada en II) |\n| :--- | :--- | :--- | :--- |\n| **Alcista (Bullish)** | Si el precio rompe y cierra **por encima** de [Nivel de Resistencia Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., activación del patrón Engulfing, ruptura de Resistencia). |\n| **Bajista (Bearish)** | Si el precio rompe y cierra **por debajo** de [Nivel de Soporte Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., fallo de re-test, activación de patrón bajista). |\n\n**## IV. Resumen y Recomendación**\n\nBasado en tu análisis, proporciona un resumen ejecutivo.\n\n* **Sesgo Actual (Bias):** ¿Cuál es la probabilidad más alta (Alcista, Bajista, o Consolidación)?\n* **Recomendación de Trading (Acción):** ¿Qué debería considerar el trader (Comprar, Vender, o Esperar)?\n* **Nivel de Invalidación:** ¿Qué movimiento de precio anularía la proyección (el Stop-Loss lógico)?\n\n**Tu respuesta debe ser profesional y estructurada con Markdown (Encabezados y Tablas) siguiendo exactamente los puntos I, II, III y IV.**",
+          "inputType": "base64",
+          "options": {
+            "detail": "auto",
+            "maxTokens": 3000
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 2.1,
+        "position": [
+          1728,
+          -48
+        ],
+        "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
+        "name": "Analyze image",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 2133119715,
+            "mode": "list",
+            "cachedResultName": "Calculos",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=2133119715"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Fecha": "={{ $now.format('yyyy-MM-dd') }}",
+              "Accion": "={{ $json.accion }}",
+              "Recomendacion": "={{ $json.recomendacion }}",
+              "Analisis General": "={{ $json.analisis_general }}",
+              "Resistencia": "={{ $json.resistencia }}",
+              "Soporte": "={{ $json.soporte }}",
+              "Tendencia": "={{ $json.tendencia }}",
+              "Precio Entrada": "={{ $json.precio_entrada }}",
+              "Precio Salida": "={{ $json.precio_salida }}",
+              "Stop-Loss ": "={{ $json['Stop-Loss'] }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Fecha",
+                "displayName": "Fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Accion",
+                "displayName": "Accion",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Recomendacion",
+                "displayName": "Recomendacion",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Analisis General",
+                "displayName": "Analisis General",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Resistencia",
+                "displayName": "Resistencia",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Soporte",
+                "displayName": "Soporte",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tendencia",
+                "displayName": "Tendencia",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Precio Entrada",
+                "displayName": "Precio Entrada",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Stop-Loss ",
+                "displayName": "Stop-Loss ",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Precio Salida",
+                "displayName": "Precio Salida",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          3392,
+          336
+        ],
+        "id": "508a9e3c-4fe5-4b72-a232-879929fbd763",
+        "name": "Append row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
+                "leftValue": "={{ $json.Recomendacion }}",
+                "rightValue": "Esperar",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              },
+              {
+                "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
+                "leftValue": "={{ $json.Recomendacion }}",
+                "rightValue": "MANTENER",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          3552,
+          336
+        ],
+        "id": "8bd0dccc-9b58-4e93-918b-59691b9717e6",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "chatId": "969710617",
+          "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          3760,
+          416
+        ],
+        "id": "592e2769-5f68-4cb7-929b-d8e4041e7062",
+        "name": "Send a text message",
+        "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "={{ $json.url }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1536,
+          -48
+        ],
+        "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
+        "name": "HTTP Request2"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Accion": "={{ $json.accion }}",
+              "Mercado": "={{ $json.mercado }}"
+            },
+            "matchingColumns": [
+              "Accion"
+            ],
+            "schema": [
+              {
+                "id": "Mercado",
+                "displayName": "Mercado",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Accion",
+                "displayName": "Accion",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          640,
+          288
+        ],
+        "id": "b732ab08-4347-4146-8531-0675488fde2f",
+        "name": "Append or update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "c308b5c9-3eac-4947-a04d-974371263056",
+                "name": "accion",
+                "value": "={{ $('Code in JavaScript1').item.json.accion }}",
+                "type": "string"
+              },
+              {
+                "id": "a45e60b9-4e58-4c5c-8255-ebc48e2d4984",
+                "name": "mercado",
+                "value": "={{ $('Code in JavaScript1').item.json.mercado }}",
+                "type": "string"
+              },
+              {
+                "id": "4018f74a-52c9-428c-9164-f3241d50b483",
+                "name": "ticket",
+                "value": "={{ $json.mercado }}.{{ $json.accion }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          480,
+          288
+        ],
+        "id": "ed857833-1406-4763-98a7-19a432227b23",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "content": "## Vesrion 2\n\n\nhttps://twelvedata.com/login\nxamcihel@gmail.com\n\n\nhttps://youtu.be/4sgmngqXNWU?si=eR0c6I6tO6WXwvsS\n\nnews(Noticias)\nhttps://newsapi.org/\nBel_13724411\na9ccdb3753d64c3192928d3fa3dd45af",
+          "height": 336,
+          "width": 384,
+          "color": 5
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -64,
+          480
+        ],
+        "typeVersion": 1,
+        "id": "c64cdbf4-08e1-41b0-9dc9-ecb6f0dc8c9b",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "url": "https://api.twelvedata.com/time_series",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "={{ $json.data[0].accion }}"
+              },
+              {
+                "name": "interval",
+                "value": "1h"
+              },
+              {
+                "name": "apikey",
+                "value": "baf5305a52354312a0ed901778a2aa9a"
+              },
+              {
+                "name": "outputsize",
+                "value": "100"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1328,
+          112
+        ],
+        "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
+        "name": "1H"
+      },
+      {
+        "parameters": {
+          "url": "https://api.twelvedata.com/time_series",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "={{ $json.data[0].accion }}"
+              },
+              {
+                "name": "interval",
+                "value": "1day"
+              },
+              {
+                "name": "apikey",
+                "value": "baf5305a52354312a0ed901778a2aa9a"
+              },
+              {
+                "name": "outputsize",
+                "value": "100"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1328,
+          256
+        ],
+        "id": "ffe71dfe-c179-49c6-9ef4-c4ceeb86bb0b",
+        "name": "1D"
+      },
+      {
+        "parameters": {
+          "url": "https://api.twelvedata.com/time_series",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "={{ $json.data[0].accion }}"
+              },
+              {
+                "name": "interval",
+                "value": "1week"
+              },
+              {
+                "name": "apikey",
+                "value": "baf5305a52354312a0ed901778a2aa9a"
+              },
+              {
+                "name": "outputsize",
+                "value": "100"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1328,
+          400
+        ],
+        "id": "9db72d9d-7fd2-40b0-9ed2-0a0ecfaf2c7d",
+        "name": "1WEEK"
+      },
+      {
+        "parameters": {
+          "numberInputs": 3
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          1536,
+          256
+        ],
+        "id": "7af509ba-0b31-48c5-b6bc-50c31b3b8ac8",
+        "name": "Merge"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          1696,
+          272
+        ],
+        "id": "758cc102-afa4-4fd4-afa9-4caf6caab292",
+        "name": "Aggregate"
+      },
+      {
+        "parameters": {
+          "jsCode": "const root = items[0].json;\n\n// Extraer datasets (pueden venir vacíos si hubo error)\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      time: v.datetime ? new Date(v.datetime) : null,\n      open: parseFloat(v.open),\n      high: parseFloat(v.high),\n      low: parseFloat(v.low),\n      close: parseFloat(v.close),\n      volume: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.time !== null) // descarta velas sin timestamp\n    .sort((a, b) => a.time - b.time);\n}\n\n// Funciones de validación\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Retornar objeto JSON limpio y seguro\nreturn [\n  {\n    json: {\n      ticker: getSymbol(data1h),\n      candles1m: getCandles(data1h),\n      candles15m: getCandles(data1day),\n      candles1h: getCandles(data1week),\n    }\n  }\n]"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1904,
+          272
+        ],
+        "id": "330ff29b-a93e-4b81-8db6-577383b8cdfc",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "url": "https://newsapi.org/v2/everything",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "q",
+                "value": "={{ $json.data[0].accion }}"
+              },
+              {
+                "name": "from",
+                "value": "={{$today.minus({ days: 1 }).toFormat('yyyy-MM-dd')}}"
+              },
+              {
+                "name": "apikey",
+                "value": "=a9ccdb3753d64c3192928d3fa3dd45af"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1328,
+          592
+        ],
+        "id": "a749b216-9b4d-4ab9-ab50-491edec6385c",
+        "name": "News 7/24"
+      },
+      {
+        "parameters": {
+          "numberInputs": 3
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          2192,
+          320
+        ],
+        "id": "209db90d-72a4-4a40-9bcd-5de3c36b0ace",
+        "name": "Merge1"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          2368,
+          336
+        ],
+        "id": "93a24dae-55af-4475-87fd-fe893cffaee2",
+        "name": "Aggregate1"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "models/gemini-2.5-flash",
+            "mode": "list",
+            "cachedResultName": "models/gemini-2.5-flash"
+          },
+          "messages": {
+            "values": [
+              {
+                "content": "=Ahora, analiza el siguiente texto y produce tu salida JSON:\n\n{{ JSON.stringify($json.articles) }}"
+              }
+            ]
+          },
+          "options": {
+            "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.googleGemini",
+        "typeVersion": 1,
+        "position": [
+          1536,
+          592
+        ],
+        "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
+        "name": "Message a model",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "googlePalmApi": {
+            "id": "zWYgPlFB3BIYXprg",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=## TAREA: Analiza los siguientes datos técnicos y de sentimiento para generar una recomendación de trading Intrasemanal (Swing):\n* Evalúa el estado actual del mercado: \n* Determina la tendencia dominante y el contexto de volatilidad.\n* Genera la Recomendación Unificada: COMPRAR, VENDER o MANTENER.\n* Establece Parámetros de Riesgo: Define Precio de Entrada, Stop-Loss y Precio Objetivo.\n* En caso de MANTENER: Proporciona un análisis de espera detallando el tiempo estimado (ej. \"Próximas 12-24h\" o \"Rebote en 0.618 de Fibonacci\") y la condición específica (ej. \"Rompimiento de resistencia en $X$\") para la próxima posible entrada.\n### Analisis Tecnico grafico:{{ $json.data[0][0].content[0].text }}\n### Datos Técnicos (velas de 1h, 1D, 1W):{{ JSON.stringify($json.data[1]) }}\n### Análisis de Sentimiento (últimas 24h):{{ JSON.stringify($json.data[2]) }}",
+          "options": {
+            "systemMessage": "=Eres un Estratega de Inversión Cuantitativa especializado en el análisis Intrasemanal (Swing Trading). Tu función es procesar datos técnicos (acción del precio de 1h, 1D, 1W) y sentimiento de mercado para generar una recomendación de trading unificada con parámetros de riesgo definidos.\n## REGLAS DE ANÁLISIS:\n### Marcos de Tiempo: Utiliza 1W y 1D para determinar la tendencia principal y las zonas de soporte/resistencia clave. Utiliza 1h para la optimización de la entrada.\n### Priorización Activa: Tu objetivo principal es identificar una oportunidad de COMPRAR o VENDER. Solo emite la recomendación MANTENER si la configuración actual es de riesgo extremo o la tendencia es excesivamente lateral sin puntos de validación claros.\n### Riesgo y Recompensa: Los parámetros de Stop-Loss y Precio Objetivo deben basarse en un ratio de Riesgo/Recompensa mínimo de 1:1.5, utilizando niveles de volatilidad y estructura de mercado (ej. Mínimos recientes o máximos anteriores).\n## FORMATO DE SALIDA ESTRICTO:Tu respuesta debe ser un texto plano con viñetas claras y saltos de línea. No debes incluir ningún texto o explicación adicional fuera de las viñetas. La primera viñeta debe ser una explicación concisa de la razón de la operación.\n## EJEMPLO DE OUTPUT (Obligatorio):\n* Razón de la Operación: El precio ha rebotado en el soporte clave de 1D, validado por una vela envolvente en 1h. \n* El sentimiento positivo de 24h confirma el impulso alcista a corto plazo.\n* Recomendación Técnica: COMPRAR \n* Precio de Entrada: 125.50Stop-Loss: 124.00\n* Precio Objetivo/Salida: 128.75\n* Precio Actual\n* Condición de Espera (si MANTENER): Esperar a que el RSI en 1h supere 60.2. 📝 \n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3,
+        "position": [
+          2528,
+          336
+        ],
+        "id": "06b18b87-0160-4e4c-a393-a6eefa68cd7a",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Acción: {{ $('Merge2').item.json.accion }}\nInforme: {{ $json.output }}\n",
+          "messages": {
+            "messageValues": [
+              {
+                "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"string\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+              }
+            ]
+          },
+          "batching": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.7,
+        "position": [
+          2832,
+          336
+        ],
+        "id": "7d8b538d-bdf6-414d-af00-81a82ce18a3f",
+        "name": "Basic LLM Chain1"
+      },
+      {
+        "parameters": {
+          "jsCode": "for (const item of items) {\n    // 1. Acceso seguro al valor del mensaje proveniente del Telegram Trigger\n    // Usamos el operador ?. (optional chaining) para evitar errores si 'message' o 'text' no existen.\n    const fullSymbol = item.json.message?.text; \n    \n    // Inicialización del estado de manejo de errores\n    item.json.status = \"error\"; // Asumimos error hasta que se demuestre lo contrario\n    item.json.error_message = null; \n\n    // 2. Validación y Procesamiento\n    if (typeof fullSymbol === 'string' && fullSymbol.includes('.')) {\n        const parts = fullSymbol.split('.');\n\n        // Aseguramos que haya exactamente dos partes y que no estén vacías\n        if (parts.length === 2 && parts[0].trim() !== '' && parts[1].trim() !== '') {\n            // Éxito: Procesar y establecer el estado 'success'\n            item.json.mercado = parts[0].toUpperCase().trim();\n            item.json.accion = parts[1].toUpperCase().trim();\n            item.json.status = \"success\";\n        } else {\n            // Error: Formato incompleto (Ej: 'NYSE.' o '.NVDA')\n            item.json.mercado = null;\n            item.json.accion = null;\n            item.json.error_message = \"Formato de símbolo incompleto. Se esperaba 'MERCADO.ACCION'.\";\n        }\n    } else {\n        // Error: No es una cadena o no contiene el separador '.'\n        item.json.mercado = null;\n        item.json.accion = null;\n        item.json.error_message = \"Formato de símbolo inválido. Se esperaba una cadena con formato 'MERCADO.ACCION'.\";\n    }\n}\n\nreturn items;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          128,
+          304
+        ],
+        "id": "2a945fb9-9682-4f3e-b4d2-486b6160748e",
+        "name": "Code in JavaScript1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "c7573ded-b340-4a59-b0e0-1379675ee01c",
+                "leftValue": "={{ $json.status }}",
+                "rightValue": "success",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          288,
+          304
+        ],
+        "id": "400715a4-178a-4786-8191-7b367e3e34a7",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "chatId": "969710617",
+          "text": "={{ $('Code in JavaScript1').item.json.error_message }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          512,
+          512
+        ],
+        "id": "ba91a3d7-1ac9-4171-9319-01e5e57b98c2",
+        "name": "Send a text message1",
+        "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          992,
+          128
+        ],
+        "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
+        "name": "Merge2"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          1136,
+          128
+        ],
+        "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
+        "name": "Aggregate2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+                "name": "ticket",
+                "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "2a96522b-b65b-433a-89ea-0e0514b9878a",
+                "name": "accion",
+                "value": "={{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "c314f1f2-6de7-46ba-8058-138e21256a17",
+                "name": "mercado",
+                "value": "={{ $json.Mercado }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          800,
+          288
+        ],
+        "id": "91a6009f-9fe0-46ef-ae3e-c6ed8b0b83ed",
+        "name": "Edit Fields - tel"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4.1-mini"
+          },
+          "builtInTools": {},
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          2496,
+          512
+        ],
+        "id": "cb7f2878-d3df-48a4-a0c8-f0d603e33b6b",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4o",
+            "mode": "list",
+            "cachedResultName": "gpt-4o"
+          },
+          "builtInTools": {},
+          "options": {
+            "textFormat": {
+              "textOptions": {
+                "type": "json_object"
+              }
+            }
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          2848,
+          512
+        ],
+        "id": "3dd65d6b-f572-4928-a086-9c41e2c950ca",
+        "name": "OpenAI Chat Model1",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Obtener el texto de la salida\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  // Extraer el texto que contiene el JSON\n  let text = item.json.text;\n  \n  // Limpiar el string: quitar saltos de línea y espacios extra\n  text = text.trim();\n  \n  // Parsear el JSON\n  try {\n    const parsed = JSON.parse(text);\n    results.push({ json: parsed });\n  } catch (error) {\n    // Si falla, intentar extraer solo el objeto JSON\n    const jsonMatch = text.match(/\\{[\\s\\S]*\\}/);\n    if (jsonMatch) {\n      const parsed = JSON.parse(jsonMatch[0]);\n      results.push({ json: parsed });\n    } else {\n      throw new Error(`No se pudo parsear el JSON: ${error.message}`);\n    }\n  }\n}\n\nreturn results;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          3184,
+          336
+        ],
+        "id": "c5c0a78f-3589-4935-999c-c7d72a47db1c",
+        "name": "Code in JavaScript2"
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "\n[\n  \n{\n  \n  \n\"accion\": \n\"IBIT\",\n  \n  \n\"recomendacion\": \n\"MANTENER\",\n  \n  \n\"analisis_general\": \n\"El precio está en una tendencia bajista macro con fuerte impulso vendedor, probando un soporte clave en 14.\",\n  \n  \n\"resistencia\": \n\"16\",\n  \n  \n\"soporte\": \n\"14\",\n  \n  \n\"tendencia\": \n\"bajista\",\n  \n  \n\"precio_entrada\": \n\"13.90\",\n  \n  \n\"Stop-Loss\": \n\"14.40\",\n  \n  \n\"precio_salida\": \n\"12.00\"\n  \n}\n]"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          3008,
+          512
+        ],
+        "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
+        "name": "Structured Output Parser"
+      }
+    ],
+    "connections": {
+      "Telegram Trigger": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Get row(s) in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request1": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Analyze image": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append row in sheet": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request2": {
+        "main": [
+          [
+            {
+              "node": "Analyze image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append or update row in sheet": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields - tel",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "1D": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "1H": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "1WEEK": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "Merge": {
+        "main": [
+          [
+            {
+              "node": "Aggregate",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "News 7/24": {
+        "main": [
+          [
+            {
+              "node": "Message a model",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "Aggregate1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Message a model": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "Aggregate1": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Basic LLM Chain1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Basic LLM Chain1": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript1": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Send a text message1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge2": {
+        "main": [
+          [
+            {
+              "node": "Aggregate2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate2": {
+        "main": [
+          [
+            {
+              "node": "1H",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "1D",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "1WEEK",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "News 7/24",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields - tel": {
+        "main": [
+          [
+            {
+              "node": "Merge2",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain1",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript2": {
+        "main": [
+          [
+            {
+              "node": "Append row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          []
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": null,
+    "description": null
+  },
+  "activeVersionId": "68bc3062-ac4a-477d-933b-f7ea2cdb3eb1",
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields - tel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1D": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "1H": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1WEEK": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "News 7/24": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "1H",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1D",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1WEEK",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "News 7/24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields - tel": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-12-14T22:51:12.217Z",
+  "id": "whXqVmMeCiMuIpup",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Trading_V2",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        304
+      ],
+      "id": "2f90a5e2-eb8f-44ec-a547-1a71ae0ddf57",
+      "name": "Telegram Trigger",
+      "webhookId": "19df45d0-4543-4ad4-a96a-3caa311f61ae",
+      "credentials": {
+        "telegramApi": {
+          "id": "rLF6sbdrEUORvHbu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10,
+              "triggerAtMinute": 30
+            },
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -32,
+        -16
+      ],
+      "id": "c48a0730-12b4-4542-bf46-159d280308c0",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        -16
+      ],
+      "id": "3da7e90f-15e7-4ef4-9cb6-1311d9338b6f",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Herrameintas\nhttps://chart-img.com/\n\n### video tutorial \nhttps://youtu.be/TSVFRWT3QjM?si=kBSvsVpsC95uDjU2",
+        "height": 272,
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -64,
+        -368
+      ],
+      "typeVersion": 1,
+      "id": "1fa5e767-b326-43d4-b118-95f09669456d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1328,
+        -48
+      ],
+      "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+              "name": "ticket",
+              "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "f932144b-efbd-4fab-99c0-69d11eec804a",
+              "name": "mercado",
+              "value": "={{ $json.Mercado }}",
+              "type": "string"
+            },
+            {
+              "id": "864ee666-6fe2-4536-a133-97a347defd7d",
+              "name": "accion",
+              "value": "={{ $json.Accion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        -16
+      ],
+      "id": "6f95aa05-94c4-47cb-9d70-c39cdf67e4b1",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "=Actúa como un **Analista Técnico de Trading Experto** de Wall Street, especializado en la interpretación profunda de patrones de velas japonesas, estructuras de mercado y acción del precio (Price Action). Tu análisis debe ser objetivo, fundamentado y orientado a la toma de decisiones.\n\n**## I. Contexto del Análisis**\n\n* **Activo:** [NOMBRE DEL ACTIVO] (e.g., BTC/USD, EUR/JPY, SPY)\n* **Marco de Tiempo:** Gráfico de **Velas Diarias (1D)**\n* **Datos Clave del Gráfico (Proporcionados por el usuario, asume que puedes ver el gráfico):**\n    * Tendencia predominante (Macro): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"El precio ha estado en una clara tendencia bajista desde el máximo de X, pero ha rebotado en el soporte clave de Y.\"]\n    * Niveles de Soporte y Resistencia (Identificados): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Soporte fuerte en $Z, Resistencia clave en $W.\"]\n    * Patrones de Velas de las últimas 5 sesiones: [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Ayer se formó un Doji de piernas largas seguido de una vela envolvente alcista (Bullish Engulfing) hoy.\"]\n\n**## II. Análisis Estructurado (Chain-of-Thought)**\n\nRealiza un análisis paso a paso, aplicando tu conocimiento en *Price Action* y patrones de velas japonesas.\n\n1.  **Interpretación de Patrones de Velas:** Identifica y describe el patrón de velas más significativo de los últimos días (e.g., Martillo, Estrella Fugaz, Engulfing). Explica su significado psicológico y su implicación a corto plazo. \n2.  **Estructura del Mercado (S/R y Tendencia):** Evalúa dónde se encuentra el precio en relación con los niveles clave de Soporte/Resistencia (S/R) y la línea de tendencia. ¿Estamos en una zona de consolidación, ruptura (breakout) o rechazo (rejection)?\n3.  **Confluencia de Factores:** Justifica cómo la interpretación de las velas se alinea o contradice con la estructura general del mercado.\n\n**## III. Escenarios y Proyección (Proyección a Corto Plazo)**\n\nProporciona una proyección de precios realista para la próxima semana, cubriendo los dos escenarios más probables.\n\n| Escenario | Condición (Trigger) | Objetivo de Precio (Target) | Justificación (Basada en II) |\n| :--- | :--- | :--- | :--- |\n| **Alcista (Bullish)** | Si el precio rompe y cierra **por encima** de [Nivel de Resistencia Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., activación del patrón Engulfing, ruptura de Resistencia). |\n| **Bajista (Bearish)** | Si el precio rompe y cierra **por debajo** de [Nivel de Soporte Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., fallo de re-test, activación de patrón bajista). |\n\n**## IV. Resumen y Recomendación**\n\nBasado en tu análisis, proporciona un resumen ejecutivo.\n\n* **Sesgo Actual (Bias):** ¿Cuál es la probabilidad más alta (Alcista, Bajista, o Consolidación)?\n* **Recomendación de Trading (Acción):** ¿Qué debería considerar el trader (Comprar, Vender, o Esperar)?\n* **Nivel de Invalidación:** ¿Qué movimiento de precio anularía la proyección (el Stop-Loss lógico)?\n\n**Tu respuesta debe ser profesional y estructurada con Markdown (Encabezados y Tablas) siguiendo exactamente los puntos I, II, III y IV.**",
+        "inputType": "base64",
+        "options": {
+          "detail": "auto",
+          "maxTokens": 3000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1728,
+        -48
+      ],
+      "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2133119715,
+          "mode": "list",
+          "cachedResultName": "Calculos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=2133119715"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ $now.format('yyyy-MM-dd') }}",
+            "Accion": "={{ $json.accion }}",
+            "Recomendacion": "={{ $json.recomendacion }}",
+            "Analisis General": "={{ $json.analisis_general }}",
+            "Resistencia": "={{ $json.resistencia }}",
+            "Soporte": "={{ $json.soporte }}",
+            "Tendencia": "={{ $json.tendencia }}",
+            "Precio Entrada": "={{ $json.precio_entrada }}",
+            "Precio Salida": "={{ $json.precio_salida }}",
+            "Stop-Loss ": "={{ $json['Stop-Loss'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Accion",
+              "displayName": "Accion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Recomendacion",
+              "displayName": "Recomendacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Analisis General",
+              "displayName": "Analisis General",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resistencia",
+              "displayName": "Resistencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Soporte",
+              "displayName": "Soporte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tendencia",
+              "displayName": "Tendencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Precio Entrada",
+              "displayName": "Precio Entrada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Stop-Loss ",
+              "displayName": "Stop-Loss ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Precio Salida",
+              "displayName": "Precio Salida",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3392,
+        336
+      ],
+      "id": "508a9e3c-4fe5-4b72-a232-879929fbd763",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
+              "leftValue": "={{ $json.Recomendacion }}",
+              "rightValue": "Esperar",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
+              "leftValue": "={{ $json.Recomendacion }}",
+              "rightValue": "MANTENER",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3552,
+        336
+      ],
+      "id": "8bd0dccc-9b58-4e93-918b-59691b9717e6",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "969710617",
+        "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3760,
+        416
+      ],
+      "id": "592e2769-5f68-4cb7-929b-d8e4041e7062",
+      "name": "Send a text message",
+      "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+      "credentials": {
+        "telegramApi": {
+          "id": "rLF6sbdrEUORvHbu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1536,
+        -48
+      ],
+      "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Accion": "={{ $json.accion }}",
+            "Mercado": "={{ $json.mercado }}"
+          },
+          "matchingColumns": [
+            "Accion"
+          ],
+          "schema": [
+            {
+              "id": "Mercado",
+              "displayName": "Mercado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Accion",
+              "displayName": "Accion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        640,
+        288
+      ],
+      "id": "b732ab08-4347-4146-8531-0675488fde2f",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c308b5c9-3eac-4947-a04d-974371263056",
+              "name": "accion",
+              "value": "={{ $('Code in JavaScript1').item.json.accion }}",
+              "type": "string"
+            },
+            {
+              "id": "a45e60b9-4e58-4c5c-8255-ebc48e2d4984",
+              "name": "mercado",
+              "value": "={{ $('Code in JavaScript1').item.json.mercado }}",
+              "type": "string"
+            },
+            {
+              "id": "4018f74a-52c9-428c-9164-f3241d50b483",
+              "name": "ticket",
+              "value": "={{ $json.mercado }}.{{ $json.accion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        288
+      ],
+      "id": "ed857833-1406-4763-98a7-19a432227b23",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "## Vesrion 2\n\n\nhttps://twelvedata.com/login\nxamcihel@gmail.com\n\n\nhttps://youtu.be/4sgmngqXNWU?si=eR0c6I6tO6WXwvsS\n\nnews(Noticias)\nhttps://newsapi.org/\nBel_13724411\na9ccdb3753d64c3192928d3fa3dd45af",
+        "height": 336,
+        "width": 384,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -64,
+        480
+      ],
+      "typeVersion": 1,
+      "id": "c64cdbf4-08e1-41b0-9dc9-ecb6f0dc8c9b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "https://api.twelvedata.com/time_series",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.data[0].accion }}"
+            },
+            {
+              "name": "interval",
+              "value": "1h"
+            },
+            {
+              "name": "apikey",
+              "value": "baf5305a52354312a0ed901778a2aa9a"
+            },
+            {
+              "name": "outputsize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1328,
+        112
+      ],
+      "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
+      "name": "1H"
+    },
+    {
+      "parameters": {
+        "url": "https://api.twelvedata.com/time_series",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.data[0].accion }}"
+            },
+            {
+              "name": "interval",
+              "value": "1day"
+            },
+            {
+              "name": "apikey",
+              "value": "baf5305a52354312a0ed901778a2aa9a"
+            },
+            {
+              "name": "outputsize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1328,
+        256
+      ],
+      "id": "ffe71dfe-c179-49c6-9ef4-c4ceeb86bb0b",
+      "name": "1D"
+    },
+    {
+      "parameters": {
+        "url": "https://api.twelvedata.com/time_series",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.data[0].accion }}"
+            },
+            {
+              "name": "interval",
+              "value": "1week"
+            },
+            {
+              "name": "apikey",
+              "value": "baf5305a52354312a0ed901778a2aa9a"
+            },
+            {
+              "name": "outputsize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1328,
+        400
+      ],
+      "id": "9db72d9d-7fd2-40b0-9ed2-0a0ecfaf2c7d",
+      "name": "1WEEK"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1536,
+        256
+      ],
+      "id": "7af509ba-0b31-48c5-b6bc-50c31b3b8ac8",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1696,
+        272
+      ],
+      "id": "758cc102-afa4-4fd4-afa9-4caf6caab292",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "const root = items[0].json;\n\n// Extraer datasets (pueden venir vacíos si hubo error)\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      time: v.datetime ? new Date(v.datetime) : null,\n      open: parseFloat(v.open),\n      high: parseFloat(v.high),\n      low: parseFloat(v.low),\n      close: parseFloat(v.close),\n      volume: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.time !== null) // descarta velas sin timestamp\n    .sort((a, b) => a.time - b.time);\n}\n\n// Funciones de validación\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Retornar objeto JSON limpio y seguro\nreturn [\n  {\n    json: {\n      ticker: getSymbol(data1h),\n      candles1m: getCandles(data1h),\n      candles15m: getCandles(data1day),\n      candles1h: getCandles(data1week),\n    }\n  }\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1904,
+        272
+      ],
+      "id": "330ff29b-a93e-4b81-8db6-577383b8cdfc",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.data[0].accion }}"
+            },
+            {
+              "name": "from",
+              "value": "={{$today.minus({ days: 1 }).toFormat('yyyy-MM-dd')}}"
+            },
+            {
+              "name": "apikey",
+              "value": "=a9ccdb3753d64c3192928d3fa3dd45af"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1328,
+        592
+      ],
+      "id": "a749b216-9b4d-4ab9-ab50-491edec6385c",
+      "name": "News 7/24"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2192,
+        320
+      ],
+      "id": "209db90d-72a4-4a40-9bcd-5de3c36b0ace",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2368,
+        336
+      ],
+      "id": "93a24dae-55af-4475-87fd-fe893cffaee2",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Ahora, analiza el siguiente texto y produce tu salida JSON:\n\n{{ JSON.stringify($json.articles) }}"
+            }
+          ]
+        },
+        "options": {
+          "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1536,
+        592
+      ],
+      "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
+      "name": "Message a model",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "zWYgPlFB3BIYXprg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=## TAREA: Analiza los siguientes datos técnicos y de sentimiento para generar una recomendación de trading Intrasemanal (Swing):\n* Evalúa el estado actual del mercado: \n* Determina la tendencia dominante y el contexto de volatilidad.\n* Genera la Recomendación Unificada: COMPRAR, VENDER o MANTENER.\n* Establece Parámetros de Riesgo: Define Precio de Entrada, Stop-Loss y Precio Objetivo.\n* En caso de MANTENER: Proporciona un análisis de espera detallando el tiempo estimado (ej. \"Próximas 12-24h\" o \"Rebote en 0.618 de Fibonacci\") y la condición específica (ej. \"Rompimiento de resistencia en $X$\") para la próxima posible entrada.\n### Analisis Tecnico grafico:{{ $json.data[0][0].content[0].text }}\n### Datos Técnicos (velas de 1h, 1D, 1W):{{ JSON.stringify($json.data[1]) }}\n### Análisis de Sentimiento (últimas 24h):{{ JSON.stringify($json.data[2]) }}",
+        "options": {
+          "systemMessage": "=Eres un Estratega de Inversión Cuantitativa especializado en el análisis Intrasemanal (Swing Trading). Tu función es procesar datos técnicos (acción del precio de 1h, 1D, 1W) y sentimiento de mercado para generar una recomendación de trading unificada con parámetros de riesgo definidos.\n## REGLAS DE ANÁLISIS:\n### Marcos de Tiempo: Utiliza 1W y 1D para determinar la tendencia principal y las zonas de soporte/resistencia clave. Utiliza 1h para la optimización de la entrada.\n### Priorización Activa: Tu objetivo principal es identificar una oportunidad de COMPRAR o VENDER. Solo emite la recomendación MANTENER si la configuración actual es de riesgo extremo o la tendencia es excesivamente lateral sin puntos de validación claros.\n### Riesgo y Recompensa: Los parámetros de Stop-Loss y Precio Objetivo deben basarse en un ratio de Riesgo/Recompensa mínimo de 1:1.5, utilizando niveles de volatilidad y estructura de mercado (ej. Mínimos recientes o máximos anteriores).\n## FORMATO DE SALIDA ESTRICTO:Tu respuesta debe ser un texto plano con viñetas claras y saltos de línea. No debes incluir ningún texto o explicación adicional fuera de las viñetas. La primera viñeta debe ser una explicación concisa de la razón de la operación.\n## EJEMPLO DE OUTPUT (Obligatorio):\n* Razón de la Operación: El precio ha rebotado en el soporte clave de 1D, validado por una vela envolvente en 1h. \n* El sentimiento positivo de 24h confirma el impulso alcista a corto plazo.\n* Recomendación Técnica: COMPRAR \n* Precio de Entrada: 125.50Stop-Loss: 124.00\n* Precio Objetivo/Salida: 128.75\n* Precio Actual\n* Condición de Espera (si MANTENER): Esperar a que el RSI en 1h supere 60.2. 📝 \n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        2528,
+        336
+      ],
+      "id": "06b18b87-0160-4e4c-a393-a6eefa68cd7a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Acción: {{ $('Merge2').item.json.accion }}\nInforme: {{ $json.output }}\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"string\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        2832,
+        336
+      ],
+      "id": "7d8b538d-bdf6-414d-af00-81a82ce18a3f",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of items) {\n    // 1. Acceso seguro al valor del mensaje proveniente del Telegram Trigger\n    // Usamos el operador ?. (optional chaining) para evitar errores si 'message' o 'text' no existen.\n    const fullSymbol = item.json.message?.text; \n    \n    // Inicialización del estado de manejo de errores\n    item.json.status = \"error\"; // Asumimos error hasta que se demuestre lo contrario\n    item.json.error_message = null; \n\n    // 2. Validación y Procesamiento\n    if (typeof fullSymbol === 'string' && fullSymbol.includes('.')) {\n        const parts = fullSymbol.split('.');\n\n        // Aseguramos que haya exactamente dos partes y que no estén vacías\n        if (parts.length === 2 && parts[0].trim() !== '' && parts[1].trim() !== '') {\n            // Éxito: Procesar y establecer el estado 'success'\n            item.json.mercado = parts[0].toUpperCase().trim();\n            item.json.accion = parts[1].toUpperCase().trim();\n            item.json.status = \"success\";\n        } else {\n            // Error: Formato incompleto (Ej: 'NYSE.' o '.NVDA')\n            item.json.mercado = null;\n            item.json.accion = null;\n            item.json.error_message = \"Formato de símbolo incompleto. Se esperaba 'MERCADO.ACCION'.\";\n        }\n    } else {\n        // Error: No es una cadena o no contiene el separador '.'\n        item.json.mercado = null;\n        item.json.accion = null;\n        item.json.error_message = \"Formato de símbolo inválido. Se esperaba una cadena con formato 'MERCADO.ACCION'.\";\n    }\n}\n\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        304
+      ],
+      "id": "2a945fb9-9682-4f3e-b4d2-486b6160748e",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c7573ded-b340-4a59-b0e0-1379675ee01c",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        304
+      ],
+      "id": "400715a4-178a-4786-8191-7b367e3e34a7",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "chatId": "969710617",
+        "text": "={{ $('Code in JavaScript1').item.json.error_message }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        512,
+        512
+      ],
+      "id": "ba91a3d7-1ac9-4171-9319-01e5e57b98c2",
+      "name": "Send a text message1",
+      "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+      "credentials": {
+        "telegramApi": {
+          "id": "rLF6sbdrEUORvHbu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        992,
+        128
+      ],
+      "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1136,
+        128
+      ],
+      "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+              "name": "ticket",
+              "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "2a96522b-b65b-433a-89ea-0e0514b9878a",
+              "name": "accion",
+              "value": "={{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "c314f1f2-6de7-46ba-8058-138e21256a17",
+              "name": "mercado",
+              "value": "={{ $json.Mercado }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        800,
+        288
+      ],
+      "id": "91a6009f-9fe0-46ef-ae3e-c6ed8b0b83ed",
+      "name": "Edit Fields - tel"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        2496,
+        512
+      ],
+      "id": "cb7f2878-d3df-48a4-a0c8-f0d603e33b6b",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        2848,
+        512
+      ],
+      "id": "3dd65d6b-f572-4928-a086-9c41e2c950ca",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener el texto de la salida\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  // Extraer el texto que contiene el JSON\n  let text = item.json.text;\n  \n  // Limpiar el string: quitar saltos de línea y espacios extra\n  text = text.trim();\n  \n  // Parsear el JSON\n  try {\n    const parsed = JSON.parse(text);\n    results.push({ json: parsed });\n  } catch (error) {\n    // Si falla, intentar extraer solo el objeto JSON\n    const jsonMatch = text.match(/\\{[\\s\\S]*\\}/);\n    if (jsonMatch) {\n      const parsed = JSON.parse(jsonMatch[0]);\n      results.push({ json: parsed });\n    } else {\n      throw new Error(`No se pudo parsear el JSON: ${error.message}`);\n    }\n  }\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3184,
+        336
+      ],
+      "id": "c5c0a78f-3589-4935-999c-c7d72a47db1c",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "\n[\n  \n{\n  \n  \n\"accion\": \n\"IBIT\",\n  \n  \n\"recomendacion\": \n\"MANTENER\",\n  \n  \n\"analisis_general\": \n\"El precio está en una tendencia bajista macro con fuerte impulso vendedor, probando un soporte clave en 14.\",\n  \n  \n\"resistencia\": \n\"16\",\n  \n  \n\"soporte\": \n\"14\",\n  \n  \n\"tendencia\": \n\"bajista\",\n  \n  \n\"precio_entrada\": \n\"13.90\",\n  \n  \n\"Stop-Loss\": \n\"14.40\",\n  \n  \n\"precio_salida\": \n\"12.00\"\n  \n}\n]"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        3008,
+        512
+      ],
+      "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 69771162,
+          "message": {
+            "message_id": 245,
+            "from": {
+              "id": 969710617,
+              "is_bot": false,
+              "first_name": "Juan Esteban",
+              "last_name": "Castillo",
+              "username": "xmaichel",
+              "language_code": "es"
+            },
+            "chat": {
+              "id": 969710617,
+              "first_name": "Juan Esteban",
+              "last_name": "Castillo",
+              "username": "xmaichel",
+              "type": "private"
+            },
+            "date": 1765755569,
+            "text": "NASDAQ.IBIT"
+          }
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-14T22:51:12.230Z",
+      "createdAt": "2025-12-14T22:51:12.230Z",
+      "role": "workflow:owner",
+      "workflowId": "whXqVmMeCiMuIpup",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-10-05T11:30:47.138Z",
+      "createdAt": "2025-10-05T11:30:47.138Z",
+      "id": "8kH0lewudRwSi32l",
+      "name": "Telegram"
+    },
+    {
+      "updatedAt": "2025-08-27T02:32:53.805Z",
+      "createdAt": "2025-08-27T02:32:53.805Z",
+      "id": "OQQq6eqfQ662GHrl",
+      "name": "googleSheets"
+    },
+    {
+      "updatedAt": "2025-12-14T16:54:32.060Z",
+      "createdAt": "2025-12-14T16:54:32.060Z",
+      "id": "ofEzJAAOTKanxOGS",
+      "name": "Trading"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2025-12-16T01:18:42.411Z",
+  "versionId": "68bc3062-ac4a-477d-933b-f7ea2cdb3eb1"
+}
