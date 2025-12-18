@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-16T01:18:42.414Z",
-    "createdAt": "2025-12-16T01:18:42.414Z",
-    "versionId": "68bc3062-ac4a-477d-933b-f7ea2cdb3eb1",
+    "updatedAt": "2025-12-18T12:06:49.000Z",
+    "createdAt": "2025-12-18T12:06:42.260Z",
+    "versionId": "61de1d5f-5bb7-4d41-af7f-4b6e9ded0c23",
     "workflowId": "whXqVmMeCiMuIpup",
     "nodes": [
       {
@@ -36,8 +36,7 @@
               {
                 "triggerAtHour": 10,
                 "triggerAtMinute": 30
-              },
-              {}
+              }
             ]
           }
         },
@@ -100,43 +99,6 @@
       },
       {
         "parameters": {
-          "method": "POST",
-          "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
-          "sendHeaders": true,
-          "headerParameters": {
-            "parameters": [
-              {
-                "name": "x-api-key",
-                "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
-              },
-              {
-                "name": "Content-Type",
-                "value": "application/json"
-              }
-            ]
-          },
-          "sendBody": true,
-          "specifyBody": "json",
-          "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
-          "options": {
-            "response": {
-              "response": {
-                "responseFormat": "json"
-              }
-            }
-          }
-        },
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.3,
-        "position": [
-          1328,
-          -48
-        ],
-        "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
-        "name": "HTTP Request1"
-      },
-      {
-        "parameters": {
           "assignments": {
             "assignments": [
               {
@@ -190,8 +152,8 @@
         "type": "@n8n/n8n-nodes-langchain.openAi",
         "typeVersion": 2.1,
         "position": [
-          1728,
-          -48
+          1904,
+          -64
         ],
         "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
         "name": "Analyze image",
@@ -421,8 +383,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.3,
         "position": [
-          1536,
-          -48
+          1696,
+          -64
         ],
         "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
         "name": "HTTP Request2"
@@ -578,7 +540,8 @@
           112
         ],
         "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
-        "name": "1H"
+        "name": "1H",
+        "onError": "continueErrorOutput"
       },
       {
         "parameters": {
@@ -805,7 +768,7 @@
       {
         "parameters": {
           "promptType": "define",
-          "text": "=Acción: {{ $('Merge2').item.json.accion }}\nInforme: {{ $json.output }}\n",
+          "text": "=Informe: {{ $json.output }}\n",
           "messages": {
             "messageValues": [
               {
@@ -1036,6 +999,46 @@
         ],
         "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
         "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "x-api-key",
+                "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "response": {
+              "response": {
+                "responseFormat": "json"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1328,
+          -48
+        ],
+        "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
+        "name": "chat-img",
+        "retryOnFail": false,
+        "maxTries": 2,
+        "onError": "continueErrorOutput"
       }
     ],
     "connections": {
@@ -1077,17 +1080,6 @@
           [
             {
               "node": "Merge2",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "HTTP Request1": {
-        "main": [
-          [
-            {
-              "node": "HTTP Request2",
               "type": "main",
               "index": 0
             }
@@ -1342,7 +1334,7 @@
               "index": 0
             },
             {
-              "node": "HTTP Request1",
+              "node": "chat-img",
               "type": "main",
               "index": 0
             },
@@ -1412,13 +1404,25 @@
         "ai_outputParser": [
           []
         ]
+      },
+      "chat-img": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Juan Castillo",
-    "name": null,
-    "description": null
+    "name": "Version 61de1d5f",
+    "description": "",
+    "autosaved": false
   },
-  "activeVersionId": "68bc3062-ac4a-477d-933b-f7ea2cdb3eb1",
+  "activeVersionId": "61de1d5f-5bb7-4d41-af7f-4b6e9ded0c23",
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -1458,17 +1462,6 @@
         [
           {
             "node": "Merge2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request1": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request2",
             "type": "main",
             "index": 0
           }
@@ -1723,7 +1716,7 @@
             "index": 0
           },
           {
-            "node": "HTTP Request1",
+            "node": "chat-img",
             "type": "main",
             "index": 0
           },
@@ -1793,6 +1786,17 @@
       "ai_outputParser": [
         []
       ]
+    },
+    "chat-img": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-12-14T22:51:12.217Z",
@@ -1833,8 +1837,7 @@
             {
               "triggerAtHour": 10,
               "triggerAtMinute": 30
-            },
-            {}
+            }
           ]
         }
       },
@@ -1897,43 +1900,6 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "x-api-key",
-              "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
-            },
-            {
-              "name": "Content-Type",
-              "value": "application/json"
-            }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
-        "options": {
-          "response": {
-            "response": {
-              "responseFormat": "json"
-            }
-          }
-        }
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        1328,
-        -48
-      ],
-      "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
-      "name": "HTTP Request1"
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
@@ -1987,8 +1953,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
       "position": [
-        1728,
-        -48
+        1904,
+        -64
       ],
       "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
       "name": "Analyze image",
@@ -2218,8 +2184,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1536,
-        -48
+        1696,
+        -64
       ],
       "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
       "name": "HTTP Request2"
@@ -2375,7 +2341,8 @@
         112
       ],
       "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
-      "name": "1H"
+      "name": "1H",
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -2476,7 +2443,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const root = items[0].json;\n\n// Extraer datasets (pueden venir vacíos si hubo error)\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      time: v.datetime ? new Date(v.datetime) : null,\n      open: parseFloat(v.open),\n      high: parseFloat(v.high),\n      low: parseFloat(v.low),\n      close: parseFloat(v.close),\n      volume: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.time !== null) // descarta velas sin timestamp\n    .sort((a, b) => a.time - b.time);\n}\n\n// Funciones de validación\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Retornar objeto JSON limpio y seguro\nreturn [\n  {\n    json: {\n      ticker: getSymbol(data1h),\n      candles1m: getCandles(data1h),\n      candles15m: getCandles(data1day),\n      candles1h: getCandles(data1week),\n    }\n  }\n]"
+        "jsCode": "const root = items[0].json;\n\n// Extraer datasets (pueden venir vacíos si hubo error)\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      time: v.datetime ? new Date(v.datetime) : null,\n      open: parseFloat(v.open),\n      high: parseFloat(v.high),\n      low: parseFloat(v.low),\n      close: parseFloat(v.close),\n      volume: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.time !== null) // descarta velas sin timestamp\n    .sort((a, b) => a.time - b.time);\n}\n\n// Funciones de validación\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Retornar objeto JSON limpio y seguro\nreturn [\n  {\n    json: {\n      symbol: getSymbol(data1h),\n      candles1hora: getCandles(data1h),\n      candles1day: getCandles(data1day),\n      candles1week: getCandles(data1week),\n    }\n  }\n]"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -2602,7 +2569,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Acción: {{ $('Merge2').item.json.accion }}\nInforme: {{ $json.output }}\n",
+        "text": "=Informe: {{ $json.output }}\n",
         "messages": {
           "messageValues": [
             {
@@ -2833,6 +2800,46 @@
       ],
       "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
       "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1328,
+        -48
+      ],
+      "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
+      "name": "chat-img",
+      "retryOnFail": false,
+      "maxTries": 2,
+      "onError": "continueErrorOutput"
     }
   ],
   "origin": "main",
@@ -2861,6 +2868,19 @@
             "date": 1765755569,
             "text": "NASDAQ.IBIT"
           }
+        }
+      }
+    ],
+    "Aggregate2": [
+      {
+        "json": {
+          "data": [
+            {
+              "ticket": "NYSE:JETS",
+              "accion": "JETS",
+              "mercado": "NYSE"
+            }
+          ]
         }
       }
     ]
@@ -2910,6 +2930,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-12-16T01:18:42.411Z",
-  "versionId": "68bc3062-ac4a-477d-933b-f7ea2cdb3eb1"
+  "updatedAt": "2025-12-18T12:42:47.741Z",
+  "versionId": "1d1de51c-027e-4ee3-aa80-fe0d5ca7c68d"
 }
