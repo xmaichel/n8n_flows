@@ -1,0 +1,737 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-19T11:22:29.000Z",
+    "createdAt": "2025-12-19T11:20:18.174Z",
+    "versionId": "89f52ff7-5983-4a00-9546-22ca8b1a0d86",
+    "workflowId": "cH0gNKhn49anrjuj",
+    "nodes": [
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $('When chat message received').item.json.chatInput }}",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          -16,
+          -32
+        ],
+        "id": "243f5b5b-5a12-4a1c-937a-9ecad89e8e24",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "numberInputs": 3,
+          "rules": {
+            "rule": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "c649ddc5-03ae-439c-a8d6-e4a4b9c141a2",
+                      "leftValue": "={{ $('Basic LLM Chain').item.json.text }}",
+                      "rightValue": "1",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "modelIndex": 2,
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "266e4f63-cf75-4c98-83b4-99cdae525396",
+                      "leftValue": "={{ $('Basic LLM Chain').item.json.text }}",
+                      "rightValue": "2",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "modelIndex": 3,
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "a48ec195-7435-4d7a-8c58-235dd3c4d43a",
+                      "leftValue": "={{ $('Basic LLM Chain').item.json.text }}",
+                      "rightValue": "3",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.modelSelector",
+        "typeVersion": 1,
+        "position": [
+          -160,
+          176
+        ],
+        "id": "3e606247-3127-4546-a4c3-55332bcbddfd",
+        "name": "Model Selector"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-5.2-2025-12-11",
+            "mode": "list",
+            "cachedResultName": "gpt-5.2-2025-12-11"
+          },
+          "builtInTools": {
+            "webSearch": {
+              "searchContextSize": "low"
+            }
+          },
+          "options": {
+            "reasoningEffort": "low"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          -192,
+          336
+        ],
+        "id": "9e37018a-1ef6-411c-b1a7-0907dba3b094",
+        "name": "LOW",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "hasOutputParser": true,
+          "messages": {
+            "messageValues": [
+              {
+                "message": "=Output \"1\" if the question is simple\nOutput \"2\" if the question is medium difficulty\nOutput \"3\" if the question is about doing research   "
+              }
+            ]
+          },
+          "batching": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.8,
+        "position": [
+          -592,
+          -32
+        ],
+        "id": "a73ef1a9-cc72-47b7-b9ad-8bfdc82061dc",
+        "name": "Basic LLM Chain"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          -592,
+          144
+        ],
+        "id": "16b5a4df-8d22-44d6-9978-570aff24fd50",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "zWYgPlFB3BIYXprg",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-5.2-2025-12-11",
+            "mode": "list",
+            "cachedResultName": "gpt-5.2-2025-12-11"
+          },
+          "builtInTools": {
+            "webSearch": {
+              "searchContextSize": "medium"
+            }
+          },
+          "options": {
+            "reasoningEffort": "medium"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          -96,
+          336
+        ],
+        "id": "5226bc6e-e5da-4a83-ac18-02501cd8fea2",
+        "name": "Medium",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-5.2-2025-12-11",
+            "mode": "list",
+            "cachedResultName": "gpt-5.2-2025-12-11"
+          },
+          "builtInTools": {
+            "webSearch": {
+              "searchContextSize": "high"
+            }
+          },
+          "options": {
+            "reasoningEffort": "high"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          336
+        ],
+        "id": "79ceb838-bf64-47e1-b06c-5a8b550126f6",
+        "name": "Hihg",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "availableInChat": true,
+          "agentName": "Agent d",
+          "agentDescription": "Test",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.4,
+        "position": [
+          -912,
+          -32
+        ],
+        "id": "c6a33f46-0613-4e4b-8fac-d4824ffcf8bf",
+        "name": "When chat message received",
+        "webhookId": "dfb00505-e368-42f4-bd94-6155b2db8598"
+      }
+    ],
+    "connections": {
+      "Model Selector": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "LOW": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Model Selector",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Basic LLM Chain": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Medium": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Model Selector",
+              "type": "ai_languageModel",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Hihg": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Model Selector",
+              "type": "ai_languageModel",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "When chat message received": {
+        "main": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 89f52ff7",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "89f52ff7-5983-4a00-9546-22ca8b1a0d86",
+  "connections": {
+    "Model Selector": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LOW": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Medium": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Hihg": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-19T10:25:02.807Z",
+  "id": "cH0gNKhn49anrjuj",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agent Nivel",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -16,
+        -32
+      ],
+      "id": "243f5b5b-5a12-4a1c-937a-9ecad89e8e24",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c649ddc5-03ae-439c-a8d6-e4a4b9c141a2",
+                    "leftValue": "={{ $('Basic LLM Chain').item.json.output.nivel }}",
+                    "rightValue": "1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "266e4f63-cf75-4c98-83b4-99cdae525396",
+                    "leftValue": "={{ $('Basic LLM Chain').item.json.output.nivel }}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a48ec195-7435-4d7a-8c58-235dd3c4d43a",
+                    "leftValue": "={{ $('Basic LLM Chain').item.json.output.nivel }}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        176
+      ],
+      "id": "3e606247-3127-4546-a4c3-55332bcbddfd",
+      "name": "Model Selector"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2-2025-12-11",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2-2025-12-11"
+        },
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "low"
+          }
+        },
+        "options": {
+          "reasoningEffort": "low"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -192,
+        336
+      ],
+      "id": "9e37018a-1ef6-411c-b1a7-0907dba3b094",
+      "name": "LOW",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Output \"1\" if the question is simple\nOutput \"2\" if the question is medium difficulty\nOutput \"3\" if the question is about doing research   "
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        -592,
+        -32
+      ],
+      "id": "a73ef1a9-cc72-47b7-b9ad-8bfdc82061dc",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        144
+      ],
+      "id": "16b5a4df-8d22-44d6-9978-570aff24fd50",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "zWYgPlFB3BIYXprg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2-2025-12-11",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2-2025-12-11"
+        },
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "medium"
+          }
+        },
+        "options": {
+          "reasoningEffort": "medium"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -96,
+        336
+      ],
+      "id": "5226bc6e-e5da-4a83-ac18-02501cd8fea2",
+      "name": "Medium",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.2-2025-12-11",
+          "mode": "list",
+          "cachedResultName": "gpt-5.2-2025-12-11"
+        },
+        "builtInTools": {
+          "webSearch": {
+            "searchContextSize": "high"
+          }
+        },
+        "options": {
+          "reasoningEffort": "high"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        336
+      ],
+      "id": "79ceb838-bf64-47e1-b06c-5a8b550126f6",
+      "name": "Hihg",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "availableInChat": true,
+        "agentName": "Agent d",
+        "agentDescription": "Test",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -912,
+        -32
+      ],
+      "id": "c6a33f46-0613-4e4b-8fac-d4824ffcf8bf",
+      "name": "When chat message received",
+      "webhookId": "dfb00505-e368-42f4-bd94-6155b2db8598"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"nivel\": \"1\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -448,
+        144
+      ],
+      "id": "4c064aee-416b-485e-98c7-9319381c4619",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "origin": "main",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-19T10:25:02.818Z",
+      "createdAt": "2025-12-19T10:25:02.818Z",
+      "role": "workflow:owner",
+      "workflowId": "cH0gNKhn49anrjuj",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-12-19T12:21:56.003Z",
+  "versionId": "cc712b32-65c1-4b22-a77e-523b64f368c6"
+}
