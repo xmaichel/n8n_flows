@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-18T12:06:49.000Z",
-    "createdAt": "2025-12-18T12:06:42.260Z",
-    "versionId": "61de1d5f-5bb7-4d41-af7f-4b6e9ded0c23",
+    "updatedAt": "2025-12-21T22:50:06.000Z",
+    "createdAt": "2025-12-21T22:50:01.557Z",
+    "versionId": "5e334353-136e-4a84-a273-478652ee57b7",
     "workflowId": "whXqVmMeCiMuIpup",
     "nodes": [
       {
@@ -118,6 +118,12 @@
                 "name": "accion",
                 "value": "={{ $json.Accion }}",
                 "type": "string"
+              },
+              {
+                "id": "09f90ff9-2ca9-43b3-878f-0d661983d667",
+                "name": "flagSendMssage",
+                "value": false,
+                "type": "boolean"
               }
             ]
           },
@@ -131,38 +137,6 @@
         ],
         "id": "6f95aa05-94c4-47cb-9d70-c39cdf67e4b1",
         "name": "Edit Fields"
-      },
-      {
-        "parameters": {
-          "resource": "image",
-          "operation": "analyze",
-          "modelId": {
-            "__rl": true,
-            "value": "gpt-4o",
-            "mode": "list",
-            "cachedResultName": "GPT-4O"
-          },
-          "text": "=Actúa como un **Analista Técnico de Trading Experto** de Wall Street, especializado en la interpretación profunda de patrones de velas japonesas, estructuras de mercado y acción del precio (Price Action). Tu análisis debe ser objetivo, fundamentado y orientado a la toma de decisiones.\n\n**## I. Contexto del Análisis**\n\n* **Activo:** [NOMBRE DEL ACTIVO] (e.g., BTC/USD, EUR/JPY, SPY)\n* **Marco de Tiempo:** Gráfico de **Velas Diarias (1D)**\n* **Datos Clave del Gráfico (Proporcionados por el usuario, asume que puedes ver el gráfico):**\n    * Tendencia predominante (Macro): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"El precio ha estado en una clara tendencia bajista desde el máximo de X, pero ha rebotado en el soporte clave de Y.\"]\n    * Niveles de Soporte y Resistencia (Identificados): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Soporte fuerte en $Z, Resistencia clave en $W.\"]\n    * Patrones de Velas de las últimas 5 sesiones: [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Ayer se formó un Doji de piernas largas seguido de una vela envolvente alcista (Bullish Engulfing) hoy.\"]\n\n**## II. Análisis Estructurado (Chain-of-Thought)**\n\nRealiza un análisis paso a paso, aplicando tu conocimiento en *Price Action* y patrones de velas japonesas.\n\n1.  **Interpretación de Patrones de Velas:** Identifica y describe el patrón de velas más significativo de los últimos días (e.g., Martillo, Estrella Fugaz, Engulfing). Explica su significado psicológico y su implicación a corto plazo. \n2.  **Estructura del Mercado (S/R y Tendencia):** Evalúa dónde se encuentra el precio en relación con los niveles clave de Soporte/Resistencia (S/R) y la línea de tendencia. ¿Estamos en una zona de consolidación, ruptura (breakout) o rechazo (rejection)?\n3.  **Confluencia de Factores:** Justifica cómo la interpretación de las velas se alinea o contradice con la estructura general del mercado.\n\n**## III. Escenarios y Proyección (Proyección a Corto Plazo)**\n\nProporciona una proyección de precios realista para la próxima semana, cubriendo los dos escenarios más probables.\n\n| Escenario | Condición (Trigger) | Objetivo de Precio (Target) | Justificación (Basada en II) |\n| :--- | :--- | :--- | :--- |\n| **Alcista (Bullish)** | Si el precio rompe y cierra **por encima** de [Nivel de Resistencia Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., activación del patrón Engulfing, ruptura de Resistencia). |\n| **Bajista (Bearish)** | Si el precio rompe y cierra **por debajo** de [Nivel de Soporte Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., fallo de re-test, activación de patrón bajista). |\n\n**## IV. Resumen y Recomendación**\n\nBasado en tu análisis, proporciona un resumen ejecutivo.\n\n* **Sesgo Actual (Bias):** ¿Cuál es la probabilidad más alta (Alcista, Bajista, o Consolidación)?\n* **Recomendación de Trading (Acción):** ¿Qué debería considerar el trader (Comprar, Vender, o Esperar)?\n* **Nivel de Invalidación:** ¿Qué movimiento de precio anularía la proyección (el Stop-Loss lógico)?\n\n**Tu respuesta debe ser profesional y estructurada con Markdown (Encabezados y Tablas) siguiendo exactamente los puntos I, II, III y IV.**",
-          "inputType": "base64",
-          "options": {
-            "detail": "auto",
-            "maxTokens": 3000
-          }
-        },
-        "type": "@n8n/n8n-nodes-langchain.openAi",
-        "typeVersion": 2.1,
-        "position": [
-          1904,
-          -64
-        ],
-        "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
-        "name": "Analyze image",
-        "credentials": {
-          "openAiApi": {
-            "id": "HV97DoTFCLaZIPgd",
-            "name": "OpenAi account"
-          }
-        }
       },
       {
         "parameters": {
@@ -297,7 +271,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          3392,
+          3664,
           336
         ],
         "id": "508a9e3c-4fe5-4b72-a232-879929fbd763",
@@ -319,6 +293,16 @@
               "version": 3
             },
             "conditions": [
+              {
+                "id": "3e5c9b4e-1de9-4709-86f7-84b071346df2",
+                "leftValue": "",
+                "rightValue": "",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              },
               {
                 "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
                 "leftValue": "={{ $json.Recomendacion }}",
@@ -345,7 +329,7 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.3,
         "position": [
-          3552,
+          3824,
           336
         ],
         "id": "8bd0dccc-9b58-4e93-918b-59691b9717e6",
@@ -362,7 +346,7 @@
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          3760,
+          4032,
           416
         ],
         "id": "592e2769-5f68-4cb7-929b-d8e4041e7062",
@@ -383,8 +367,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.3,
         "position": [
-          1696,
-          -64
+          1680,
+          -128
         ],
         "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
         "name": "HTTP Request2"
@@ -500,8 +484,8 @@
         },
         "type": "n8n-nodes-base.stickyNote",
         "position": [
-          -64,
-          480
+          -400,
+          464
         ],
         "typeVersion": 1,
         "id": "c64cdbf4-08e1-41b0-9dc9-ecb6f0dc8c9b",
@@ -537,7 +521,7 @@
         "typeVersion": 4.2,
         "position": [
           1328,
-          112
+          288
         ],
         "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
         "name": "1H",
@@ -573,7 +557,7 @@
         "typeVersion": 4.2,
         "position": [
           1328,
-          256
+          448
         ],
         "id": "ffe71dfe-c179-49c6-9ef4-c4ceeb86bb0b",
         "name": "1D"
@@ -607,8 +591,8 @@
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 4.2,
         "position": [
-          1328,
-          400
+          1312,
+          608
         ],
         "id": "9db72d9d-7fd2-40b0-9ed2-0a0ecfaf2c7d",
         "name": "1WEEK"
@@ -621,7 +605,7 @@
         "typeVersion": 3.2,
         "position": [
           1536,
-          256
+          448
         ],
         "id": "7af509ba-0b31-48c5-b6bc-50c31b3b8ac8",
         "name": "Merge"
@@ -635,20 +619,20 @@
         "typeVersion": 1,
         "position": [
           1696,
-          272
+          464
         ],
         "id": "758cc102-afa4-4fd4-afa9-4caf6caab292",
         "name": "Aggregate"
       },
       {
         "parameters": {
-          "jsCode": "const root = items[0].json;\n\n// Extraer datasets (pueden venir vacíos si hubo error)\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      time: v.datetime ? new Date(v.datetime) : null,\n      open: parseFloat(v.open),\n      high: parseFloat(v.high),\n      low: parseFloat(v.low),\n      close: parseFloat(v.close),\n      volume: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.time !== null) // descarta velas sin timestamp\n    .sort((a, b) => a.time - b.time);\n}\n\n// Funciones de validación\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Retornar objeto JSON limpio y seguro\nreturn [\n  {\n    json: {\n      ticker: getSymbol(data1h),\n      candles1m: getCandles(data1h),\n      candles15m: getCandles(data1day),\n      candles1h: getCandles(data1week),\n    }\n  }\n]"
+          "jsCode": "const items = $input.all();\nconst root = items[0].json;\n\n// Extraer datasets\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      t: v.datetime ? v.datetime.split(' ')[1] || v.datetime : null, // Simplificamos tiempo para el LLM\n      o: parseFloat(v.open),\n      h: parseFloat(v.high),\n      l: parseFloat(v.low),\n      c: parseFloat(v.close),\n      v: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.t !== null)\n    .sort((a, b) => new Date(a.t) - new Date(b.t));\n}\n\n// --- NUEVA FUNCIÓN: Cálculo de SMA ---\nfunction calculateSMA(candles, period) {\n  if (candles.length < period) return null;\n  // Tomamos los últimos 'period' elementos\n  const lastSlice = candles.slice(-period);\n  const sum = lastSlice.reduce((acc, curr) => acc + curr.c, 0);\n  return parseFloat((sum / period).toFixed(2));\n}\n\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Procesamos las velas\nconst candles1h = getCandles(data1h);\nconst candles1day = getCandles(data1day);\nconst candles1week = getCandles(data1week);\n\n// Calculamos métricas clave para el resumen\nconst lastClose = candles1h.length > 0 ? candles1h[candles1h.length - 1].c : null;\nconst sma20h1 = calculateSMA(candles1h, 20);\n\nreturn [\n  {\n    json: {\n      symbol: getSymbol(data1h),\n      // Resumen técnico para que el LLM procese primero lo importante\n      analisis_tecnico: {\n        ultimo_cierre: lastClose,\n        sma20_1h: sma20h1,\n        estado_vs_sma: lastClose > sma20h1 ? \"POR ENCIMA\" : \"POR DEBAJO\"\n      },\n      // Datos de velas compactos (usando letras simples para ahorrar tokens)\n      h1: candles1h,\n      d1: candles1day,\n      w1: candles1week,\n    }\n  }\n];"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1904,
-          272
+          1856,
+          464
         ],
         "id": "330ff29b-a93e-4b81-8db6-577383b8cdfc",
         "name": "Code in JavaScript"
@@ -679,10 +663,13 @@
         "typeVersion": 4.3,
         "position": [
           1328,
-          592
+          64
         ],
         "id": "a749b216-9b4d-4ab9-ab50-491edec6385c",
-        "name": "News 7/24"
+        "name": "News 7/24",
+        "retryOnFail": true,
+        "maxTries": 2,
+        "onError": "continueErrorOutput"
       },
       {
         "parameters": {
@@ -691,7 +678,7 @@
         "type": "n8n-nodes-base.merge",
         "typeVersion": 3.2,
         "position": [
-          2192,
+          2480,
           320
         ],
         "id": "209db90d-72a4-4a40-9bcd-5de3c36b0ace",
@@ -705,48 +692,11 @@
         "type": "n8n-nodes-base.aggregate",
         "typeVersion": 1,
         "position": [
-          2368,
+          2640,
           336
         ],
         "id": "93a24dae-55af-4475-87fd-fe893cffaee2",
         "name": "Aggregate1"
-      },
-      {
-        "parameters": {
-          "modelId": {
-            "__rl": true,
-            "value": "models/gemini-2.5-flash",
-            "mode": "list",
-            "cachedResultName": "models/gemini-2.5-flash"
-          },
-          "messages": {
-            "values": [
-              {
-                "content": "=Ahora, analiza el siguiente texto y produce tu salida JSON:\n\n{{ JSON.stringify($json.articles) }}"
-              }
-            ]
-          },
-          "options": {
-            "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
-          }
-        },
-        "type": "@n8n/n8n-nodes-langchain.googleGemini",
-        "typeVersion": 1,
-        "position": [
-          1536,
-          592
-        ],
-        "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
-        "name": "Message a model",
-        "retryOnFail": true,
-        "waitBetweenTries": 5000,
-        "credentials": {
-          "googlePalmApi": {
-            "id": "zWYgPlFB3BIYXprg",
-            "name": "Google Gemini(PaLM) Api account"
-          }
-        },
-        "onError": "continueRegularOutput"
       },
       {
         "parameters": {
@@ -759,7 +709,7 @@
         "type": "@n8n/n8n-nodes-langchain.agent",
         "typeVersion": 3,
         "position": [
-          2528,
+          2800,
           336
         ],
         "id": "06b18b87-0160-4e4c-a393-a6eefa68cd7a",
@@ -772,7 +722,7 @@
           "messages": {
             "messageValues": [
               {
-                "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"string\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+                "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Edit Fields1').item.json.accion }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
               }
             ]
           },
@@ -781,7 +731,7 @@
         "type": "@n8n/n8n-nodes-langchain.chainLlm",
         "typeVersion": 1.7,
         "position": [
-          2832,
+          3104,
           336
         ],
         "id": "7d8b538d-bdf6-414d-af00-81a82ce18a3f",
@@ -903,6 +853,12 @@
                 "name": "mercado",
                 "value": "={{ $json.Mercado }}",
                 "type": "string"
+              },
+              {
+                "id": "9a9f897b-3453-435d-a9b0-79c4eb0766c0",
+                "name": "flagSendMssage",
+                "value": true,
+                "type": "boolean"
               }
             ]
           },
@@ -930,7 +886,7 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
         "typeVersion": 1.3,
         "position": [
-          2496,
+          2768,
           512
         ],
         "id": "cb7f2878-d3df-48a4-a0c8-f0d603e33b6b",
@@ -962,7 +918,7 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
         "typeVersion": 1.3,
         "position": [
-          2848,
+          3120,
           512
         ],
         "id": "3dd65d6b-f572-4928-a086-9c41e2c950ca",
@@ -981,7 +937,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          3184,
+          3456,
           336
         ],
         "id": "c5c0a78f-3589-4935-999c-c7d72a47db1c",
@@ -994,7 +950,7 @@
         "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
         "typeVersion": 1.3,
         "position": [
-          3008,
+          3280,
           512
         ],
         "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
@@ -1032,13 +988,119 @@
         "typeVersion": 4.3,
         "position": [
           1328,
-          -48
+          -112
         ],
         "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
         "name": "chat-img",
         "retryOnFail": false,
         "maxTries": 2,
         "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "model": "qwen/qwen3-vl-8b-instruct",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          2032,
+          640
+        ],
+        "id": "6ad1e355-c8e1-4f5f-bfc1-7c3658bebb0d",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Analiza estos datos para el símbolo {{ $json.symbol }}:\nResumen: {{ $json.analisis_tecnico }}\nVelas 1 Hora: {{ JSON.stringify($json.h1) }}\nVelas 1 Día: {{ JSON.stringify($json.d1) }}\nVelas 1 Semana: {{ JSON.stringify($json.w1) }}",
+          "options": {
+            "systemMessage": "=Role: Eres un experto Analista Técnico Senior con enfoque en Price Action y patrones de Velas Japonesas.\n\nTask: Analiza los datos de mercado del símbolo {{ $json.symbol }} proporcionados en 3 temporalidades (H1, D1, W1).\n\nInstructions:\n\nTendencia: Determina la tendencia macro (W1) y micro (H1).\n\nPatrones: Identifica los 3 patrones más significativos que veas en los datos (pueden ser patrones de velas como Engulfing, Hammer, o patrones de estructura como Hombro-Cabeza-Hombro o Doble Suelo).\n\nContexto: Usa el SMA20: {{ $json.analisis_tecnico.sma20_1h }} y el último cierre: {{ $json.analisis_tecnico.ultimo_cierre }}, etaddo price vs SMA {{ $json.analisis_tecnico.estado_vs_sma }} para validar si hay sobrecompra o soporte.\n\nOutput Format: Responde ÚNICAMENTE en formato JSON con la siguiente estructura: { \"analisis_resumen\": \"string\", \"tendencia\": { \"macro\": \"string\", \"micro\": \"string\" }, \"mejores_patrones\": [ { \"nombre\": \"string\", \"temporalidad\": \"string\", \"confianza\": \"0-100%\", \"explicacion\": \"string\" } ], \"accion_sugerida\": \"COMPRA/VENTA/NEUTRAL\", \"confianza_total\": \"0-100%\" }\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3,
+        "position": [
+          2064,
+          464
+        ],
+        "id": "a9ba6557-c462-4298-a004-43ec2e075ef5",
+        "name": "AI Agent - Analiza data"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "models/gemini-2.5-flash",
+            "mode": "list",
+            "cachedResultName": "models/gemini-2.5-flash"
+          },
+          "messages": {
+            "values": [
+              {
+                "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('Aggregate2').item.json.data[0].accion }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
+              }
+            ]
+          },
+          "options": {
+            "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.googleGemini",
+        "typeVersion": 1,
+        "position": [
+          1792,
+          48
+        ],
+        "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
+        "name": "News  model",
+        "retryOnFail": true,
+        "waitBetweenTries": 5000,
+        "credentials": {
+          "googlePalmApi": {
+            "id": "zWYgPlFB3BIYXprg",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        },
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "resource": "image",
+          "operation": "analyze",
+          "modelId": {
+            "__rl": true,
+            "value": "gpt-4o",
+            "mode": "list",
+            "cachedResultName": "GPT-4O"
+          },
+          "text": "=Actúa como un **Analista Técnico de Trading Experto** de Wall Street, especializado en la interpretación profunda de patrones de velas japonesas, estructuras de mercado y acción del precio (Price Action). Tu análisis debe ser objetivo, fundamentado y orientado a la toma de decisiones.\n\n**## I. Contexto del Análisis**\n\n* **Activo:** [NOMBRE DEL ACTIVO] (e.g., BTC/USD, EUR/JPY, SPY)\n* **Marco de Tiempo:** Gráfico de **Velas Diarias (1D)**\n* **Datos Clave del Gráfico (Proporcionados por el usuario, asume que puedes ver el gráfico):**\n    * Tendencia predominante (Macro): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"El precio ha estado en una clara tendencia bajista desde el máximo de X, pero ha rebotado en el soporte clave de Y.\"]\n    * Niveles de Soporte y Resistencia (Identificados): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Soporte fuerte en $Z, Resistencia clave en $W.\"]\n    * Patrones de Velas de las últimas 5 sesiones: [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Ayer se formó un Doji de piernas largas seguido de una vela envolvente alcista (Bullish Engulfing) hoy.\"]\n\n**## II. Análisis Estructurado (Chain-of-Thought)**\n\nRealiza un análisis paso a paso, aplicando tu conocimiento en *Price Action* y patrones de velas japonesas.\n\n1.  **Interpretación de Patrones de Velas:** Identifica y describe el patrón de velas más significativo de los últimos días (e.g., Martillo, Estrella Fugaz, Engulfing). Explica su significado psicológico y su implicación a corto plazo. \n2.  **Estructura del Mercado (S/R y Tendencia):** Evalúa dónde se encuentra el precio en relación con los niveles clave de Soporte/Resistencia (S/R) y la línea de tendencia. ¿Estamos en una zona de consolidación, ruptura (breakout) o rechazo (rejection)?\n3.  **Confluencia de Factores:** Justifica cómo la interpretación de las velas se alinea o contradice con la estructura general del mercado.\n\n**## III. Escenarios y Proyección (Proyección a Corto Plazo)**\n\nProporciona una proyección de precios realista para la próxima semana, cubriendo los dos escenarios más probables.\n\n| Escenario | Condición (Trigger) | Objetivo de Precio (Target) | Justificación (Basada en II) |\n| :--- | :--- | :--- | :--- |\n| **Alcista (Bullish)** | Si el precio rompe y cierra **por encima** de [Nivel de Resistencia Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., activación del patrón Engulfing, ruptura de Resistencia). |\n| **Bajista (Bearish)** | Si el precio rompe y cierra **por debajo** de [Nivel de Soporte Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., fallo de re-test, activación de patrón bajista). |\n\n**## IV. Resumen y Recomendación**\n\nBasado en tu análisis, proporciona un resumen ejecutivo.\n\n* **Sesgo Actual (Bias):** ¿Cuál es la probabilidad más alta (Alcista, Bajista, o Consolidación)?\n* **Recomendación de Trading (Acción):** ¿Qué debería considerar el trader (Comprar, Vender, o Esperar)?\n* **Nivel de Invalidación:** ¿Qué movimiento de precio anularía la proyección (el Stop-Loss lógico)?\n\n**Tu respuesta debe ser profesional y estructurada con Markdown (Encabezados y Tablas) siguiendo exactamente los puntos I, II, III y IV.**",
+          "inputType": "base64",
+          "options": {
+            "detail": "auto",
+            "maxTokens": 3000
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "typeVersion": 2.1,
+        "position": [
+          1888,
+          -128
+        ],
+        "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
+        "name": "Analyze chart - image",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
       }
     ],
     "connections": {
@@ -1086,17 +1148,6 @@
           ]
         ]
       },
-      "Analyze image": {
-        "main": [
-          [
-            {
-              "node": "Merge1",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "Append row in sheet": {
         "main": [
           [
@@ -1124,7 +1175,7 @@
         "main": [
           [
             {
-              "node": "Analyze image",
+              "node": "Analyze chart - image",
               "type": "main",
               "index": 0
             }
@@ -1212,7 +1263,7 @@
         "main": [
           [
             {
-              "node": "Message a model",
+              "node": "News  model",
               "type": "main",
               "index": 0
             }
@@ -1223,9 +1274,9 @@
         "main": [
           [
             {
-              "node": "Merge1",
+              "node": "AI Agent - Analiza data",
               "type": "main",
-              "index": 1
+              "index": 0
             }
           ]
         ]
@@ -1237,17 +1288,6 @@
               "node": "Aggregate1",
               "type": "main",
               "index": 0
-            }
-          ]
-        ]
-      },
-      "Message a model": {
-        "main": [
-          [
-            {
-              "node": "Merge1",
-              "type": "main",
-              "index": 2
             }
           ]
         ]
@@ -1415,14 +1455,58 @@
             }
           ]
         ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent - Analiza data",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent - Analiza data": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "News  model": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "Analyze chart - image": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Juan Castillo",
-    "name": "Version 61de1d5f",
+    "name": "Version 5e334353",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "61de1d5f-5bb7-4d41-af7f-4b6e9ded0c23",
+  "activeVersionId": "5e334353-136e-4a84-a273-478652ee57b7",
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -1468,17 +1552,6 @@
         ]
       ]
     },
-    "Analyze image": {
-      "main": [
-        [
-          {
-            "node": "Merge1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Append row in sheet": {
       "main": [
         [
@@ -1506,7 +1579,7 @@
       "main": [
         [
           {
-            "node": "Analyze image",
+            "node": "Analyze chart - image",
             "type": "main",
             "index": 0
           }
@@ -1594,7 +1667,7 @@
       "main": [
         [
           {
-            "node": "Message a model",
+            "node": "News  model",
             "type": "main",
             "index": 0
           }
@@ -1605,9 +1678,9 @@
       "main": [
         [
           {
-            "node": "Merge1",
+            "node": "AI Agent - Analiza data",
             "type": "main",
-            "index": 1
+            "index": 0
           }
         ]
       ]
@@ -1619,17 +1692,6 @@
             "node": "Aggregate1",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Message a model": {
-      "main": [
-        [
-          {
-            "node": "Merge1",
-            "type": "main",
-            "index": 2
           }
         ]
       ]
@@ -1797,6 +1859,55 @@
           }
         ]
       ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent - Analiza data",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent - Analiza data": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "News  model": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Analyze chart - image": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message1": {
+      "main": [
+        []
+      ]
     }
   },
   "createdAt": "2025-12-14T22:51:12.217Z",
@@ -1919,6 +2030,12 @@
               "name": "accion",
               "value": "={{ $json.Accion }}",
               "type": "string"
+            },
+            {
+              "id": "09f90ff9-2ca9-43b3-878f-0d661983d667",
+              "name": "flagSendMssage",
+              "value": false,
+              "type": "boolean"
             }
           ]
         },
@@ -1932,38 +2049,6 @@
       ],
       "id": "6f95aa05-94c4-47cb-9d70-c39cdf67e4b1",
       "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "resource": "image",
-        "operation": "analyze",
-        "modelId": {
-          "__rl": true,
-          "value": "gpt-4o",
-          "mode": "list",
-          "cachedResultName": "GPT-4O"
-        },
-        "text": "=Actúa como un **Analista Técnico de Trading Experto** de Wall Street, especializado en la interpretación profunda de patrones de velas japonesas, estructuras de mercado y acción del precio (Price Action). Tu análisis debe ser objetivo, fundamentado y orientado a la toma de decisiones.\n\n**## I. Contexto del Análisis**\n\n* **Activo:** [NOMBRE DEL ACTIVO] (e.g., BTC/USD, EUR/JPY, SPY)\n* **Marco de Tiempo:** Gráfico de **Velas Diarias (1D)**\n* **Datos Clave del Gráfico (Proporcionados por el usuario, asume que puedes ver el gráfico):**\n    * Tendencia predominante (Macro): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"El precio ha estado en una clara tendencia bajista desde el máximo de X, pero ha rebotado en el soporte clave de Y.\"]\n    * Niveles de Soporte y Resistencia (Identificados): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Soporte fuerte en $Z, Resistencia clave en $W.\"]\n    * Patrones de Velas de las últimas 5 sesiones: [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Ayer se formó un Doji de piernas largas seguido de una vela envolvente alcista (Bullish Engulfing) hoy.\"]\n\n**## II. Análisis Estructurado (Chain-of-Thought)**\n\nRealiza un análisis paso a paso, aplicando tu conocimiento en *Price Action* y patrones de velas japonesas.\n\n1.  **Interpretación de Patrones de Velas:** Identifica y describe el patrón de velas más significativo de los últimos días (e.g., Martillo, Estrella Fugaz, Engulfing). Explica su significado psicológico y su implicación a corto plazo. \n2.  **Estructura del Mercado (S/R y Tendencia):** Evalúa dónde se encuentra el precio en relación con los niveles clave de Soporte/Resistencia (S/R) y la línea de tendencia. ¿Estamos en una zona de consolidación, ruptura (breakout) o rechazo (rejection)?\n3.  **Confluencia de Factores:** Justifica cómo la interpretación de las velas se alinea o contradice con la estructura general del mercado.\n\n**## III. Escenarios y Proyección (Proyección a Corto Plazo)**\n\nProporciona una proyección de precios realista para la próxima semana, cubriendo los dos escenarios más probables.\n\n| Escenario | Condición (Trigger) | Objetivo de Precio (Target) | Justificación (Basada en II) |\n| :--- | :--- | :--- | :--- |\n| **Alcista (Bullish)** | Si el precio rompe y cierra **por encima** de [Nivel de Resistencia Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., activación del patrón Engulfing, ruptura de Resistencia). |\n| **Bajista (Bearish)** | Si el precio rompe y cierra **por debajo** de [Nivel de Soporte Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., fallo de re-test, activación de patrón bajista). |\n\n**## IV. Resumen y Recomendación**\n\nBasado en tu análisis, proporciona un resumen ejecutivo.\n\n* **Sesgo Actual (Bias):** ¿Cuál es la probabilidad más alta (Alcista, Bajista, o Consolidación)?\n* **Recomendación de Trading (Acción):** ¿Qué debería considerar el trader (Comprar, Vender, o Esperar)?\n* **Nivel de Invalidación:** ¿Qué movimiento de precio anularía la proyección (el Stop-Loss lógico)?\n\n**Tu respuesta debe ser profesional y estructurada con Markdown (Encabezados y Tablas) siguiendo exactamente los puntos I, II, III y IV.**",
-        "inputType": "base64",
-        "options": {
-          "detail": "auto",
-          "maxTokens": 3000
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 2.1,
-      "position": [
-        1904,
-        -64
-      ],
-      "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
-      "name": "Analyze image",
-      "credentials": {
-        "openAiApi": {
-          "id": "HV97DoTFCLaZIPgd",
-          "name": "OpenAi account"
-        }
-      }
     },
     {
       "parameters": {
@@ -2098,7 +2183,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        3392,
+        3664,
         336
       ],
       "id": "508a9e3c-4fe5-4b72-a232-879929fbd763",
@@ -2120,6 +2205,15 @@
             "version": 3
           },
           "conditions": [
+            {
+              "id": "3e5c9b4e-1de9-4709-86f7-84b071346df2",
+              "leftValue": "={{ $('Edit Fields - tel').item.json.flagSendMssage }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
             {
               "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
               "leftValue": "={{ $json.Recomendacion }}",
@@ -2146,7 +2240,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        3552,
+        3824,
         336
       ],
       "id": "8bd0dccc-9b58-4e93-918b-59691b9717e6",
@@ -2155,7 +2249,7 @@
     {
       "parameters": {
         "chatId": "969710617",
-        "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}",
+        "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}\nstop:{{ $json[\"Stop-Loss \"] }}",
         "additionalFields": {
           "appendAttribution": false
         }
@@ -2163,7 +2257,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        3760,
+        4032,
         416
       ],
       "id": "592e2769-5f68-4cb7-929b-d8e4041e7062",
@@ -2184,8 +2278,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1696,
-        -64
+        1680,
+        -128
       ],
       "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
       "name": "HTTP Request2"
@@ -2301,8 +2395,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -64,
-        480
+        -736,
+        400
       ],
       "typeVersion": 1,
       "id": "c64cdbf4-08e1-41b0-9dc9-ecb6f0dc8c9b",
@@ -2338,7 +2432,7 @@
       "typeVersion": 4.2,
       "position": [
         1328,
-        112
+        288
       ],
       "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
       "name": "1H",
@@ -2374,7 +2468,7 @@
       "typeVersion": 4.2,
       "position": [
         1328,
-        256
+        448
       ],
       "id": "ffe71dfe-c179-49c6-9ef4-c4ceeb86bb0b",
       "name": "1D"
@@ -2408,8 +2502,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1328,
-        400
+        1312,
+        608
       ],
       "id": "9db72d9d-7fd2-40b0-9ed2-0a0ecfaf2c7d",
       "name": "1WEEK"
@@ -2422,7 +2516,7 @@
       "typeVersion": 3.2,
       "position": [
         1536,
-        256
+        448
       ],
       "id": "7af509ba-0b31-48c5-b6bc-50c31b3b8ac8",
       "name": "Merge"
@@ -2436,20 +2530,20 @@
       "typeVersion": 1,
       "position": [
         1696,
-        272
+        464
       ],
       "id": "758cc102-afa4-4fd4-afa9-4caf6caab292",
       "name": "Aggregate"
     },
     {
       "parameters": {
-        "jsCode": "const root = items[0].json;\n\n// Extraer datasets (pueden venir vacíos si hubo error)\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      time: v.datetime ? new Date(v.datetime) : null,\n      open: parseFloat(v.open),\n      high: parseFloat(v.high),\n      low: parseFloat(v.low),\n      close: parseFloat(v.close),\n      volume: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.time !== null) // descarta velas sin timestamp\n    .sort((a, b) => a.time - b.time);\n}\n\n// Funciones de validación\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Retornar objeto JSON limpio y seguro\nreturn [\n  {\n    json: {\n      symbol: getSymbol(data1h),\n      candles1hora: getCandles(data1h),\n      candles1day: getCandles(data1day),\n      candles1week: getCandles(data1week),\n    }\n  }\n]"
+        "jsCode": "const items = $input.all();\nconst root = items[0].json;\n\n// Extraer datasets\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      t: v.datetime ? v.datetime.split(' ')[1] || v.datetime : null, // Simplificamos tiempo para el LLM\n      o: parseFloat(v.open),\n      h: parseFloat(v.high),\n      l: parseFloat(v.low),\n      c: parseFloat(v.close),\n      v: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.t !== null)\n    .sort((a, b) => new Date(a.t) - new Date(b.t));\n}\n\n// --- NUEVA FUNCIÓN: Cálculo de SMA ---\nfunction calculateSMA(candles, period) {\n  if (candles.length < period) return null;\n  // Tomamos los últimos 'period' elementos\n  const lastSlice = candles.slice(-period);\n  const sum = lastSlice.reduce((acc, curr) => acc + curr.c, 0);\n  return parseFloat((sum / period).toFixed(2));\n}\n\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Procesamos las velas\nconst candles1h = getCandles(data1h);\nconst candles1day = getCandles(data1day);\nconst candles1week = getCandles(data1week);\n\n// Calculamos métricas clave para el resumen\nconst lastClose = candles1h.length > 0 ? candles1h[candles1h.length - 1].c : null;\nconst sma20h1 = calculateSMA(candles1h, 20);\n\nreturn [\n  {\n    json: {\n      symbol: getSymbol(data1h),\n      // Resumen técnico para que el LLM procese primero lo importante\n      analisis_tecnico: {\n        ultimo_cierre: lastClose,\n        sma20_1h: sma20h1,\n        estado_vs_sma: lastClose > sma20h1 ? \"POR ENCIMA\" : \"POR DEBAJO\"\n      },\n      // Datos de velas compactos (usando letras simples para ahorrar tokens)\n      h1: candles1h,\n      d1: candles1day,\n      w1: candles1week,\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1904,
-        272
+        1856,
+        464
       ],
       "id": "330ff29b-a93e-4b81-8db6-577383b8cdfc",
       "name": "Code in JavaScript"
@@ -2480,10 +2574,13 @@
       "typeVersion": 4.3,
       "position": [
         1328,
-        592
+        64
       ],
       "id": "a749b216-9b4d-4ab9-ab50-491edec6385c",
-      "name": "News 7/24"
+      "name": "News 7/24",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -2492,7 +2589,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        2192,
+        2480,
         320
       ],
       "id": "209db90d-72a4-4a40-9bcd-5de3c36b0ace",
@@ -2506,48 +2603,11 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2368,
+        2640,
         336
       ],
       "id": "93a24dae-55af-4475-87fd-fe893cffaee2",
       "name": "Aggregate1"
-    },
-    {
-      "parameters": {
-        "modelId": {
-          "__rl": true,
-          "value": "models/gemini-2.5-flash",
-          "mode": "list",
-          "cachedResultName": "models/gemini-2.5-flash"
-        },
-        "messages": {
-          "values": [
-            {
-              "content": "=Ahora, analiza el siguiente texto y produce tu salida JSON:\n\n{{ JSON.stringify($json.articles) }}"
-            }
-          ]
-        },
-        "options": {
-          "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.googleGemini",
-      "typeVersion": 1,
-      "position": [
-        1536,
-        592
-      ],
-      "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
-      "name": "Message a model",
-      "retryOnFail": true,
-      "waitBetweenTries": 5000,
-      "credentials": {
-        "googlePalmApi": {
-          "id": "zWYgPlFB3BIYXprg",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      },
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -2560,7 +2620,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        2528,
+        2800,
         336
       ],
       "id": "06b18b87-0160-4e4c-a393-a6eefa68cd7a",
@@ -2573,7 +2633,7 @@
         "messages": {
           "messageValues": [
             {
-              "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"string\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+              "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Edit Fields1').item.json.accion }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
             }
           ]
         },
@@ -2582,7 +2642,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        2832,
+        3104,
         336
       ],
       "id": "7d8b538d-bdf6-414d-af00-81a82ce18a3f",
@@ -2595,7 +2655,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        128,
+        96,
         304
       ],
       "id": "2a945fb9-9682-4f3e-b4d2-486b6160748e",
@@ -2704,6 +2764,12 @@
               "name": "mercado",
               "value": "={{ $json.Mercado }}",
               "type": "string"
+            },
+            {
+              "id": "9a9f897b-3453-435d-a9b0-79c4eb0766c0",
+              "name": "flagSendMssage",
+              "value": true,
+              "type": "boolean"
             }
           ]
         },
@@ -2731,7 +2797,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        2496,
+        2768,
         512
       ],
       "id": "cb7f2878-d3df-48a4-a0c8-f0d603e33b6b",
@@ -2763,7 +2829,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        2848,
+        3120,
         512
       ],
       "id": "3dd65d6b-f572-4928-a086-9c41e2c950ca",
@@ -2782,7 +2848,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3184,
+        3456,
         336
       ],
       "id": "c5c0a78f-3589-4935-999c-c7d72a47db1c",
@@ -2795,7 +2861,7 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        3008,
+        3280,
         512
       ],
       "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
@@ -2833,13 +2899,205 @@
       "typeVersion": 4.3,
       "position": [
         1328,
-        -48
+        -112
       ],
       "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
       "name": "chat-img",
       "retryOnFail": false,
       "maxTries": 2,
       "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3-vl-8b-instruct",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2032,
+        640
+      ],
+      "id": "6ad1e355-c8e1-4f5f-bfc1-7c3658bebb0d",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analiza estos datos para el símbolo {{ $json.symbol }}:\nResumen: {{ $json.analisis_tecnico }}\nVelas 1 Hora: {{ JSON.stringify($json.h1) }}\nVelas 1 Día: {{ JSON.stringify($json.d1) }}\nVelas 1 Semana: {{ JSON.stringify($json.w1) }}",
+        "options": {
+          "systemMessage": "=Role: Eres un experto Analista Técnico Senior con enfoque en Price Action y patrones de Velas Japonesas.\n\nTask: Analiza los datos de mercado del símbolo {{ $json.symbol }} proporcionados en 3 temporalidades (H1, D1, W1).\n\nInstructions:\n\nTendencia: Determina la tendencia macro (W1) y micro (H1).\n\nPatrones: Identifica los 3 patrones más significativos que veas en los datos (pueden ser patrones de velas como Engulfing, Hammer, o patrones de estructura como Hombro-Cabeza-Hombro o Doble Suelo).\n\nContexto: Usa el SMA20: {{ $json.analisis_tecnico.sma20_1h }} y el último cierre: {{ $json.analisis_tecnico.ultimo_cierre }}, etaddo price vs SMA {{ $json.analisis_tecnico.estado_vs_sma }} para validar si hay sobrecompra o soporte.\n\nOutput Format: Responde ÚNICAMENTE en formato JSON con la siguiente estructura: { \"analisis_resumen\": \"string\", \"tendencia\": { \"macro\": \"string\", \"micro\": \"string\" }, \"mejores_patrones\": [ { \"nombre\": \"string\", \"temporalidad\": \"string\", \"confianza\": \"0-100%\", \"explicacion\": \"string\" } ], \"accion_sugerida\": \"COMPRA/VENTA/NEUTRAL\", \"confianza_total\": \"0-100%\" }\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        2064,
+        464
+      ],
+      "id": "a9ba6557-c462-4298-a004-43ec2e075ef5",
+      "name": "AI Agent - Analiza data"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('Aggregate2').item.json.data[0].accion }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
+            }
+          ]
+        },
+        "options": {
+          "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1792,
+        48
+      ],
+      "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
+      "name": "News  model",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "zWYgPlFB3BIYXprg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "=Actúa como un **Analista Técnico de Trading Experto** de Wall Street, especializado en la interpretación profunda de patrones de velas japonesas, estructuras de mercado y acción del precio (Price Action). Tu análisis debe ser objetivo, fundamentado y orientado a la toma de decisiones.\n\n**## I. Contexto del Análisis**\n\n* **Activo:** [NOMBRE DEL ACTIVO] (e.g., BTC/USD, EUR/JPY, SPY)\n* **Marco de Tiempo:** Gráfico de **Velas Diarias (1D)**\n* **Datos Clave del Gráfico (Proporcionados por el usuario, asume que puedes ver el gráfico):**\n    * Tendencia predominante (Macro): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"El precio ha estado en una clara tendencia bajista desde el máximo de X, pero ha rebotado en el soporte clave de Y.\"]\n    * Niveles de Soporte y Resistencia (Identificados): [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Soporte fuerte en $Z, Resistencia clave en $W.\"]\n    * Patrones de Velas de las últimas 5 sesiones: [PEGAR DATOS DEL GRÁFICO AQUÍ: Por ejemplo, \"Ayer se formó un Doji de piernas largas seguido de una vela envolvente alcista (Bullish Engulfing) hoy.\"]\n\n**## II. Análisis Estructurado (Chain-of-Thought)**\n\nRealiza un análisis paso a paso, aplicando tu conocimiento en *Price Action* y patrones de velas japonesas.\n\n1.  **Interpretación de Patrones de Velas:** Identifica y describe el patrón de velas más significativo de los últimos días (e.g., Martillo, Estrella Fugaz, Engulfing). Explica su significado psicológico y su implicación a corto plazo. \n2.  **Estructura del Mercado (S/R y Tendencia):** Evalúa dónde se encuentra el precio en relación con los niveles clave de Soporte/Resistencia (S/R) y la línea de tendencia. ¿Estamos en una zona de consolidación, ruptura (breakout) o rechazo (rejection)?\n3.  **Confluencia de Factores:** Justifica cómo la interpretación de las velas se alinea o contradice con la estructura general del mercado.\n\n**## III. Escenarios y Proyección (Proyección a Corto Plazo)**\n\nProporciona una proyección de precios realista para la próxima semana, cubriendo los dos escenarios más probables.\n\n| Escenario | Condición (Trigger) | Objetivo de Precio (Target) | Justificación (Basada en II) |\n| :--- | :--- | :--- | :--- |\n| **Alcista (Bullish)** | Si el precio rompe y cierra **por encima** de [Nivel de Resistencia Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., activación del patrón Engulfing, ruptura de Resistencia). |\n| **Bajista (Bearish)** | Si el precio rompe y cierra **por debajo** de [Nivel de Soporte Clave]. | [Precio Objetivo 1] y [Precio Objetivo 2] | Explica la lógica detrás del movimiento (e.g., fallo de re-test, activación de patrón bajista). |\n\n**## IV. Resumen y Recomendación**\n\nBasado en tu análisis, proporciona un resumen ejecutivo.\n\n* **Sesgo Actual (Bias):** ¿Cuál es la probabilidad más alta (Alcista, Bajista, o Consolidación)?\n* **Recomendación de Trading (Acción):** ¿Qué debería considerar el trader (Comprar, Vender, o Esperar)?\n* **Nivel de Invalidación:** ¿Qué movimiento de precio anularía la proyección (el Stop-Loss lógico)?\n\n**Tu respuesta debe ser profesional y estructurada con Markdown (Encabezados y Tablas) siguiendo exactamente los puntos I, II, III y IV.**",
+        "inputType": "base64",
+        "options": {
+          "detail": "auto",
+          "maxTokens": 3000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1888,
+        -128
+      ],
+      "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
+      "name": "Analyze chart - image",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "APIs recomendadas\nAlpha Vantage\n\nDatos: cotizaciones diarias/intraday, indicadores técnicos, forex y cripto.\n\nModelo freemium: plan gratis con límite de peticiones por minuto/día, respuesta en JSON/CSV.\n\nEjemplo de endpoint:\n\nhttps://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=TU_API_KEY\n\nFinnhub\n\nDatos: precio en tiempo real, históricos, fundamentales, noticias.\n\nPlan gratuito para uso ligero con clave de API, suficiente para dashboards personales o prototipos.\n\nEjemplo de endpoint:\n\nhttps://finnhub.io/api/v1/quote?symbol=AAPL&token=TU_API_KEY\n\nFinancial Modeling Prep (FMP)\n\nDatos: precios históricos, estados financieros, ratios, información de ETF.\n\nTiene plan free con límites diarios y endpoints REST simples.\n\nEjemplo de endpoint:\n\nhttps://financialmodelingprep.com/api/v3/quote/SPY?apikey=TU_API_KEY\n\nEOD Historical Data / Marketstack / similares\n\nFoco: históricos EOD (end-of-day) de acciones y ETF, con algo de info fundamental.\n\nPlanes gratuitos con limitación de llamadas y profundidad de histórico; útiles para backtesting sencillo.\n\nYahoo Finance vía librerías (no “API oficial”)\n\nOpción práctica si trabajas en Python (por ejemplo, yfinance) para uso personal/educativo.\n\nVentaja: no necesitas clave ni registro, pero no es ideal para productos comerciales.\n\nQué te recomendaría según tu caso\nPara probar rápido / n8n / dashboards ligeros: Alpha Vantage o Finnhub por su simplicidad y buena documentación.\n\nPara fundamentales + ETFs: Financial Modeling Prep combina bien acciones, ETF y estados financieros.\n\nPara históricos largos para backtesting: Marketstack o EOD Historical Data en sus planes free son una buena base. ",
+        "height": 1024,
+        "width": 816,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -928,
+        -672
+      ],
+      "typeVersion": 1,
+      "id": "29921b9a-82be-4b1d-bddb-0edb41ab7ed4",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "url": "https://www.alphavantage.co/query",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "function",
+              "value": "=RSI"
+            },
+            {
+              "name": "symbol",
+              "value": "AAPL"
+            },
+            {
+              "name": "apikey",
+              "value": "K2LMHFDDX1VPP6RU"
+            },
+            {
+              "name": "interval",
+              "value": "daily"
+            },
+            {
+              "name": "time_period",
+              "value": "14"
+            },
+            {
+              "name": "series_type",
+              "value": "close"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1616,
+        896
+      ],
+      "id": "fe76c465-9201-463c-be21-f15dd06054ef",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://finnhub.io/api/v1/stock/recommendation",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "=AAPL"
+            },
+            {
+              "name": "token",
+              "value": "d547tg9r01qlj84bekh0d547tg9r01qlj84bekhg"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1312,
+        880
+      ],
+      "id": "20c41495-6e4e-4222-a9ca-8ba9ed009954",
+      "name": "HTTP finnhub - recommendation"
     }
   ],
   "origin": "main",
@@ -2876,8 +3134,8 @@
         "json": {
           "data": [
             {
-              "ticket": "NYSE:JETS",
-              "accion": "JETS",
+              "ticket": "AMEX:SPY",
+              "accion": "SPY",
               "mercado": "NYSE"
             }
           ]
@@ -2930,6 +3188,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-12-18T12:42:47.741Z",
-  "versionId": "1d1de51c-027e-4ee3-aa80-fe0d5ca7c68d"
+  "updatedAt": "2025-12-21T23:59:26.073Z",
+  "versionId": "543597ec-97fa-4aec-a6ad-6b86c9306bec"
 }
