@@ -713,8 +713,7 @@
             {
               "triggerAtHour": 10,
               "triggerAtMinute": 30
-            },
-            {}
+            }
           ]
         }
       },
@@ -1191,6 +1190,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-12-15T17:11:28.616Z",
-  "versionId": "ef524bef-8024-4a84-b704-4fbb38b68948"
+  "updatedAt": "2025-12-28T10:12:47.069Z",
+  "versionId": "409146d7-6846-4c24-9537-b4035860d02e"
 }
