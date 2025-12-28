@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-21T22:50:06.000Z",
-    "createdAt": "2025-12-21T22:50:01.557Z",
-    "versionId": "5e334353-136e-4a84-a273-478652ee57b7",
+    "updatedAt": "2025-12-28T10:37:07.000Z",
+    "createdAt": "2025-12-28T10:37:01.893Z",
+    "versionId": "109732b0-2480-465c-b924-a31663314703",
     "workflowId": "whXqVmMeCiMuIpup",
     "nodes": [
       {
@@ -34,8 +34,17 @@
           "rule": {
             "interval": [
               {
-                "triggerAtHour": 10,
-                "triggerAtMinute": 30
+                "field": "weeks",
+                "triggerAtDay": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "triggerAtHour": 9,
+                "triggerAtMinute": 20
               }
             ]
           }
@@ -295,12 +304,11 @@
             "conditions": [
               {
                 "id": "3e5c9b4e-1de9-4709-86f7-84b071346df2",
-                "leftValue": "",
-                "rightValue": "",
+                "leftValue": "={{ $('Edit Fields - tel').item.json.flagSendMssage }}",
+                "rightValue": false,
                 "operator": {
-                  "type": "string",
-                  "operation": "equals",
-                  "name": "filter.operator.equals"
+                  "type": "boolean",
+                  "operation": "equals"
                 }
               },
               {
@@ -338,7 +346,7 @@
       {
         "parameters": {
           "chatId": "969710617",
-          "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}",
+          "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}\nstop:{{ $json[\"Stop-Loss \"] }}",
           "additionalFields": {
             "appendAttribution": false
           }
@@ -484,8 +492,8 @@
         },
         "type": "n8n-nodes-base.stickyNote",
         "position": [
-          -400,
-          464
+          -736,
+          400
         ],
         "typeVersion": 1,
         "id": "c64cdbf4-08e1-41b0-9dc9-ecb6f0dc8c9b",
@@ -722,7 +730,7 @@
           "messages": {
             "messageValues": [
               {
-                "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Edit Fields1').item.json.accion }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+                "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\nEl campo \"tendencia\" usa los emojis \"Alcista\", \"Consolidacion\", \"Bajista\"\nEl campo \"tendencia\" usa los emojis \"🟢Alcista\", \"🟡Consolidación\", \"🔴Bajista\"\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Aggregate A').item.json.data[0].accion }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
               }
             ]
           },
@@ -744,7 +752,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          128,
+          96,
           304
         ],
         "id": "2a945fb9-9682-4f3e-b4d2-486b6160748e",
@@ -806,31 +814,6 @@
             "name": "Telegram account"
           }
         }
-      },
-      {
-        "parameters": {},
-        "type": "n8n-nodes-base.merge",
-        "typeVersion": 3.2,
-        "position": [
-          992,
-          128
-        ],
-        "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
-        "name": "Merge2"
-      },
-      {
-        "parameters": {
-          "aggregate": "aggregateAllItemData",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.aggregate",
-        "typeVersion": 1,
-        "position": [
-          1136,
-          128
-        ],
-        "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
-        "name": "Aggregate2"
       },
       {
         "parameters": {
@@ -1044,7 +1027,7 @@
           "messages": {
             "values": [
               {
-                "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('Aggregate2').item.json.data[0].accion }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
+                "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('Aggregate A').item.json.data[0].accion }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
               }
             ]
           },
@@ -1101,6 +1084,117 @@
             "name": "OpenAi account"
           }
         }
+      },
+      {
+        "parameters": {
+          "content": "APIs recomendadas\nAlpha Vantage\n\nDatos: cotizaciones diarias/intraday, indicadores técnicos, forex y cripto.\n\nModelo freemium: plan gratis con límite de peticiones por minuto/día, respuesta en JSON/CSV.\n\nEjemplo de endpoint:\n\nhttps://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=TU_API_KEY\n\nFinnhub\n\nDatos: precio en tiempo real, históricos, fundamentales, noticias.\n\nPlan gratuito para uso ligero con clave de API, suficiente para dashboards personales o prototipos.\n\nEjemplo de endpoint:\n\nhttps://finnhub.io/api/v1/quote?symbol=AAPL&token=TU_API_KEY\n\nFinancial Modeling Prep (FMP)\n\nDatos: precios históricos, estados financieros, ratios, información de ETF.\n\nTiene plan free con límites diarios y endpoints REST simples.\n\nEjemplo de endpoint:\n\nhttps://financialmodelingprep.com/api/v3/quote/SPY?apikey=TU_API_KEY\n\nEOD Historical Data / Marketstack / similares\n\nFoco: históricos EOD (end-of-day) de acciones y ETF, con algo de info fundamental.\n\nPlanes gratuitos con limitación de llamadas y profundidad de histórico; útiles para backtesting sencillo.\n\nYahoo Finance vía librerías (no “API oficial”)\n\nOpción práctica si trabajas en Python (por ejemplo, yfinance) para uso personal/educativo.\n\nVentaja: no necesitas clave ni registro, pero no es ideal para productos comerciales.\n\nQué te recomendaría según tu caso\nPara probar rápido / n8n / dashboards ligeros: Alpha Vantage o Finnhub por su simplicidad y buena documentación.\n\nPara fundamentales + ETFs: Financial Modeling Prep combina bien acciones, ETF y estados financieros.\n\nPara históricos largos para backtesting: Marketstack o EOD Historical Data en sus planes free son una buena base. ",
+          "height": 1024,
+          "width": 816,
+          "color": 7
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -928,
+          -672
+        ],
+        "typeVersion": 1,
+        "id": "29921b9a-82be-4b1d-bddb-0edb41ab7ed4",
+        "name": "Sticky Note3"
+      },
+      {
+        "parameters": {
+          "url": "https://www.alphavantage.co/query",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "function",
+                "value": "=RSI"
+              },
+              {
+                "name": "symbol",
+                "value": "AAPL"
+              },
+              {
+                "name": "apikey",
+                "value": "K2LMHFDDX1VPP6RU"
+              },
+              {
+                "name": "interval",
+                "value": "daily"
+              },
+              {
+                "name": "time_period",
+                "value": "14"
+              },
+              {
+                "name": "series_type",
+                "value": "close"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1616,
+          896
+        ],
+        "id": "fe76c465-9201-463c-be21-f15dd06054ef",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "url": "https://finnhub.io/api/v1/stock/recommendation",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "=AAPL"
+              },
+              {
+                "name": "token",
+                "value": "d547tg9r01qlj84bekh0d547tg9r01qlj84bekhg"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1312,
+          880
+        ],
+        "id": "20c41495-6e4e-4222-a9ca-8ba9ed009954",
+        "name": "HTTP finnhub - recommendation"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          992,
+          128
+        ],
+        "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
+        "name": "Merge A"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          1136,
+          128
+        ],
+        "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
+        "name": "Aggregate A"
       }
     ],
     "connections": {
@@ -1141,7 +1235,7 @@
         "main": [
           [
             {
-              "node": "Merge2",
+              "node": "Merge A",
               "type": "main",
               "index": 0
             }
@@ -1354,53 +1448,11 @@
           ]
         ]
       },
-      "Merge2": {
-        "main": [
-          [
-            {
-              "node": "Aggregate2",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Aggregate2": {
-        "main": [
-          [
-            {
-              "node": "1H",
-              "type": "main",
-              "index": 0
-            },
-            {
-              "node": "chat-img",
-              "type": "main",
-              "index": 0
-            },
-            {
-              "node": "1D",
-              "type": "main",
-              "index": 0
-            },
-            {
-              "node": "1WEEK",
-              "type": "main",
-              "index": 0
-            },
-            {
-              "node": "News 7/24",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "Edit Fields - tel": {
         "main": [
           [
             {
-              "node": "Merge2",
+              "node": "Merge A",
               "type": "main",
               "index": 1
             }
@@ -1499,14 +1551,61 @@
             }
           ]
         ]
+      },
+      "Send a text message1": {
+        "main": [
+          []
+        ]
+      },
+      "Merge A": {
+        "main": [
+          [
+            {
+              "node": "Aggregate A",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate A": {
+        "main": [
+          [
+            {
+              "node": "1H",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "chat-img",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "1D",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "1WEEK",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "News 7/24",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Juan Castillo",
-    "name": "Version 5e334353",
+    "name": "Version 109732b0",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "5e334353-136e-4a84-a273-478652ee57b7",
+  "activeVersionId": "109732b0-2480-465c-b924-a31663314703",
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -1545,7 +1644,7 @@
       "main": [
         [
           {
-            "node": "Merge2",
+            "node": "Merge A",
             "type": "main",
             "index": 0
           }
@@ -1758,53 +1857,11 @@
         ]
       ]
     },
-    "Merge2": {
-      "main": [
-        [
-          {
-            "node": "Aggregate2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate2": {
-      "main": [
-        [
-          {
-            "node": "1H",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "chat-img",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "1D",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "1WEEK",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "News 7/24",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields - tel": {
       "main": [
         [
           {
-            "node": "Merge2",
+            "node": "Merge A",
             "type": "main",
             "index": 1
           }
@@ -1842,11 +1899,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Structured Output Parser": {
-      "ai_outputParser": [
-        []
       ]
     },
     "chat-img": {
@@ -1908,6 +1960,48 @@
       "main": [
         []
       ]
+    },
+    "Merge A": {
+      "main": [
+        [
+          {
+            "node": "Aggregate A",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate A": {
+      "main": [
+        [
+          {
+            "node": "1H",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "chat-img",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1D",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1WEEK",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "News 7/24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-12-14T22:51:12.217Z",
@@ -1946,8 +2040,17 @@
         "rule": {
           "interval": [
             {
-              "triggerAtHour": 10,
-              "triggerAtMinute": 30
+              "field": "weeks",
+              "triggerAtDay": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "triggerAtHour": 9,
+              "triggerAtMinute": 20
             }
           ]
         }
@@ -2633,7 +2736,7 @@
         "messages": {
           "messageValues": [
             {
-              "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Edit Fields1').item.json.accion }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+              "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\nEl campo \"tendencia\" usa los emojis \"Alcista\", \"Consolidacion\", \"Bajista\"\nEl campo \"tendencia\" usa los emojis \"🟢Alcista\", \"🟡Consolidación\", \"🔴Bajista\"\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Aggregate A').item.json.data[0].accion }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
             }
           ]
         },
@@ -2717,31 +2820,6 @@
           "name": "Telegram account"
         }
       }
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3.2,
-      "position": [
-        992,
-        128
-      ],
-      "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
-      "name": "Merge2"
-    },
-    {
-      "parameters": {
-        "aggregate": "aggregateAllItemData",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.aggregate",
-      "typeVersion": 1,
-      "position": [
-        1136,
-        128
-      ],
-      "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
-      "name": "Aggregate2"
     },
     {
       "parameters": {
@@ -2856,19 +2934,6 @@
     },
     {
       "parameters": {
-        "jsonSchemaExample": "\n[\n  \n{\n  \n  \n\"accion\": \n\"IBIT\",\n  \n  \n\"recomendacion\": \n\"MANTENER\",\n  \n  \n\"analisis_general\": \n\"El precio está en una tendencia bajista macro con fuerte impulso vendedor, probando un soporte clave en 14.\",\n  \n  \n\"resistencia\": \n\"16\",\n  \n  \n\"soporte\": \n\"14\",\n  \n  \n\"tendencia\": \n\"bajista\",\n  \n  \n\"precio_entrada\": \n\"13.90\",\n  \n  \n\"Stop-Loss\": \n\"14.40\",\n  \n  \n\"precio_salida\": \n\"12.00\"\n  \n}\n]"
-      },
-      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "typeVersion": 1.3,
-      "position": [
-        3280,
-        512
-      ],
-      "id": "cbe2a045-d988-4192-bb61-8e4fa001b313",
-      "name": "Structured Output Parser"
-    },
-    {
-      "parameters": {
         "method": "POST",
         "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
         "sendHeaders": true,
@@ -2955,7 +3020,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('Aggregate2').item.json.data[0].accion }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
+              "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('Aggregate A').item.json.data[0].accion }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
             }
           ]
         },
@@ -3066,8 +3131,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1616,
-        896
+        992,
+        912
       ],
       "id": "fe76c465-9201-463c-be21-f15dd06054ef",
       "name": "HTTP Request"
@@ -3098,6 +3163,31 @@
       ],
       "id": "20c41495-6e4e-4222-a9ca-8ba9ed009954",
       "name": "HTTP finnhub - recommendation"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        992,
+        128
+      ],
+      "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
+      "name": "Merge A"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1136,
+        128
+      ],
+      "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
+      "name": "Aggregate A"
     }
   ],
   "origin": "main",
@@ -3129,7 +3219,7 @@
         }
       }
     ],
-    "Aggregate2": [
+    "Aggregate A": [
       {
         "json": {
           "data": [
@@ -3188,6 +3278,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-12-21T23:59:26.073Z",
-  "versionId": "543597ec-97fa-4aec-a6ad-6b86c9306bec"
+  "updatedAt": "2025-12-28T10:37:47.938Z",
+  "versionId": "2a8c027d-161c-48da-868d-d1f6d4af929c"
 }
