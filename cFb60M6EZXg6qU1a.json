@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-15T17:11:28.621Z",
-    "createdAt": "2025-12-15T17:11:28.621Z",
-    "versionId": "ef524bef-8024-4a84-b704-4fbb38b68948",
+    "updatedAt": "2025-12-29T11:18:25.000Z",
+    "createdAt": "2025-12-28T10:12:47.075Z",
+    "versionId": "409146d7-6846-4c24-9537-b4035860d02e",
     "workflowId": "cFb60M6EZXg6qU1a",
     "nodes": [
       {
@@ -13,8 +13,7 @@
               {
                 "triggerAtHour": 10,
                 "triggerAtMinute": 30
-              },
-              {}
+              }
             ]
           }
         },
@@ -569,11 +568,11 @@
       }
     },
     "authors": "Juan Castillo",
-    "name": null,
-    "description": null,
+    "name": "Version 409146d7",
+    "description": "",
     "autosaved": false
   },
-  "activeVersionId": "ef524bef-8024-4a84-b704-4fbb38b68948",
+  "activeVersionId": "409146d7-6846-4c24-9537-b4035860d02e",
   "connections": {
     "Schedule Trigger": {
       "main": [
