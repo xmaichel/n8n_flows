@@ -1929,7 +1929,7 @@
           {
             "node": "Merge1",
             "type": "main",
-            "index": 1
+            "index": 3
           }
         ]
       ]
@@ -1951,7 +1951,7 @@
           {
             "node": "Merge1",
             "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -1965,23 +1965,17 @@
       "main": [
         [
           {
-            "node": "Aggregate A",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate A": {
-      "main": [
-        [
-          {
-            "node": "1H",
+            "node": "chat-img",
             "type": "main",
             "index": 0
           },
           {
-            "node": "chat-img",
+            "node": "News 7/24",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1H",
             "type": "main",
             "index": 0
           },
@@ -1996,11 +1990,16 @@
             "index": 0
           },
           {
-            "node": "News 7/24",
+            "node": "Merge1",
             "type": "main",
             "index": 0
           }
         ]
+      ]
+    },
+    "Aggregate A": {
+      "main": [
+        []
       ]
     }
   },
@@ -2286,7 +2285,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        3664,
+        4080,
         336
       ],
       "id": "508a9e3c-4fe5-4b72-a232-879929fbd763",
@@ -2343,7 +2342,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        3824,
+        4240,
         336
       ],
       "id": "8bd0dccc-9b58-4e93-918b-59691b9717e6",
@@ -2360,7 +2359,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        4032,
+        4448,
         416
       ],
       "id": "592e2769-5f68-4cb7-929b-d8e4041e7062",
@@ -2381,7 +2380,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1680,
+        2096,
         -128
       ],
       "id": "227ee05b-b36b-44e2-b969-faf774e719bb",
@@ -2534,7 +2533,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1328,
+        1744,
         288
       ],
       "id": "faebc55a-8c53-4315-94a1-cae8f70b0dce",
@@ -2570,7 +2569,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1328,
+        1744,
         448
       ],
       "id": "ffe71dfe-c179-49c6-9ef4-c4ceeb86bb0b",
@@ -2605,7 +2604,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1312,
+        1728,
         608
       ],
       "id": "9db72d9d-7fd2-40b0-9ed2-0a0ecfaf2c7d",
@@ -2618,7 +2617,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        1536,
+        1952,
         448
       ],
       "id": "7af509ba-0b31-48c5-b6bc-50c31b3b8ac8",
@@ -2632,7 +2631,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1696,
+        2112,
         464
       ],
       "id": "758cc102-afa4-4fd4-afa9-4caf6caab292",
@@ -2645,7 +2644,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1856,
+        2272,
         464
       ],
       "id": "330ff29b-a93e-4b81-8db6-577383b8cdfc",
@@ -2659,7 +2658,7 @@
           "parameters": [
             {
               "name": "q",
-              "value": "={{ $json.data[0].accion }}"
+              "value": "={{ $json.accion }}"
             },
             {
               "name": "from",
@@ -2676,7 +2675,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1328,
+        1744,
         64
       ],
       "id": "a749b216-9b4d-4ab9-ab50-491edec6385c",
@@ -2687,12 +2686,12 @@
     },
     {
       "parameters": {
-        "numberInputs": 3
+        "numberInputs": 4
       },
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        2480,
+        2896,
         320
       ],
       "id": "209db90d-72a4-4a40-9bcd-5de3c36b0ace",
@@ -2706,7 +2705,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        2640,
+        3056,
         336
       ],
       "id": "93a24dae-55af-4475-87fd-fe893cffaee2",
@@ -2723,7 +2722,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        2800,
+        3216,
         336
       ],
       "id": "06b18b87-0160-4e4c-a393-a6eefa68cd7a",
@@ -2745,7 +2744,7 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.7,
       "position": [
-        3104,
+        3520,
         336
       ],
       "id": "7d8b538d-bdf6-414d-af00-81a82ce18a3f",
@@ -2875,7 +2874,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        2768,
+        3184,
         512
       ],
       "id": "cb7f2878-d3df-48a4-a0c8-f0d603e33b6b",
@@ -2907,7 +2906,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        3120,
+        3536,
         512
       ],
       "id": "3dd65d6b-f572-4928-a086-9c41e2c950ca",
@@ -2926,7 +2925,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3456,
+        3872,
         336
       ],
       "id": "c5c0a78f-3589-4935-999c-c7d72a47db1c",
@@ -2951,7 +2950,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.data[0].ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+        "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
         "options": {
           "response": {
             "response": {
@@ -2963,7 +2962,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1328,
+        1744,
         -112
       ],
       "id": "7e995ae2-3623-4a5c-ae8b-ca51ae18a3cc",
@@ -2980,7 +2979,7 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        2032,
+        2448,
         640
       ],
       "id": "6ad1e355-c8e1-4f5f-bfc1-7c3658bebb0d",
@@ -3003,7 +3002,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3,
       "position": [
-        2064,
+        2480,
         464
       ],
       "id": "a9ba6557-c462-4298-a004-43ec2e075ef5",
@@ -3031,7 +3030,7 @@
       "type": "@n8n/n8n-nodes-langchain.googleGemini",
       "typeVersion": 1,
       "position": [
-        1792,
+        2208,
         48
       ],
       "id": "d65d18b6-79a7-4ea5-be69-47511c3704cc",
@@ -3066,7 +3065,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
       "position": [
-        1888,
+        2304,
         -128
       ],
       "id": "88b02848-cebd-48f5-96c4-8d9e3275e854",
@@ -3131,8 +3130,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        992,
-        912
+        1056,
+        928
       ],
       "id": "fe76c465-9201-463c-be21-f15dd06054ef",
       "name": "HTTP Request"
@@ -3158,8 +3157,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        1312,
-        880
+        1280,
+        912
       ],
       "id": "20c41495-6e4e-4222-a9ca-8ba9ed009954",
       "name": "HTTP finnhub - recommendation"
@@ -3169,7 +3168,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        992,
+        1200,
         128
       ],
       "id": "a43e38a2-194d-42c8-9b6f-2bf15f3163d1",
@@ -3183,11 +3182,12 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1136,
-        128
+        832,
+        928
       ],
       "id": "0a0d3c51-5087-43e5-81e0-ca114352cd93",
-      "name": "Aggregate A"
+      "name": "Aggregate A",
+      "disabled": true
     }
   ],
   "origin": "main",
@@ -3224,11 +3224,36 @@
         "json": {
           "data": [
             {
-              "ticket": "AMEX:SPY",
-              "accion": "SPY",
-              "mercado": "NYSE"
+              "ticket": "NASDAQ:AAPL",
+              "mercado": "NASDAQ",
+              "accion": "AAPL",
+              "flagSendMssage": false
+            },
+            {
+              "ticket": "NASDAQ:NVDA",
+              "mercado": "NASDAQ",
+              "accion": "NVDA",
+              "flagSendMssage": false
             }
           ]
+        }
+      }
+    ],
+    "Merge A": [
+      {
+        "json": {
+          "ticket": "NASDAQ:AAPL",
+          "mercado": "NASDAQ",
+          "accion": "AAPL",
+          "flagSendMssage": false
+        }
+      },
+      {
+        "json": {
+          "ticket": "NASDAQ:NVDA",
+          "mercado": "NASDAQ",
+          "accion": "NVDA",
+          "flagSendMssage": false
         }
       }
     ]
@@ -3278,6 +3303,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-12-28T10:37:47.938Z",
-  "versionId": "2a8c027d-161c-48da-868d-d1f6d4af929c"
+  "updatedAt": "2025-12-29T23:07:27.178Z",
+  "versionId": "7634bc17-c771-43f1-b599-58873444e8cf"
 }
