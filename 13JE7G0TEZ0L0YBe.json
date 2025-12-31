@@ -1,0 +1,321 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-30T13:13:03.000Z",
+    "createdAt": "2025-12-30T13:12:44.027Z",
+    "versionId": "efe781de-e9bd-4f26-81ce-c537581f346c",
+    "workflowId": "13JE7G0TEZ0L0YBe",
+    "nodes": [
+      {
+        "parameters": {
+          "url": "https://newsapi.org/v2/everything",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "q",
+                "value": "={{ $json.stock }}"
+              },
+              {
+                "name": "from",
+                "value": "={{$today.minus({ days: 1 }).toFormat('yyyy-MM-dd')}}"
+              },
+              {
+                "name": "apikey",
+                "value": "=a9ccdb3753d64c3192928d3fa3dd45af"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          688,
+          48
+        ],
+        "id": "8c39922b-4350-475e-beb7-5c2333f74dce",
+        "name": "News 7/24"
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "value": "models/gemini-2.5-flash",
+            "mode": "list",
+            "cachedResultName": "models/gemini-2.5-flash"
+          },
+          "messages": {
+            "values": [
+              {
+                "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('When Executed by Another Workflow').item.json.stock }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
+              }
+            ]
+          },
+          "options": {
+            "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.googleGemini",
+        "typeVersion": 1,
+        "position": [
+          1088,
+          48
+        ],
+        "id": "c54776f6-cb05-4279-bbb8-f5af511fa83a",
+        "name": "News Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "zWYgPlFB3BIYXprg",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const items = $input.all();\nconst accion = (items[0]?.json?.stock || '').toUpperCase();\n\nconst filtered = [];\n\nfor (const item of items) {\n  if (item.json.articles && Array.isArray(item.json.articles)) {\n    const relevantArticles = item.json.articles.filter(article => {\n      const title = (article.title || '').toUpperCase();\n      const description = (article.description || '').toUpperCase();\n      return title.includes(accion) || description.includes(accion);\n    });\n    if (relevantArticles.length > 0) {\n      filtered.push({ json: { articles: relevantArticles.slice(0, 5) } }); // Limita a 5 noticias\n    }\n  }\n}\n\nreturn filtered.length > 0 ? filtered : [{ json: { articles: [] } }];\n"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          880,
+          48
+        ],
+        "id": "9b52aae7-4bf0-45c7-887b-dff0c27b3b4c",
+        "name": "Filter News"
+      },
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "stock"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          464,
+          48
+        ],
+        "id": "83ed4a95-ac96-4014-913a-cbbb2a94d0fb",
+        "name": "When Executed by Another Workflow"
+      }
+    ],
+    "connections": {
+      "News 7/24": {
+        "main": [
+          [
+            {
+              "node": "Filter News",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter News": {
+        "main": [
+          [
+            {
+              "node": "News Model",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "News 7/24",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version efe781de",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "efe781de-e9bd-4f26-81ce-c537581f346c",
+  "connections": {
+    "News 7/24": {
+      "main": [
+        [
+          {
+            "node": "Filter News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter News": {
+      "main": [
+        [
+          {
+            "node": "News Model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "News 7/24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-30T12:35:22.188Z",
+  "id": "13JE7G0TEZ0L0YBe",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Analisis Sentimiento Subflujo",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.stock }}"
+            },
+            {
+              "name": "from",
+              "value": "={{$today.minus({ days: 1 }).toFormat('yyyy-MM-dd')}}"
+            },
+            {
+              "name": "apikey",
+              "value": "=a9ccdb3753d64c3192928d3fa3dd45af"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        688,
+        48
+      ],
+      "id": "8c39922b-4350-475e-beb7-5c2333f74dce",
+      "name": "News 7/24"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('When Executed by Another Workflow').item.json.stock }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
+            }
+          ]
+        },
+        "options": {
+          "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        48
+      ],
+      "id": "c54776f6-cb05-4279-bbb8-f5af511fa83a",
+      "name": "News Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "zWYgPlFB3BIYXprg",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst accion = (items[0]?.json?.stock || '').toUpperCase();\n\nconst filtered = [];\n\nfor (const item of items) {\n  if (item.json.articles && Array.isArray(item.json.articles)) {\n    const relevantArticles = item.json.articles.filter(article => {\n      const title = (article.title || '').toUpperCase();\n      const description = (article.description || '').toUpperCase();\n      return title.includes(accion) || description.includes(accion);\n    });\n    if (relevantArticles.length > 0) {\n      filtered.push({ json: { articles: relevantArticles.slice(0, 5) } }); // Limita a 5 noticias\n    }\n  }\n}\n\nreturn filtered.length > 0 ? filtered : [{ json: { articles: [] } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        48
+      ],
+      "id": "9b52aae7-4bf0-45c7-887b-dff0c27b3b4c",
+      "name": "Filter News"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "stock"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        48
+      ],
+      "id": "83ed4a95-ac96-4014-913a-cbbb2a94d0fb",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "stock": "AAPL"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-30T12:35:22.217Z",
+      "createdAt": "2025-12-30T12:35:22.217Z",
+      "role": "workflow:owner",
+      "workflowId": "13JE7G0TEZ0L0YBe",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-30T13:33:12.927Z",
+  "versionId": "efe781de-e9bd-4f26-81ce-c537581f346c"
+}
