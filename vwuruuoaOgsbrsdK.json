@@ -1,0 +1,651 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-31T12:09:52.000Z",
+    "createdAt": "2025-12-31T12:09:49.869Z",
+    "versionId": "0e087a06-bb10-4ba1-baa6-8d6d04be422f",
+    "workflowId": "vwuruuoaOgsbrsdK",
+    "nodes": [
+      {
+        "parameters": {
+          "url": "https://api.twelvedata.com/time_series",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "={{ $json.stock }}"
+              },
+              {
+                "name": "interval",
+                "value": "1h"
+              },
+              {
+                "name": "apikey",
+                "value": "baf5305a52354312a0ed901778a2aa9a"
+              },
+              {
+                "name": "outputsize",
+                "value": "100"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          0,
+          -32
+        ],
+        "id": "e1179926-cb08-4ec9-9e9e-a146df9f3c1f",
+        "name": "1H"
+      },
+      {
+        "parameters": {
+          "url": "https://api.twelvedata.com/time_series",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "={{ $json.stock }}"
+              },
+              {
+                "name": "interval",
+                "value": "1day"
+              },
+              {
+                "name": "apikey",
+                "value": "baf5305a52354312a0ed901778a2aa9a"
+              },
+              {
+                "name": "outputsize",
+                "value": "100"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          0,
+          112
+        ],
+        "id": "da9a6d06-bdb5-4323-ac93-1eb2106dfe56",
+        "name": "1D"
+      },
+      {
+        "parameters": {
+          "url": "https://api.twelvedata.com/time_series",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "={{ $json.stock }}"
+              },
+              {
+                "name": "interval",
+                "value": "1week"
+              },
+              {
+                "name": "apikey",
+                "value": "baf5305a52354312a0ed901778a2aa9a"
+              },
+              {
+                "name": "outputsize",
+                "value": "100"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          0,
+          272
+        ],
+        "id": "a70544e2-58d1-481b-94a7-9f0aac42ffa7",
+        "name": "1WEEK"
+      },
+      {
+        "parameters": {
+          "numberInputs": 3
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          208,
+          96
+        ],
+        "id": "8169bec9-bec5-4745-a87c-0a6f4f5f3286",
+        "name": "Merge Data"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          400,
+          112
+        ],
+        "id": "f31fb53d-697d-4432-ac07-1f07e16c7973",
+        "name": "Aggregate Data"
+      },
+      {
+        "parameters": {
+          "jsCode": "const items = $input.all();\nconst root = items[0].json;\n\n// Extraer datasets\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      t: v.datetime ? v.datetime.split(' ')[1] || v.datetime : null,\n      o: parseFloat(v.open),\n      h: parseFloat(v.high),\n      l: parseFloat(v.low),\n      c: parseFloat(v.close),\n      v: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.t !== null)\n    .sort((a, b) => new Date(a.t) - new Date(b.t));\n}\n\n// Funciones de indicadores\nfunction calculateSMA(candles, period) {\n  if (candles.length < period) return null;\n  const lastSlice = candles.slice(-period);\n  const sum = lastSlice.reduce((acc, curr) => acc + curr.c, 0);\n  return parseFloat((sum / period).toFixed(2));\n}\n\nfunction calculateRSI(candles, period = 14) {\n  if (candles.length < period + 1) return null;\n  const gains = [];\n  const losses = [];\n  for (let i = 1; i <= period; i++) {\n    const change = candles[candles.length - i].c - candles[candles.length - i - 1].c;\n    gains.push(change > 0 ? change : 0);\n    losses.push(change < 0 ? -change : 0);\n  }\n  const avgGain = gains.reduce((a, b) => a + b, 0) / period;\n  const avgLoss = losses.reduce((a, b) => a + b, 0) / period;\n  const rs = avgGain / avgLoss;\n  return parseFloat((100 - (100 / (1 + rs))).toFixed(2));\n}\n\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Procesar velas\nconst candles1h = getCandles(data1h);\nconst candles1day = getCandles(data1day);\nconst candles1week = getCandles(data1week);\n\n// Calcular métricas\nconst lastClose = candles1h.length > 0 ? candles1h[candles1h.length - 1].c : null;\nconst sma20h1 = calculateSMA(candles1h, 20);\nconst rsi14h1 = calculateRSI(candles1h, 14);\nconst sma50d1 = calculateSMA(candles1day, 50);\nconst lastCloseD1 = candles1day.length > 0 ? candles1day[candles1day.length - 1].c : null;\n\nreturn [\n  {\n    json: {\n      symbol: getSymbol(data1h),\n      analisis_tecnico: {\n        ultimo_cierre_1h: lastClose,\n        sma20_1h: sma20h1,\n        rsi14_1h: rsi14h1,\n        estado_vs_sma_1h: lastClose > sma20h1 ? \"POR ENCIMA\" : \"POR DEBAJO\",\n        ultimo_cierre_1d: lastCloseD1,\n        sma50_1d: sma50d1,\n        estado_vs_sma_1d: lastCloseD1 > sma50d1 ? \"POR ENCIMA\" : \"POR DEBAJO\"\n      },\n      h1: candles1h.slice(-20),\n      d1: candles1day.slice(-20),\n      w1: candles1week.slice(-10),\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          608,
+          112
+        ],
+        "id": "93f06fe7-aea9-401d-8ca8-b13fff4ecd28",
+        "name": "Code Indicators"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Analiza estos datos para el símbolo {{ $json.symbol }}:\nResumen Técnico: {{ JSON.stringify($json.analisis_tecnico) }}\nVelas 1 Hora (últimas 20): {{ JSON.stringify($json.h1) }}\nVelas 1 Día (últimas 20): {{ JSON.stringify($json.d1) }}\nVelas 1 Semana (últimas 10): {{ JSON.stringify($json.w1) }}",
+          "options": {
+            "systemMessage": "=Role: Eres un experto Analista Técnico Senior con enfoque en Price Action y patrones de Velas Japonesas.\n\nTask: Analiza los datos de mercado del símbolo {{ $json.symbol }} proporcionados en 3 temporalidades (H1, D1, W1).\n\nInstructions:\n\nTendencia: Determina la tendencia macro (W1) y micro (H1).\n\nPatrones: Identifica los 3 patrones más significativos que veas en los datos (pueden ser patrones de velas como Engulfing, Hammer, o patrones de estructura como Hombro-Cabeza-Hombro o Doble Suelo).\n\nContexto: Usa indicadores como SMA20_1h: {{ $json.analisis_tecnico.sma20_1h }}, RSI14_1h: {{ $json.analisis_tecnico.rsi14_1h }}, SMA50_1d: {{ $json.analisis_tecnico.sma50_1d }}, último cierre 1h: {{ $json.analisis_tecnico.ultimo_cierre_1h }}, último cierre 1d: {{ $json.analisis_tecnico.ultimo_cierre_1d }}, estado vs SMA 1h: {{ $json.analisis_tecnico.estado_vs_sma_1h }}, estado vs SMA 1d: {{ $json.analisis_tecnico.estado_vs_sma_1d }} para validar sobrecompra, soporte o resistencia.\n\nOutput Format: Responde ÚNICAMENTE en formato JSON con la siguiente estructura: { \"analisis_resumen\": \"string\", \"tendencia\": { \"macro\": \"string\", \"micro\": \"string\" }, \"mejores_patrones\": [ { \"nombre\": \"string\", \"temporalidad\": \"string\", \"confianza\": \"0-100%\", \"explicacion\": \"string\" } ], \"accion_sugerida\": \"COMPRA/VENTA/NEUTRAL\", \"confianza_total\": \"0-100%\" }\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3,
+        "position": [
+          800,
+          112
+        ],
+        "id": "4e71feb8-5ec7-4f4f-a08c-f114eceba698",
+        "name": "AI Agent Analysis"
+      },
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "stock"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -320,
+          96
+        ],
+        "id": "8240438f-cae7-42ce-82e8-3c4fbb72def4",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "model": "qwen/qwen3-32b",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          768,
+          304
+        ],
+        "id": "2117404e-69ce-4db8-bb1e-1196199811fd",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "1H": {
+        "main": [
+          [
+            {
+              "node": "Merge Data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "1D": {
+        "main": [
+          [
+            {
+              "node": "Merge Data",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "1WEEK": {
+        "main": [
+          [
+            {
+              "node": "Merge Data",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "Merge Data": {
+        "main": [
+          [
+            {
+              "node": "Aggregate Data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate Data": {
+        "main": [
+          [
+            {
+              "node": "Code Indicators",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code Indicators": {
+        "main": [
+          [
+            {
+              "node": "AI Agent Analysis",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "1H",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "1D",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "1WEEK",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent Analysis",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 0e087a06",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "0e087a06-bb10-4ba1-baa6-8d6d04be422f",
+  "connections": {
+    "1H": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1D": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "1WEEK": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge Data": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Data": {
+      "main": [
+        [
+          {
+            "node": "Code Indicators",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Indicators": {
+      "main": [
+        [
+          {
+            "node": "AI Agent Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "1H",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1D",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "1WEEK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-30T17:51:43.491Z",
+  "id": "vwuruuoaOgsbrsdK",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Análisis Técnico Subflujo",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://api.twelvedata.com/time_series",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.stock }}"
+            },
+            {
+              "name": "interval",
+              "value": "1h"
+            },
+            {
+              "name": "apikey",
+              "value": "baf5305a52354312a0ed901778a2aa9a"
+            },
+            {
+              "name": "outputsize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        -32
+      ],
+      "id": "e1179926-cb08-4ec9-9e9e-a146df9f3c1f",
+      "name": "1H"
+    },
+    {
+      "parameters": {
+        "url": "https://api.twelvedata.com/time_series",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.stock }}"
+            },
+            {
+              "name": "interval",
+              "value": "1day"
+            },
+            {
+              "name": "apikey",
+              "value": "baf5305a52354312a0ed901778a2aa9a"
+            },
+            {
+              "name": "outputsize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        112
+      ],
+      "id": "da9a6d06-bdb5-4323-ac93-1eb2106dfe56",
+      "name": "1D"
+    },
+    {
+      "parameters": {
+        "url": "https://api.twelvedata.com/time_series",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.stock }}"
+            },
+            {
+              "name": "interval",
+              "value": "1week"
+            },
+            {
+              "name": "apikey",
+              "value": "baf5305a52354312a0ed901778a2aa9a"
+            },
+            {
+              "name": "outputsize",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        272
+      ],
+      "id": "a70544e2-58d1-481b-94a7-9f0aac42ffa7",
+      "name": "1WEEK"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        208,
+        96
+      ],
+      "id": "8169bec9-bec5-4745-a87c-0a6f4f5f3286",
+      "name": "Merge Data"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        400,
+        112
+      ],
+      "id": "f31fb53d-697d-4432-ac07-1f07e16c7973",
+      "name": "Aggregate Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst root = items[0].json;\n\n// Extraer datasets\nconst data1h = root.data?.[0] || null;\nconst data1day = root.data?.[1] || null;\nconst data1week = root.data?.[2] || null;\n\n// Función para normalizar valores de velas\nfunction normalize(values) {\n  if (!Array.isArray(values)) return [];\n\n  return values\n    .map(v => ({\n      t: v.datetime ? v.datetime.split(' ')[1] || v.datetime : null,\n      o: parseFloat(v.open),\n      h: parseFloat(v.high),\n      l: parseFloat(v.low),\n      c: parseFloat(v.close),\n      v: parseFloat(v.volume),\n    }))\n    .filter(candle => candle.t !== null)\n    .sort((a, b) => new Date(a.t) - new Date(b.t));\n}\n\n// Funciones de indicadores\nfunction calculateSMA(candles, period) {\n  if (candles.length < period) return null;\n  const lastSlice = candles.slice(-period);\n  const sum = lastSlice.reduce((acc, curr) => acc + curr.c, 0);\n  return parseFloat((sum / period).toFixed(2));\n}\n\nfunction calculateRSI(candles, period = 14) {\n  if (candles.length < period + 1) return null;\n  const gains = [];\n  const losses = [];\n  for (let i = 1; i <= period; i++) {\n    const change = candles[candles.length - i].c - candles[candles.length - i - 1].c;\n    gains.push(change > 0 ? change : 0);\n    losses.push(change < 0 ? -change : 0);\n  }\n  const avgGain = gains.reduce((a, b) => a + b, 0) / period;\n  const avgLoss = losses.reduce((a, b) => a + b, 0) / period;\n  const rs = avgGain / avgLoss;\n  return parseFloat((100 - (100 / (1 + rs))).toFixed(2));\n}\n\nfunction getSymbol(data) {\n  return data?.meta?.symbol || 'N/A';\n}\n\nfunction getCandles(data) {\n  return normalize(data?.values || []);\n}\n\n// Procesar velas\nconst candles1h = getCandles(data1h);\nconst candles1day = getCandles(data1day);\nconst candles1week = getCandles(data1week);\n\n// Calcular métricas\nconst lastClose = candles1h.length > 0 ? candles1h[candles1h.length - 1].c : null;\nconst sma20h1 = calculateSMA(candles1h, 20);\nconst rsi14h1 = calculateRSI(candles1h, 14);\nconst sma50d1 = calculateSMA(candles1day, 50);\nconst lastCloseD1 = candles1day.length > 0 ? candles1day[candles1day.length - 1].c : null;\n\nreturn [\n  {\n    json: {\n      symbol: getSymbol(data1h),\n      analisis_tecnico: {\n        ultimo_cierre_1h: lastClose,\n        sma20_1h: sma20h1,\n        rsi14_1h: rsi14h1,\n        estado_vs_sma_1h: lastClose > sma20h1 ? \"POR ENCIMA\" : \"POR DEBAJO\",\n        ultimo_cierre_1d: lastCloseD1,\n        sma50_1d: sma50d1,\n        estado_vs_sma_1d: lastCloseD1 > sma50d1 ? \"POR ENCIMA\" : \"POR DEBAJO\"\n      },\n      h1: candles1h.slice(-20),\n      d1: candles1day.slice(-20),\n      w1: candles1week.slice(-10),\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        608,
+        112
+      ],
+      "id": "93f06fe7-aea9-401d-8ca8-b13fff4ecd28",
+      "name": "Code Indicators"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analiza estos datos para el símbolo {{ $json.symbol }}:\nResumen Técnico: {{ JSON.stringify($json.analisis_tecnico) }}\nVelas 1 Hora (últimas 20): {{ JSON.stringify($json.h1) }}\nVelas 1 Día (últimas 20): {{ JSON.stringify($json.d1) }}\nVelas 1 Semana (últimas 10): {{ JSON.stringify($json.w1) }}",
+        "options": {
+          "systemMessage": "=Role: Eres un experto Analista Técnico Senior con enfoque en Price Action y patrones de Velas Japonesas.\n\nTask: Analiza los datos de mercado del símbolo {{ $json.symbol }} proporcionados en 3 temporalidades (H1, D1, W1).\n\nInstructions:\n\nTendencia: Determina la tendencia macro (W1) y micro (H1).\n\nPatrones: Identifica los 3 patrones más significativos que veas en los datos (pueden ser patrones de velas como Engulfing, Hammer, o patrones de estructura como Hombro-Cabeza-Hombro o Doble Suelo).\n\nContexto: Usa indicadores como SMA20_1h: {{ $json.analisis_tecnico.sma20_1h }}, RSI14_1h: {{ $json.analisis_tecnico.rsi14_1h }}, SMA50_1d: {{ $json.analisis_tecnico.sma50_1d }}, último cierre 1h: {{ $json.analisis_tecnico.ultimo_cierre_1h }}, último cierre 1d: {{ $json.analisis_tecnico.ultimo_cierre_1d }}, estado vs SMA 1h: {{ $json.analisis_tecnico.estado_vs_sma_1h }}, estado vs SMA 1d: {{ $json.analisis_tecnico.estado_vs_sma_1d }} para validar sobrecompra, soporte o resistencia.\n\nOutput Format: Responde ÚNICAMENTE en formato JSON con la siguiente estructura: { \"analisis_resumen\": \"string\", \"tendencia\": { \"macro\": \"string\", \"micro\": \"string\" }, \"mejores_patrones\": [ { \"nombre\": \"string\", \"temporalidad\": \"string\", \"confianza\": \"0-100%\", \"explicacion\": \"string\" } ], \"accion_sugerida\": \"COMPRA/VENTA/NEUTRAL\", \"confianza_total\": \"0-100%\" }\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        800,
+        112
+      ],
+      "id": "4e71feb8-5ec7-4f4f-a08c-f114eceba698",
+      "name": "AI Agent Analysis"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "stock"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -320,
+        96
+      ],
+      "id": "8240438f-cae7-42ce-82e8-3c4fbb72def4",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3-32b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        768,
+        304
+      ],
+      "id": "2117404e-69ce-4db8-bb1e-1196199811fd",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "origin": "main",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-30T17:51:43.502Z",
+      "createdAt": "2025-12-30T17:51:43.502Z",
+      "role": "workflow:owner",
+      "workflowId": "vwuruuoaOgsbrsdK",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-31T12:09:49.864Z",
+  "versionId": "0e087a06-bb10-4ba1-baa6-8d6d04be422f"
+}
