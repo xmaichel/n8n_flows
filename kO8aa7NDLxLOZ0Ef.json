@@ -1,0 +1,365 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2025-12-31T12:38:52.000Z",
+    "createdAt": "2025-12-31T12:38:45.622Z",
+    "versionId": "a308195f-3366-47d2-b16b-fa2d6692225b",
+    "workflowId": "kO8aa7NDLxLOZ0Ef",
+    "nodes": [
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "x-api-key",
+                "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "response": {
+              "response": {
+                "responseFormat": "json"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          -96,
+          96
+        ],
+        "id": "6e86d624-c7c4-40ef-a8b1-11e5ef358f35",
+        "name": "Chart Img",
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "ticket"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -304,
+          96
+        ],
+        "id": "a6b25b6f-7aa3-4049-b93a-5260552ac9ed",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "https://openrouter.ai/api/v1/chat/completions",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "=Bearer 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"
+              },
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={\n  \"model\": \"qwen/qwen2.5-vl-72b-instruct\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\"type\": \"text\", \n         \"text\": \"**Analista Técnico Experto - Gráfico velas japonesas, ticket:{{ $('When Executed by Another Workflow').item.json.ticket }}, 1D**\\n\\n**PASO 1: LEE el gráfico y extrae:**\\n• Precio actual, máximo/mínimo 20 velas\\n• Soporte/Resistencia clave (3 niveles cada uno)\\n• RSI (valor actual), EMAs visibles\\n• Patrón de velas últimas 5 sesiones\\n• Tendencia macro (alcista/bajista/lateral)\\n\\n**PASO 2: ANALIZA estructura**\\n• ¿Rompimiento/rebote en S/R?\\n• Confluencia RSI + EMAs + Price Action?\\n• Fuerza del momentum (velas grandes?)\\n\\n**PASO 3: TABLA ESCENARIOS**\\n\\n| Escenario | Trigger | Target 1 | Target 2 | Stop Loss | Probabilidad |\\n|-----------|---------|----------|----------|-----------|--------------|\\n| **ALCISTA** | | | | | % |\\n| **BAJISTA** | | | | | % |\\n\\n**SESGO:** Alcista/Bajista/Neutral\\n**RECOMENDACIÓN:** BUY/SELL/WAIT\\n**RIESGO:** Nivel invalidación claro\\n\\n**Respuesta SOLO en Markdown, sin texto extra.**\"},\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"{{ $json.url }}\"\n          }\n        }\n      ]\n    }\n  ]\n}\n\n",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          160,
+          96
+        ],
+        "id": "9a7f3e73-40d9-4640-8815-a24e0b4dcafa",
+        "name": "HTTP Request1",
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "a9b2519b-a128-48eb-9411-74593bd20338",
+                "name": "ticket",
+                "value": "={{ $('When Executed by Another Workflow').item.json.ticket }}",
+                "type": "string"
+              },
+              {
+                "id": "acd9cd03-f43d-4567-abb9-d27a0bfb1aa4",
+                "name": "choices[0].message.content",
+                "value": "={{ $json.choices[0].message.content }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          432,
+          80
+        ],
+        "id": "62d6137c-73f4-4582-801e-4f57ad655550",
+        "name": "Edit Fields"
+      }
+    ],
+    "connections": {
+      "Chart Img": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Chart Img",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request1": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version a308195f",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "a308195f-3366-47d2-b16b-fa2d6692225b",
+  "connections": {
+    "Chart Img": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Chart Img",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-30T18:09:19.681Z",
+  "id": "kO8aa7NDLxLOZ0Ef",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Generar Analisis grafico Subflujo",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.chart-img.com/v2/tradingview/advanced-chart/storage",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "b8s4lrgmRqz99JRgaslNeVrnlSnllPahsgQoDw90"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"theme\": \"dark\",\n  \"interval\": \"1D\",\n  \"symbol\": \"{{ $json.ticket }}\",\n  \"override\": {\n    \"showStudyLastValue\": false\n  },\n  \"studies\": [\n    {\n      \"name\": \"Volume\",\n      \"forceOverlay\": true\n    },\n    {\n      \"name\": \"MACD\",\n      \"override\": {\n        \"Signal.linewidth\": 2,\n        \"Signal.color\": \"rgb(255,65,129)\"\n      }\n    }\n  ]\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -96,
+        96
+      ],
+      "id": "6e86d624-c7c4-40ef-a8b1-11e5ef358f35",
+      "name": "Chart Img",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "ticket"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -304,
+        96
+      ],
+      "id": "a6b25b6f-7aa3-4049-b93a-5260552ac9ed",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer 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"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"qwen/qwen2.5-vl-72b-instruct\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\"type\": \"text\", \n         \"text\": \"**Analista Técnico Experto - Gráfico velas japonesas, ticket:{{ $('When Executed by Another Workflow').item.json.ticket }}, 1D**\\n\\n**PASO 1: LEE el gráfico y extrae:**\\n• Precio actual, máximo/mínimo 20 velas\\n• Soporte/Resistencia clave (3 niveles cada uno)\\n• RSI (valor actual), EMAs visibles\\n• Patrón de velas últimas 5 sesiones\\n• Tendencia macro (alcista/bajista/lateral)\\n\\n**PASO 2: ANALIZA estructura**\\n• ¿Rompimiento/rebote en S/R?\\n• Confluencia RSI + EMAs + Price Action?\\n• Fuerza del momentum (velas grandes?)\\n\\n**PASO 3: TABLA ESCENARIOS**\\n\\n| Escenario | Trigger | Target 1 | Target 2 | Stop Loss | Probabilidad |\\n|-----------|---------|----------|----------|-----------|--------------|\\n| **ALCISTA** | | | | | % |\\n| **BAJISTA** | | | | | % |\\n\\n**SESGO:** Alcista/Bajista/Neutral\\n**RECOMENDACIÓN:** BUY/SELL/WAIT\\n**RIESGO:** Nivel invalidación claro\\n\\n**Respuesta SOLO en Markdown, sin texto extra.**\"},\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"{{ $json.url }}\"\n          }\n        }\n      ]\n    }\n  ]\n}\n\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        160,
+        96
+      ],
+      "id": "9a7f3e73-40d9-4640-8815-a24e0b4dcafa",
+      "name": "HTTP Request1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a9b2519b-a128-48eb-9411-74593bd20338",
+              "name": "ticket",
+              "value": "={{ $('When Executed by Another Workflow').item.json.ticket }}",
+              "type": "string"
+            },
+            {
+              "id": "acd9cd03-f43d-4567-abb9-d27a0bfb1aa4",
+              "name": "choices[0].message.content",
+              "value": "={{ $json.choices[0].message.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        80
+      ],
+      "id": "62d6137c-73f4-4582-801e-4f57ad655550",
+      "name": "Edit Fields"
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "ticket": "NASDAQ:AAPL"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-30T18:09:19.695Z",
+      "createdAt": "2025-12-30T18:09:19.695Z",
+      "role": "workflow:owner",
+      "workflowId": "kO8aa7NDLxLOZ0Ef",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-12-31T12:38:45.620Z",
+  "versionId": "a308195f-3366-47d2-b16b-fa2d6692225b"
+}
