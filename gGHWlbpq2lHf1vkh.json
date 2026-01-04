@@ -1,0 +1,2701 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-04T11:57:37.000Z",
+    "createdAt": "2026-01-04T11:57:21.565Z",
+    "versionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c",
+    "workflowId": "gGHWlbpq2lHf1vkh",
+    "nodes": [
+      {
+        "parameters": {
+          "updates": [
+            "message"
+          ],
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegramTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          944,
+          1296
+        ],
+        "id": "990ebce5-f77b-4696-b8a8-db33598d9af2",
+        "name": "Telegram Trigger",
+        "webhookId": "19df45d0-4543-4ad4-a96a-3caa311f61ae",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "weeks",
+                "triggerAtDay": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "triggerAtHour": 9,
+                "triggerAtMinute": 20
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          944,
+          976
+        ],
+        "id": "a1d96b25-6356-4dc1-832d-2f67e6135ff9",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1136,
+          976
+        ],
+        "id": "6d7d8a90-8ddd-43c8-97ca-999a269a20e2",
+        "name": "Get row(s) in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "## Herrameintas\nhttps://chart-img.com/\n\n### video tutorial \nhttps://youtu.be/TSVFRWT3QjM?si=kBSvsVpsC95uDjU2",
+          "height": 272,
+          "width": 384
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          880,
+          320
+        ],
+        "typeVersion": 1,
+        "id": "c1c2e33a-bb3e-46e7-93a4-858ae0e9f78a",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+                "name": "ticket",
+                "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "f932144b-efbd-4fab-99c0-69d11eec804a",
+                "name": "mercado",
+                "value": "={{ $json.Mercado }}",
+                "type": "string"
+              },
+              {
+                "id": "864ee666-6fe2-4536-a133-97a347defd7d",
+                "name": "stock",
+                "value": "={{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "09f90ff9-2ca9-43b3-878f-0d661983d667",
+                "name": "flagSendMssage",
+                "value": false,
+                "type": "boolean"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1584,
+          976
+        ],
+        "id": "36d29af7-8805-44e8-8bb2-5e4ae96f1982",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 2133119715,
+            "mode": "list",
+            "cachedResultName": "Calculos",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=2133119715"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Fecha": "={{ $now.format('yyyy-MM-dd') }}",
+              "Accion": "={{ $json.accion }}",
+              "Recomendacion": "={{ $json.recomendacion }}",
+              "Analisis General": "={{ $json.analisis_general }}",
+              "Resistencia": "={{ $json.resistencia }}",
+              "Soporte": "={{ $json.soporte }}",
+              "Tendencia": "={{ $json.tendencia }}",
+              "Precio Entrada": "={{ $json.precio_entrada }}",
+              "Precio Salida": "={{ $json.precio_salida }}",
+              "Stop-Loss ": "={{ $json['Stop-Loss'] }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Fecha",
+                "displayName": "Fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Accion",
+                "displayName": "Accion",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Recomendacion",
+                "displayName": "Recomendacion",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Analisis General",
+                "displayName": "Analisis General",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Resistencia",
+                "displayName": "Resistencia",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Soporte",
+                "displayName": "Soporte",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Tendencia",
+                "displayName": "Tendencia",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Precio Entrada",
+                "displayName": "Precio Entrada",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Stop-Loss ",
+                "displayName": "Stop-Loss ",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Precio Salida",
+                "displayName": "Precio Salida",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          4624,
+          1104
+        ],
+        "id": "02a6f4be-23e3-44a5-bf8e-bbad2eaeae63",
+        "name": "Append row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "3e5c9b4e-1de9-4709-86f7-84b071346df2",
+                "leftValue": "={{ $('Loop Over Items').item.json.flagSendMssage }}",
+                "rightValue": "=",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "false",
+                  "singleValue": true
+                }
+              },
+              {
+                "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
+                "leftValue": "={{ $json.Recomendacion }}",
+                "rightValue": "Esperar",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              },
+              {
+                "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
+                "leftValue": "={{ $json.Recomendacion }}",
+                "rightValue": "MANTENER",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          4832,
+          1104
+        ],
+        "id": "76d47bba-7d55-457e-825e-03e5771bb10c",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "chatId": "969710617",
+          "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}\nstop:{{ $json[\"Stop-Loss \"] }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          5024,
+          1408
+        ],
+        "id": "2ac93808-70d4-41fd-b668-bcce335d6975",
+        "name": "Send a text message",
+        "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Acciones",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Accion": "={{ $json.accion }}",
+              "Mercado": "={{ $json.mercado }}"
+            },
+            "matchingColumns": [
+              "Accion"
+            ],
+            "schema": [
+              {
+                "id": "Mercado",
+                "displayName": "Mercado",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Accion",
+                "displayName": "Accion",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          1616,
+          1280
+        ],
+        "id": "befa7de6-d773-46c2-b1d7-dec04461c496",
+        "name": "Append or update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "c308b5c9-3eac-4947-a04d-974371263056",
+                "name": "accion",
+                "value": "={{ $('Code in JavaScript1').item.json.accion }}",
+                "type": "string"
+              },
+              {
+                "id": "a45e60b9-4e58-4c5c-8255-ebc48e2d4984",
+                "name": "mercado",
+                "value": "={{ $('Code in JavaScript1').item.json.mercado }}",
+                "type": "string"
+              },
+              {
+                "id": "4018f74a-52c9-428c-9164-f3241d50b483",
+                "name": "ticket",
+                "value": "={{ $json.mercado }}.{{ $json.accion }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1456,
+          1280
+        ],
+        "id": "7be7775c-b011-47a7-9cec-b8ea488c3ef1",
+        "name": "Edit Fields1"
+      },
+      {
+        "parameters": {
+          "content": "## Vesrion 2\n\n\nhttps://twelvedata.com/login\nxamcihel@gmail.com\n\n\nhttps://youtu.be/4sgmngqXNWU?si=eR0c6I6tO6WXwvsS\n\nnews(Noticias)\nhttps://newsapi.org/\nBel_13724411\na9ccdb3753d64c3192928d3fa3dd45af",
+          "height": 336,
+          "width": 384,
+          "color": 5
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          64,
+          1360
+        ],
+        "typeVersion": 1,
+        "id": "2191c821-f2ee-488f-b2c8-285476b8cdce",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "numberInputs": 4
+        },
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          3312,
+          1072
+        ],
+        "id": "a8d31ae7-670d-4219-b365-18091218a845",
+        "name": "Merge1"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          3504,
+          1104
+        ],
+        "id": "ac98f4fc-d8d0-49bb-bfdd-9b2edf439338",
+        "name": "Aggregate1"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=## TAREA: Analiza los siguientes datos técnicos y de sentimiento para generar una recomendación de trading Intrasemanal (Swing):\n* Evalúa el estado actual del mercado: \n* Determina la tendencia dominante y el contexto de volatilidad.\n* Genera la Recomendación Unificada: COMPRAR, VENDER o MANTENER.\n* Establece Parámetros de Riesgo: Define Precio de Entrada, Stop-Loss y Precio Objetivo.\n* En caso de MANTENER: Proporciona un análisis de espera detallando el tiempo estimado (ej. \"Próximas 12-24h\" o \"Rebote en 0.618 de Fibonacci\") y la condición específica (ej. \"Rompimiento de resistencia en $X$\") para la próxima posible entrada.\n### Analisis Tecnico grafico:{{ $json.data[0].choices[0].message.content }}\n### Datos Técnicos (velas de 1h, 1D, 1W):{{ JSON.stringify($json.data[1]) }}\n### Análisis de Sentimiento (últimas 24h):{{ JSON.stringify($json.data[2]) }}",
+          "options": {
+            "systemMessage": "=Eres un Estratega de Inversión Cuantitativa especializado en el análisis Intrasemanal (Swing Trading). Tu función es procesar datos técnicos (acción del precio de 1h, 1D, 1W) y sentimiento de mercado para generar una recomendación de trading unificada con parámetros de riesgo definidos.\n## REGLAS DE ANÁLISIS:\n### Marcos de Tiempo: Utiliza 1W y 1D para determinar la tendencia principal y las zonas de soporte/resistencia clave. Utiliza 1h para la optimización de la entrada.\n### Priorización Activa: Tu objetivo principal es identificar una oportunidad de COMPRAR o VENDER. Solo emite la recomendación MANTENER si la configuración actual es de riesgo extremo o la tendencia es excesivamente lateral sin puntos de validación claros.\n### Riesgo y Recompensa: Los parámetros de Stop-Loss y Precio Objetivo deben basarse en un ratio de Riesgo/Recompensa mínimo de 1:1.5, utilizando niveles de volatilidad y estructura de mercado (ej. Mínimos recientes o máximos anteriores).\n## FORMATO DE SALIDA ESTRICTO:Tu respuesta debe ser un texto plano con viñetas claras y saltos de línea. No debes incluir ningún texto o explicación adicional fuera de las viñetas. La primera viñeta debe ser una explicación concisa de la razón de la operación.\n## EJEMPLO DE OUTPUT (Obligatorio):\n* Razón de la Operación: El precio ha rebotado en el soporte clave de 1D, validado por una vela envolvente en 1h. \n* El sentimiento positivo de 24h confirma el impulso alcista a corto plazo.\n* Recomendación Técnica: COMPRAR \n* Precio de Entrada: 125.50Stop-Loss: 124.00\n* Precio Objetivo/Salida: 128.75\n* Precio Actual\n* Condición de Espera (si MANTENER): Esperar a que el RSI en 1h supere 60.2. 📝 \n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3,
+        "position": [
+          3728,
+          1104
+        ],
+        "id": "fbc06014-88b5-4cf4-be49-fa2b1e6d4011",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Informe: {{ $json.output }}\n",
+          "messages": {
+            "messageValues": [
+              {
+                "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\nEl campo \"tendencia\" usa los emojis \"Alcista\", \"Consolidacion\", \"Bajista\"\nEl campo \"tendencia\" usa los emojis \"🟢Alcista\", \"🟡Consolidación\", \"🔴Bajista\"\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Loop Over Items').item.json.stock }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+              }
+            ]
+          },
+          "batching": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.7,
+        "position": [
+          4080,
+          1104
+        ],
+        "id": "13048b11-f153-4fb3-94e9-e929a6c61c89",
+        "name": "Basic LLM Chain1"
+      },
+      {
+        "parameters": {
+          "jsCode": "for (const item of items) {\n    // 1. Acceso seguro al valor del mensaje proveniente del Telegram Trigger\n    // Usamos el operador ?. (optional chaining) para evitar errores si 'message' o 'text' no existen.\n    const fullSymbol = item.json.message?.text; \n    \n    // Inicialización del estado de manejo de errores\n    item.json.status = \"error\"; // Asumimos error hasta que se demuestre lo contrario\n    item.json.error_message = null; \n\n    // 2. Validación y Procesamiento\n    if (typeof fullSymbol === 'string' && fullSymbol.includes('.')) {\n        const parts = fullSymbol.split('.');\n\n        // Aseguramos que haya exactamente dos partes y que no estén vacías\n        if (parts.length === 2 && parts[0].trim() !== '' && parts[1].trim() !== '') {\n            // Éxito: Procesar y establecer el estado 'success'\n            item.json.mercado = parts[0].toUpperCase().trim();\n            item.json.accion = parts[1].toUpperCase().trim();\n            item.json.status = \"success\";\n        } else {\n            // Error: Formato incompleto (Ej: 'NYSE.' o '.NVDA')\n            item.json.mercado = null;\n            item.json.accion = null;\n            item.json.error_message = \"Formato de símbolo incompleto. Se esperaba 'MERCADO.ACCION'.\";\n        }\n    } else {\n        // Error: No es una cadena o no contiene el separador '.'\n        item.json.mercado = null;\n        item.json.accion = null;\n        item.json.error_message = \"Formato de símbolo inválido. Se esperaba una cadena con formato 'MERCADO.ACCION'.\";\n    }\n}\n\nreturn items;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1104,
+          1296
+        ],
+        "id": "1b947770-211b-4b57-b7d4-2445e9c8bfb6",
+        "name": "Code in JavaScript1"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "c7573ded-b340-4a59-b0e0-1379675ee01c",
+                "leftValue": "={{ $json.status }}",
+                "rightValue": "success",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1264,
+          1296
+        ],
+        "id": "721e6a23-3333-4747-b791-2d7616e5cecf",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "chatId": "969710617",
+          "text": "={{ $('Code in JavaScript1').item.json.error_message }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          1488,
+          1504
+        ],
+        "id": "7217c74a-f61d-45f8-960d-9a9c48d8fc40",
+        "name": "Send a text message1",
+        "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+        "credentials": {
+          "telegramApi": {
+            "id": "rLF6sbdrEUORvHbu",
+            "name": "Telegram account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+                "name": "ticket",
+                "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "2a96522b-b65b-433a-89ea-0e0514b9878a",
+                "name": "accion",
+                "value": "={{ $json.Accion }}",
+                "type": "string"
+              },
+              {
+                "id": "c314f1f2-6de7-46ba-8058-138e21256a17",
+                "name": "mercado",
+                "value": "={{ $json.Mercado }}",
+                "type": "string"
+              },
+              {
+                "id": "9a9f897b-3453-435d-a9b0-79c4eb0766c0",
+                "name": "flagSendMssage",
+                "value": true,
+                "type": "boolean"
+              },
+              {
+                "id": "c8cb1ff1-eab6-45f8-9a0d-60469db8653e",
+                "name": "stock",
+                "value": "={{ $json.Accion }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1776,
+          1280
+        ],
+        "id": "51a07c65-895b-4695-86eb-c197edb92bb4",
+        "name": "Edit Fields - tel"
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "value": "gpt-4o-mini",
+            "mode": "list",
+            "cachedResultName": "gpt-4o-mini"
+          },
+          "builtInTools": {},
+          "options": {
+            "textFormat": {
+              "textOptions": {
+                "type": "json_object"
+              }
+            }
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.3,
+        "position": [
+          4064,
+          1296
+        ],
+        "id": "d11ae203-ee40-4488-9fd2-7653ad107387",
+        "name": "OpenAI Chat Model1",
+        "credentials": {
+          "openAiApi": {
+            "id": "HV97DoTFCLaZIPgd",
+            "name": "OpenAi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Obtener el texto de la salida\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  // Extraer el texto que contiene el JSON\n  let text = item.json.text;\n  \n  // Limpiar el string: quitar saltos de línea y espacios extra\n  text = text.trim();\n  \n  // Parsear el JSON\n  try {\n    const parsed = JSON.parse(text);\n    results.push({ json: parsed });\n  } catch (error) {\n    // Si falla, intentar extraer solo el objeto JSON\n    const jsonMatch = text.match(/\\{[\\s\\S]*\\}/);\n    if (jsonMatch) {\n      const parsed = JSON.parse(jsonMatch[0]);\n      results.push({ json: parsed });\n    } else {\n      throw new Error(`No se pudo parsear el JSON: ${error.message}`);\n    }\n  }\n}\n\nreturn results;"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          4416,
+          1104
+        ],
+        "id": "b9e3a708-23a8-4ef5-b02e-d47b026566e4",
+        "name": "Code in JavaScript2"
+      },
+      {
+        "parameters": {
+          "content": "APIs recomendadas\nAlpha Vantage\n\nDatos: cotizaciones diarias/intraday, indicadores técnicos, forex y cripto.\n\nModelo freemium: plan gratis con límite de peticiones por minuto/día, respuesta en JSON/CSV.\n\nEjemplo de endpoint:\n\nhttps://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=TU_API_KEY\n\nFinnhub\n\nDatos: precio en tiempo real, históricos, fundamentales, noticias.\n\nPlan gratuito para uso ligero con clave de API, suficiente para dashboards personales o prototipos.\n\nEjemplo de endpoint:\n\nhttps://finnhub.io/api/v1/quote?symbol=AAPL&token=TU_API_KEY\n\nFinancial Modeling Prep (FMP)\n\nDatos: precios históricos, estados financieros, ratios, información de ETF.\n\nTiene plan free con límites diarios y endpoints REST simples.\n\nEjemplo de endpoint:\n\nhttps://financialmodelingprep.com/api/v3/quote/SPY?apikey=TU_API_KEY\n\nEOD Historical Data / Marketstack / similares\n\nFoco: históricos EOD (end-of-day) de acciones y ETF, con algo de info fundamental.\n\nPlanes gratuitos con limitación de llamadas y profundidad de histórico; útiles para backtesting sencillo.\n\nYahoo Finance vía librerías (no “API oficial”)\n\nOpción práctica si trabajas en Python (por ejemplo, yfinance) para uso personal/educativo.\n\nVentaja: no necesitas clave ni registro, pero no es ideal para productos comerciales.\n\nQué te recomendaría según tu caso\nPara probar rápido / n8n / dashboards ligeros: Alpha Vantage o Finnhub por su simplicidad y buena documentación.\n\nPara fundamentales + ETFs: Financial Modeling Prep combina bien acciones, ETF y estados financieros.\n\nPara históricos largos para backtesting: Marketstack o EOD Historical Data en sus planes free son una buena base. ",
+          "height": 1024,
+          "width": 816,
+          "color": 7
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          48,
+          320
+        ],
+        "typeVersion": 1,
+        "id": "268b2afb-8e30-4c53-957e-9176b63303bd",
+        "name": "Sticky Note3"
+      },
+      {
+        "parameters": {
+          "url": "https://www.alphavantage.co/query",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "function",
+                "value": "=RSI"
+              },
+              {
+                "name": "symbol",
+                "value": "AAPL"
+              },
+              {
+                "name": "apikey",
+                "value": "K2LMHFDDX1VPP6RU"
+              },
+              {
+                "name": "interval",
+                "value": "daily"
+              },
+              {
+                "name": "time_period",
+                "value": "14"
+              },
+              {
+                "name": "series_type",
+                "value": "close"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          2032,
+          1920
+        ],
+        "id": "42330fd4-a11d-48a4-bb20-917873fe0106",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "url": "https://finnhub.io/api/v1/stock/recommendation",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "symbol",
+                "value": "=AAPL"
+              },
+              {
+                "name": "token",
+                "value": "d547tg9r01qlj84bekh0d547tg9r01qlj84bekhg"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          2256,
+          1904
+        ],
+        "id": "6fd20c0e-5d4d-4e56-884f-f2525964e135",
+        "name": "HTTP finnhub - recommendation"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 3.2,
+        "position": [
+          2176,
+          1088
+        ],
+        "id": "5fd92bfa-fdc8-4fd5-a636-dbe52bc4930b",
+        "name": "Merge A"
+      },
+      {
+        "parameters": {
+          "aggregate": "aggregateAllItemData",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.aggregate",
+        "typeVersion": 1,
+        "position": [
+          1808,
+          1920
+        ],
+        "id": "e2116b02-154f-49cd-a171-ce1863d9f9de",
+        "name": "Aggregate A",
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "content": "## Recomendaciones Generales\n- **Eficiencia y Límites de API**: Considera límites gratuitos (TwelveData: 800/día, NewsAPI: 100/día). Agrega delays entre llamadas.\n- **Manejo de Errores**: Agrega nodos IF para rutas de error (e.g., si API falla, enviar mensaje de 'Datos no disponibles').\n- **Seguridad**: Mueve API keys a variables de entorno o credenciales n8n.\n- **Documentación**: Usa nombres descriptivos y más sticky notes.\n- **Escalabilidad**: Limita a 5-10 acciones por ejecución.",
+          "height": 400,
+          "width": 500,
+          "color": 3
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1280,
+          320
+        ],
+        "typeVersion": 1,
+        "id": "020b5bb4-c34d-414e-a2ce-7659c392360b",
+        "name": "Recomendaciones Generales"
+      },
+      {
+        "parameters": {
+          "content": "## Sugerencia para Subflujos\nDivide en sub-workflows para modularidad:\n1. 'Obtener Lista de Acciones'\n2. 'Análisis Técnico'\n3. 'Análisis de Sentimiento'\n4. 'Generar Gráfico y Análisis Visual'\n5. 'Generar Recomendación Final'\n6. 'Notificaciones y Almacenamiento'\nCrea workflows separados y llámalos con 'Execute Workflow'.",
+          "height": 350,
+          "width": 450,
+          "color": 4
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          1792,
+          320
+        ],
+        "typeVersion": 1,
+        "id": "ba2adb79-c053-4cb6-b190-ab4d4e4acaf2",
+        "name": "Dividir en Subflujos"
+      },
+      {
+        "parameters": {
+          "workflowId": "kO8aa7NDLxLOZ0Ef",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1,
+        "position": [
+          2784,
+          992
+        ],
+        "id": "a0fca39f-9acc-4ed4-a0cf-eb142c38e18e",
+        "name": "Execute Recommendation"
+      },
+      {
+        "parameters": {
+          "workflowId": "13JE7G0TEZ0L0YBe",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1,
+        "position": [
+          2784,
+          1360
+        ],
+        "id": "e853976f-dbbd-4189-b3f0-5a8017682df1",
+        "name": "Execute Sentiment Analysis"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "64dcadcf-7b50-4558-9b08-e0c9f6bc0395",
+                "leftValue": "={{ $json.ACTIVO }}",
+                "rightValue": 1,
+                "operator": {
+                  "type": "number",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1344,
+          976
+        ],
+        "id": "b80d2d27-ea4c-478c-b71d-28ed6232c01e",
+        "name": "If2"
+      },
+      {
+        "parameters": {
+          "workflowId": "vwuruuoaOgsbrsdK",
+          "mode": "each",
+          "options": {
+            "waitForSubWorkflow": true
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1,
+        "position": [
+          2784,
+          1168
+        ],
+        "id": "2f325ac6-0218-4363-abed-7dc90c1f7126",
+        "name": "Execute Tech Analysis 1H1D1W"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 3,
+        "position": [
+          2384,
+          1088
+        ],
+        "id": "21459610-cbd8-4218-9ae4-669dae781ecd",
+        "name": "Loop Over Items"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.noOp",
+        "name": "Replace Me",
+        "typeVersion": 1,
+        "position": [
+          5616,
+          1424
+        ],
+        "id": "b4bed28d-324d-4971-bb92-d3168e3de0eb"
+      },
+      {
+        "parameters": {
+          "model": "qwen/qwen3-8b",
+          "options": {
+            "temperature": 0.5
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          3728,
+          1296
+        ],
+        "id": "f9c1bcc9-d789-46ba-a261-bf924c53a34e",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Telegram Trigger": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Get row(s) in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "Merge A",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Recommendation": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append row in sheet": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Replace Me",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append or update row in sheet": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields - tel",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields1": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge1": {
+        "main": [
+          [
+            {
+              "node": "Aggregate1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Aggregate1": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Basic LLM Chain1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Basic LLM Chain1": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript1": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Send a text message1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields - tel": {
+        "main": [
+          [
+            {
+              "node": "Merge A",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain1",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript2": {
+        "main": [
+          [
+            {
+              "node": "Append row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Merge A": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet": {
+        "main": [
+          [
+            {
+              "node": "If2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Sentiment Analysis": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Tech Analysis 1H1D1W": {
+        "main": [
+          [
+            {
+              "node": "Merge1",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Loop Over Items": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Execute Tech Analysis 1H1D1W",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Sentiment Analysis",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Recommendation",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Replace Me": {
+        "main": [
+          [
+            {
+              "node": "Loop Over Items",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a text message": {
+        "main": [
+          [
+            {
+              "node": "Replace Me",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 3b156dd7",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c",
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge A",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Recommendation": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields - tel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields - tel": {
+      "main": [
+        [
+          {
+            "node": "Merge A",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge A": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Sentiment Analysis": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Tech Analysis 1H1D1W": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Execute Tech Analysis 1H1D1W",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Recommendation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-12-31T11:54:56.639Z",
+  "id": "gGHWlbpq2lHf1vkh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Trading_V3",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        944,
+        1296
+      ],
+      "id": "990ebce5-f77b-4696-b8a8-db33598d9af2",
+      "name": "Telegram Trigger",
+      "webhookId": "19df45d0-4543-4ad4-a96a-3caa311f61ae",
+      "credentials": {
+        "telegramApi": {
+          "id": "rLF6sbdrEUORvHbu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "triggerAtHour": 9,
+              "triggerAtMinute": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        944,
+        976
+      ],
+      "id": "a1d96b25-6356-4dc1-832d-2f67e6135ff9",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1136,
+        976
+      ],
+      "id": "6d7d8a90-8ddd-43c8-97ca-999a269a20e2",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Herrameintas\nhttps://chart-img.com/\n\n### video tutorial \nhttps://youtu.be/TSVFRWT3QjM?si=kBSvsVpsC95uDjU2",
+        "height": 272,
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        880,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "c1c2e33a-bb3e-46e7-93a4-858ae0e9f78a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+              "name": "ticket",
+              "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "f932144b-efbd-4fab-99c0-69d11eec804a",
+              "name": "mercado",
+              "value": "={{ $json.Mercado }}",
+              "type": "string"
+            },
+            {
+              "id": "864ee666-6fe2-4536-a133-97a347defd7d",
+              "name": "stock",
+              "value": "={{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "09f90ff9-2ca9-43b3-878f-0d661983d667",
+              "name": "flagSendMssage",
+              "value": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1584,
+        976
+      ],
+      "id": "36d29af7-8805-44e8-8bb2-5e4ae96f1982",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2133119715,
+          "mode": "list",
+          "cachedResultName": "Calculos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=2133119715"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha": "={{ $now.format('yyyy-MM-dd') }}",
+            "Accion": "={{ $json.accion }}",
+            "Recomendacion": "={{ $json.recomendacion }}",
+            "Analisis General": "={{ $json.analisis_general }}",
+            "Resistencia": "={{ $json.resistencia }}",
+            "Soporte": "={{ $json.soporte }}",
+            "Tendencia": "={{ $json.tendencia }}",
+            "Precio Entrada": "={{ $json.precio_entrada }}",
+            "Precio Salida": "={{ $json.precio_salida }}",
+            "Stop-Loss ": "={{ $json['Stop-Loss'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Fecha",
+              "displayName": "Fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Accion",
+              "displayName": "Accion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Recomendacion",
+              "displayName": "Recomendacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Analisis General",
+              "displayName": "Analisis General",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resistencia",
+              "displayName": "Resistencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Soporte",
+              "displayName": "Soporte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tendencia",
+              "displayName": "Tendencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Precio Entrada",
+              "displayName": "Precio Entrada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Stop-Loss ",
+              "displayName": "Stop-Loss ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Precio Salida",
+              "displayName": "Precio Salida",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        4624,
+        1104
+      ],
+      "id": "02a6f4be-23e3-44a5-bf8e-bbad2eaeae63",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3e5c9b4e-1de9-4709-86f7-84b071346df2",
+              "leftValue": "={{ $('Loop Over Items').item.json.flagSendMssage }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
+              "leftValue": "={{ $json.Recomendacion }}",
+              "rightValue": "Esperar",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
+              "leftValue": "={{ $json.Recomendacion }}",
+              "rightValue": "MANTENER",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4832,
+        1104
+      ],
+      "id": "76d47bba-7d55-457e-825e-03e5771bb10c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "969710617",
+        "text": "={{ $json.Accion }} - {{ $json.Recomendacion }} - {{ $json.Tendencia }}\nResistencia: {{ $json.Resistencia }} \nSoporte: {{ $json.Soporte }}\nEntrada: {{ $json['Precio Entrada'] }}\nSalida: {{ $json['Precio Salida'] }}\nstop:{{ $json[\"Stop-Loss \"] }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        5024,
+        1408
+      ],
+      "id": "2ac93808-70d4-41fd-b668-bcce335d6975",
+      "name": "Send a text message",
+      "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+      "credentials": {
+        "telegramApi": {
+          "id": "rLF6sbdrEUORvHbu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Acciones",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/14NgDgWPdPpUCFq_Ioj6PwRKsjXTMK6CS9IqMsB0AdDw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Accion": "={{ $json.accion }}",
+            "Mercado": "={{ $json.mercado }}"
+          },
+          "matchingColumns": [
+            "Accion"
+          ],
+          "schema": [
+            {
+              "id": "Mercado",
+              "displayName": "Mercado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Accion",
+              "displayName": "Accion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1616,
+        1280
+      ],
+      "id": "befa7de6-d773-46c2-b1d7-dec04461c496",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c308b5c9-3eac-4947-a04d-974371263056",
+              "name": "accion",
+              "value": "={{ $('Code in JavaScript1').item.json.accion }}",
+              "type": "string"
+            },
+            {
+              "id": "a45e60b9-4e58-4c5c-8255-ebc48e2d4984",
+              "name": "mercado",
+              "value": "={{ $('Code in JavaScript1').item.json.mercado }}",
+              "type": "string"
+            },
+            {
+              "id": "4018f74a-52c9-428c-9164-f3241d50b483",
+              "name": "ticket",
+              "value": "={{ $json.mercado }}.{{ $json.accion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1456,
+        1280
+      ],
+      "id": "7be7775c-b011-47a7-9cec-b8ea488c3ef1",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "## Vesrion 2\n\n\nhttps://twelvedata.com/login\nxamcihel@gmail.com\n\n\nhttps://youtu.be/4sgmngqXNWU?si=eR0c6I6tO6WXwvsS\n\nnews(Noticias)\nhttps://newsapi.org/\nBel_13724411\na9ccdb3753d64c3192928d3fa3dd45af",
+        "height": 336,
+        "width": 384,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        1360
+      ],
+      "typeVersion": 1,
+      "id": "2191c821-f2ee-488f-b2c8-285476b8cdce",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3312,
+        1072
+      ],
+      "id": "a8d31ae7-670d-4219-b365-18091218a845",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3504,
+        1104
+      ],
+      "id": "ac98f4fc-d8d0-49bb-bfdd-9b2edf439338",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=## TAREA: Analiza los siguientes datos técnicos y de sentimiento para generar una recomendación de trading Intrasemanal (Swing):\n* Evalúa el estado actual del mercado: \n* Determina la tendencia dominante y el contexto de volatilidad.\n* Genera la Recomendación Unificada: COMPRAR, VENDER o MANTENER.\n* Establece Parámetros de Riesgo: Define Precio de Entrada, Stop-Loss y Precio Objetivo.\n* En caso de MANTENER: Proporciona un análisis de espera detallando el tiempo estimado (ej. \"Próximas 12-24h\" o \"Rebote en 0.618 de Fibonacci\") y la condición específica (ej. \"Rompimiento de resistencia en $X$\") para la próxima posible entrada.\n### Analisis Tecnico grafico:{{ $json.data[0].choices[0].message.content }}\n### Datos Técnicos (velas de 1h, 1D, 1W):{{ JSON.stringify($json.data[1]) }}\n### Análisis de Sentimiento (últimas 24h):{{ JSON.stringify($json.data[2]) }}",
+        "options": {
+          "systemMessage": "=Eres un Estratega de Inversión Cuantitativa especializado en el análisis Intrasemanal (Swing Trading). Tu función es procesar datos técnicos (acción del precio de 1h, 1D, 1W) y sentimiento de mercado para generar una recomendación de trading unificada con parámetros de riesgo definidos.\n## REGLAS DE ANÁLISIS:\n### Marcos de Tiempo: Utiliza 1W y 1D para determinar la tendencia principal y las zonas de soporte/resistencia clave. Utiliza 1h para la optimización de la entrada.\n### Priorización Activa: Tu objetivo principal es identificar una oportunidad de COMPRAR o VENDER. Solo emite la recomendación MANTENER si la configuración actual es de riesgo extremo o la tendencia es excesivamente lateral sin puntos de validación claros.\n### Riesgo y Recompensa: Los parámetros de Stop-Loss y Precio Objetivo deben basarse en un ratio de Riesgo/Recompensa mínimo de 1:1.5, utilizando niveles de volatilidad y estructura de mercado (ej. Mínimos recientes o máximos anteriores).\n## FORMATO DE SALIDA ESTRICTO:Tu respuesta debe ser un texto plano con viñetas claras y saltos de línea. No debes incluir ningún texto o explicación adicional fuera de las viñetas. La primera viñeta debe ser una explicación concisa de la razón de la operación.\n## EJEMPLO DE OUTPUT (Obligatorio):\n* Razón de la Operación: El precio ha rebotado en el soporte clave de 1D, validado por una vela envolvente en 1h. \n* El sentimiento positivo de 24h confirma el impulso alcista a corto plazo.\n* Recomendación Técnica: COMPRAR \n* Precio de Entrada: 125.50Stop-Loss: 124.00\n* Precio Objetivo/Salida: 128.75\n* Precio Actual\n* Condición de Espera (si MANTENER): Esperar a que el RSI en 1h supere 60.2. 📝 \n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        3728,
+        1104
+      ],
+      "id": "fbc06014-88b5-4cf4-be49-fa2b1e6d4011",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Informe: {{ $json.output }}\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Extrae los datos del siguiente informe de trading y devuelve SOLO un objeto JSON válido.\nEl campo \"Recomendación\"  Usa los emojis: \"✅Comprar\", \"❌Vender\", o \"⏸️Esperar\".\nEl campo \"tendencia\" usa los emojis \"Alcista\", \"Consolidacion\", \"Bajista\"\nEl campo \"tendencia\" usa los emojis \"🟢Alcista\", \"🟡Consolidación\", \"🔴Bajista\"\n\nFormato requerido (devuelve EXACTAMENTE esta estructura):\n{\n  \"accion\": \"{{ $('Loop Over Items').item.json.stock }}\",\n  \"recomendacion\": \"string\",\n  \"analisis_general\": \"string\",\n  \"precio\":\"string\"\n  \"resistencia\": \"string\",\n  \"soporte\": \"string\",\n  \"tendencia\": \"string\",\n  \"precio_entrada\": \"string\",\n  \"Stop-Loss\": \"string\",\n  \"precio_salida\": \"string\"\n}\n\nIMPORTANTE: \n- Responde ÚNICAMENTE con el JSON, sin bloques de código markdown\n- Valores sin símbolos de moneda"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        4080,
+        1104
+      ],
+      "id": "13048b11-f153-4fb3-94e9-e929a6c61c89",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of items) {\n    // 1. Acceso seguro al valor del mensaje proveniente del Telegram Trigger\n    // Usamos el operador ?. (optional chaining) para evitar errores si 'message' o 'text' no existen.\n    const fullSymbol = item.json.message?.text; \n    \n    // Inicialización del estado de manejo de errores\n    item.json.status = \"error\"; // Asumimos error hasta que se demuestre lo contrario\n    item.json.error_message = null; \n\n    // 2. Validación y Procesamiento\n    if (typeof fullSymbol === 'string' && fullSymbol.includes('.')) {\n        const parts = fullSymbol.split('.');\n\n        // Aseguramos que haya exactamente dos partes y que no estén vacías\n        if (parts.length === 2 && parts[0].trim() !== '' && parts[1].trim() !== '') {\n            // Éxito: Procesar y establecer el estado 'success'\n            item.json.mercado = parts[0].toUpperCase().trim();\n            item.json.accion = parts[1].toUpperCase().trim();\n            item.json.status = \"success\";\n        } else {\n            // Error: Formato incompleto (Ej: 'NYSE.' o '.NVDA')\n            item.json.mercado = null;\n            item.json.accion = null;\n            item.json.error_message = \"Formato de símbolo incompleto. Se esperaba 'MERCADO.ACCION'.\";\n        }\n    } else {\n        // Error: No es una cadena o no contiene el separador '.'\n        item.json.mercado = null;\n        item.json.accion = null;\n        item.json.error_message = \"Formato de símbolo inválido. Se esperaba una cadena con formato 'MERCADO.ACCION'.\";\n    }\n}\n\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        1296
+      ],
+      "id": "1b947770-211b-4b57-b7d4-2445e9c8bfb6",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c7573ded-b340-4a59-b0e0-1379675ee01c",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1264,
+        1296
+      ],
+      "id": "721e6a23-3333-4747-b791-2d7616e5cecf",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "chatId": "969710617",
+        "text": "={{ $('Code in JavaScript1').item.json.error_message }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1488,
+        1504
+      ],
+      "id": "7217c74a-f61d-45f8-960d-9a9c48d8fc40",
+      "name": "Send a text message1",
+      "webhookId": "4da26901-5ee3-44e0-a44f-38d909df0ca4",
+      "credentials": {
+        "telegramApi": {
+          "id": "rLF6sbdrEUORvHbu",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77ffc3ce-08fe-4e6c-a3e0-d561ed7cecd1",
+              "name": "ticket",
+              "value": "={{ $json.Mercado }}:{{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "2a96522b-b65b-433a-89ea-0e0514b9878a",
+              "name": "accion",
+              "value": "={{ $json.Accion }}",
+              "type": "string"
+            },
+            {
+              "id": "c314f1f2-6de7-46ba-8058-138e21256a17",
+              "name": "mercado",
+              "value": "={{ $json.Mercado }}",
+              "type": "string"
+            },
+            {
+              "id": "9a9f897b-3453-435d-a9b0-79c4eb0766c0",
+              "name": "flagSendMssage",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "c8cb1ff1-eab6-45f8-9a0d-60469db8653e",
+              "name": "stock",
+              "value": "={{ $json.Accion }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1776,
+        1280
+      ],
+      "id": "51a07c65-895b-4695-86eb-c197edb92bb4",
+      "name": "Edit Fields - tel"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "textFormat": {
+            "textOptions": {
+              "type": "json_object"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        4064,
+        1296
+      ],
+      "id": "d11ae203-ee40-4488-9fd2-7653ad107387",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "HV97DoTFCLaZIPgd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener el texto de la salida\nconst items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  // Extraer el texto que contiene el JSON\n  let text = item.json.text;\n  \n  // Limpiar el string: quitar saltos de línea y espacios extra\n  text = text.trim();\n  \n  // Parsear el JSON\n  try {\n    const parsed = JSON.parse(text);\n    results.push({ json: parsed });\n  } catch (error) {\n    // Si falla, intentar extraer solo el objeto JSON\n    const jsonMatch = text.match(/\\{[\\s\\S]*\\}/);\n    if (jsonMatch) {\n      const parsed = JSON.parse(jsonMatch[0]);\n      results.push({ json: parsed });\n    } else {\n      throw new Error(`No se pudo parsear el JSON: ${error.message}`);\n    }\n  }\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4416,
+        1104
+      ],
+      "id": "b9e3a708-23a8-4ef5-b02e-d47b026566e4",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "content": "APIs recomendadas\nAlpha Vantage\n\nDatos: cotizaciones diarias/intraday, indicadores técnicos, forex y cripto.\n\nModelo freemium: plan gratis con límite de peticiones por minuto/día, respuesta en JSON/CSV.\n\nEjemplo de endpoint:\n\nhttps://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=TU_API_KEY\n\nFinnhub\n\nDatos: precio en tiempo real, históricos, fundamentales, noticias.\n\nPlan gratuito para uso ligero con clave de API, suficiente para dashboards personales o prototipos.\n\nEjemplo de endpoint:\n\nhttps://finnhub.io/api/v1/quote?symbol=AAPL&token=TU_API_KEY\n\nFinancial Modeling Prep (FMP)\n\nDatos: precios históricos, estados financieros, ratios, información de ETF.\n\nTiene plan free con límites diarios y endpoints REST simples.\n\nEjemplo de endpoint:\n\nhttps://financialmodelingprep.com/api/v3/quote/SPY?apikey=TU_API_KEY\n\nEOD Historical Data / Marketstack / similares\n\nFoco: históricos EOD (end-of-day) de acciones y ETF, con algo de info fundamental.\n\nPlanes gratuitos con limitación de llamadas y profundidad de histórico; útiles para backtesting sencillo.\n\nYahoo Finance vía librerías (no “API oficial”)\n\nOpción práctica si trabajas en Python (por ejemplo, yfinance) para uso personal/educativo.\n\nVentaja: no necesitas clave ni registro, pero no es ideal para productos comerciales.\n\nQué te recomendaría según tu caso\nPara probar rápido / n8n / dashboards ligeros: Alpha Vantage o Finnhub por su simplicidad y buena documentación.\n\nPara fundamentales + ETFs: Financial Modeling Prep combina bien acciones, ETF y estados financieros.\n\nPara históricos largos para backtesting: Marketstack o EOD Historical Data en sus planes free son una buena base. ",
+        "height": 1024,
+        "width": 816,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        48,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "268b2afb-8e30-4c53-957e-9176b63303bd",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "url": "https://www.alphavantage.co/query",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "function",
+              "value": "=RSI"
+            },
+            {
+              "name": "symbol",
+              "value": "AAPL"
+            },
+            {
+              "name": "apikey",
+              "value": "K2LMHFDDX1VPP6RU"
+            },
+            {
+              "name": "interval",
+              "value": "daily"
+            },
+            {
+              "name": "time_period",
+              "value": "14"
+            },
+            {
+              "name": "series_type",
+              "value": "close"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2032,
+        1920
+      ],
+      "id": "42330fd4-a11d-48a4-bb20-917873fe0106",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://finnhub.io/api/v1/stock/recommendation",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "=AAPL"
+            },
+            {
+              "name": "token",
+              "value": "d547tg9r01qlj84bekh0d547tg9r01qlj84bekhg"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2256,
+        1904
+      ],
+      "id": "6fd20c0e-5d4d-4e56-884f-f2525964e135",
+      "name": "HTTP finnhub - recommendation"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2176,
+        1088
+      ],
+      "id": "5fd92bfa-fdc8-4fd5-a636-dbe52bc4930b",
+      "name": "Merge A"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1808,
+        1920
+      ],
+      "id": "e2116b02-154f-49cd-a171-ce1863d9f9de",
+      "name": "Aggregate A",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Recomendaciones Generales\n- **Eficiencia y Límites de API**: Considera límites gratuitos (TwelveData: 800/día, NewsAPI: 100/día). Agrega delays entre llamadas.\n- **Manejo de Errores**: Agrega nodos IF para rutas de error (e.g., si API falla, enviar mensaje de 'Datos no disponibles').\n- **Seguridad**: Mueve API keys a variables de entorno o credenciales n8n.\n- **Documentación**: Usa nombres descriptivos y más sticky notes.\n- **Escalabilidad**: Limita a 5-10 acciones por ejecución.",
+        "height": 400,
+        "width": 500,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1280,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "020b5bb4-c34d-414e-a2ce-7659c392360b",
+      "name": "Recomendaciones Generales"
+    },
+    {
+      "parameters": {
+        "content": "## Sugerencia para Subflujos\nDivide en sub-workflows para modularidad:\n1. 'Obtener Lista de Acciones'\n2. 'Análisis Técnico'\n3. 'Análisis de Sentimiento'\n4. 'Generar Gráfico y Análisis Visual'\n5. 'Generar Recomendación Final'\n6. 'Notificaciones y Almacenamiento'\nCrea workflows separados y llámalos con 'Execute Workflow'.",
+        "height": 350,
+        "width": 450,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1792,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "ba2adb79-c053-4cb6-b190-ab4d4e4acaf2",
+      "name": "Dividir en Subflujos"
+    },
+    {
+      "parameters": {
+        "workflowId": "kO8aa7NDLxLOZ0Ef",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2784,
+        992
+      ],
+      "id": "a0fca39f-9acc-4ed4-a0cf-eb142c38e18e",
+      "name": "Execute Recommendation"
+    },
+    {
+      "parameters": {
+        "workflowId": "13JE7G0TEZ0L0YBe",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2784,
+        1360
+      ],
+      "id": "e853976f-dbbd-4189-b3f0-5a8017682df1",
+      "name": "Execute Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "64dcadcf-7b50-4558-9b08-e0c9f6bc0395",
+              "leftValue": "={{ $json.ACTIVO }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1344,
+        976
+      ],
+      "id": "b80d2d27-ea4c-478c-b71d-28ed6232c01e",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "workflowId": "vwuruuoaOgsbrsdK",
+        "mode": "each",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        2784,
+        1168
+      ],
+      "id": "2f325ac6-0218-4363-abed-7dc90c1f7126",
+      "name": "Execute Tech Analysis 1H1D1W"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2384,
+        1088
+      ],
+      "id": "21459610-cbd8-4218-9ae4-669dae781ecd",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        5616,
+        1424
+      ],
+      "id": "b4bed28d-324d-4971-bb92-d3168e3de0eb"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3-8b",
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        3728,
+        1296
+      ],
+      "id": "f9c1bcc9-d789-46ba-a261-bf924c53a34e",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "Aggregate A": [
+      {
+        "json": {
+          "data": [
+            {
+              "ticket": "NASDAQ:AAPL",
+              "mercado": "NASDAQ",
+              "accion": "AAPL",
+              "flagSendMssage": false
+            },
+            {
+              "ticket": "NASDAQ:NVDA",
+              "mercado": "NASDAQ",
+              "accion": "NVDA",
+              "flagSendMssage": false
+            }
+          ]
+        }
+      }
+    ],
+    "Telegram Trigger": [
+      {
+        "json": {
+          "update_id": 69771177,
+          "message": {
+            "message_id": 436,
+            "from": {
+              "id": 969710617,
+              "is_bot": false,
+              "first_name": "Juan Esteban",
+              "last_name": "Castillo",
+              "username": "xmaichel",
+              "language_code": "es"
+            },
+            "chat": {
+              "id": 969710617,
+              "first_name": "Juan Esteban",
+              "last_name": "Castillo",
+              "username": "xmaichel",
+              "type": "private"
+            },
+            "date": 1767526747,
+            "text": "NASDAQ.AAPL"
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2025-12-31T11:54:56.652Z",
+      "createdAt": "2025-12-31T11:54:56.652Z",
+      "role": "workflow:owner",
+      "workflowId": "gGHWlbpq2lHf1vkh",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-10-05T11:30:47.138Z",
+      "createdAt": "2025-10-05T11:30:47.138Z",
+      "id": "8kH0lewudRwSi32l",
+      "name": "Telegram"
+    },
+    {
+      "updatedAt": "2025-08-27T02:32:53.805Z",
+      "createdAt": "2025-08-27T02:32:53.805Z",
+      "id": "OQQq6eqfQ662GHrl",
+      "name": "googleSheets"
+    },
+    {
+      "updatedAt": "2025-12-14T16:54:32.060Z",
+      "createdAt": "2025-12-14T16:54:32.060Z",
+      "id": "ofEzJAAOTKanxOGS",
+      "name": "Trading"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2026-01-04T11:57:21.557Z",
+  "versionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c"
+}
