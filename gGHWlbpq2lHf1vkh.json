@@ -2651,6 +2651,26 @@
           "item": 0
         }
       }
+    ],
+    "Schedule Trigger": [
+      {
+        "json": {
+          "timestamp": "2026-01-06T09:20:43.035-05:00",
+          "Readable date": "January 6th 2026, 9:20:43 am",
+          "Readable time": "9:20:43 am",
+          "Day of week": "Tuesday",
+          "Year": "2026",
+          "Month": "January",
+          "Day of month": "06",
+          "Hour": "09",
+          "Minute": "20",
+          "Second": "43",
+          "Timezone": "America/New_York (UTC-05:00)"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
     ]
   },
   "repo": {
@@ -2696,6 +2716,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2026-01-04T11:57:21.557Z",
+  "updatedAt": "2026-01-07T11:25:42.840Z",
   "versionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c"
 }
