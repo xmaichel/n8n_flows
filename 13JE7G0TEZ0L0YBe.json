@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-30T13:13:03.000Z",
-    "createdAt": "2025-12-30T13:12:44.027Z",
-    "versionId": "efe781de-e9bd-4f26-81ce-c537581f346c",
+    "updatedAt": "2026-01-07T13:04:10.000Z",
+    "createdAt": "2026-01-07T13:04:08.023Z",
+    "versionId": "aa0dd60a-400b-44fe-9559-cdcd6cf7258a",
     "workflowId": "13JE7G0TEZ0L0YBe",
     "nodes": [
       {
@@ -39,41 +39,7 @@
       },
       {
         "parameters": {
-          "modelId": {
-            "__rl": true,
-            "value": "models/gemini-2.5-flash",
-            "mode": "list",
-            "cachedResultName": "models/gemini-2.5-flash"
-          },
-          "messages": {
-            "values": [
-              {
-                "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('When Executed by Another Workflow').item.json.stock }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
-              }
-            ]
-          },
-          "options": {
-            "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
-          }
-        },
-        "type": "@n8n/n8n-nodes-langchain.googleGemini",
-        "typeVersion": 1,
-        "position": [
-          1088,
-          48
-        ],
-        "id": "c54776f6-cb05-4279-bbb8-f5af511fa83a",
-        "name": "News Model",
-        "credentials": {
-          "googlePalmApi": {
-            "id": "zWYgPlFB3BIYXprg",
-            "name": "Google Gemini(PaLM) Api account"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "jsCode": "const items = $input.all();\nconst accion = (items[0]?.json?.stock || '').toUpperCase();\n\nconst filtered = [];\n\nfor (const item of items) {\n  if (item.json.articles && Array.isArray(item.json.articles)) {\n    const relevantArticles = item.json.articles.filter(article => {\n      const title = (article.title || '').toUpperCase();\n      const description = (article.description || '').toUpperCase();\n      return title.includes(accion) || description.includes(accion);\n    });\n    if (relevantArticles.length > 0) {\n      filtered.push({ json: { articles: relevantArticles.slice(0, 5) } }); // Limita a 5 noticias\n    }\n  }\n}\n\nreturn filtered.length > 0 ? filtered : [{ json: { articles: [] } }];\n"
+          "jsCode": "// Obtenemos todos los items de entrada\nconst items = $input.all();\n\n// Obtenemos el keyword (stock) del primer item para filtrar\nconst stockKeyword = (items[0]?.json?.stock || '').toUpperCase();\n\nlet processedArticles = [];\n\nfor (const item of items) {\n  if (item.json.articles && Array.isArray(item.json.articles)) {\n    // 1. Filtramos los artículos que coincidan con el stock\n    const relevant = item.json.articles.filter(article => {\n      const title = (article.title || '').toUpperCase();\n      const description = (article.description || '').toUpperCase();\n      // Si no hay keyword, los deja pasar todos, si hay, filtra.\n      return stockKeyword === '' || title.includes(stockKeyword) || description.includes(stockKeyword);\n    });\n\n    // 2. Tomamos solo los primeros 5 y los añadimos a nuestra lista global\n    processedArticles = processedArticles.concat(relevant.slice(0, 5));\n  }\n}\n\n// 3. TRANSFORMACIÓN CRUCIAL:\n// Convertimos cada artículo en un objeto compatible con el formato de salida de n8n\n// Esto es lo que hace que los artículos se \"dividan\" en items separados.\nreturn processedArticles.map(article => {\n  return {\n    json: {\n      ...article,\n      // Añadimos el ticker original por si lo necesitas más adelante en el flujo\n      stock_referenced: stockKeyword \n    }\n  };\n});"
         },
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
@@ -102,6 +68,62 @@
         ],
         "id": "83ed4a95-ac96-4014-913a-cbbb2a94d0fb",
         "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Analiza la siguiente noticia para el activo: {{ $json.stock_referenced }}\n\nTÍTULO: {{ $json.title }}\nDESCRIPCIÓN: {{ $json.description }}\nCONTENIDO EXTRAÍDO: {{ $json.content }}\nFECHA DE PUBLICACIÓN: {{ $json.publishedAt }}\n\nBasado en esta información, genera el análisis de sentimiento y la recomendación técnica solicitada.",
+          "messages": {
+            "messageValues": [
+              {
+                "message": "=Eres un Analista Senior de Inversiones. Tu tarea es analizar noticias de tecnología y mercado. Para cada noticia recibida, genera un JSON con la siguiente estructura:  {   \"sentiment\": \"BULLISH\" | \"BEARISH\" | \"NEUTRAL\",   \"confidence_score\": (valor de 0 a 1),   \"summary\": \"Breve resumen de 1 línea\",   \"impact_analysis\": \"Análisis de cómo esto afecta al stock {{ $('When Executed by Another Workflow').item.json.stock }}\",   \"recommendation\": \"BUY\" | \"SELL\" | \"HOLD\" }  Responde ÚNICAMENTE con el JSON. No incluyas explicaciones adicionales.\n\nNota: Aunque la noticia de entrada esté en cualquier otro idioma, el resumen_ejecutivo y la justificacion deben estar obligatoriamente en Español."
+              }
+            ]
+          },
+          "batching": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "typeVersion": 1.8,
+        "position": [
+          1088,
+          48
+        ],
+        "id": "65d998c5-2915-48a7-9c95-072e10062a6d",
+        "name": "Basic LLM Chain",
+        "onError": "continueErrorOutput"
+      },
+      {
+        "parameters": {
+          "model": "llama-3.3-70b-versatile",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+        "typeVersion": 1,
+        "position": [
+          1056,
+          208
+        ],
+        "id": "cc5b04fb-8146-4760-a7e8-30bd0b2ec581",
+        "name": "Groq Chat Model1",
+        "credentials": {
+          "groqApi": {
+            "id": "huxsxNMqKLRQoZW9",
+            "name": "Groq account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const items = $input.all();\nlet totalScore = 0;\nconst summaries = [];\nconst counts = { BULLISH: 0, BEARISH: 0, NEUTRAL: 0 };\nconst recommendations = [];\n\nfor (const item of items) {\n  try {\n    // 1. Limpiamos el ruido del Markdown (las comillas y la palabra 'json')\n    const rawText = item.json.text.replace(/```json|```/g, '').trim();\n    const data = JSON.parse(rawText);\n\n    // 2. Mapeamos sentimiento a valor numérico para promedio\n    let numericScore = 0;\n    if (data.sentiment === 'BULLISH') {\n      numericScore = 1;\n      counts.BULLISH++;\n    } else if (data.sentiment === 'BEARISH') {\n      numericScore = -1;\n      counts.BEARISH++;\n    } else {\n      counts.NEUTRAL++;\n    }\n\n    // 3. Acumulamos datos\n    totalScore += (numericScore * data.confidence_score);\n    summaries.push(`- ${data.summary} (Confianza: ${data.confidence_score})`);\n    recommendations.push(data.recommendation);\n\n  } catch (error) {\n    console.error(\"Error parseando item:\", error);\n  }\n}\n\n// 4. Lógica de Decisión Final\nconst averageScore = totalScore / items.length;\nlet finalVerdict = \"HOLD\";\nif (averageScore > 0.2) finalVerdict = \"BUY\";\nif (averageScore < -0.2) finalVerdict = \"SELL\";\n\nreturn {\n  stock: \"AAPL\",\n  sentimiento_global: averageScore.toFixed(2),\n  veredicto_final: finalVerdict,\n  conteo_señas: counts,\n  resumen_ejecutivo: summaries.join('\\n'),\n  timestamp: new Date().toISOString()\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1440,
+          48
+        ],
+        "id": "3e1e5868-ffde-4ee9-95da-e7ef03598402",
+        "name": "Code in JavaScript"
       }
     ],
     "connections": {
@@ -120,7 +142,7 @@
         "main": [
           [
             {
-              "node": "News Model",
+              "node": "Basic LLM Chain",
               "type": "main",
               "index": 0
             }
@@ -137,14 +159,36 @@
             }
           ]
         ]
+      },
+      "Basic LLM Chain": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Groq Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Basic LLM Chain",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Juan Castillo",
-    "name": "Version efe781de",
+    "name": "Version aa0dd60a",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "efe781de-e9bd-4f26-81ce-c537581f346c",
+  "activeVersionId": "aa0dd60a-400b-44fe-9559-cdcd6cf7258a",
   "connections": {
     "News 7/24": {
       "main": [
@@ -161,7 +205,7 @@
       "main": [
         [
           {
-            "node": "News Model",
+            "node": "Basic LLM Chain",
             "type": "main",
             "index": 0
           }
@@ -174,6 +218,28 @@
           {
             "node": "News 7/24",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -221,41 +287,7 @@
     },
     {
       "parameters": {
-        "modelId": {
-          "__rl": true,
-          "value": "models/gemini-2.5-flash",
-          "mode": "list",
-          "cachedResultName": "models/gemini-2.5-flash"
-        },
-        "messages": {
-          "values": [
-            {
-              "content": "=Rol: Actúa como un analista senior de inversiones y experto en sentimiento de mercado.\n\nTarea: Analiza las siguientes noticias sobre el activo : {{ $('When Executed by Another Workflow').item.json.stock }} para determinar el sentimiento predominante y su impacto potencial en el precio.\n\nContexto de Análisis:\n\nEvalúa si el tono es alcista (bullish), bajista (bearish) o neutral.\n\nPrioriza noticias sobre reportes de ganancias, regulaciones, cambios macroeconómicos o eventos geopolíticos.\n\nFormato de Salida (Texto Corto):\n\nSentimiento General: [Uno de: Muy Positivo / Positivo / Neutral / Negativo / Muy Negativo]\n\nPuntos Clave: 3 viñetas breves con los datos más impactantes.\n\nNivel de Confianza: [Bajo / Medio / Alto] basado en la calidad de la información.\n\nConclusión Ejecutiva: Una oración que resuma si la noticia sugiere comprar, mantener o vender.\n\nNoticias a analizar: {{ JSON.stringify($json.articles) }}"
-            }
-          ]
-        },
-        "options": {
-          "systemMessage": "Eres un Analista de Sentimientos Financieros (Financial Sentiment Analyst) altamente inteligente y preciso, especializado en la volatilidad del mercado de valores y criptomonedas.\n## ROL Y REGLAS DE ANÁLISIS:Analiza el sentimiento del texto proporcionado, enfocándote en la reacción inmediata del mercado, el impacto de noticias recientes, y la volatilidad técnica implícita.Determina una categoría de sentimiento estricta: \"POSITIVO\", \"NEUTRO\" o \"NEGATIVO\".Calcula una Puntuación Numérica (score) en el rango continuo de $-1.0$ (extremadamente negativo) a $1.0$ (extremadamente positivo), con una precisión de un decimal.Proporciona una Justificación Concisa y Técnica que explique el sentimiento a corto plazo. La justificación debe ser detallada y citar, con titulares apropiados, los principales factores de noticias o análisis técnico que influyen en el resultado.\n## FORMATO DE SALIDA ESTRICTO:Tu única salida debe ser estrictamente un objeto JSON, y no debes incluir ningún texto, explicación o comentario adicional fuera del objeto JSON. El valor debe ser un objeto con tres claves exactas: \"category\", \"score\" y \"rationale\".\n## EJEMPLO DE OUTPUT (Obligatorio):\n{\n  \"shortTermSentiment\": {\n    \"category\": \"Positivo\",\n    \"score\": 0.7,\n    \"rationale\": \"El sentimiento positivo se basa en el reporte de ganancias del Q3 que superó las expectativas en un 15% ('Headline: Earnings Beat Expectations') y la aprobación regulatoria de un nuevo producto clave ('Headline: Key Product Approved').\"\n  }\n}"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.googleGemini",
-      "typeVersion": 1,
-      "position": [
-        1088,
-        48
-      ],
-      "id": "c54776f6-cb05-4279-bbb8-f5af511fa83a",
-      "name": "News Model",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "zWYgPlFB3BIYXprg",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "const items = $input.all();\nconst accion = (items[0]?.json?.stock || '').toUpperCase();\n\nconst filtered = [];\n\nfor (const item of items) {\n  if (item.json.articles && Array.isArray(item.json.articles)) {\n    const relevantArticles = item.json.articles.filter(article => {\n      const title = (article.title || '').toUpperCase();\n      const description = (article.description || '').toUpperCase();\n      return title.includes(accion) || description.includes(accion);\n    });\n    if (relevantArticles.length > 0) {\n      filtered.push({ json: { articles: relevantArticles.slice(0, 5) } }); // Limita a 5 noticias\n    }\n  }\n}\n\nreturn filtered.length > 0 ? filtered : [{ json: { articles: [] } }];\n"
+        "jsCode": "// Obtenemos todos los items de entrada\nconst items = $input.all();\n\n// Obtenemos el keyword (stock) del primer item para filtrar\nconst stockKeyword = (items[0]?.json?.stock || '').toUpperCase();\n\nlet processedArticles = [];\n\nfor (const item of items) {\n  if (item.json.articles && Array.isArray(item.json.articles)) {\n    // 1. Filtramos los artículos que coincidan con el stock\n    const relevant = item.json.articles.filter(article => {\n      const title = (article.title || '').toUpperCase();\n      const description = (article.description || '').toUpperCase();\n      // Si no hay keyword, los deja pasar todos, si hay, filtra.\n      return stockKeyword === '' || title.includes(stockKeyword) || description.includes(stockKeyword);\n    });\n\n    // 2. Tomamos solo los primeros 5 y los añadimos a nuestra lista global\n    processedArticles = processedArticles.concat(relevant.slice(0, 5));\n  }\n}\n\n// 3. TRANSFORMACIÓN CRUCIAL:\n// Convertimos cada artículo en un objeto compatible con el formato de salida de n8n\n// Esto es lo que hace que los artículos se \"dividan\" en items separados.\nreturn processedArticles.map(article => {\n  return {\n    json: {\n      ...article,\n      // Añadimos el ticker original por si lo necesitas más adelante en el flujo\n      stock_referenced: stockKeyword \n    }\n  };\n});"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -284,6 +316,62 @@
       ],
       "id": "83ed4a95-ac96-4014-913a-cbbb2a94d0fb",
       "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analiza la siguiente noticia para el activo: {{ $json.stock_referenced }}\n\nTÍTULO: {{ $json.title }}\nDESCRIPCIÓN: {{ $json.description }}\nCONTENIDO EXTRAÍDO: {{ $json.content }}\nFECHA DE PUBLICACIÓN: {{ $json.publishedAt }}\n\nBasado en esta información, genera el análisis de sentimiento y la recomendación técnica solicitada.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Eres un Analista Senior de Inversiones. Tu tarea es analizar noticias de tecnología y mercado. Para cada noticia recibida, genera un JSON con la siguiente estructura:  {   \"sentiment\": \"BULLISH\" | \"BEARISH\" | \"NEUTRAL\",   \"confidence_score\": (valor de 0 a 1),   \"summary\": \"Breve resumen de 1 línea\",   \"impact_analysis\": \"Análisis de cómo esto afecta al stock {{ $('When Executed by Another Workflow').item.json.stock }}\",   \"recommendation\": \"BUY\" | \"SELL\" | \"HOLD\" }  Responde ÚNICAMENTE con el JSON. No incluyas explicaciones adicionales.\n\nNota: Aunque la noticia de entrada esté en cualquier otro idioma, el resumen_ejecutivo y la justificacion deben estar obligatoriamente en Español."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.8,
+      "position": [
+        1088,
+        48
+      ],
+      "id": "65d998c5-2915-48a7-9c95-072e10062a6d",
+      "name": "Basic LLM Chain",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1056,
+        208
+      ],
+      "id": "cc5b04fb-8146-4760-a7e8-30bd0b2ec581",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "huxsxNMqKLRQoZW9",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nlet totalScore = 0;\nconst summaries = [];\nconst counts = { BULLISH: 0, BEARISH: 0, NEUTRAL: 0 };\nconst recommendations = [];\n\nfor (const item of items) {\n  try {\n    // 1. Limpiamos el ruido del Markdown (las comillas y la palabra 'json')\n    const rawText = item.json.text.replace(/```json|```/g, '').trim();\n    const data = JSON.parse(rawText);\n\n    // 2. Mapeamos sentimiento a valor numérico para promedio\n    let numericScore = 0;\n    if (data.sentiment === 'BULLISH') {\n      numericScore = 1;\n      counts.BULLISH++;\n    } else if (data.sentiment === 'BEARISH') {\n      numericScore = -1;\n      counts.BEARISH++;\n    } else {\n      counts.NEUTRAL++;\n    }\n\n    // 3. Acumulamos datos\n    totalScore += (numericScore * data.confidence_score);\n    summaries.push(`- ${data.summary} (Confianza: ${data.confidence_score})`);\n    recommendations.push(data.recommendation);\n\n  } catch (error) {\n    console.error(\"Error parseando item:\", error);\n  }\n}\n\n// 4. Lógica de Decisión Final\nconst averageScore = totalScore / items.length;\nlet finalVerdict = \"HOLD\";\nif (averageScore > 0.2) finalVerdict = \"BUY\";\nif (averageScore < -0.2) finalVerdict = \"SELL\";\n\nreturn {\n  stock: \"AAPL\",\n  sentimiento_global: averageScore.toFixed(2),\n  veredicto_final: finalVerdict,\n  conteo_señas: counts,\n  resumen_ejecutivo: summaries.join('\\n'),\n  timestamp: new Date().toISOString()\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        48
+      ],
+      "id": "3e1e5868-ffde-4ee9-95da-e7ef03598402",
+      "name": "Code in JavaScript"
     }
   ],
   "origin": "main",
@@ -292,6 +380,9 @@
       {
         "json": {
           "stock": "AAPL"
+        },
+        "pairedItem": {
+          "item": 0
         }
       }
     ]
@@ -316,6 +407,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-12-30T13:33:12.927Z",
-  "versionId": "efe781de-e9bd-4f26-81ce-c537581f346c"
+  "updatedAt": "2026-01-07T13:04:08.022Z",
+  "versionId": "aa0dd60a-400b-44fe-9559-cdcd6cf7258a"
 }
