@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-04T11:57:37.000Z",
-    "createdAt": "2026-01-04T11:57:21.565Z",
-    "versionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c",
+    "updatedAt": "2026-01-12T12:09:23.000Z",
+    "createdAt": "2026-01-12T12:09:20.862Z",
+    "versionId": "f068ab37-9f74-47c7-93ff-f236002b5116",
     "workflowId": "gGHWlbpq2lHf1vkh",
     "nodes": [
       {
@@ -280,7 +280,7 @@
         "type": "n8n-nodes-base.googleSheets",
         "typeVersion": 4.7,
         "position": [
-          4624,
+          4544,
           1104
         ],
         "id": "02a6f4be-23e3-44a5-bf8e-bbad2eaeae63",
@@ -311,24 +311,6 @@
                   "operation": "false",
                   "singleValue": true
                 }
-              },
-              {
-                "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
-                "leftValue": "={{ $json.Recomendacion }}",
-                "rightValue": "Esperar",
-                "operator": {
-                  "type": "string",
-                  "operation": "contains"
-                }
-              },
-              {
-                "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
-                "leftValue": "={{ $json.Recomendacion }}",
-                "rightValue": "MANTENER",
-                "operator": {
-                  "type": "string",
-                  "operation": "equals"
-                }
               }
             ],
             "combinator": "or"
@@ -338,8 +320,8 @@
         "type": "n8n-nodes-base.if",
         "typeVersion": 2.3,
         "position": [
-          4832,
-          1104
+          4768,
+          1200
         ],
         "id": "76d47bba-7d55-457e-825e-03e5771bb10c",
         "name": "If"
@@ -355,8 +337,8 @@
         "type": "n8n-nodes-base.telegram",
         "typeVersion": 1.2,
         "position": [
-          5024,
-          1408
+          5264,
+          1424
         ],
         "id": "2ac93808-70d4-41fd-b668-bcce335d6975",
         "name": "Send a text message",
@@ -708,7 +690,7 @@
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          4416,
+          4368,
           1104
         ],
         "id": "b9e3a708-23a8-4ef5-b02e-d47b026566e4",
@@ -981,6 +963,48 @@
             "name": "OpenRouter account"
           }
         }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
+                "leftValue": "={{ $json.Recomendacion }}",
+                "rightValue": "Esperar",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              },
+              {
+                "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
+                "leftValue": "={{ $json.Recomendacion }}",
+                "rightValue": "MANTENER",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          4976,
+          1088
+        ],
+        "id": "e9c6105c-ee1e-4a1f-adf6-6e1c2432e534",
+        "name": "If3"
       }
     ],
     "connections": {
@@ -1043,7 +1067,7 @@
         "main": [
           [
             {
-              "node": "Replace Me",
+              "node": "If3",
               "type": "main",
               "index": 0
             }
@@ -1294,14 +1318,32 @@
             }
           ]
         ]
+      },
+      "If3": {
+        "main": [
+          [
+            {
+              "node": "Replace Me",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Send a text message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Juan Castillo",
-    "name": "Version 3b156dd7",
+    "name": "Version f068ab37",
     "description": "",
     "autosaved": false
   },
-  "activeVersionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c",
+  "activeVersionId": "f068ab37-9f74-47c7-93ff-f236002b5116",
   "connections": {
     "Telegram Trigger": {
       "main": [
@@ -1362,7 +1404,7 @@
       "main": [
         [
           {
-            "node": "Replace Me",
+            "node": "If3",
             "type": "main",
             "index": 0
           }
@@ -1609,6 +1651,24 @@
           {
             "node": "AI Agent",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
             "index": 0
           }
         ]
@@ -1897,7 +1957,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        4624,
+        4544,
         1104
       ],
       "id": "02a6f4be-23e3-44a5-bf8e-bbad2eaeae63",
@@ -1928,24 +1988,6 @@
                 "operation": "false",
                 "singleValue": true
               }
-            },
-            {
-              "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
-              "leftValue": "={{ $json.Recomendacion }}",
-              "rightValue": "Esperar",
-              "operator": {
-                "type": "string",
-                "operation": "contains"
-              }
-            },
-            {
-              "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
-              "leftValue": "={{ $json.Recomendacion }}",
-              "rightValue": "MANTENER",
-              "operator": {
-                "type": "string",
-                "operation": "equals"
-              }
             }
           ],
           "combinator": "or"
@@ -1955,8 +1997,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        4832,
-        1104
+        4768,
+        1200
       ],
       "id": "76d47bba-7d55-457e-825e-03e5771bb10c",
       "name": "If"
@@ -1972,8 +2014,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        5024,
-        1408
+        5264,
+        1424
       ],
       "id": "2ac93808-70d4-41fd-b668-bcce335d6975",
       "name": "Send a text message",
@@ -2325,7 +2367,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4416,
+        4368,
         1104
       ],
       "id": "b9e3a708-23a8-4ef5-b02e-d47b026566e4",
@@ -2598,6 +2640,48 @@
           "name": "OpenRouter account"
         }
       }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "04d521d8-1c4e-4fd1-93e3-b7bf541bf835",
+              "leftValue": "={{ $json.Recomendacion }}",
+              "rightValue": "Esperar",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "7d474666-3335-4a81-a0ce-e2e3bf882d36",
+              "leftValue": "={{ $json.Recomendacion }}",
+              "rightValue": "MANTENER",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4976,
+        1088
+      ],
+      "id": "e9c6105c-ee1e-4a1f-adf6-6e1c2432e534",
+      "name": "If3"
     }
   ],
   "origin": "main",
@@ -2716,6 +2800,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2026-01-07T11:25:42.840Z",
-  "versionId": "3b156dd7-c607-4db4-a7d5-4387d01a066c"
+  "updatedAt": "2026-01-12T12:09:20.856Z",
+  "versionId": "f068ab37-9f74-47c7-93ff-f236002b5116"
 }
