@@ -1,0 +1,193 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-12T12:38:36.000Z",
+    "createdAt": "2026-01-12T12:38:32.658Z",
+    "versionId": "90f55330-2920-46c5-84a2-cfdc3ee42f87",
+    "workflowId": "k4HkK-9JsSYEO3dEcALWE",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "c1b08458-55ba-41a2-8449-56f1ec8470ca",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "d55a6038-fe94-4924-be43-41380b8cec0e",
+        "name": "Webhook",
+        "webhookId": "c1b08458-55ba-41a2-8449-56f1ec8470ca"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          160,
+          0
+        ],
+        "id": "795ab39b-0069-4f2c-8a92-17727bd23e84",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+        "typeVersion": 1,
+        "position": [
+          112,
+          192
+        ],
+        "id": "56a2cadd-8009-4f6f-86f4-15807458a3b4",
+        "name": "Groq Chat Model",
+        "credentials": {
+          "groqApi": {
+            "id": "huxsxNMqKLRQoZW9",
+            "name": "Groq account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Groq Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 90f55330",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "90f55330-2920-46c5-84a2-cfdc3ee42f87",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-12T12:16:31.371Z",
+  "id": "k4HkK-9JsSYEO3dEcALWE",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c1b08458-55ba-41a2-8449-56f1ec8470ca",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d55a6038-fe94-4924-be43-41380b8cec0e",
+      "name": "Webhook",
+      "webhookId": "c1b08458-55ba-41a2-8449-56f1ec8470ca"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        160,
+        0
+      ],
+      "id": "795ab39b-0069-4f2c-8a92-17727bd23e84",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        112,
+        192
+      ],
+      "id": "56a2cadd-8009-4f6f-86f4-15807458a3b4",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "huxsxNMqKLRQoZW9",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "origin": "main",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-12T12:16:31.383Z",
+      "createdAt": "2026-01-12T12:16:31.383Z",
+      "role": "workflow:owner",
+      "workflowId": "k4HkK-9JsSYEO3dEcALWE",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-12T12:38:32.656Z",
+  "versionId": "90f55330-2920-46c5-84a2-cfdc3ee42f87"
+}
