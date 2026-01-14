@@ -1,0 +1,317 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-13T21:47:56.000Z",
+    "createdAt": "2026-01-13T21:47:49.359Z",
+    "versionId": "8601c3df-dafb-4f96-b724-625b548272db",
+    "workflowId": "VNFGMaS7tM-ChgbpbX85e",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "agenteFinanciero",
+          "authentication": "basicAuth",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          -416,
+          -48
+        ],
+        "id": "c2daf051-e791-4600-be09-08951bc2a3a5",
+        "name": "Webhook",
+        "webhookId": "928acf42-28bb-438f-9933-db1091f4f453",
+        "credentials": {
+          "httpBasicAuth": {
+            "id": "Rn9pbivWjCobjVlv",
+            "name": "Unnamed credential"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.body.message }}",
+          "options": {
+            "systemMessage": "=Eres un experto aseror financiero y el objetivo es responder de manera pedagogica sobre custiones de finanzas.\n\nNo responda otros temas diferentes o no relacionados a finazas."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          -208,
+          -48
+        ],
+        "id": "21468b4c-56c6-4085-92b9-6abd7aa5510e",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": "deepseek/deepseek-r1",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          -256,
+          112
+        ],
+        "id": "ff75f5ee-63c7-41b5-a435-47f6151dda54",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.5,
+        "position": [
+          304,
+          -48
+        ],
+        "id": "a0eb998c-ab06-4fd8-bb0d-dc509b10c88e",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Obtenemos el output del nodo anterior (IA Agent)\nconst aiOutput = $input.first().json.output;\n\n// Retornamos un objeto limpio para el Webhook\nreturn {\n  respuesta: aiOutput,\n  status: \"success\",\n  timestamp: new Date().toISOString()\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          96,
+          -48
+        ],
+        "id": "888017c9-8f30-401a-a520-545a124beb1a",
+        "name": "Code in JavaScript"
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 8601c3df",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "8601c3df-dafb-4f96-b724-625b548272db",
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-13T18:10:02.651Z",
+  "id": "VNFGMaS7tM-ChgbpbX85e",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agente Consultor Financiero",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agenteFinanciero",
+        "authentication": "basicAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -416,
+        -48
+      ],
+      "id": "c2daf051-e791-4600-be09-08951bc2a3a5",
+      "name": "Webhook",
+      "webhookId": "928acf42-28bb-438f-9933-db1091f4f453",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "Rn9pbivWjCobjVlv",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "=Eres un experto aseror financiero y el objetivo es responder de manera pedagogica sobre custiones de finanzas.\n\nNo responda otros temas diferentes o no relacionados a finazas."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -208,
+        -48
+      ],
+      "id": "21468b4c-56c6-4085-92b9-6abd7aa5510e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-r1",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        112
+      ],
+      "id": "ff75f5ee-63c7-41b5-a435-47f6151dda54",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        304,
+        -48
+      ],
+      "id": "a0eb998c-ab06-4fd8-bb0d-dc509b10c88e",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtenemos el output del nodo anterior (IA Agent)\nconst aiOutput = $input.first().json.output;\n\n// Retornamos un objeto limpio para el Webhook\nreturn {\n  respuesta: aiOutput,\n  status: \"success\",\n  timestamp: new Date().toISOString()\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        96,
+        -48
+      ],
+      "id": "888017c9-8f30-401a-a520-545a124beb1a",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "origin": "main",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": true,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-13T18:10:02.666Z",
+      "createdAt": "2026-01-13T18:10:02.666Z",
+      "role": "workflow:owner",
+      "workflowId": "VNFGMaS7tM-ChgbpbX85e",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T21:56:16.056Z",
+  "versionId": "8601c3df-dafb-4f96-b724-625b548272db"
+}
