@@ -1,0 +1,255 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-13T22:42:01.000Z",
+    "createdAt": "2026-01-13T22:41:56.404Z",
+    "versionId": "92024101-809f-4590-a687-aef5dcc12777",
+    "workflowId": "c9c0Xy4wKMELeXmwgYa3z",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "login-interno",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "id": "886a2964-d077-4a9e-92e2-f91e6aa559d7",
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1.1,
+        "position": [
+          416,
+          0
+        ],
+        "webhookId": "fbafba33-36ce-42f5-8783-a16846764969"
+      },
+      {
+        "parameters": {
+          "jsCode": "// 1. Capturamos las credenciales (si vienen por URL es .query, si es por cuerpo es .body)\nconst loginAttempt = $(\"Webhook\").item.json.query || $(\"Webhook\").item.json.body;\n\n// 2. Capturamos los registros\nconst dbRecords = $input.all();\n\n// --- VALIDACIÓN PREVIA: ¿La DB devolvió algo real? ---\n// Si \"Always Output Data\" está activo, dbRecords[0].json puede estar vacío {}\nif (dbRecords.length === 0 || Object.keys(dbRecords[0].json).length === 0) {\n  return {\n    success: false,\n    message: \"Usuario no existe\"\n  };\n}\n\n// -- Buscamos al usuario\nconst user = dbRecords.find(u => u.json.mail && u.json.mail.toLowerCase() === loginAttempt.user.toLowerCase());\n\nif (!user) {\n  return {\n    success: false,\n    message: \"Usuario no existe\"\n  };\n}\n\nconst userData = user.json;\n\n// --- VALIDACIÓN: Fecha de expiración ---\nconst fechaExpiracion = new Date(userData.expireAt);\nconst hoy = new Date();\n\nif (hoy > fechaExpiracion) {\n  return {\n    success: false,\n    message: \"La cuenta ha expirado el \" + fechaExpiracion.toLocaleDateString(),\n    expired: true\n  };\n}\n\n// --- VALIDACIÓN: Contraseña con lógica de substring ---\nconst dbPasswordConSalt = userData.pasword; \n// Verificamos que exista el campo para evitar errores de ejecución\nif (!dbPasswordConSalt) {\n   return { success: false, message: \"Error en datos de origen\" };\n}\n\nconst passwordRealEnBD = dbPasswordConSalt.substring(1, dbPasswordConSalt.length - 1);\n\nif (passwordRealEnBD !== loginAttempt.psw) {\n  return {\n    success: false,\n    message: \"Contraseña incorrecta\"\n  };\n}\n\n\n// --- ÉXITO ---\nreturn {\n  success: true,\n  message: \"¡Bienvenido, \" + userData.Nombre + \"!\",\n  userData: {\n    nombre: userData.Nombre,\n    email: userData.mail\n  }\n};"
+        },
+        "id": "f65b9b2d-883c-4b2d-8d38-2fe46a5e3779",
+        "name": "Validar Login",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          880,
+          -16
+        ]
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "id": "dd9f50ea-053d-4e65-8092-5785e8a1f994",
+        "name": "Respond to Webhook",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          1056,
+          -16
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "get",
+          "dataTableId": {
+            "__rl": true,
+            "value": "0MKLsLqfpS8HSAva",
+            "mode": "list",
+            "cachedResultName": "veritas_latam_user",
+            "cachedResultUrl": "/projects/TWUdlmfp5jAL6XiA/datatables/0MKLsLqfpS8HSAva"
+          },
+          "returnAll": true
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          624,
+          0
+        ],
+        "id": "b9735c39-e6ad-4040-9e06-4568cb0414e3",
+        "name": "Get row(s)",
+        "executeOnce": false,
+        "notesInFlow": true,
+        "alwaysOutputData": true,
+        "onError": "continueErrorOutput"
+      }
+    ],
+    "connections": {
+      "Validar Login": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Get row(s)",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s)": {
+        "main": [
+          [
+            {
+              "node": "Validar Login",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 92024101",
+    "description": "",
+    "autosaved": false
+  },
+  "activeVersionId": "92024101-809f-4590-a687-aef5dcc12777",
+  "connections": {
+    "Validar Login": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s)": {
+      "main": [
+        [
+          {
+            "node": "Validar Login",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-13T21:59:08.831Z",
+  "id": "c9c0Xy4wKMELeXmwgYa3z",
+  "isArchived": false,
+  "meta": null,
+  "name": "veritas_login",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "login-interno",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "886a2964-d077-4a9e-92e2-f91e6aa559d7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "webhookId": "fbafba33-36ce-42f5-8783-a16846764969"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Capturamos las credenciales (si vienen por URL es .query, si es por cuerpo es .body)\nconst loginAttempt = $(\"Webhook\").item.json.query || $(\"Webhook\").item.json.body;\n\n// 2. Capturamos los registros\nconst dbRecords = $input.all();\n\n// --- VALIDACIÓN PREVIA: ¿La DB devolvió algo real? ---\n// Si \"Always Output Data\" está activo, dbRecords[0].json puede estar vacío {}\nif (dbRecords.length === 0 || Object.keys(dbRecords[0].json).length === 0) {\n  return {\n    success: false,\n    message: \"Usuario no existe\"\n  };\n}\n\n// -- Buscamos al usuario\nconst user = dbRecords.find(u => u.json.mail && u.json.mail.toLowerCase() === loginAttempt.user.toLowerCase());\n\nif (!user) {\n  return {\n    success: false,\n    message: \"Usuario no existe\"\n  };\n}\n\nconst userData = user.json;\n\n// --- VALIDACIÓN: Fecha de expiración ---\nconst fechaExpiracion = new Date(userData.expireAt);\nconst hoy = new Date();\n\nif (hoy > fechaExpiracion) {\n  return {\n    success: false,\n    message: \"La cuenta ha expirado el \" + fechaExpiracion.toLocaleDateString(),\n    expired: true\n  };\n}\n\n// --- VALIDACIÓN: Contraseña con lógica de substring ---\nconst dbPasswordConSalt = userData.pasword; \n// Verificamos que exista el campo para evitar errores de ejecución\nif (!dbPasswordConSalt) {\n   return { success: false, message: \"Error en datos de origen\" };\n}\n\nconst passwordRealEnBD = dbPasswordConSalt.substring(1, dbPasswordConSalt.length - 1);\n\nif (passwordRealEnBD !== loginAttempt.psw) {\n  return {\n    success: false,\n    message: \"Contraseña incorrecta\"\n  };\n}\n\n\n// --- ÉXITO ---\nreturn {\n  success: true,\n  message: \"¡Bienvenido, \" + userData.Nombre + \"!\",\n  userData: {\n    nombre: userData.Nombre,\n    email: userData.mail\n  }\n};"
+      },
+      "id": "f65b9b2d-883c-4b2d-8d38-2fe46a5e3779",
+      "name": "Validar Login",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dd9f50ea-053d-4e65-8092-5785e8a1f994",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1056,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "0MKLsLqfpS8HSAva",
+          "mode": "list",
+          "cachedResultName": "veritas_latam_user",
+          "cachedResultUrl": "/projects/TWUdlmfp5jAL6XiA/datatables/0MKLsLqfpS8HSAva"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "b9735c39-e6ad-4040-9e06-4568cb0414e3",
+      "name": "Get row(s)",
+      "executeOnce": false,
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "origin": "main",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": true,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-13T21:59:08.838Z",
+      "createdAt": "2026-01-13T21:59:08.838Z",
+      "role": "workflow:owner",
+      "workflowId": "c9c0Xy4wKMELeXmwgYa3z",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-01-13T22:48:10.290Z",
+  "versionId": "92024101-809f-4590-a687-aef5dcc12777"
+}
