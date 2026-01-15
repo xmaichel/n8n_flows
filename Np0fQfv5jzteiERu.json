@@ -2195,7 +2195,9 @@
     "saveDataErrorExecution": "all",
     "callerPolicy": "workflowsFromSameOwner",
     "saveExecutionProgress": true,
-    "executionTimeout": 600
+    "executionTimeout": 600,
+    "timeSavedMode": "fixed",
+    "availableInMCP": true
   },
   "shared": [
     {
@@ -2208,13 +2210,13 @@
   ],
   "staticData": {
     "node:Cal.com Trigger Bel": {
-      "webhookId": "1e76392c-bed9-4127-97de-2e342f53216e"
+      "webhookId": "d563ca10-57f7-4e2d-8651-0c4ce6f149a3"
     },
     "node:Cal.com Trigger Andrea": {
-      "webhookId": "1e76392c-bed9-4127-97de-2e342f53216e"
+      "webhookId": "d563ca10-57f7-4e2d-8651-0c4ce6f149a3"
     },
     "node:Cal.com Trigger Felipe": {
-      "webhookId": "1e76392c-bed9-4127-97de-2e342f53216e"
+      "webhookId": "d563ca10-57f7-4e2d-8651-0c4ce6f149a3"
     }
   },
   "tags": [
@@ -2238,6 +2240,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2025-09-04T03:16:10.000Z",
+  "updatedAt": "2026-01-14T22:57:27.442Z",
   "versionId": "edb6249b-4ddc-42fa-bec7-4267d23792f5"
 }
