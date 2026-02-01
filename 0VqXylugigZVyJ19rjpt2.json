@@ -1,0 +1,1513 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-01-31T13:02:00.000Z",
+    "createdAt": "2026-01-31T13:01:03.388Z",
+    "versionId": "e68517ce-b8a5-4581-b0b5-9e9ec4e838d5",
+    "workflowId": "0VqXylugigZVyJ19rjpt2",
+    "nodes": [
+      {
+        "parameters": {
+          "content": "## Toturial\nhttps://www.youtube.com/watch?v=2oz2d9qoMm4"
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          304,
+          -16
+        ],
+        "typeVersion": 1,
+        "id": "9fe5036f-690a-4c37-997f-685469ade995",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          384,
+          208
+        ],
+        "id": "ef033828-47df-4b91-886a-aa823699d04f",
+        "name": "When chat message received",
+        "webhookId": "c75fc8db-4a21-4ea1-8e8e-56c5a8e95f1b"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "cc27b2d9-8de7-43ca-a741-2d150084f78e",
+                "name": "currentStartIndex",
+                "value": 1,
+                "type": "number"
+              },
+              {
+                "id": "fc552c57-4510-4f04-aa09-2294306d0d9f",
+                "name": "maxPages",
+                "value": 10,
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          528,
+          208
+        ],
+        "id": "e6004c05-6ea0-4974-ad15-bd5ac7adea7d",
+        "name": "Set Fields"
+      },
+      {
+        "parameters": {
+          "jsCode": "const response = $input.first().json;\nconst organicResults = response.organic_results || [];\n\n// Gestionar la paginación de SerpApi\nconst nextLink = response.serpapi_pagination?.next || null;\nconst hasMoreResults = !!nextLink; \n\n// Procesar los resultados\nconst results = organicResults.map(item => {\n  const title = item.title || \"\";\n  const snippet = item.snippet || \"\";\n  \n  // Separación básica por código\n  const titleParts = title.split(\" - \");\n  \n  return {\n    // Datos limpios para la BD\n    name: titleParts[0]?.trim() || null,\n    link: item.link || null,\n    image: item.favicon || null,\n    \n    // Contexto enriquecido para OpenRouter\n    // Enviamos tanto el título como el snippet para que la IA tenga más contexto\n    ai_prompt_context: `Título: ${title}. Resumen: ${snippet}`,\n    \n    // Info para el Loop de n8n\n    nextPageLink: nextLink,\n    hasMoreResults: hasMoreResults\n  };\n});\n\nif (results.length === 0) {\n  return [{ \n    json: { name: null, hasMoreResults: false }\n  }];\n}\n\nreturn results.map(r => ({ json: r }));"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          928,
+          208
+        ],
+        "id": "b0268b48-83da-46a3-b4ea-1eb0d3190e66",
+        "name": "Extract Results"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4",
+            "mode": "list",
+            "cachedResultName": "leads_linkedin",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Oprtunidad",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Nombre": "={{ $json.name }}",
+              "Fase": "Cliente potencial",
+              "Title": "={{ $json.title }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Title",
+                "displayName": "Title",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Valor estimado",
+                "displayName": "Valor estimado",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          2064,
+          208
+        ],
+        "id": "e7cc4d14-1234-4310-9855-feb2c2b4428a",
+        "name": "Add to Google",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get all input items\nconst inputItems = $input.all();\nconsole.log(\"Input items count:\", inputItems.length);\n\n// Extract pagination values with fallbacks\nlet nextStartIndex = 1;\nlet hasMoreResults = false;\n\n// Try different approaches to find the pagination info\nif (inputItems && inputItems.length > 0) {\n  const firstItem = inputItems[0];\n  \n  // Check direct properties\n  if (firstItem.json) {\n    console.log(\"First item JSON:\", JSON.stringify(firstItem.json));\n    \n    // Check for \"index\" property (instead of startIndex)\n    if (firstItem.json.index !== undefined) {\n      nextStartIndex = firstItem.json.index;\n      console.log(\"Found index:\", nextStartIndex);\n    }\n    \n    // Check for \"results\" property (instead of hasMoreResults)\n    if (firstItem.json.results !== undefined) {\n      hasMoreResults = firstItem.json.results;\n      console.log(\"Found results:\", hasMoreResults);\n    }\n  }\n}\n\n// Return pagination control info\nreturn {\n  json: {\n    continueLoop: hasMoreResults,\n    startIndex: nextStartIndex\n  }\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          2352,
+          208
+        ],
+        "id": "ae4c2321-3511-4a5d-9323-c30ba5b0e8c5",
+        "name": "Pagination"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 2
+            },
+            "conditions": [
+              {
+                "id": "faef2862-80a4-465b-9e0b-be5b9753dcbd",
+                "leftValue": "={{ $json.continueLoop }}",
+                "rightValue": "true",
+                "operator": {
+                  "type": "boolean",
+                  "operation": "true",
+                  "singleValue": true
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.2,
+        "position": [
+          2480,
+          208
+        ],
+        "id": "1fc0845c-c930-4c95-b395-8fb953846594",
+        "name": "Pagination Check"
+      },
+      {
+        "parameters": {
+          "amount": 30
+        },
+        "type": "n8n-nodes-base.wait",
+        "typeVersion": 1.1,
+        "position": [
+          2192,
+          224
+        ],
+        "id": "0bf283aa-0d59-49d6-bac4-579f1bceb33d",
+        "name": "Wait",
+        "webhookId": "d3bbbd53-2135-45e5-a847-aad35b1c518e"
+      },
+      {
+        "parameters": {
+          "content": "## Google API Instructions\n\n1. Go to [Google Cloud Console](https://console.cloud.google.com/)\n   - Create a new project  \n   - Enable **Custom Search API**  \n   - Go to **Credentials** and copy your **API Key**\n\n2. Go to [Programmable Search Engine](https://programmablesearchengine.google.com/controlpanel/create)\n   - Create a name  \n   - Select **Search entire web**  \n   - Copy the **cx** value\n\n## Usage Limits (Free Tier)\n\n- The free tier of the Google Custom Search API allows **100 requests per day**\n- Each request returns **up to 10 search results**\n- This means you can get **up to 1,000 search results per day** at no cost\n",
+          "height": 500,
+          "width": 360,
+          "color": 4
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          16
+        ],
+        "id": "27d12cc2-2165-49f2-95ab-594d8222ba91",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "q": "ceo bancos site:linkedin.com/in",
+          "location": "colombia",
+          "additionalFields": {},
+          "requestOptions": {}
+        },
+        "type": "n8n-nodes-serpapi.serpApi",
+        "typeVersion": 1,
+        "position": [
+          736,
+          208
+        ],
+        "id": "9240a1f4-49f6-46a2-901f-35e5d58332ba",
+        "name": "Google search",
+        "credentials": {
+          "serpApi": {
+            "id": "GH3Gj66dSLdGSAsg",
+            "name": "SerpAPI account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.ai_prompt_context }}",
+          "needsFallback": true,
+          "options": {
+            "systemMessage": "Actúa como un experto en enriquecimiento de datos de ventas (B2B). Tu tarea es extraer información precisa de perfiles de LinkedIn.\n\nREGLAS CRÍTICAS:\n\nEMPRESA: Extrae el nombre de la empresa actual. Si no se menciona o no es clara, responde null. No inventes nombres.\n\nDOMINIO: Deduce el dominio web (ej: google.com) basado en el nombre de la empresa. Si la empresa es null o el dominio es incierto, responde null.\n\nICEBREAKER: Redacta una frase de apertura personalizada, profesional y breve (máximo 20 palabras) basada en el cargo o logros mencionados en el texto. Usa un tono cercano pero respetuoso.\n\nFORMATO DE SALIDA: Debes responder EXCLUSIVAMENTE en formato JSON válido para n8n con esta estructura: { \"empresa\": \"Nombre\", \"dominio\": \"dominio.com\", \"icebreaker\": \"Frase personalizada\" }"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          1104,
+          208
+        ],
+        "id": "561c7b87-acdf-427d-a0ee-02ad49fea3c2",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": "google/gemini-2.5-flash-lite",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          1056,
+          432
+        ],
+        "id": "308333de-6eef-4b5b-9876-cbeb9779c730",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": "openai/gpt-oss-20b",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+        "typeVersion": 1,
+        "position": [
+          1168,
+          432
+        ],
+        "id": "47fbf65e-b4f1-4428-9799-95d13b0b87f5",
+        "name": "Groq Chat Model",
+        "credentials": {
+          "groqApi": {
+            "id": "huxsxNMqKLRQoZW9",
+            "name": "Groq account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "url": "={{ $json.url_validacion }}",
+          "options": {
+            "response": {
+              "response": {
+                "fullResponse": true
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          1536,
+          208
+        ],
+        "id": "205241fa-c796-4183-8686-7d028fb36ee8",
+        "name": "HTTP Request",
+        "alwaysOutputData": true,
+        "retryOnFail": false,
+        "maxTries": 2,
+        "executeOnce": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          1072,
+          592
+        ],
+        "id": "12426b5c-1bb7-4c29-a771-9f6435ea42b9",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "jsCode": "let rawOutput = $input.first().json.output;\n\n// 1. Limpiamos las etiquetas de Markdown\nlet cleanJson = rawOutput.replace(/```json\\n|```/g, \"\").trim();\n\nlet finalData;\ntry {\n  finalData = JSON.parse(cleanJson);\n} catch (e) {\n  finalData = { empresa: null, dominio: null, icebreaker: null };\n}\n\n// 2. Validar y arreglar el dominio para el HTTP Request\nlet dominioValidado = finalData.dominio;\n\nif (dominioValidado && !dominioValidado.startsWith('http')) {\n  // Por defecto usamos https para la validación\n  dominioValidado = `https://${dominioValidado}`;\n}\n\nreturn {\n  empresa: finalData.empresa,\n  dominio: finalData.dominio, // El original para la BD\n  url_validacion: dominioValidado, // El que usaremos en el HTTP Request\n  icebreaker: finalData.icebreaker\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1376,
+          208
+        ],
+        "id": "886acda8-517a-4f98-a1b1-bf0d160f0527",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "f4f31bc9-0e4d-4339-b3b2-e90bb431d732",
+                "leftValue": "={{ $json.error.status }}",
+                "rightValue": "200",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1696,
+          208
+        ],
+        "id": "744e2999-70af-4e1c-a4d0-186fd0008230",
+        "name": "If"
+      }
+    ],
+    "connections": {
+      "When chat message received": {
+        "main": [
+          [
+            {
+              "node": "Set Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set Fields": {
+        "main": [
+          [
+            {
+              "node": "Google search",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Extract Results": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Add to Google": {
+        "main": [
+          [
+            {
+              "node": "Wait",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pagination": {
+        "main": [
+          [
+            {
+              "node": "Pagination Check",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pagination Check": {
+        "main": [
+          [],
+          [
+            {
+              "node": "Google search",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Wait": {
+        "main": [
+          [
+            {
+              "node": "Pagination",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google search": {
+        "main": [
+          [
+            {
+              "node": "Extract Results",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Groq Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          []
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Add to Google",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          []
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version e68517ce",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "e68517ce-b8a5-4581-b0b5-9e9ec4e838d5",
+  "connections": {
+    "When chat message received": {
+      "main": [
+        []
+      ]
+    },
+    "Add to Google": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pagination": {
+      "main": [
+        [
+          {
+            "node": "Pagination Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pagination Check": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Google search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Pagination",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search": {
+      "main": [
+        [
+          {
+            "node": "Limpiar data linkedin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Format data IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Format data end",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limpiar data linkedin": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format data IA": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format data end": {
+      "main": [
+        [
+          {
+            "node": "Add to Google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Format data end",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Google search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-01-18T20:19:21.906Z",
+  "id": "0VqXylugigZVyJ19rjpt2",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "linkedin-scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Toturial\nhttps://www.youtube.com/watch?v=2oz2d9qoMm4"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "9fe5036f-690a-4c37-997f-685469ade995",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        448
+      ],
+      "id": "ef033828-47df-4b91-886a-aa823699d04f",
+      "name": "When chat message received",
+      "webhookId": "c75fc8db-4a21-4ea1-8e8e-56c5a8e95f1b"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4",
+          "mode": "list",
+          "cachedResultName": "leads_linkedin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Oprtunidad",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ $json.name }}",
+            "Title": "={{ $json.title }}",
+            "link linkedin": "={{ $json.link }}",
+            "Cargo": "={{ $json.title }}",
+            "Empresa": "={{ $json.empresa }}",
+            "Icebreaker": "={{ $json.icebreaker }}"
+          },
+          "matchingColumns": [
+            "Nombre"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link linkedin",
+              "displayName": "link linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Cargo",
+              "displayName": "Cargo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sector",
+              "displayName": "Sector",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Pais",
+              "displayName": "Pais",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Icebreaker",
+              "displayName": "Icebreaker",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Valor estimado",
+              "displayName": "Valor estimado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2240,
+        208
+      ],
+      "id": "e7cc4d14-1234-4310-9855-feb2c2b4428a",
+      "name": "Add to Google",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get all input items\nconst inputItems = $input.all();\nconsole.log(\"Input items count:\", inputItems.length);\n\n// Extract pagination values with fallbacks\nlet nextStartIndex = 1;\nlet hasMoreResults = false;\n\n// Try different approaches to find the pagination info\nif (inputItems && inputItems.length > 0) {\n  const firstItem = inputItems[0];\n  \n  // Check direct properties\n  if (firstItem.json) {\n    console.log(\"First item JSON:\", JSON.stringify(firstItem.json));\n    \n    // Check for \"index\" property (instead of startIndex)\n    if (firstItem.json.index !== undefined) {\n      nextStartIndex = firstItem.json.index;\n      console.log(\"Found index:\", nextStartIndex);\n    }\n    \n    // Check for \"results\" property (instead of hasMoreResults)\n    if (firstItem.json.results !== undefined) {\n      hasMoreResults = firstItem.json.results;\n      console.log(\"Found results:\", hasMoreResults);\n    }\n  }\n}\n\n// Return pagination control info\nreturn {\n  json: {\n    continueLoop: hasMoreResults,\n    startIndex: nextStartIndex\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        208
+      ],
+      "id": "ae4c2321-3511-4a5d-9323-c30ba5b0e8c5",
+      "name": "Pagination"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "faef2862-80a4-465b-9e0b-be5b9753dcbd",
+              "leftValue": "={{ $json.continueLoop }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2688,
+        208
+      ],
+      "id": "1fc0845c-c930-4c95-b395-8fb953846594",
+      "name": "Pagination Check"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2400,
+        224
+      ],
+      "id": "0bf283aa-0d59-49d6-bac4-579f1bceb33d",
+      "name": "Wait",
+      "webhookId": "d3bbbd53-2135-45e5-a847-aad35b1c518e"
+    },
+    {
+      "parameters": {
+        "content": "## Google API Instructions\n\n1. Go to [Google Cloud Console](https://console.cloud.google.com/)\n   - Create a new project  \n   - Enable **Custom Search API**  \n   - Go to **Credentials** and copy your **API Key**\n\n2. Go to [Programmable Search Engine](https://programmablesearchengine.google.com/controlpanel/create)\n   - Create a name  \n   - Select **Search entire web**  \n   - Copy the **cx** value\n\n## Usage Limits (Free Tier)\n\n- The free tier of the Google Custom Search API allows **100 requests per day**\n- Each request returns **up to 10 search results**\n- This means you can get **up to 1,000 search results per day** at no cost\n",
+        "height": 500,
+        "width": 360,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -112
+      ],
+      "id": "27d12cc2-2165-49f2-95ab-594d8222ba91",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "q": "= {{ $json.searchQuery }}",
+        "location": "colombia",
+        "additionalFields": {
+          "google_domain": "google.com"
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApi",
+      "typeVersion": 1,
+      "position": [
+        800,
+        192
+      ],
+      "id": "9240a1f4-49f6-46a2-901f-35e5d58332ba",
+      "name": "Google search",
+      "credentials": {
+        "serpApi": {
+          "id": "GH3Gj66dSLdGSAsg",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.ai_prompt_context }}",
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=Actúa como un experto en enriquecimiento de datos de ventas (B2B). Tu tarea es extraer información precisa de perfiles de LinkedIn.\n\nREGLAS CRÍTICAS:\n\nEMPRESA: Extrae el nombre de la empresa actual. Si no se menciona o no es clara, responde null. No inventes nombres.\n\nDOMINIO: Deduce el dominio web (ej: google.com) basado en el nombre de la empresa. Si la empresa es null o el dominio es incierto, responde null.\n\nPAIS: Si en ecuentra el pais de la mpresa, si no lo puedes dejar vacio.\n\nICEBREAKER: Redacta una frase de apertura personalizada, profesional y breve (máximo 20 palabras) basada en el cargo o logros mencionados en el texto. Usa un tono cercano pero respetuoso.\n\nFORMATO DE SALIDA: Debes responder EXCLUSIVAMENTE en formato JSON válido para n8n con esta estructura: { \"empresa\": \"Nombre\", \"dominio\": \"dominio.com\", \"pais\": \"Colombia\",\"icebreaker\": \"Frase personalizada\" }"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1168,
+        192
+      ],
+      "id": "561c7b87-acdf-427d-a0ee-02ad49fea3c2",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        416
+      ],
+      "id": "308333de-6eef-4b5b-9876-cbeb9779c730",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        416
+      ],
+      "id": "47fbf65e-b4f1-4428-9799-95d13b0b87f5",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "huxsxNMqKLRQoZW9",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url_validacion }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1600,
+        192
+      ],
+      "id": "205241fa-c796-4183-8686-7d028fb36ee8",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "retryOnFail": false,
+      "maxTries": 2,
+      "executeOnce": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6ffed458-0b28-464e-a3ee-8317f1310490",
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 200,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1776,
+        192
+      ],
+      "id": "4c821edf-a8ee-4a41-841c-80558120e8e1",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst organicResults = response.organic_results || [];\n\n// Gestionar la paginación de SerpApi\nconst nextLink = response.serpapi_pagination?.next || null;\nconst hasMoreResults = !!nextLink; \n\n// Procesar los resultados\nconst results = organicResults.map(item => {\n  const title = item.title || \"\";\n  const snippet = item.snippet || \"\";\n  const source = item.source || \"\";\n  \n  // Limpiar el name desde \"source\"\n  // Elimina prefijos como \"LinkedIn · \", \"Twitter · \", etc.\n  let cleanName = source\n    .replace(/^(LinkedIn|Twitter|Facebook|Instagram|YouTube)\\s*[·•·-]\\s*/i, '')\n    .trim();\n  \n  // Si no hay source, intentar obtener el name desde title\n  if (!cleanName && title) {\n    const titleParts = title.split(\" - \");\n    cleanName = titleParts[0]?.trim() || null;\n  }\n  \n  // Limpiar el title (obtener solo la parte después del guión)\n  // \"Christiana Riley - President and CEO, Santander US\" -> \"President and CEO, Santander US\"\n  let cleanTitle = null;\n  if (title.includes(\" - \")) {\n    const titleParts = title.split(\" - \");\n    // Tomamos todo después del primer guión\n    cleanTitle = titleParts.slice(1).join(\" - \").trim();\n  } else {\n    cleanTitle = title.trim();\n  }\n  \n  return {\n    // Datos limpios para la BD\n    name: cleanName || null,\n    title: cleanTitle || null,\n    link: item.link || null,\n    sector: $('Code in JavaScript').first().json.Sector,\n    //image: item.favicon || null,\n    \n    // Contexto enriquecido para OpenRouter\n    // Enviamos tanto el título como el snippet para que la IA tenga más contexto\n    ai_prompt_context: `Nombre: ${cleanName}. Cargo: ${cleanTitle}. Resumen: ${snippet}`,\n    \n    // Info para el Loop de n8n\n    nextPageLink: nextLink\n    //hasMoreResults: hasMoreResults\n  };\n});\n\nif (results.length === 0) {\n  return [{ \n    json: { name: null, title: null, hasMoreResults: false }\n  }];\n}\n\nreturn results.map(r => ({ json: r }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        992,
+        192
+      ],
+      "id": "b0268b48-83da-46a3-b4ea-1eb0d3190e66",
+      "name": "Limpiar data linkedin"
+    },
+    {
+      "parameters": {
+        "jsCode": "let rawOutput = $input.first().json.output;\n\n// 1. Limpiamos las etiquetas de Markdown\nlet cleanJson = rawOutput.replace(/```json\\n|```/g, \"\").trim();\n\nlet finalData;\ntry {\n  finalData = JSON.parse(cleanJson);\n} catch (e) {\n  finalData = { empresa: null, dominio: null,pais: null, icebreaker: null };\n}\n\n// 2. Validar y arreglar el dominio para el HTTP Request\nlet dominioValidado = finalData.dominio;\n\nif (dominioValidado && !dominioValidado.startsWith('http')) {\n  // Por defecto usamos https para la validación\n  dominioValidado = `https://${dominioValidado}`;\n}\n\nreturn {\n  empresa: finalData.empresa,\n  dominio: finalData.dominio, // El original para la BD\n  pais: finalData.pais,\n  url_validacion: dominioValidado, // El que usaremos en el HTTP Request\n  icebreaker: finalData.icebreaker\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        192
+      ],
+      "id": "886acda8-517a-4f98-a1b1-bf0d160f0527",
+      "name": "Format data IA"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Código mejorado para limpiar HTML antes de procesarlo con IA\nconst item = $input.first().json;\nlet htmlFinal = \"\";\n\n// 1. Obtener el contenido HTML\nconst binaryData = $input.first().binary;\nif (binaryData && binaryData.data) {\n    htmlFinal = Buffer.from(binaryData.data.data, 'base64').toString('utf8');\n} else if (typeof item.data === 'string') {\n    htmlFinal = item.data;\n} else if (typeof item.data === 'object') {\n    htmlFinal = JSON.stringify(item.data);\n}\n\n// 2. Limpieza avanzada del HTML\nhtmlFinal = htmlFinal\n    // Eliminar scripts y estilos completos\n    .replace(/<script\\b[^<]*(?:(?!<\\/script>)<[^<]*)*<\\/script>/gi, '')\n    .replace(/<style\\b[^<]*(?:(?!<\\/style>)<[^<]*)*<\\/style>/gi, '')\n    // Eliminar comentarios HTML\n    .replace(/<!--[\\s\\S]*?-->/g, '')\n    // Eliminar meta tags y links\n    .replace(/<meta[^>]*>/gi, '')\n    .replace(/<link[^>]*>/gi, '')\n    // Eliminar tags de header innecesarios\n    .replace(/<head[^>]*>[\\s\\S]*?<\\/head>/gi, '')\n    // Convertir saltos de línea de HTML a espacios\n    .replace(/<br\\s*\\/?>/gi, ' ')\n    .replace(/<\\/p>/gi, ' ')\n    .replace(/<\\/div>/gi, ' ')\n    .replace(/<\\/li>/gi, ' ')\n    // Eliminar todas las etiquetas HTML restantes pero conservar el contenido\n    .replace(/<[^>]+>/g, ' ')\n    // Decodificar entidades HTML comunes\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"')\n    .replace(/&#39;/g, \"'\")\n    // Limpiar espacios múltiples, tabs y saltos de línea\n    .replace(/\\s+/g, ' ')\n    // Eliminar espacios al inicio y final\n    .trim()\n    // Limitar longitud (ajusta según necesites)\n    .substring(0, 8000);\n\nreturn {\n  html: htmlFinal,\n  empresa: $('Format data IA').first().json.empresa,\n  dominio: $('Format data IA').first().json.dominio,\n  icebreaker: $('Format data IA').first().json.icebreaker,\n  name: $('Limpiar data linkedin').first().json.name,\n  link: $('Limpiar data linkedin').first().json.link,\n  title: $('Limpiar data linkedin').first().json.title,\n  sector: ,\n  pais: $('Format data IA').first().json.pais\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2048,
+        112
+      ],
+      "id": "22dbda4f-5f23-442c-9478-51f98a453997",
+      "name": "Format data end"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a9b42de-0d4d-4cc1-8b3b-5a7d72c2aa7f",
+              "name": "html",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2016,
+        272
+      ],
+      "id": "933cf5df-69ee-4665-baeb-e75296156a2e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "formTitle": "Buscador Leads",
+        "formDescription": "Buscador Leads",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Senority label",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "founder"
+                  },
+                  {
+                    "option": "c_suite"
+                  },
+                  {
+                    "option": "ovner"
+                  },
+                  {
+                    "option": "director"
+                  },
+                  {
+                    "option": "partner"
+                  },
+                  {
+                    "option": "vp"
+                  },
+                  {
+                    "option": "head"
+                  },
+                  {
+                    "option": "manager"
+                  },
+                  {
+                    "option": "senior"
+                  },
+                  {
+                    "option": "entry"
+                  },
+                  {
+                    "option": "trainee"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "company zise",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "1-10"
+                  },
+                  {
+                    "option": "11-50"
+                  },
+                  {
+                    "option": "51-100"
+                  },
+                  {
+                    "option": "101-200"
+                  },
+                  {
+                    "option": "201-500"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Tipo de comercio",
+              "placeholder": "Construcción, Finca raíz, Consultorios"
+            },
+            {
+              "fieldLabel": "pais",
+              "placeholder": "Colombia",
+              "defaultValue": "Colombia"
+            },
+            {
+              "fieldLabel": "Cantidad de Leads",
+              "fieldType": "number",
+              "placeholder": "10",
+              "defaultValue": "10",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        80,
+        128
+      ],
+      "id": "5630789a-3bca-4e23-97dc-4b2985f5fdea",
+      "name": "On form submission",
+      "webhookId": "58aa06c0-1834-4f4e-8006-c7fd50f81b00"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Tipo de comercio",
+              "renameField": true,
+              "outputFieldName": "Sector"
+            },
+            {
+              "fieldToAggregate": "Senority label"
+            },
+            {
+              "fieldToAggregate": "Cantidad de Leads"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        256,
+        128
+      ],
+      "id": "ce77dcf7-fabf-4a56-b8af-4346d8bc3f65",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Mapeo de sectores a términos de búsqueda\nconst sectorMap = {\n  \"bancos\": \"banco OR banca\",\n  \"financieras\": \"financiera OR finanzas\",\n  \"fintech\": \"fintech OR tecnología financiera\",\n  \"seguros\": \"seguros OR aseguradora\",\n  \"inversiones\": \"inversiones OR gestión activos\",\n  \"tecnología\": \"tecnología OR software OR IT\",\n  \"salud\": \"salud OR healthcare OR medicina\",\n  \"retail\": \"retail OR comercio OR tiendas\"\n};\n\n// Cargos a buscar\nconst titles = \"CEO OR founder OR director OR VP OR gerente general OR CTO OR CFO\";\n\n// Obtener el sector del formulario (con validación)\nconst inputData = $input.first().json;\nconst sectorRaw = inputData.Sector || inputData.sector || \"\";\nconst sector = String(sectorRaw).toLowerCase().trim();\n\n// Validar que el sector no esté vacío\nif (!sector) {\n  throw new Error(\"El campo Sector está vacío o no existe\");\n}\n\n// Buscar el mapeo correspondiente o usar el sector tal cual\nconst sectorTerms = sectorMap[sector] || sector;\n\n// Construir la query completa para LinkedIn\nconst linkedinQuery = `(${sectorTerms}) (${titles}) site:linkedin.com/in`;\n\n// Retornar el resultado\nreturn [{\n  json: {\n    sector: sector,\n    searchQuery: linkedinQuery,\n    sectorOriginal: sectorRaw,\n    ...inputData // Mantener otros campos del formulario\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        128
+      ],
+      "id": "7edf1cb5-82ab-47d6-8ddc-5f51a09b8eb6",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "Senority label": [
+            "founder",
+            "ovner",
+            "director",
+            "manager",
+            "entry"
+          ],
+          "company zise": "1-10",
+          "Tipo de comercio": "Bancos",
+          "pais": "Colombia",
+          "Cantidad de Leads": 10,
+          "submittedAt": "2026-01-12T13:04:35.306-05:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-01-18T20:19:21.921Z",
+      "createdAt": "2026-01-18T20:19:21.921Z",
+      "role": "workflow:owner",
+      "workflowId": "0VqXylugigZVyJ19rjpt2",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2026-01-27T14:36:01.232Z",
+      "createdAt": "2026-01-27T14:36:01.232Z",
+      "id": "mAgmoazsewm9AToE",
+      "name": "youtube"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-02-01T12:10:44.440Z",
+  "versionId": "1a97f20c-3203-4fdc-85b2-9779d71159ad"
+}
