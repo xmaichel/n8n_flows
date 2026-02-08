@@ -1,0 +1,934 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-02-07T13:14:26.000Z",
+    "createdAt": "2026-02-07T13:14:13.179Z",
+    "versionId": "d89b8027-d5a3-4aa9-987d-58c4b6dcd7b8",
+    "workflowId": "mMKx0UeTMW56xB7k",
+    "nodes": [
+      {
+        "parameters": {
+          "content": "## Toturial\nhttps://www.youtube.com/watch?v=2oz2d9qoMm4"
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          64,
+          -112
+        ],
+        "typeVersion": 1,
+        "id": "26e567a7-552c-4add-bd6a-132fefa40774",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4",
+            "mode": "list",
+            "cachedResultName": "leads_linkedin",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "Oprtunidad",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Nombre": "={{ $json.name }}",
+              "Title": "={{ $json.title }}",
+              "link linkedin": "={{ $json.link }}",
+              "Cargo": "={{ $json.title }}",
+              "Empresa": "={{ $json.empresa }}",
+              "Icebreaker": "={{ $json.icebreaker }}",
+              "Sector": "={{ $json.sector }}",
+              "Pais": "={{ $json.pais }}",
+              "wed Empresa": "={{ $json.dominio }}"
+            },
+            "matchingColumns": [
+              "Nombre"
+            ],
+            "schema": [
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Title",
+                "displayName": "Title",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "link linkedin",
+                "displayName": "link linkedin",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Cargo",
+                "displayName": "Cargo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Empresa",
+                "displayName": "Empresa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Sector",
+                "displayName": "Sector",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Pais",
+                "displayName": "Pais",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Icebreaker",
+                "displayName": "Icebreaker",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "wed Empresa",
+                "displayName": "wed Empresa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Correo",
+                "displayName": "Correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Valor estimado",
+                "displayName": "Valor estimado",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.5,
+        "position": [
+          1424,
+          192
+        ],
+        "id": "8b84d23a-a744-411e-94ca-3fbedd19bc59",
+        "name": "Add to Google",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "## Google API Instructions\n\n1. Go to [Google Cloud Console](https://console.cloud.google.com/)\n   - Create a new project  \n   - Enable **Custom Search API**  \n   - Go to **Credentials** and copy your **API Key**\n\n2. Go to [Programmable Search Engine](https://programmablesearchengine.google.com/controlpanel/create)\n   - Create a name  \n   - Select **Search entire web**  \n   - Copy the **cx** value\n\n## Usage Limits (Free Tier)\n\n- The free tier of the Google Custom Search API allows **100 requests per day**\n- Each request returns **up to 10 search results**\n- This means you can get **up to 1,000 search results per day** at no cost\n",
+          "height": 500,
+          "width": 360,
+          "color": 4
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -336,
+          -112
+        ],
+        "id": "6a865729-157b-4128-b1b3-6a721c2222db",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "url": "={{ $json.url_validacion }}",
+          "options": {
+            "response": {
+              "response": {
+                "fullResponse": true,
+                "responseFormat": "text"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.3,
+        "position": [
+          624,
+          192
+        ],
+        "id": "34083d53-aa6b-4aac-84f9-6f5ecfecd9e1",
+        "name": "HTTP Request",
+        "alwaysOutputData": true,
+        "retryOnFail": false,
+        "maxTries": 2,
+        "executeOnce": true,
+        "onError": "continueRegularOutput"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "6ffed458-0b28-464e-a3ee-8317f1310490",
+                "leftValue": "={{ $json.statusCode }}",
+                "rightValue": 200,
+                "operator": {
+                  "type": "number",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          832,
+          192
+        ],
+        "id": "2f3062ac-9b70-40c9-ae16-2d0afbdd790d",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "jsCode": "let rawOutput = $input.first().json.output;\n\n// 1. Limpiamos las etiquetas de Markdown\nlet cleanJson = rawOutput.replace(/```json\\n|```/g, \"\").trim();\n\nlet finalData;\ntry {\n  finalData = JSON.parse(cleanJson);\n} catch (e) {\n  finalData = { empresa: null, dominio: null,pais: null, icebreaker: null, sector: null };\n}\n\n// 2. Validar y arreglar el dominio para el HTTP Request\nlet dominioValidado = finalData.dominio;\n\nif (dominioValidado && !dominioValidado.startsWith('http')) {\n  // Por defecto usamos https para la validación\n  dominioValidado = `https://www.${dominioValidado}`;\n}\n\nreturn {\n  empresa: finalData.empresa,\n  dominio: finalData.dominio, // El original para la BD\n  pais: finalData.pais,\n  sector: finalData.sector,\n  url_validacion: dominioValidado, // El que usaremos en el HTTP Request\n  icebreaker: finalData.icebreaker\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          416,
+          192
+        ],
+        "id": "34ea03c2-db01-483a-bf9e-fe8a82a4941a",
+        "name": "Format data IA"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Código mejorado para limpiar HTML antes de procesarlo con IA\nconst item = $input.first().json;\nlet htmlFinal = \"\";\n\n// 1. Obtener el contenido HTML\nconst binaryData = $input.first().binary;\nif (binaryData && binaryData.data) {\n    htmlFinal = Buffer.from(binaryData.data.data, 'base64').toString('utf8');\n} else if (typeof item.data === 'string') {\n    htmlFinal = item.data;\n} else if (typeof item.data === 'object') {\n    htmlFinal = JSON.stringify(item.data);\n}\n\n// 2. Limpieza avanzada del HTML\nhtmlFinal = htmlFinal\n    // Eliminar scripts y estilos completos\n    .replace(/<script\\b[^<]*(?:(?!<\\/script>)<[^<]*)*<\\/script>/gi, '')\n    .replace(/<style\\b[^<]*(?:(?!<\\/style>)<[^<]*)*<\\/style>/gi, '')\n    // Eliminar comentarios HTML\n    .replace(/<!--[\\s\\S]*?-->/g, '')\n    // Eliminar meta tags y links\n    .replace(/<meta[^>]*>/gi, '')\n    .replace(/<link[^>]*>/gi, '')\n    // Eliminar tags de header innecesarios\n    .replace(/<head[^>]*>[\\s\\S]*?<\\/head>/gi, '')\n    // Convertir saltos de línea de HTML a espacios\n    .replace(/<br\\s*\\/?>/gi, ' ')\n    .replace(/<\\/p>/gi, ' ')\n    .replace(/<\\/div>/gi, ' ')\n    .replace(/<\\/li>/gi, ' ')\n    // Eliminar todas las etiquetas HTML restantes pero conservar el contenido\n    .replace(/<[^>]+>/g, ' ')\n    // Decodificar entidades HTML comunes\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"')\n    .replace(/&#39;/g, \"'\")\n    // Limpiar espacios múltiples, tabs y saltos de línea\n    .replace(/\\s+/g, ' ')\n    // Eliminar espacios al inicio y final\n    .trim()\n    // Limitar longitud (ajusta según necesites)\n    .substring(0, 8000);\n\nreturn {\n  empresa: $('Format data IA').first().json.empresa,\n  dominio: $('Format data IA').first().json.dominio,\n  valido: true,\n  icebreaker: $('Format data IA').first().json.icebreaker,\n  name: $('Limpiar data linkedin').first().json.name,\n  link: $('Limpiar data linkedin').first().json.link,\n  title: $('Limpiar data linkedin').first().json.title,\n  sector: $('Format data IA').first().json.sector,\n  pais: $('Format data IA').first().json.pais,\n  html: htmlFinal\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1120,
+          96
+        ],
+        "id": "de079aed-4089-47ca-a2b6-95e73327960c",
+        "name": "Format data end"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          224,
+          192
+        ],
+        "id": "9ef0beea-4659-4ca0-815a-dca5bfecdb41",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Código mejorado para limpiar HTML antes de procesarlo con IA\nreturn {\n  empresa: $('Format data IA').first().json.empresa,\n  dominio: $('Format data IA').first().json.dominio,\n  dominioValido: false,\n  icebreaker: $('Format data IA').first().json.icebreaker,\n  name: $('Limpiar data linkedin').first().json.name,\n  link: $('Limpiar data linkedin').first().json.link,\n  title: $('Limpiar data linkedin').first().json.title,\n  sector: $('Format data IA').first().json.sector,\n  pais: $('Format data IA').first().json.pais,\n  html: \"\"\n};"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1120,
+          256
+        ],
+        "id": "69f1928e-3134-4d0b-b1fb-288d1ba739b3",
+        "name": "Code in JavaScript"
+      }
+    ],
+    "connections": {
+      "Add to Google": {
+        "main": [
+          []
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Format data end",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Format data IA": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Format data end": {
+        "main": [
+          [
+            {
+              "node": "Add to Google",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Format data IA",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Add to Google",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version d89b8027",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "d89b8027-d5a3-4aa9-987d-58c4b6dcd7b8",
+  "connections": {
+    "Add to Google": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Format data end",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format data IA": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format data end": {
+      "main": [
+        [
+          {
+            "node": "Add to Google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Format data IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Add to Google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-02-07T12:39:46.758Z",
+  "id": "mMKx0UeTMW56xB7k",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "linkedin-scraper-validaweb-save-bd",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Toturial\nhttps://www.youtube.com/watch?v=2oz2d9qoMm4"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        64,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "26e567a7-552c-4add-bd6a-132fefa40774",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4",
+          "mode": "list",
+          "cachedResultName": "leads_linkedin",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Oprtunidad",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ANm5-xs3OY_b68jduhzvFl-Uq0oaRm2F-waxKK9Prx4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ $json.name }}",
+            "Title": "={{ $json.title }}",
+            "link linkedin": "={{ $json.link }}",
+            "Cargo": "={{ $json.title }}",
+            "Empresa": "={{ $json.empresa }}",
+            "Icebreaker": "={{ $json.icebreaker }}",
+            "Sector": "={{ $json.sector }}",
+            "Pais": "={{ $json.pais }}",
+            "wed Empresa": "={{ $json.dominio }}"
+          },
+          "matchingColumns": [
+            "Nombre"
+          ],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "link linkedin",
+              "displayName": "link linkedin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Cargo",
+              "displayName": "Cargo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sector",
+              "displayName": "Sector",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Pais",
+              "displayName": "Pais",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Icebreaker",
+              "displayName": "Icebreaker",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "wed Empresa",
+              "displayName": "wed Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Valor estimado",
+              "displayName": "Valor estimado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1424,
+        192
+      ],
+      "id": "8b84d23a-a744-411e-94ca-3fbedd19bc59",
+      "name": "Add to Google",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Google API Instructions\n\n1. Go to [Google Cloud Console](https://console.cloud.google.com/)\n   - Create a new project  \n   - Enable **Custom Search API**  \n   - Go to **Credentials** and copy your **API Key**\n\n2. Go to [Programmable Search Engine](https://programmablesearchengine.google.com/controlpanel/create)\n   - Create a name  \n   - Select **Search entire web**  \n   - Copy the **cx** value\n\n## Usage Limits (Free Tier)\n\n- The free tier of the Google Custom Search API allows **100 requests per day**\n- Each request returns **up to 10 search results**\n- This means you can get **up to 1,000 search results per day** at no cost\n",
+        "height": 500,
+        "width": 360,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -112
+      ],
+      "id": "6a865729-157b-4128-b1b3-6a721c2222db",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url_validacion }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        624,
+        192
+      ],
+      "id": "34083d53-aa6b-4aac-84f9-6f5ecfecd9e1",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "retryOnFail": false,
+      "maxTries": 2,
+      "executeOnce": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6ffed458-0b28-464e-a3ee-8317f1310490",
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 200,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        832,
+        192
+      ],
+      "id": "2f3062ac-9b70-40c9-ae16-2d0afbdd790d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "let rawOutput = $input.first().json.output;\n\n// 1. Limpiamos las etiquetas de Markdown\nlet cleanJson = rawOutput.replace(/```json\\n|```/g, \"\").trim();\n\nlet finalData;\ntry {\n  finalData = JSON.parse(cleanJson);\n} catch (e) {\n  finalData = { empresa: null, dominio: null,pais: null, icebreaker: null, sector: null };\n}\n\n// 2. Validar y arreglar el dominio para el HTTP Request\nlet dominioValidado = finalData.dominio;\n\nif (dominioValidado && !dominioValidado.startsWith('http')) {\n  // Por defecto usamos https para la validación\n  dominioValidado = `https://www.${dominioValidado}`;\n}\n\nreturn {\n  empresa: finalData.empresa,\n  dominio: finalData.dominio, // El original para la BD\n  pais: finalData.pais,\n  sector: finalData.sector,\n  url_validacion: dominioValidado, // El que usaremos en el HTTP Request\n  icebreaker: finalData.icebreaker\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        192
+      ],
+      "id": "34ea03c2-db01-483a-bf9e-fe8a82a4941a",
+      "name": "Format data IA"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Código mejorado para limpiar HTML antes de procesarlo con IA\nconst item = $input.first().json;\nlet htmlFinal = \"\";\n\n// 1. Obtener el contenido HTML\nconst binaryData = $input.first().binary;\nif (binaryData && binaryData.data) {\n    htmlFinal = Buffer.from(binaryData.data.data, 'base64').toString('utf8');\n} else if (typeof item.data === 'string') {\n    htmlFinal = item.data;\n} else if (typeof item.data === 'object') {\n    htmlFinal = JSON.stringify(item.data);\n}\n\n// 2. Limpieza avanzada del HTML\nhtmlFinal = htmlFinal\n    // Eliminar scripts y estilos completos\n    .replace(/<script\\b[^<]*(?:(?!<\\/script>)<[^<]*)*<\\/script>/gi, '')\n    .replace(/<style\\b[^<]*(?:(?!<\\/style>)<[^<]*)*<\\/style>/gi, '')\n    // Eliminar comentarios HTML\n    .replace(/<!--[\\s\\S]*?-->/g, '')\n    // Eliminar meta tags y links\n    .replace(/<meta[^>]*>/gi, '')\n    .replace(/<link[^>]*>/gi, '')\n    // Eliminar tags de header innecesarios\n    .replace(/<head[^>]*>[\\s\\S]*?<\\/head>/gi, '')\n    // Convertir saltos de línea de HTML a espacios\n    .replace(/<br\\s*\\/?>/gi, ' ')\n    .replace(/<\\/p>/gi, ' ')\n    .replace(/<\\/div>/gi, ' ')\n    .replace(/<\\/li>/gi, ' ')\n    // Eliminar todas las etiquetas HTML restantes pero conservar el contenido\n    .replace(/<[^>]+>/g, ' ')\n    // Decodificar entidades HTML comunes\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&amp;/g, '&')\n    .replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>')\n    .replace(/&quot;/g, '\"')\n    .replace(/&#39;/g, \"'\")\n    // Limpiar espacios múltiples, tabs y saltos de línea\n    .replace(/\\s+/g, ' ')\n    // Eliminar espacios al inicio y final\n    .trim()\n    // Limitar longitud (ajusta según necesites)\n    .substring(0, 8000);\n\nreturn {\n  empresa: $('Format data IA').first().json.empresa,\n  dominio: $('Format data IA').first().json.dominio,\n  valido: true,\n  icebreaker: $('Format data IA').first().json.icebreaker,\n  name: $('Limpiar data linkedin').first().json.name,\n  link: $('Limpiar data linkedin').first().json.link,\n  title: $('Limpiar data linkedin').first().json.title,\n  sector: $('Format data IA').first().json.sector,\n  pais: $('Format data IA').first().json.pais,\n  html: htmlFinal\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        96
+      ],
+      "id": "de079aed-4089-47ca-a2b6-95e73327960c",
+      "name": "Format data end"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        224,
+        192
+      ],
+      "id": "9ef0beea-4659-4ca0-815a-dca5bfecdb41",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Código mejorado para limpiar HTML antes de procesarlo con IA\nreturn {\n  empresa: $('Format data IA').first().json.empresa,\n  dominio: $('Format data IA').first().json.dominio,\n  dominioValido: false,\n  icebreaker: $('Format data IA').first().json.icebreaker,\n  name: $('Limpiar data linkedin').first().json.name,\n  link: $('Limpiar data linkedin').first().json.link,\n  title: $('Limpiar data linkedin').first().json.title,\n  sector: $('Format data IA').first().json.sector,\n  pais: $('Format data IA').first().json.pais,\n  html: \"\"\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        256
+      ],
+      "id": "69f1928e-3134-4d0b-b1fb-288d1ba739b3",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "output": "```json\n{\n  \"empresa\": \"Banco Popular Colombia\",\n  \"Nombre\": \"Werner Cruz\",\n  \"dominio\": \"bancopopular.com.co\",\n  \"pais\": \"Colombia\",\n  \"icebreaker\": \"Werner, genial tu impulso en la transformación digital del Banco Popular.\",\n  \"sector\": \"Servicios Financieros\"\n}\n```"
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-02-07T12:39:46.770Z",
+      "createdAt": "2026-02-07T12:39:46.770Z",
+      "role": "workflow:owner",
+      "workflowId": "mMKx0UeTMW56xB7k",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2026-01-27T14:36:01.232Z",
+      "createdAt": "2026-01-27T14:36:01.232Z",
+      "id": "mAgmoazsewm9AToE",
+      "name": "youtube"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-07T13:14:13.177Z",
+  "versionId": "d89b8027-d5a3-4aa9-987d-58c4b6dcd7b8"
+}
