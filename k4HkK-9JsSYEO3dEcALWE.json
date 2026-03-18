@@ -1,35 +1,23 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-12T12:38:36.000Z",
-    "createdAt": "2026-01-12T12:38:32.658Z",
-    "versionId": "90f55330-2920-46c5-84a2-cfdc3ee42f87",
+    "updatedAt": "2026-03-17T04:08:02.000Z",
+    "createdAt": "2026-03-17T04:07:28.707Z",
+    "versionId": "181bf45d-d0de-4722-a6dc-7d38c16717e4",
     "workflowId": "k4HkK-9JsSYEO3dEcALWE",
     "nodes": [
       {
         "parameters": {
-          "httpMethod": "POST",
-          "path": "c1b08458-55ba-41a2-8449-56f1ec8470ca",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2.1,
-        "position": [
-          0,
-          0
-        ],
-        "id": "d55a6038-fe94-4924-be43-41380b8cec0e",
-        "name": "Webhook",
-        "webhookId": "c1b08458-55ba-41a2-8449-56f1ec8470ca"
-      },
-      {
-        "parameters": {
-          "options": {}
+          "promptType": "define",
+          "text": "={{ $json.messages[0].text.body }}",
+          "options": {
+            "systemMessage": "=Eres un asistente para la empresa grupo Empodera"
+          }
         },
         "type": "@n8n/n8n-nodes-langchain.agent",
         "typeVersion": 3.1,
         "position": [
-          160,
+          288,
           0
         ],
         "id": "795ab39b-0069-4f2c-8a92-17727bd23e84",
@@ -37,26 +25,110 @@
       },
       {
         "parameters": {
+          "model": "qwen/qwq-32b",
           "options": {}
         },
-        "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
         "typeVersion": 1,
         "position": [
-          112,
-          192
+          160,
+          208
         ],
-        "id": "56a2cadd-8009-4f6f-86f4-15807458a3b4",
-        "name": "Groq Chat Model",
+        "id": "6d38c835-e275-4c6d-beb7-333f473e4a5a",
+        "name": "OpenRouter Chat Model",
         "credentials": {
-          "groqApi": {
-            "id": "huxsxNMqKLRQoZW9",
-            "name": "Groq account"
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sessionIdType": "customKey",
+          "sessionKey": "={{ $json.metadata.phone_number_id }}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
+        "position": [
+          320,
+          208
+        ],
+        "id": "d2b88944-27b7-42f2-b860-8489cbb9f213",
+        "name": "Simple Memory"
+      },
+      {
+        "parameters": {
+          "updates": [
+            "messages"
+          ],
+          "options": {}
+        },
+        "type": "n8n-nodes-base.whatsAppTrigger",
+        "typeVersion": 1,
+        "position": [
+          -128,
+          -176
+        ],
+        "id": "68dc777a-c065-4025-8862-ce17e3fed4ba",
+        "name": "WhatsApp Trigger",
+        "webhookId": "e6b60c46-5b40-4514-9464-f6483fc47758",
+        "credentials": {
+          "whatsAppTriggerApi": {
+            "id": "zywFedl5CIYfBVdV",
+            "name": "WhatsApp OAuth account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "send",
+          "phoneNumberId": "1046527318541470",
+          "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+          "textBody": "={{ $json.output }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.whatsApp",
+        "typeVersion": 1.1,
+        "position": [
+          704,
+          0
+        ],
+        "id": "7448897c-73c2-4588-8d57-9c4cb2a2dda3",
+        "name": "Send message",
+        "webhookId": "161ba60b-65d6-4721-a8bd-f3472ac795e7",
+        "credentials": {
+          "whatsAppApi": {
+            "id": "zN64FrchG3Us4NQd",
+            "name": "WhatsApp account"
           }
         }
       }
     ],
     "connections": {
-      "Webhook": {
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Simple Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "WhatsApp Trigger": {
         "main": [
           [
             {
@@ -67,12 +139,12 @@
           ]
         ]
       },
-      "Groq Chat Model": {
-        "ai_languageModel": [
+      "AI Agent": {
+        "main": [
           [
             {
-              "node": "AI Agent",
-              "type": "ai_languageModel",
+              "node": "Send message",
+              "type": "main",
               "index": 0
             }
           ]
@@ -80,13 +152,35 @@
       }
     },
     "authors": "Juan Castillo",
-    "name": "Version 90f55330",
+    "name": "Version 181bf45d",
     "description": "",
-    "autosaved": false
+    "autosaved": true
   },
-  "activeVersionId": "90f55330-2920-46c5-84a2-cfdc3ee42f87",
+  "activeVersionId": "181bf45d-d0de-4722-a6dc-7d38c16717e4",
   "connections": {
-    "Webhook": {
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
       "main": [
         [
           {
@@ -97,12 +191,12 @@
         ]
       ]
     },
-    "Groq Chat Model": {
-      "ai_languageModel": [
+    "AI Agent": {
+      "main": [
         [
           {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
+            "node": "Send message",
+            "type": "main",
             "index": 0
           }
         ]
@@ -115,32 +209,20 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "name": "My workflow",
+  "name": "EmpoderaBot",
   "nodes": [
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "c1b08458-55ba-41a2-8449-56f1ec8470ca",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        0,
-        0
-      ],
-      "id": "d55a6038-fe94-4924-be43-41380b8cec0e",
-      "name": "Webhook",
-      "webhookId": "c1b08458-55ba-41a2-8449-56f1ec8470ca"
-    },
-    {
-      "parameters": {
-        "options": {}
+        "promptType": "define",
+        "text": "={{ $json.messages[0].text.body }}",
+        "options": {
+          "systemMessage": "=Eres un asistente para la empresa grupo Empodera, simpre contesta n español, no es necesario que menciones que eres un asistente virtual a no ser que se le pregunte.\nsi no sabe el nombre del usuario, saluda y pregunta el nombre por ejemplo \"Hola 👋  \n¡Gracias por escribirnos!\nAntes de continuar, ¿me compartes tu nombre, por favor? Así puedo dirigirme a ti correctamente.\n•\tBrinda su nombre\"\n\nEn las siguiente interacion o una vez sabe el nombre se debe contestar algo asi como \n\"Es un placer, NOMBRE.\n\nTe cuento: la forma en la que trabajamos es bastante distinta a la mayoría de las asesorías que existen en el mercado. No creemos en soluciones genéricas ni en recomendaciones rápidas sin entender realmente lo que está pasando dentro de cada empresa.\n\nPor eso, me gustaría entender mejor tu situación actual, si recién vas a empezar o ya estás operando sin los resultados deseados, ¿Qué es lo que te preocupa y te motivó a contactarnos?\n\n•\tBrinda sus comentarios, problemas, expectativas\"\n"
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        160,
+        288,
         0
       ],
       "id": "795ab39b-0069-4f2c-8a92-17727bd23e84",
@@ -148,20 +230,82 @@
     },
     {
       "parameters": {
+        "model": "qwen/qwq-32b",
         "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        112,
-        192
+        160,
+        208
       ],
-      "id": "56a2cadd-8009-4f6f-86f4-15807458a3b4",
-      "name": "Groq Chat Model",
+      "id": "6d38c835-e275-4c6d-beb7-333f473e4a5a",
+      "name": "OpenRouter Chat Model",
       "credentials": {
-        "groqApi": {
-          "id": "huxsxNMqKLRQoZW9",
-          "name": "Groq account"
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.metadata.phone_number_id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        336,
+        256
+      ],
+      "id": "d2b88944-27b7-42f2-b860-8489cbb9f213",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        0
+      ],
+      "id": "68dc777a-c065-4025-8862-ce17e3fed4ba",
+      "name": "WhatsApp Trigger",
+      "webhookId": "e6b60c46-5b40-4514-9464-f6483fc47758",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "zywFedl5CIYfBVdV",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "1046527318541470",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        704,
+        0
+      ],
+      "id": "7448897c-73c2-4588-8d57-9c4cb2a2dda3",
+      "name": "Send message",
+      "webhookId": "161ba60b-65d6-4721-a8bd-f3472ac795e7",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "zN64FrchG3Us4NQd",
+          "name": "WhatsApp account"
         }
       }
     }
@@ -186,8 +330,15 @@
     }
   ],
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "updatedAt": "2026-03-17T03:19:51.836Z",
+      "createdAt": "2026-03-17T03:19:51.836Z",
+      "id": "tLeoVtVO4wjWQ3Xi",
+      "name": "Empodera"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2026-03-16T10:58:11.620Z",
-  "versionId": "90f55330-2920-46c5-84a2-cfdc3ee42f87"
+  "updatedAt": "2026-03-17T04:26:29.988Z",
+  "versionId": "d553071e-7661-44a7-a1be-606907ecbebc"
 }
