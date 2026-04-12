@@ -1,9 +1,9 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-03-24T05:06:58.000Z",
-    "createdAt": "2026-03-24T05:06:52.888Z",
-    "versionId": "730906f7-b830-4e27-aa1f-59d0e58f1d87",
+    "updatedAt": "2026-04-12T03:39:06.000Z",
+    "createdAt": "2026-04-12T03:39:02.942Z",
+    "versionId": "cd54ece0-0e4a-4eb4-a31d-fcb544c1aacc",
     "workflowId": "BvuOTXpoIjvXGlFy",
     "nodes": [
       {
@@ -15,8 +15,8 @@
         "type": "n8n-nodes-base.webhook",
         "typeVersion": 2.1,
         "position": [
-          -1936,
-          -128
+          -2592,
+          -112
         ],
         "id": "ebe54a9a-089c-49b5-960b-00ae1e26e0e9",
         "name": "Webhook",
@@ -25,16 +25,17 @@
       {
         "parameters": {
           "promptType": "define",
-          "text": "=contenido:{{ $json.messageConversation }}\nnombre de usuario:{{ $json.pushName }}",
+          "text": "=contenido: {{ $('Edit Fields').item.json.messageConversation }}\nnombre de usuário: {{ $('Code in JavaScript2').item.json.Nombre }}\nCliente nuevo: {{ $('Code in JavaScript2').item.json.ClienteNuevo }}",
+          "hasOutputParser": true,
           "options": {
-            "systemMessage": "Eres un asistente de ws"
+            "systemMessage": "# ROL Y CONTEXTO\nEres el asistente virtual de **Grupo Empodera**, especialista en emprendimiento, consultoría empresarial y educación financiera juvenil. Respondes siempre en español, con un tono cálido, profesional y orientado a soluciones. No menciones que eres un asistente virtual a menos que el usuario lo pregunte directamente.\n\n---\n\n# ESTADO DE LA CONVERSACIÓN\nAntes de responder, evalúa qué información ya tienes disponible en el contexto:\n- **¿Conoces el nombre del usuario?** → Si no, solicítalo.\n- **¿El usuario ya eligió un perfil?** → Si no, preséntalo.\n- **¿Estás dentro de un ramal?** → Sigue su flujo hasta completarlo.\n\n---\n\n# FLUJO PRINCIPAL\n\n## PASO 1 — Saludo y captura de nombre\nSi **no conoces el nombre** del usuario:\n\n> ¡Hola! Qué gusto saludarte. 👋\n> Para brindarte la información exacta y aprovechar al máximo este espacio, ¿podrías decirme tu nombre?\n\n## PASO 2 — Selección de perfil\nUna vez que **conoces el nombre**, presenta el menú de perfiles:\n\n> Un placer, {nombre}. 😊\n> Para dirigirte a la solución adecuada, selecciona la opción que mejor describa tu situación actual:\n>\n> 1. 🚀 **Emprendedor** — Tengo una idea que quiero validar.\n> 2. 🏢 **Empresario** — Negocio en marcha que requiere soporte o consultoría.\n> 3. 🏫 **Programa Colegios** — Finanzas y emprendimiento juvenil.\n\n---\n\n# RAMALES\n\n## RAMAL 1 — EMPRENDEDOR (Validación de idea)\n**Activar cuando:** el usuario seleccione la opción 1 o mencione que tiene una idea de negocio.\n\n> ¡Excelente iniciativa, {nombre}! Todo gran proyecto comienza con una validación sólida.\n>\n> Para que no pierdas tiempo ni dinero, preparé un video corto donde explico los **3 errores que hunden al 90% de los emprendedores** y cómo nuestra metodología te ayuda a evitarlos:\n>\n> 🎬 [Ver video ahora](https://www.youtube.com/watch?v=5JKaooTfC_s)\n>\n> Si estás listo para validar tu idea con nuestra guía, ¿cuál es tu mejor correo electrónico?\n\n**Siguiente acción:** capturar el correo del usuario y confirmar recepción.\n\n---\n\n## RAMAL 2 — EMPRESARIO (Consultoría estratégica C-Level)\n**Activar cuando:** el usuario seleccione la opción 2 o mencione que ya tiene un negocio en marcha.\n\n> Entendido, {nombre}. Para empresas en marcha, nuestro enfoque es de **Dirección y Consultoría Estratégica**.\n>\n> No creemos en soluciones genéricas. Para entender tus desafíos actuales —Finanzas, Operaciones, RRHH o Ventas— y plantearte un plan de acción concreto, necesitamos hacer un breve levantamiento de información.\n>\n> Este diagnóstico marcará un antes y un después en la gestión de tu negocio. Solo toma un par de minutos:\n>\n> 📊 [Iniciar Diagnóstico Gratuito →](#enlace-cuestionario)\n>\n> Una vez completado, recibirás el análisis preliminar directamente en tu correo.\n\n**Nota para n8n:** Este es el único ramal que redirige al cuestionario externo. No solicitar correo aquí; se captura en el formulario de diagnóstico.\n\n---\n\n## RAMAL 3 — PROGRAMA COLEGIOS (Educación financiera juvenil)\n**Activar cuando:** el usuario seleccione la opción 3 o mencione colegios, jóvenes o educación financiera.\n\n> ¡Qué importante labor, {nombre}! La formación en finanzas y emprendimiento para jóvenes es nuestro compromiso con las nuevas generaciones.\n>\n> Para enviarte la propuesta correcta, cuéntame: ¿cuál es tu rol?\n>\n> 1. 🏫 **Directivo o institución educativa** — Quiero una propuesta formal para mi colegio.\n> 2. 👪 **Padre o madre de familia** — Busco talleres o programas para mi hijo/a.\n\n### Sub-ramal 3A — Directivo\n> Perfecto. Para enviarte el brochure institucional con todos nuestros programas, ¿cuál es tu correo electrónico?\n\n### Sub-ramal 3B — Padre/Madre de familia\n> Con gusto. Aquí tienes información sobre nuestros talleres y programas extracurriculares: [enlace].\n> Si deseas más detalles o tienes preguntas, estoy aquí para ayudarte. 😊\n\n---\n\n# MANEJO DE CASOS ESPECIALES\n- **Respuesta ambigua:** Si el usuario no selecciona una opción clara, pregunta amablemente cuál de los tres perfiles se acerca más a su situación.\n- **Preguntas fuera del flujo:** Responde brevemente y redirige hacia el flujo principal.\n- **Correo inválido:** Si el formato del correo no es válido, solicita que lo verifique.\n- **Saludo sin contexto:** Si el usuario solo saluda, inicia desde el Paso 1.\n\n---\n\n# SALIDA OBLIGATORIA EN JSON\n**Siempre** incluye al final de cada respuesta un bloque JSON con el siguiente formato. Si un campo aún no se conoce, usa `null`.\n\n```json\n{\n  \"mensaje\": \"<texto exacto del mensaje enviado al usuario>\",\n  \"nombreCliente\": \"<nombre del cliente o null>\",\n  \"tipoCliente\": \"<Emprendedor | Empresario | Programa Colegios | null>\",\n  \"subtipoColegios\": \"<Directivo | Padre de Familia | null>\",\n  \"correo\": \"<correo del cliente o null>\",\n  \"etapa\": \"<saludo | seleccion_perfil | ramal_1 | ramal_2 | ramal_3 | completado>\"\n}\n```"
           }
         },
         "type": "@n8n/n8n-nodes-langchain.agent",
         "typeVersion": 3.1,
         "position": [
-          -800,
-          0
+          -464,
+          -176
         ],
         "id": "9f3b94c7-22c4-4d50-9bd0-ae682e733390",
         "name": "AI Agent"
@@ -46,8 +47,8 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
         "typeVersion": 1,
         "position": [
-          -816,
-          176
+          -560,
+          0
         ],
         "id": "acdd82ff-8598-40d8-bea2-13a3b8d162be",
         "name": "OpenRouter Chat Model",
@@ -61,14 +62,14 @@
       {
         "parameters": {
           "sessionIdType": "customKey",
-          "sessionKey": "={{ $json.remoteJid }}",
-          "contextWindowLength": 10
+          "sessionKey": "={{ $('Edit Fields').item.json.remoteJid }}",
+          "contextWindowLength": 12
         },
         "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
         "typeVersion": 1.3,
         "position": [
-          -704,
-          192
+          -432,
+          0
         ],
         "id": "183d1ba0-41d4-4e48-bf80-4d207d9220ce",
         "name": "Simple Memory"
@@ -102,8 +103,8 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          -1360,
-          -304
+          -1568,
+          -368
         ],
         "id": "79e87033-fb1e-4b63-ab5f-8d3601f386f0",
         "name": "Edit Fields"
@@ -112,15 +113,15 @@
         "parameters": {
           "resource": "messages-api",
           "instanceName": "=Empodera 432",
-          "remoteJid": "=",
-          "messageText": "={{ $json.output }}",
+          "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+          "messageText": "={{ $('Code in JavaScript').item.json.texto }}",
           "options_message": {}
         },
         "type": "n8n-nodes-evolution-api.evolutionApi",
         "typeVersion": 1,
         "position": [
-          -192,
-          0
+          240,
+          -176
         ],
         "id": "f3f59b82-12e8-4226-916f-487a26ab340c",
         "name": "Enviar texto",
@@ -130,18 +131,6 @@
             "name": "Evolution account"
           }
         }
-      },
-      {
-        "parameters": {},
-        "type": "n8n-nodes-base.wait",
-        "typeVersion": 1.1,
-        "position": [
-          -512,
-          0
-        ],
-        "id": "d3887a26-b21f-4136-b06b-c5ddf6b6f7d7",
-        "name": "Wait",
-        "webhookId": "d5eade81-fcb3-4cef-b19a-986548e0ef63"
       },
       {
         "parameters": {
@@ -220,30 +209,6 @@
                 },
                 "renameOutput": true,
                 "outputKey": "imagen"
-              },
-              {
-                "conditions": {
-                  "options": {
-                    "caseSensitive": true,
-                    "leftValue": "",
-                    "typeValidation": "strict",
-                    "version": 3
-                  },
-                  "conditions": [
-                    {
-                      "id": "06955a5e-0a08-4ca9-88d5-2b3cf3bccc15",
-                      "leftValue": "={{ $json.body.data.messageType }}",
-                      "rightValue": "=stickerMessage",
-                      "operator": {
-                        "type": "string",
-                        "operation": "equals"
-                      }
-                    }
-                  ],
-                  "combinator": "and"
-                },
-                "renameOutput": true,
-                "outputKey": "stickerMessage"
               }
             ]
           },
@@ -253,8 +218,8 @@
         "type": "n8n-nodes-base.switch",
         "typeVersion": 3.4,
         "position": [
-          -1760,
-          -144
+          -1968,
+          -160
         ],
         "id": "e29174ee-74d7-4dd0-af59-183e5dcf66a4",
         "name": "Switch"
@@ -293,8 +258,8 @@
         "type": "n8n-nodes-base.convertToFile",
         "typeVersion": 1.1,
         "position": [
-          -1360,
-          -96
+          -1344,
+          -128
         ],
         "id": "28618d76-7dad-4981-afe8-3dc6424a0a62",
         "name": "Convert to File"
@@ -308,8 +273,8 @@
         "type": "@n8n/n8n-nodes-langchain.openAi",
         "typeVersion": 2.1,
         "position": [
-          -1216,
-          -48
+          -1168,
+          -128
         ],
         "id": "a2df5f86-9ca3-4f09-a7d2-203d33121ef6",
         "name": "Transcribe a recording",
@@ -317,25 +282,6 @@
           "openAiApi": {
             "id": "HV97DoTFCLaZIPgd",
             "name": "OpenAi account"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "options": {}
-        },
-        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-        "typeVersion": 1,
-        "position": [
-          -928,
-          288
-        ],
-        "id": "fcdbbb59-794b-475d-bb80-a59fcf0ab8df",
-        "name": "OpenRouter Chat Model1",
-        "credentials": {
-          "openRouterApi": {
-            "id": "n9ENnMrxLhhgNjf8",
-            "name": "OpenRouter account"
           }
         }
       },
@@ -368,8 +314,8 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          -1072,
-          0
+          -944,
+          -128
         ],
         "id": "ffb29559-999f-4560-b607-e0d6d4f9bfbe",
         "name": "Edit Fields1"
@@ -384,8 +330,8 @@
         "type": "n8n-nodes-evolution-api.evolutionApi",
         "typeVersion": 1,
         "position": [
-          -1504,
-          16
+          -1520,
+          112
         ],
         "id": "4d85d94c-f630-43b7-809b-379fd5f2ecb6",
         "name": "Obter m dia em base",
@@ -406,7 +352,7 @@
         "typeVersion": 1.1,
         "position": [
           -1360,
-          80
+          112
         ],
         "id": "f1b4b0fc-5542-45e4-8ea5-de03e929a095",
         "name": "Convert to File1"
@@ -428,8 +374,8 @@
         "type": "@n8n/n8n-nodes-langchain.openAi",
         "typeVersion": 2.1,
         "position": [
-          -1200,
-          128
+          -1184,
+          112
         ],
         "id": "3889feb8-5d6b-4dfe-a0d3-1084daad6bb2",
         "name": "Analyze image",
@@ -453,7 +399,7 @@
               {
                 "id": "31446eaf-7193-4341-8fa7-04d4588a2061",
                 "name": "messageConversation",
-                "value": "={{ $json.text }}",
+                "value": "={{ $json['0'].content[0].text }}",
                 "type": "string"
               },
               {
@@ -469,11 +415,1212 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          -1056,
-          160
+          -944,
+          112
         ],
         "id": "7f52d343-ff2f-4d6b-b29b-4aeddc758edb",
         "name": "Edit Fields2"
+      },
+      {
+        "parameters": {
+          "jsCode": "const texto = $input.first().json.output.mensaje; \n\n// Contar palabras\nconst palabras = texto.trim().split(/\\s+/).filter(p => p.length > 0);\nconst totalPalabras = palabras.length;\n\n// Calcular pausa simulando escritura humana\n// Promedio humano: ~40 palabras por minuto\nconst palabrasPorMinuto = 40;\nconst milisegundosPorPalabra = (60 / palabrasPorMinuto) * 1000; // 1500ms por palabra\n\n// Tiempo base de \"pensar antes de responder\" (1 a 3 segundos)\nconst tiempoBase = Math.floor(Math.random() * 2000) + 1000;\n\n// Pequeña variación aleatoria para que no sea robótico (±20%)\nconst variacion = 1 + (Math.random() * 0.4 - 0.2);\n\nconst pausaMs = Math.round((totalPalabras * milisegundosPorPalabra + tiempoBase) * variacion);\n\n// Limite máximo de 15 segundos para no esperar demasiado\nconst pausaFinal = Math.min(pausaMs, 15000);\n\n// Hacer la pausa\nawait new Promise(resolve => setTimeout(resolve, pausaFinal));\n\nconst nombreCliente = $input.first().json.output.nombreCliente;\nconst tipoCliente = $input.first().json.output.tipoCliente;\nconst correo = $input.first().json.output.correo\nconst telefono= $('Code in JavaScript2').first().json.Telefono;\n\nreturn [{\n  json: {\n    texto,\n    nombreCliente,\n    tipoCliente,\n    correo,\n    telefono,\n    total_palabras: totalPalabras,\n    pausa_aplicada_ms: pausaFinal,\n    pausa_aplicada_seg: (pausaFinal / 1000).toFixed(2)\n  }\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -192,
+          -176
+        ],
+        "id": "efa37f04-5ae4-4454-926b-6e4a6d360dc8",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "content": "#\n## Tororial :\nhttps://youtu.be/HcIvsNy6jsM?si=5-0b3cM6SXI0ro64 \nhttps://youtu.be/aTmvcvp-XYQ?si=ihjS4SovTdiR58fw",
+          "height": 224,
+          "width": 512
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -2112,
+          48
+        ],
+        "typeVersion": 1,
+        "id": "39ecd2fe-e2ab-40e9-86ec-ec0b020291ca",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "resource": "chat-api",
+          "operation": "read-messages",
+          "instanceName": "Empodera 432",
+          "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+          "messageId": "={{ $('Webhook').item.json.body.data.key.id }}"
+        },
+        "type": "n8n-nodes-evolution-api.evolutionApi",
+        "typeVersion": 1,
+        "position": [
+          -48,
+          -176
+        ],
+        "id": "1da689e9-0403-4ca3-add7-65864ea5871b",
+        "name": "Marcar mensagens como lidas",
+        "credentials": {
+          "evolutionApi": {
+            "id": "C1oZNpeQbRhorvul",
+            "name": "Evolution account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "resource": "chat-api",
+          "operation": "send-presence",
+          "instanceName": "Empodera 432",
+          "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+          "delay": "={{ $('Code in JavaScript').item.json.pausa_aplicada_ms }}"
+        },
+        "type": "n8n-nodes-evolution-api.evolutionApi",
+        "typeVersion": 1,
+        "position": [
+          96,
+          -176
+        ],
+        "id": "5dbcbc70-1945-42dd-a857-30dbff3843f5",
+        "name": "Enviar presen a",
+        "credentials": {
+          "evolutionApi": {
+            "id": "C1oZNpeQbRhorvul",
+            "name": "Evolution account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "// Obtener el valor de remoteJid\nconst remoteJid = $input.first().json.remoteJid;\n\n// Extraer el número (todo lo que está antes de \"@\")\nconst phoneNumber = remoteJid.split('@')[0];\n\n// Devolver el resultado en el formato que espera n8n\nreturn [{\n  json: {\n    phoneNumber: phoneNumber\n  }\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1408,
+          -368
+        ],
+        "id": "0b861077-45a6-4819-b134-c442f7463f35",
+        "name": "Code in JavaScript1"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Telefono": "={{ $('Code in JavaScript1').item.json.phoneNumber }}",
+              "Nickname": "={{ $('Edit Fields').item.json.pushName }}",
+              "Fecha ultimo Contacto": "={{ $now.toFormat('yyyy-MM-dd') }}"
+            },
+            "matchingColumns": [
+              "Telefono"
+            ],
+            "schema": [
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Nickname",
+                "displayName": "Nickname",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha 1er contacto",
+                "displayName": "Fecha 1er contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha ultimo Contacto",
+                "displayName": "Fecha ultimo Contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "correo",
+                "displayName": "correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Tipo",
+                "displayName": "Tipo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -1264,
+          -368
+        ],
+        "id": "ee221144-0118-4d9c-965c-b9357215e504",
+        "name": "Append or update row in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Telefono",
+                "lookupValue": "={{ $json.Telefono }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -1104,
+          -368
+        ],
+        "id": "58b606c0-7547-4894-b46d-603acf2e00c4",
+        "name": "Get row(s) in sheet",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const item = $input.first().json;\nconst fechaContacto = item['Fecha 1er contacto'];\n\n// true si viene null, undefined, vacío o solo espacios\nconst ClienteNuevo = (\n  fechaContacto === null || \n  fechaContacto === undefined || \n  String(fechaContacto).trim() === ''\n);\n\nreturn [{\n  json: {\n    ...item,\n    ClienteNuevo\n  }\n}];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -944,
+          -368
+        ],
+        "id": "261f5163-c2e9-481e-a785-9aa93cfbf269",
+        "name": "Code in JavaScript2"
+      },
+      {
+        "parameters": {
+          "operation": "appendOrUpdate",
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Fecha 1er contacto": "={{ $now.setZone('America/Bogota').toFormat('yyyy-MM-dd') }}",
+              "Telefono": "={{ $json.Telefono }}"
+            },
+            "matchingColumns": [
+              "Telefono"
+            ],
+            "schema": [
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Nickname",
+                "displayName": "Nickname",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha 1er contacto",
+                "displayName": "Fecha 1er contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fecha ultimo Contacto",
+                "displayName": "Fecha ultimo Contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "correo",
+                "displayName": "correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Tipo",
+                "displayName": "Tipo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          -624,
+          -384
+        ],
+        "id": "edc360dd-264a-4ab8-89a8-9c50a1a164e7",
+        "name": "Append or update row in sheet1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "8b42b8f4-b46a-490f-bcdf-bd00ec4b3d43",
+                "leftValue": "={{ $json.ClienteNuevo }}",
+                "rightValue": true,
+                "operator": {
+                  "type": "boolean",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -816,
+          -368
+        ],
+        "id": "84aadb4b-4555-4a30-831f-8fe7afc770b0",
+        "name": "If"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "9fff71e9-843c-4da1-a76c-01a76eba1a35",
+                "leftValue": "={{ $json.body.event }}",
+                "rightValue": "messages.upsert",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -2208,
+          -128
+        ],
+        "id": "8146fcf8-0abb-4d6f-895d-1fcb75f5cac2",
+        "name": "If1"
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"mensaje\": \"<texto exacto del mensaje enviado al usuario>\",\n  \"nombreCliente\": \"<nombre del cliente o null>\",\n  \"tipoCliente\": \"<Emprendedor | Empresario | Programa Colegios | null>\",\n  \"subtipoColegios\": \"<Directivo | Padre de Familia | null>\",\n  \"correo\": \"<correo del cliente o null>\",\n  \"etapa\": \"<saludo | seleccion_perfil | ramal_1 | ramal_2 | ramal_3 | completado>\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          -304,
+          0
+        ],
+        "id": "d52f3552-c83c-49b6-b555-6167b61c0be5",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.Nombre }}",
+                      "rightValue": "={{ $('Code in JavaScript').item.json.nombreCliente }}",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "655a1bf0-b899-4442-ba34-fb36db6498bb"
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "noombreUpdate"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "31f36318-b6fb-477c-adda-5a62917fc688",
+                      "leftValue": "={{ $json.Tipo }}",
+                      "rightValue": "={{ $('Code in JavaScript').item.json.tipoCliente }}",
+                      "operator": {
+                        "type": "string",
+                        "operation": "notEquals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "tipoClienteUpdate"
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 3
+                  },
+                  "conditions": [
+                    {
+                      "id": "b9a17f8d-6df1-4dfa-bd8b-30ae081f8a05",
+                      "leftValue": "={{ $json.correo }}",
+                      "rightValue": "={{ $('Code in JavaScript').item.json.correo }}",
+                      "operator": {
+                        "type": "string",
+                        "operation": "notEquals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                },
+                "renameOutput": true,
+                "outputKey": "correoUpdate"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.4,
+        "position": [
+          640,
+          -176
+        ],
+        "id": "da1fe902-adc6-4a0b-8dc8-d7cffcbf2a9b",
+        "name": "Switch1"
+      },
+      {
+        "parameters": {
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "filtersUI": {
+            "values": [
+              {
+                "lookupColumn": "Telefono",
+                "lookupValue": "={{ $('Code in JavaScript').item.json.telefono }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          448,
+          -176
+        ],
+        "id": "7ead6211-1c0b-471f-bc42-ffc1480e2b1e",
+        "name": "Get row(s) in sheet1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Telefono": "={{ $('Code in JavaScript').item.json.telefono }}",
+              "Nombre": "={{ $('Code in JavaScript').item.json.nombreCliente }}"
+            },
+            "matchingColumns": [
+              "Telefono"
+            ],
+            "schema": [
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Nickname",
+                "displayName": "Nickname",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Fecha 1er contacto",
+                "displayName": "Fecha 1er contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha ultimo Contacto",
+                "displayName": "Fecha ultimo Contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "correo",
+                "displayName": "correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Tipo",
+                "displayName": "Tipo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          960,
+          -352
+        ],
+        "id": "10490de1-ad66-42a5-8106-90f40f24d12d",
+        "name": "Update nombre",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Telefono": "={{ $('Code in JavaScript').item.json.telefono }}",
+              "Tipo": "={{ $('Code in JavaScript').item.json.tipoCliente }}"
+            },
+            "matchingColumns": [
+              "Telefono"
+            ],
+            "schema": [
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Nickname",
+                "displayName": "Nickname",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha 1er contacto",
+                "displayName": "Fecha 1er contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha ultimo Contacto",
+                "displayName": "Fecha ultimo Contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "correo",
+                "displayName": "correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Tipo",
+                "displayName": "Tipo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          960,
+          -176
+        ],
+        "id": "20023e68-14ec-4d4c-ad48-f0aa097e34cb",
+        "name": "Update tipoCliente",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "update",
+          "documentId": {
+            "__rl": true,
+            "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+            "mode": "list",
+            "cachedResultName": "CRM_EMPODERA",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "CRM",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Telefono": "={{ $('Code in JavaScript').item.json.telefono }}",
+              "correo": "={{ $('Code in JavaScript').item.json.correo }}"
+            },
+            "matchingColumns": [
+              "Telefono"
+            ],
+            "schema": [
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Nickname",
+                "displayName": "Nickname",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha 1er contacto",
+                "displayName": "Fecha 1er contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fecha ultimo Contacto",
+                "displayName": "Fecha ultimo Contacto",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Fase",
+                "displayName": "Fase",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "correo",
+                "displayName": "correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Tipo",
+                "displayName": "Tipo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Propietario de la relación",
+                "displayName": "Propietario de la relación",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Probabilidad",
+                "displayName": "Probabilidad",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "Notas",
+                "displayName": "Notas",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": true
+              },
+              {
+                "id": "row_number",
+                "displayName": "row_number",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "number",
+                "canBeUsedToMatch": true,
+                "readOnly": true,
+                "removed": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4.7,
+        "position": [
+          960,
+          -16
+        ],
+        "id": "5aba6844-e172-467c-a6d1-4186a187dd33",
+        "name": "Update tipoCliente1",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "e9240084-0b56-4def-95b1-a37d2e5c0a9c",
+                "leftValue": "={{ $json.body.data.key.remoteJid }}",
+                "rightValue": "573185216099",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              },
+              {
+                "id": "0dfd179e-9e8f-424b-a949-f25beea346f8",
+                "leftValue": "={{ $json.body.data.key.senderPn }}",
+                "rightValue": "573165296900",
+                "operator": {
+                  "type": "string",
+                  "operation": "contains"
+                }
+              }
+            ],
+            "combinator": "or"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          -2400,
+          -112
+        ],
+        "id": "f9abeb1e-9804-40ae-8a1c-fcf1f4639ed9",
+        "name": "If2"
       }
     ],
     "connections": {
@@ -481,7 +1628,7 @@
         "main": [
           [
             {
-              "node": "Switch",
+              "node": "If2",
               "type": "main",
               "index": 0
             }
@@ -514,7 +1661,7 @@
         "main": [
           [
             {
-              "node": "AI Agent",
+              "node": "Code in JavaScript1",
               "type": "main",
               "index": 0
             }
@@ -525,18 +1672,7 @@
         "main": [
           [
             {
-              "node": "Wait",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Wait": {
-        "main": [
-          [
-            {
-              "node": "Enviar texto",
+              "node": "Code in JavaScript",
               "type": "main",
               "index": 0
             }
@@ -565,8 +1701,7 @@
               "type": "main",
               "index": 0
             }
-          ],
-          []
+          ]
         ]
       },
       "Obter m dia em base64": {
@@ -645,20 +1780,217 @@
             }
           ]
         ]
+      },
+      "Edit Fields2": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Marcar mensagens como lidas",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Marcar mensagens como lidas": {
+        "main": [
+          [
+            {
+              "node": "Enviar presen a",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Enviar texto": {
+        "main": [
+          [
+            {
+              "node": "Get row(s) in sheet1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Enviar presen a": {
+        "main": [
+          [
+            {
+              "node": "Enviar texto",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript1": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append or update row in sheet": {
+        "main": [
+          [
+            {
+              "node": "Get row(s) in sheet",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript2": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append or update row in sheet1": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Append or update row in sheet1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If1": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch1": {
+        "main": [
+          [
+            {
+              "node": "Update nombre",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Update tipoCliente",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Update tipoCliente1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get row(s) in sheet1": {
+        "main": [
+          [
+            {
+              "node": "Switch1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If2": {
+        "main": [
+          [
+            {
+              "node": "If1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "authors": "Juan Castillo",
-    "name": "Version 730906f7",
+    "name": "Version cd54ece0",
     "description": "",
     "autosaved": true
   },
-  "activeVersionId": "730906f7-b830-4e27-aa1f-59d0e58f1d87",
+  "activeVersionId": "cd54ece0-0e4a-4eb4-a31d-fcb544c1aacc",
   "connections": {
     "Webhook": {
       "main": [
         [
           {
-            "node": "Switch",
+            "node": "If2",
             "type": "main",
             "index": 0
           }
@@ -691,7 +2023,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Code in JavaScript1",
             "type": "main",
             "index": 0
           }
@@ -703,17 +2035,6 @@
         [
           {
             "node": "Code in JavaScript",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
-            "node": "Enviar texto",
             "type": "main",
             "index": 0
           }
@@ -739,13 +2060,6 @@
         [
           {
             "node": "Obter m dia em base",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Marcar mensagens como lidas",
             "type": "main",
             "index": 0
           }
@@ -844,7 +2158,182 @@
       "main": [
         [
           {
-            "node": "Wait",
+            "node": "Marcar mensagens como lidas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar mensagens como lidas": {
+      "main": [
+        [
+          {
+            "node": "Enviar presen a",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar presen a": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Update nombre",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update tipoCliente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update tipoCliente1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "If1",
             "type": "main",
             "index": 0
           }
@@ -869,8 +2358,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1936,
-        -128
+        -2592,
+        -112
       ],
       "id": "ebe54a9a-089c-49b5-960b-00ae1e26e0e9",
       "name": "Webhook",
@@ -879,16 +2368,17 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=contenido:{{ $json.messageConversation }}\nnombre de usuario:{{ $json.pushName }}",
+        "text": "=contenido: {{ $('Edit Fields').item.json.messageConversation }}\nnombre de usuário: {{ $('Code in JavaScript2').item.json.Nombre }}\nCliente nuevo: {{ $('Code in JavaScript2').item.json.ClienteNuevo }}",
+        "hasOutputParser": true,
         "options": {
-          "systemMessage": "Eres un asistente de ws"
+          "systemMessage": "# ROL Y CONTEXTO\nEres el asistente virtual de **Grupo Empodera**, especialista en emprendimiento, consultoría empresarial y educación financiera juvenil. Respondes siempre en español, con un tono cálido, profesional y orientado a soluciones. No menciones que eres un asistente virtual a menos que el usuario lo pregunte directamente.\n\n---\n\n# ESTADO DE LA CONVERSACIÓN\nAntes de responder, evalúa qué información ya tienes disponible en el contexto:\n- **¿Conoces el nombre del usuario?** → Si no, solicítalo.\n- **¿El usuario ya eligió un perfil?** → Si no, preséntalo.\n- **¿Estás dentro de un ramal?** → Sigue su flujo hasta completarlo.\n\n---\n\n# FLUJO PRINCIPAL\n\n## PASO 1 — Saludo y captura de nombre\nSi **no conoces el nombre** del usuario:\n\n> ¡Hola! Qué gusto saludarte. 👋\n> Para brindarte la información exacta y aprovechar al máximo este espacio, ¿podrías decirme tu nombre?\n\n## PASO 2 — Selección de perfil\nUna vez que **conoces el nombre**, presenta el menú de perfiles:\n\n> Un placer, {nombre}. 😊\n> Para dirigirte a la solución adecuada, selecciona la opción que mejor describa tu situación actual:\n>\n> 1. 🚀 **Emprendedor** — Tengo una idea que quiero validar.\n> 2. 🏢 **Empresario** — Negocio en marcha que requiere soporte o consultoría.\n> 3. 🏫 **Programa Colegios** — Finanzas y emprendimiento juvenil.\n\n---\n\n# RAMALES\n\n## RAMAL 1 — EMPRENDEDOR (Validación de idea)\n**Activar cuando:** el usuario seleccione la opción 1 o mencione que tiene una idea de negocio.\n\n> ¡Excelente iniciativa, {nombre}! Todo gran proyecto comienza con una validación sólida.\n>\n> Para que no pierdas tiempo ni dinero, preparé un video corto donde explico los **3 errores que hunden al 90% de los emprendedores** y cómo nuestra metodología te ayuda a evitarlos:\n>\n> 🎬 [Ver video ahora](https://www.youtube.com/watch?v=5JKaooTfC_s)\n>\n> Si estás listo para validar tu idea con nuestra guía, ¿cuál es tu mejor correo electrónico?\n\n**Siguiente acción:** capturar el correo del usuario y confirmar recepción.\n\n---\n\n## RAMAL 2 — EMPRESARIO (Consultoría estratégica C-Level)\n**Activar cuando:** el usuario seleccione la opción 2 o mencione que ya tiene un negocio en marcha.\n\n> Entendido, {nombre}. Para empresas en marcha, nuestro enfoque es de **Dirección y Consultoría Estratégica**.\n>\n> No creemos en soluciones genéricas. Para entender tus desafíos actuales —Finanzas, Operaciones, RRHH o Ventas— y plantearte un plan de acción concreto, necesitamos hacer un breve levantamiento de información.\n>\n> Este diagnóstico marcará un antes y un después en la gestión de tu negocio. Solo toma un par de minutos:\n>\n> 📊 [Iniciar Diagnóstico Gratuito →](#enlace-cuestionario)\n>\n> Una vez completado, recibirás el análisis preliminar directamente en tu correo.\n\n**Nota para n8n:** Este es el único ramal que redirige al cuestionario externo. No solicitar correo aquí; se captura en el formulario de diagnóstico.\n\n---\n\n## RAMAL 3 — PROGRAMA COLEGIOS (Educación financiera juvenil)\n**Activar cuando:** el usuario seleccione la opción 3 o mencione colegios, jóvenes o educación financiera.\n\n> ¡Qué importante labor, {nombre}! La formación en finanzas y emprendimiento para jóvenes es nuestro compromiso con las nuevas generaciones.\n>\n> Para enviarte la propuesta correcta, cuéntame: ¿cuál es tu rol?\n>\n> 1. 🏫 **Directivo o institución educativa** — Quiero una propuesta formal para mi colegio.\n> 2. 👪 **Padre o madre de familia** — Busco talleres o programas para mi hijo/a.\n\n### Sub-ramal 3A — Directivo\n> Perfecto. Para enviarte el brochure institucional con todos nuestros programas, ¿cuál es tu correo electrónico?\n\n### Sub-ramal 3B — Padre/Madre de familia\n> Con gusto. Aquí tienes información sobre nuestros talleres y programas extracurriculares: [enlace].\n> Si deseas más detalles o tienes preguntas, estoy aquí para ayudarte. 😊\n\n---\n\n# MANEJO DE CASOS ESPECIALES\n- **Respuesta ambigua:** Si el usuario no selecciona una opción clara, pregunta amablemente cuál de los tres perfiles se acerca más a su situación.\n- **Preguntas fuera del flujo:** Responde brevemente y redirige hacia el flujo principal.\n- **Correo inválido:** Si el formato del correo no es válido, solicita que lo verifique.\n- **Saludo sin contexto:** Si el usuario solo saluda, inicia desde el Paso 1.\n\n---\n\n# SALIDA OBLIGATORIA EN JSON\n**Siempre** incluye al final de cada respuesta un bloque JSON con el siguiente formato. Si un campo aún no se conoce, usa `null`.\n\n```json\n{\n  \"mensaje\": \"<texto exacto del mensaje enviado al usuario>\",\n  \"nombreCliente\": \"<nombre del cliente o null>\",\n  \"tipoCliente\": \"<Emprendedor | Empresario | Programa Colegios | null>\",\n  \"subtipoColegios\": \"<Directivo | Padre de Familia | null>\",\n  \"correo\": \"<correo del cliente o null>\",\n  \"etapa\": \"<saludo | seleccion_perfil | ramal_1 | ramal_2 | ramal_3 | completado>\"\n}\n```"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -800,
-        0
+        -464,
+        -176
       ],
       "id": "9f3b94c7-22c4-4d50-9bd0-ae682e733390",
       "name": "AI Agent"
@@ -900,8 +2390,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -816,
-        176
+        -560,
+        0
       ],
       "id": "acdd82ff-8598-40d8-bea2-13a3b8d162be",
       "name": "OpenRouter Chat Model",
@@ -915,14 +2405,14 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.remoteJid }}",
-        "contextWindowLength": 10
+        "sessionKey": "={{ $('Edit Fields').item.json.remoteJid }}",
+        "contextWindowLength": 12
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -704,
-        192
+        -432,
+        0
       ],
       "id": "183d1ba0-41d4-4e48-bf80-4d207d9220ce",
       "name": "Simple Memory"
@@ -956,8 +2446,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1360,
-        -304
+        -1568,
+        -368
       ],
       "id": "79e87033-fb1e-4b63-ab5f-8d3601f386f0",
       "name": "Edit Fields"
@@ -967,14 +2457,14 @@
         "resource": "messages-api",
         "instanceName": "=Empodera 432",
         "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
-        "messageText": "={{ $json.output }}",
+        "messageText": "={{ $('Code in JavaScript').item.json.texto }}",
         "options_message": {}
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        -192,
-        0
+        240,
+        -176
       ],
       "id": "f3f59b82-12e8-4226-916f-487a26ab340c",
       "name": "Enviar texto",
@@ -984,20 +2474,6 @@
           "name": "Evolution account"
         }
       }
-    },
-    {
-      "parameters": {
-        "amount": "={{ $json.total_palabras }}"
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        -336,
-        0
-      ],
-      "id": "d3887a26-b21f-4136-b06b-c5ddf6b6f7d7",
-      "name": "Wait",
-      "webhookId": "d5eade81-fcb3-4cef-b19a-986548e0ef63"
     },
     {
       "parameters": {
@@ -1076,30 +2552,6 @@
               },
               "renameOutput": true,
               "outputKey": "imagen"
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "id": "06955a5e-0a08-4ca9-88d5-2b3cf3bccc15",
-                    "leftValue": "={{ $json.body.data.messageType }}",
-                    "rightValue": "=stickerMessage",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              },
-              "renameOutput": true,
-              "outputKey": "stickerMessage"
             }
           ]
         },
@@ -1109,8 +2561,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        -1760,
-        -144
+        -1968,
+        -160
       ],
       "id": "e29174ee-74d7-4dd0-af59-183e5dcf66a4",
       "name": "Switch"
@@ -1149,8 +2601,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -1360,
-        -96
+        -1344,
+        -128
       ],
       "id": "28618d76-7dad-4981-afe8-3dc6424a0a62",
       "name": "Convert to File"
@@ -1164,8 +2616,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
       "position": [
-        -1216,
-        -48
+        -1168,
+        -128
       ],
       "id": "a2df5f86-9ca3-4f09-a7d2-203d33121ef6",
       "name": "Transcribe a recording",
@@ -1205,8 +2657,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1072,
-        0
+        -944,
+        -128
       ],
       "id": "ffb29559-999f-4560-b607-e0d6d4f9bfbe",
       "name": "Edit Fields1"
@@ -1221,8 +2673,8 @@
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        -1504,
-        16
+        -1520,
+        112
       ],
       "id": "4d85d94c-f630-43b7-809b-379fd5f2ecb6",
       "name": "Obter m dia em base",
@@ -1243,7 +2695,7 @@
       "typeVersion": 1.1,
       "position": [
         -1360,
-        80
+        112
       ],
       "id": "f1b4b0fc-5542-45e4-8ea5-de03e929a095",
       "name": "Convert to File1"
@@ -1265,8 +2717,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
       "position": [
-        -1200,
-        128
+        -1184,
+        112
       ],
       "id": "3889feb8-5d6b-4dfe-a0d3-1084daad6bb2",
       "name": "Analyze image",
@@ -1306,37 +2758,55 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1056,
-        160
+        -944,
+        112
       ],
       "id": "7f52d343-ff2f-4d6b-b29b-4aeddc758edb",
       "name": "Edit Fields2"
     },
     {
       "parameters": {
-        "jsCode": "const texto = $input.first().json.output; // cambia por tu campo\n\n// Contar palabras\nconst palabras = texto.trim().split(/\\s+/).filter(p => p.length > 0);\nconst totalPalabras = palabras.length;\n\n// Calcular pausa simulando escritura humana\n// Promedio humano: ~40 palabras por minuto\nconst palabrasPorMinuto = 40;\nconst milisegundosPorPalabra = (60 / palabrasPorMinuto) * 1000; // 1500ms por palabra\n\n// Tiempo base de \"pensar antes de responder\" (1 a 3 segundos)\nconst tiempoBase = Math.floor(Math.random() * 2000) + 1000;\n\n// Pequeña variación aleatoria para que no sea robótico (±20%)\nconst variacion = 1 + (Math.random() * 0.4 - 0.2);\n\nconst pausaMs = Math.round((totalPalabras * milisegundosPorPalabra + tiempoBase) * variacion);\n\n// Limite máximo de 15 segundos para no esperar demasiado\nconst pausaFinal = Math.min(pausaMs, 15000);\n\n// Hacer la pausa\nawait new Promise(resolve => setTimeout(resolve, pausaFinal));\n\nreturn [{\n  json: {\n    texto,\n    total_palabras: totalPalabras,\n    pausa_aplicada_ms: pausaFinal,\n    pausa_aplicada_seg: (pausaFinal / 1000).toFixed(2)\n  }\n}];"
+        "jsCode": "const texto = $input.first().json.output.mensaje; \n\n// Contar palabras\nconst palabras = texto.trim().split(/\\s+/).filter(p => p.length > 0);\nconst totalPalabras = palabras.length;\n\n// Calcular pausa simulando escritura humana\n// Promedio humano: ~40 palabras por minuto\nconst palabrasPorMinuto = 40;\nconst milisegundosPorPalabra = (60 / palabrasPorMinuto) * 1000; // 1500ms por palabra\n\n// Tiempo base de \"pensar antes de responder\" (1 a 3 segundos)\nconst tiempoBase = Math.floor(Math.random() * 2000) + 1000;\n\n// Pequeña variación aleatoria para que no sea robótico (±20%)\nconst variacion = 1 + (Math.random() * 0.4 - 0.2);\n\nconst pausaMs = Math.round((totalPalabras * milisegundosPorPalabra + tiempoBase) * variacion);\n\n// Limite máximo de 15 segundos para no esperar demasiado\nconst pausaFinal = Math.min(pausaMs, 15000);\n\n// Hacer la pausa\nawait new Promise(resolve => setTimeout(resolve, pausaFinal));\n\nconst nombreCliente = $input.first().json.output.nombreCliente;\nconst tipoCliente = $input.first().json.output.tipoCliente;\nconst correo = $input.first().json.output.correo\nconst telefono= $('Code in JavaScript2').first().json.Telefono;\n\nreturn [{\n  json: {\n    texto,\n    nombreCliente,\n    tipoCliente,\n    correo,\n    telefono,\n    total_palabras: totalPalabras,\n    pausa_aplicada_ms: pausaFinal,\n    pausa_aplicada_seg: (pausaFinal / 1000).toFixed(2)\n  }\n}];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -448,
-        0
+        -192,
+        -176
       ],
       "id": "efa37f04-5ae4-4454-926b-6e4a6d360dc8",
       "name": "Code in JavaScript"
     },
     {
       "parameters": {
+        "content": "#\n## Tororial :\nhttps://youtu.be/HcIvsNy6jsM?si=5-0b3cM6SXI0ro64 \nhttps://youtu.be/aTmvcvp-XYQ?si=ihjS4SovTdiR58fw",
+        "height": 224,
+        "width": 512
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2112,
+        48
+      ],
+      "typeVersion": 1,
+      "id": "39ecd2fe-e2ab-40e9-86ec-ec0b020291ca",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
         "resource": "chat-api",
-        "operation": "read-messages"
+        "operation": "read-messages",
+        "instanceName": "Empodera 432",
+        "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+        "messageId": "={{ $('Webhook').item.json.body.data.key.id }}"
       },
       "type": "n8n-nodes-evolution-api.evolutionApi",
       "typeVersion": 1,
       "position": [
-        -1520,
-        208
+        -48,
+        -176
       ],
-      "id": "c570170c-881b-451b-8a0e-0da5f94088f1",
+      "id": "1da689e9-0403-4ca3-add7-65864ea5871b",
       "name": "Marcar mensagens como lidas",
       "credentials": {
         "evolutionApi": {
@@ -1344,10 +2814,1231 @@
           "name": "Evolution account"
         }
       }
+    },
+    {
+      "parameters": {
+        "resource": "chat-api",
+        "operation": "send-presence",
+        "instanceName": "Empodera 432",
+        "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+        "delay": "={{ $('Code in JavaScript').item.json.pausa_aplicada_ms }}"
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -176
+      ],
+      "id": "5dbcbc70-1945-42dd-a857-30dbff3843f5",
+      "name": "Enviar presen a",
+      "credentials": {
+        "evolutionApi": {
+          "id": "C1oZNpeQbRhorvul",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener el valor de remoteJid\nconst remoteJid = $input.first().json.remoteJid;\n\n// Extraer el número (todo lo que está antes de \"@\")\nconst phoneNumber = remoteJid.split('@')[0];\n\n// Devolver el resultado en el formato que espera n8n\nreturn [{\n  json: {\n    phoneNumber: phoneNumber\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1408,
+        -368
+      ],
+      "id": "0b861077-45a6-4819-b134-c442f7463f35",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Telefono": "={{ $('Code in JavaScript1').item.json.phoneNumber }}",
+            "Nickname": "={{ $('Edit Fields').item.json.pushName }}",
+            "Fecha ultimo Contacto": "={{ $now.toFormat('yyyy-MM-dd') }}"
+          },
+          "matchingColumns": [
+            "Telefono"
+          ],
+          "schema": [
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nickname",
+              "displayName": "Nickname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha 1er contacto",
+              "displayName": "Fecha 1er contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha ultimo Contacto",
+              "displayName": "Fecha ultimo Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1264,
+        -368
+      ],
+      "id": "ee221144-0118-4d9c-965c-b9357215e504",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Telefono",
+              "lookupValue": "={{ $json.Telefono }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1104,
+        -368
+      ],
+      "id": "58b606c0-7547-4894-b46d-603acf2e00c4",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\nconst fechaContacto = item['Fecha 1er contacto'];\n\n// true si viene null, undefined, vacío o solo espacios\nconst ClienteNuevo = (\n  fechaContacto === null || \n  fechaContacto === undefined || \n  String(fechaContacto).trim() === ''\n);\n\nreturn [{\n  json: {\n    ...item,\n    ClienteNuevo\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -944,
+        -368
+      ],
+      "id": "261f5163-c2e9-481e-a785-9aa93cfbf269",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha 1er contacto": "={{ $now.setZone('America/Bogota').toFormat('yyyy-MM-dd') }}",
+            "Telefono": "={{ $json.Telefono }}"
+          },
+          "matchingColumns": [
+            "Telefono"
+          ],
+          "schema": [
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nickname",
+              "displayName": "Nickname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha 1er contacto",
+              "displayName": "Fecha 1er contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha ultimo Contacto",
+              "displayName": "Fecha ultimo Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -624,
+        -384
+      ],
+      "id": "edc360dd-264a-4ab8-89a8-9c50a1a164e7",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8b42b8f4-b46a-490f-bcdf-bd00ec4b3d43",
+              "leftValue": "={{ $json.ClienteNuevo }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -816,
+        -368
+      ],
+      "id": "84aadb4b-4555-4a30-831f-8fe7afc770b0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "9fff71e9-843c-4da1-a76c-01a76eba1a35",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "messages.upsert",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -2208,
+        -128
+      ],
+      "id": "8146fcf8-0abb-4d6f-895d-1fcb75f5cac2",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"mensaje\": \"<texto exacto del mensaje enviado al usuario>\",\n  \"nombreCliente\": \"<nombre del cliente o null>\",\n  \"tipoCliente\": \"<Emprendedor | Empresario | Programa Colegios | null>\",\n  \"subtipoColegios\": \"<Directivo | Padre de Familia | null>\",\n  \"correo\": \"<correo del cliente o null>\",\n  \"etapa\": \"<saludo | seleccion_perfil | ramal_1 | ramal_2 | ramal_3 | completado>\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "d52f3552-c83c-49b6-b555-6167b61c0be5",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Nombre }}",
+                    "rightValue": "={{ $('Code in JavaScript').item.json.nombreCliente }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "655a1bf0-b899-4442-ba34-fb36db6498bb"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "noombreUpdate"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "31f36318-b6fb-477c-adda-5a62917fc688",
+                    "leftValue": "={{ $json.Tipo }}",
+                    "rightValue": "={{ $('Code in JavaScript').item.json.tipoCliente }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "tipoClienteUpdate"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b9a17f8d-6df1-4dfa-bd8b-30ae081f8a05",
+                    "leftValue": "={{ $json.correo }}",
+                    "rightValue": "={{ $('Code in JavaScript').item.json.correo }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "correoUpdate"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        -176
+      ],
+      "id": "da1fe902-adc6-4a0b-8dc8-d7cffcbf2a9b",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Telefono",
+              "lookupValue": "={{ $('Code in JavaScript').item.json.telefono }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        -176
+      ],
+      "id": "7ead6211-1c0b-471f-bc42-ffc1480e2b1e",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Telefono": "={{ $('Code in JavaScript').item.json.telefono }}",
+            "Nombre": "={{ $('Code in JavaScript').item.json.nombreCliente }}"
+          },
+          "matchingColumns": [
+            "Telefono"
+          ],
+          "schema": [
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nickname",
+              "displayName": "Nickname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Fecha 1er contacto",
+              "displayName": "Fecha 1er contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha ultimo Contacto",
+              "displayName": "Fecha ultimo Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        960,
+        -352
+      ],
+      "id": "10490de1-ad66-42a5-8106-90f40f24d12d",
+      "name": "Update nombre",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Telefono": "={{ $('Code in JavaScript').item.json.telefono }}",
+            "Tipo": "={{ $('Code in JavaScript').item.json.tipoCliente }}"
+          },
+          "matchingColumns": [
+            "Telefono"
+          ],
+          "schema": [
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nickname",
+              "displayName": "Nickname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha 1er contacto",
+              "displayName": "Fecha 1er contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha ultimo Contacto",
+              "displayName": "Fecha ultimo Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        960,
+        -176
+      ],
+      "id": "20023e68-14ec-4d4c-ad48-f0aa097e34cb",
+      "name": "Update tipoCliente",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k",
+          "mode": "list",
+          "cachedResultName": "CRM_EMPODERA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EGj5tlvcGpJKVuHXYTzZzcaapvGQNfb24J-ybLJBb5k/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Telefono": "={{ $('Code in JavaScript').item.json.telefono }}",
+            "correo": "={{ $('Code in JavaScript').item.json.correo }}"
+          },
+          "matchingColumns": [
+            "Telefono"
+          ],
+          "schema": [
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nickname",
+              "displayName": "Nickname",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha 1er contacto",
+              "displayName": "Fecha 1er contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha ultimo Contacto",
+              "displayName": "Fecha ultimo Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Fase",
+              "displayName": "Fase",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo",
+              "displayName": "Tipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Propietario de la relación",
+              "displayName": "Propietario de la relación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Probabilidad",
+              "displayName": "Probabilidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notas",
+              "displayName": "Notas",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        960,
+        -16
+      ],
+      "id": "5aba6844-e172-467c-a6d1-4186a187dd33",
+      "name": "Update tipoCliente1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e9240084-0b56-4def-95b1-a37d2e5c0a9c",
+              "leftValue": "={{ $json.body.data.key.remoteJid }}",
+              "rightValue": "573185216099",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "0dfd179e-9e8f-424b-a949-f25beea346f8",
+              "leftValue": "={{ $json.body.data.key.senderPn }}",
+              "rightValue": "573165296900",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -2400,
+        -112
+      ],
+      "id": "f9abeb1e-9804-40ae-8a1c-fcf1f4639ed9",
+      "name": "If2"
     }
   ],
   "origin": "main",
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "auto-n8n.ywzal8.easypanel.host",
+            "user-agent": "axios/1.10.0",
+            "content-length": "1101",
+            "accept": "application/json, text/plain, */*",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "auto-n8n.ywzal8.easypanel.host",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "4640f3989141",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "Empodera 432",
+            "data": {
+              "key": {
+                "remoteJid": "573165296900@s.whatsapp.net",
+                "fromMe": false,
+                "id": "3EB073B75622CE6C9FD96B",
+                "senderPn": "573165296900@s.whatsapp.net",
+                "previousRemoteJid": "62831110136052@lid"
+              },
+              "pushName": "Juanes",
+              "status": "DELIVERY_ACK",
+              "message": {
+                "conversation": "hola",
+                "messageContextInfo": {
+                  "deviceListMetadata": {
+                    "senderKeyHash": "Sm9RA9cwIH7caQ==",
+                    "senderTimestamp": "1775162436",
+                    "senderAccountType": "E2EE",
+                    "receiverAccountType": "E2EE",
+                    "recipientKeyHash": "tcmv3i3OB+CVpg==",
+                    "recipientTimestamp": "1774308112"
+                  },
+                  "deviceListMetadataVersion": 2,
+                  "messageSecret": "0Op92yDYgR3Ki49TieZGX6y/UQuTBvW+seTsxcxM9Q8=",
+                  "limitSharingV2": {
+                    "trigger": "UNKNOWN",
+                    "initiatedByMe": false
+                  }
+                }
+              },
+              "messageType": "conversation",
+              "messageTimestamp": 1775957537,
+              "instanceId": "ffe7cd2f-daa3-41ad-880f-1f579963a504",
+              "source": "web"
+            },
+            "destination": "https://auto-n8n.ywzal8.easypanel.host/webhook/empoderaTeka",
+            "date_time": "2026-04-11T22:32:17.450Z",
+            "sender": "51977183432@s.whatsapp.net",
+            "server_url": "https://auto-evolution-api.ywzal8.easypanel.host",
+            "apikey": "FA51648E923D-4CF0-8F3C-828E0BDF975E"
+          },
+          "webhookUrl": "https://auto-n8n.ywzal8.easypanel.host/webhook/empoderaTeka",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
   "repo": {
     "owner": "xmaichel",
     "name": "n8n_flows"
@@ -1368,6 +4059,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2026-03-24T05:19:42.868Z",
-  "versionId": "9ceb4579-8e69-4d85-8945-8c52e157ae3c"
+  "updatedAt": "2026-04-12T03:39:02.940Z",
+  "versionId": "cd54ece0-0e4a-4eb4-a31d-fcb544c1aacc"
 }
