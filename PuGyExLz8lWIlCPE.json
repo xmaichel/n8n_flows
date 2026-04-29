@@ -1,0 +1,116 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-04-28T17:28:04.000Z",
+    "createdAt": "2026-04-28T17:27:42.431Z",
+    "versionId": "26b84c04-2404-4274-b58f-22f939dbfcea",
+    "workflowId": "PuGyExLz8lWIlCPE",
+    "nodes": [
+      {
+        "parameters": {
+          "workflowInputs": {
+            "values": [
+              {
+                "name": "dataReporte"
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          -528,
+          -48
+        ],
+        "id": "106d63f8-1045-4f0d-a542-d00c77617ff9",
+        "name": "When Executed by Another Workflow"
+      }
+    ],
+    "connections": {},
+    "authors": "Juan Castillo",
+    "name": "Version 26b84c04",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "26b84c04-2404-4274-b58f-22f939dbfcea",
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Convert HTML to PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-28T17:24:36.545Z",
+  "id": "PuGyExLz8lWIlCPE",
+  "isArchived": false,
+  "meta": null,
+  "name": "GerarPFD_Reporte_form_Express",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "dataReporte"
+            },
+            {
+              "name": "Nombre"
+            },
+            {
+              "name": "Empresa"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -528,
+        -48
+      ],
+      "id": "106d63f8-1045-4f0d-a542-d00c77617ff9",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-htmlcsstopdf.htmlcsstopdf",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -80
+      ],
+      "id": "ca363225-6d3d-48b5-99a3-f6533b1e67dc",
+      "name": "Convert HTML to PDF"
+    }
+  ],
+  "origin": "main",
+  "pinData": {},
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-28T17:24:36.558Z",
+      "createdAt": "2026-04-28T17:24:36.558Z",
+      "role": "workflow:owner",
+      "workflowId": "PuGyExLz8lWIlCPE",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-04-28T17:36:52.057Z",
+  "versionId": "ada1aeaa-d2be-400a-9ad7-4bd48b95ac56"
+}
