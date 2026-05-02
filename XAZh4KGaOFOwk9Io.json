@@ -1,0 +1,2025 @@
+{
+  "active": true,
+  "activeVersion": {
+    "updatedAt": "2026-05-01T13:58:21.000Z",
+    "createdAt": "2026-05-01T13:56:26.139Z",
+    "versionId": "7832c57d-62c4-4b1d-aace-55365eed099b",
+    "workflowId": "XAZh4KGaOFOwk9Io",
+    "nodes": [
+      {
+        "parameters": {
+          "path": "d8ece794-7a4e-484f-9aa2-8e221201ed1b",
+          "formTitle": "Diagnóstico Express: Estado de Salud y Ruta de Crecimiento",
+          "formDescription": "Este cuestionario te tomará menos de 5 minutos y nos permitirá identificar el área de tu negocio que necesita intervención inmediata para alcanzar el siguiente nivel.",
+          "formFields": {
+            "values": [
+              {
+                "fieldLabel": "Nombre completo",
+                "placeholder": "Tu nombre completo",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Nombre de la Empresa o Emprendimiento",
+                "placeholder": "Nombre de tu empresa o emprendimiento",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Número de contacto",
+                "placeholder": "Ej: +57 300 000 0000",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Correo electrónico",
+                "fieldType": "email",
+                "placeholder": "tu@correo.com",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P1: ¿En qué etapa se encuentra tu proyecto o negocio?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Tengo una idea y quiero validarla para empezar."
+                    },
+                    {
+                      "option": "B) Mi negocio ya opera, pero me cuesta generar ventas constantes."
+                    },
+                    {
+                      "option": "C) Mi negocio es estable, pero el crecimiento se ha estancado."
+                    },
+                    {
+                      "option": "D) Mi empresa crece rápido, pero siento que el desorden me está consumiendo."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P2: ¿A qué sector pertenece tu actividad principal?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Comercio (Venta de productos físicos)."
+                    },
+                    {
+                      "option": "B) Servicios (Consultoría, educación, logística, salud, etc.)."
+                    },
+                    {
+                      "option": "C) Industria / Producción (Fabrico mis propios productos)."
+                    },
+                    {
+                      "option": "D) Tecnología / Digital (Software, apps, plataformas)."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P3: ¿En qué subsector te ubicas principalmente?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Alimentos, Bebidas y Restauración."
+                    },
+                    {
+                      "option": "B) Transporte, Logística y Distribución de Carga."
+                    },
+                    {
+                      "option": "C) Educación (Primera infancia, superior o formación técnica)."
+                    },
+                    {
+                      "option": "D) Salud, Pharma, Bienestar y Cuidado Personal."
+                    },
+                    {
+                      "option": "E) Servicios Profesionales (Consultoría, legal, contable, arquitectura)."
+                    },
+                    {
+                      "option": "F) Inmobiliario, Construcción e Infraestructura."
+                    },
+                    {
+                      "option": "G) Retail y Comercio Especializado (Moda, hogar, ferretería)."
+                    },
+                    {
+                      "option": "H) Agronegocios y Producción Primaria."
+                    },
+                    {
+                      "option": "I) Tecnología, Desarrollo de Software y Economía Digital."
+                    },
+                    {
+                      "option": "J) Turismo, Entretenimiento y Hospitalidad."
+                    },
+                    {
+                      "option": "K) Otro (Detalles, regalos, florería)."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "Descripción breve de tu negocio (productos y servicios)",
+                "fieldType": "textarea",
+                "placeholder": "Describe brevemente qué hace tu empresa...",
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P4: ¿Cuántas personas forman parte de tu equipo actualmente?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Solo yo (Emprendedor solitario)."
+                    },
+                    {
+                      "option": "B) Entre 2 y 10 personas."
+                    },
+                    {
+                      "option": "C) Entre 11 y 50 personas."
+                    },
+                    {
+                      "option": "D) Más de 50 personas."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Menos de US$ 100.000."
+                    },
+                    {
+                      "option": "B) Entre US$100.000 y US$300.000."
+                    },
+                    {
+                      "option": "C) Entre US$300.000 y US$500.000."
+                    },
+                    {
+                      "option": "D) Entre US$500.000 y US$1.000.000."
+                    },
+                    {
+                      "option": "E) Más de US$1.000.000."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) No tengo claro cuánto gané realmente después de pagar todo."
+                    },
+                    {
+                      "option": "B) Gano dinero, pero casi todo se va en pagar deudas o proveedores de inmediato."
+                    },
+                    {
+                      "option": "C) Sé cuánto gano, pero me falta capital para invertir en crecer."
+                    },
+                    {
+                      "option": "D) Mis finanzas están bajo control y tengo reportes claros cada mes."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Por recomendaciones; no tengo un plan para buscarlos."
+                    },
+                    {
+                      "option": "B) Publico en redes sociales, pero no sé cómo convertirlos en ventas reales."
+                    },
+                    {
+                      "option": "C) Tengo ventas, pero dependen demasiado de mi esfuerzo personal (si no estoy, no se vende)."
+                    },
+                    {
+                      "option": "D) Tengo un sistema de ventas claro y metas que mi equipo cumple mes a mes."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) El negocio se detendría por completo; nadie sabe qué hacer."
+                    },
+                    {
+                      "option": "B) Habría muchos errores y clientes quejándose; todo es improvisado."
+                    },
+                    {
+                      "option": "C) Funcionaría a medias, pero yo tendría que estar resolviendo dudas por teléfono."
+                    },
+                    {
+                      "option": "D) Funcionaría perfectamente; tenemos manuales y procesos escritos."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Todo es manual (papel, cuadernos o Excel básico)."
+                    },
+                    {
+                      "option": "B) Uso algunas herramientas, pero no se hablan entre sí (tengo la información dispersa)."
+                    },
+                    {
+                      "option": "C) Uso sistemas especializados, pero mi equipo no los aprovecha al 100%."
+                    },
+                    {
+                      "option": "D) Mi negocio corre sobre tecnología que automatiza gran parte de mi trabajo."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación)."
+                    },
+                    {
+                      "option": "B) El equipo cumple, pero no los veo comprometidos con mis metas de crecimiento."
+                    },
+                    {
+                      "option": "C) Siento que soy el \"todólogo\" y me cuesta delegar tareas importantes."
+                    },
+                    {
+                      "option": "D) Tengo líderes de confianza que se hacen cargo de sus áreas con autonomía."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P11: ¿Cuál de estas situaciones te quita más energía actualmente?",
+                "fieldType": "dropdown",
+                "fieldOptions": {
+                  "values": [
+                    {
+                      "option": "A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos."
+                    },
+                    {
+                      "option": "B) La frustración de ver que la competencia vende más con un producto peor que el mío."
+                    },
+                    {
+                      "option": "C) El cansancio de apagar \"incendios\" operativos todo el día en lugar de planear el futuro."
+                    },
+                    {
+                      "option": "D) La incertidumbre legal o tributaria que me impide dormir tranquilo."
+                    }
+                  ]
+                },
+                "requiredField": true
+              },
+              {
+                "fieldLabel": "P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?",
+                "fieldType": "textarea",
+                "placeholder": "Cuéntanos con tus propias palabras...",
+                "requiredField": true
+              }
+            ]
+          },
+          "options": {
+            "appendAttribution": false,
+            "buttonLabel": "Submit",
+            "respondWithOptions": {
+              "values": {}
+            },
+            "ignoreBots": true
+          }
+        },
+        "id": "c0e86d75-8ff7-43ed-b986-3595860efb57",
+        "name": "Formulario Diagnóstico Express",
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2,
+        "position": [
+          -1072,
+          -112
+        ],
+        "webhookId": "d8ece794-7a4e-484f-9aa2-8e221201ed1b"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "id": "738f43f6-384d-4b80-8f79-6d9cf310db4d",
+        "name": "Normalizar campos",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3,
+        "position": [
+          -912,
+          -112
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1vWqE1mfDNH8qD-HEwURt3rv5NCJ1RoD8_fZPY-uH8m8",
+            "mode": "list",
+            "cachedResultName": "Empodera_formulario_Express",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vWqE1mfDNH8qD-HEwURt3rv5NCJ1RoD8_fZPY-uH8m8/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": "gid=0",
+            "mode": "list",
+            "cachedResultName": "FormExpress",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vWqE1mfDNH8qD-HEwURt3rv5NCJ1RoD8_fZPY-uH8m8/edit#gid=0"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Telefono": "={{ $json.contacto }}",
+              "Datos form": "={{ $json.respuestas }}",
+              "Nombre": "={{ $json.nombre }}",
+              "Empresa": "={{ $json.empresa }}",
+              "Correo": "={{ $json.correo }}",
+              "fecha": "={{ $json.fechaActual }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Nombre",
+                "displayName": "Nombre",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Empresa",
+                "displayName": "Empresa",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Telefono",
+                "displayName": "Telefono",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Correo",
+                "displayName": "Correo",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "fecha",
+                "displayName": "fecha",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              },
+              {
+                "id": "Datos form",
+                "displayName": "Datos form",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "id": "e309b8be-d237-4293-b8d5-449c1cdfa167",
+        "name": "Guardar en Google Sheets",
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4,
+        "position": [
+          -592,
+          -112
+        ],
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "OLjMkf7h8HeC3hbt",
+            "name": "Google Sheets account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+          "options": {
+            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          -416,
+          -112
+        ],
+        "id": "19611548-1803-42a4-8bea-6c2c86e2e869",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "model": "z-ai/glm-4.7-flash",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          -416,
+          112
+        ],
+        "id": "5d4be7b9-94fc-4ca0-8d89-69dc709797bb",
+        "name": "OpenRouter Chat Model",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -752,
+          -112
+        ],
+        "id": "c539488f-89cf-4f0f-a3b1-447937018042",
+        "name": "Code in JavaScript"
+      },
+      {
+        "parameters": {
+          "operation": "sendAndWait",
+          "sendTo": "xmaichel@hotmail.com",
+          "subject": "Aprobar mail - evaluación de formExpress.",
+          "message": "=Validar par enviar:\n\nDiagnostico {{ $json.webContentLink }}",
+          "responseType": "freeText",
+          "options": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.2,
+        "position": [
+          368,
+          -112
+        ],
+        "id": "1c5c4ffd-58b0-406f-9153-ce7b759a22b6",
+        "name": "Send a message",
+        "webhookId": "01f34e43-46f4-451d-aa30-567063c0545e",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "kTicbSOlrM56HEmj",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "HITL",
+          "height": 240,
+          "width": 166
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          336,
+          -176
+        ],
+        "typeVersion": 1,
+        "id": "8c9d9584-6278-4c8c-9e22-8a3ead42bc17",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "inputText": "={{ $json.data.text }}",
+          "categories": {
+            "categories": [
+              {
+                "category": "Aprobado",
+                "description": "El revisor aprueba el documento sin cambios o con comentarios menores"
+              },
+              {
+                "category": "correccion",
+                "description": "El revisor solicita cambios, correcciones o ajustes al documento"
+              }
+            ]
+          },
+          "options": {
+            "systemPromptTemplate": "Eres un asistente que evalúa respuestas de revisores sobre documentos.\nClasifica según la intención principal del mensaje, no palabras aisladas.\nEjemplo de respuestas de aprobación: \"OK\", \"aprobado\""
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.textClassifier",
+        "typeVersion": 1.1,
+        "position": [
+          576,
+          -112
+        ],
+        "id": "7cf6ff8e-c0d9-41dd-8c55-66b27f5fd5da",
+        "name": "Text Classifier"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          576,
+          48
+        ],
+        "id": "3a77fc11-d15c-43aa-9947-4c70be38ade2",
+        "name": "OpenRouter Chat Model1",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "https://app.pdf.co/signup",
+          "height": 80
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          -1072,
+          64
+        ],
+        "typeVersion": 1,
+        "id": "41984fdb-6852-454c-b1c0-00519e758461",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "jsCode": "return [{ json: { html: $input.first().json.output.trim() } }];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -128,
+          -112
+        ],
+        "id": "5b3bedec-3ed3-473a-ab61-1266714ce725",
+        "name": "Code in JavaScript1"
+      },
+      {
+        "parameters": {
+          "operation": "htmlToPdf",
+          "html": "={{ $json.html }}",
+          "outputFilenamePdf": "={{ $('Code in JavaScript').item.json.nombreArchivoPdf }}.pdf"
+        },
+        "type": "@custom-js/n8n-nodes-pdf-toolkit-v2.pdfToolkit",
+        "typeVersion": 1,
+        "position": [
+          32,
+          -112
+        ],
+        "id": "2f066665-a238-4dc7-8510-fe515cc6f707",
+        "name": "Convert HTML to PDF1",
+        "credentials": {
+          "customJsApi": {
+            "id": "S7Abqfl03Z0C1VzP",
+            "name": "CustomJS account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "driveId": {
+            "__rl": true,
+            "mode": "list",
+            "value": "My Drive"
+          },
+          "folderId": {
+            "__rl": true,
+            "value": "13LZLHxET8Zw0_g8cedl_Sdo4neSVqvVl",
+            "mode": "list",
+            "cachedResultName": "Diagnosticos",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/13LZLHxET8Zw0_g8cedl_Sdo4neSVqvVl"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          192,
+          -112
+        ],
+        "id": "e3d86bac-fe50-47c3-8360-80e8e8e159e9",
+        "name": "Upload file",
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "J6R6kKGMM9vWyLM1",
+            "name": "Google Drive account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ $('Code in JavaScript').item.json.correo }}",
+          "subject": "=Documento de diagnóstico para {{ $('Code in JavaScript').item.json.empresa }}",
+          "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>,</p>  <p>Esperamos que se encuentre muy bien.</p>  <p>Hemos revisado su caso con base en la información entregada en el formulario y hemos preparado el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, ya que contiene observaciones y recomendaciones pensadas especialmente para su negocio.</p>  <p>Diagnostico: {{ $('Upload file').item.json.webContentLink }}</p>  <p>Esperamos que sea un punto de partida valioso para iniciar un proceso de mejora.</p>  <p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto de este informe.</p>  <p>Cordialmente,<br> <strong>Grupo Empodera </strong><br> </p>",
+          "options": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.2,
+        "position": [
+          896,
+          -224
+        ],
+        "id": "3b12694e-2c3a-4b51-b031-eca28417d686",
+        "name": "Send a message2",
+        "webhookId": "5f98c91f-e497-443a-80f3-102a593272a2",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "kTicbSOlrM56HEmj",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const iteracion = $json[\"iteracion\"] || 0;\nif (iteracion >= 3) {\n  // escalar a revisión manual\n  return [{ json: { ...items[0].json, escalar: true } }];\n}\nreturn [{ json: { ...items[0].json, iteracion: iteracion + 1 } }];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          896,
+          0
+        ],
+        "id": "06325f75-f883-4c71-9b45-9f9365bd445d",
+        "name": "Code in JavaScript2"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "5274789a-7be2-4cd1-a5b4-615304c4990c",
+                "name": "iteracion",
+                "value": "={{ $json.iteracion }}",
+                "type": "number"
+              },
+              {
+                "id": "3f622819-f76b-435d-a53a-32ced0307623",
+                "name": "correciones",
+                "value": "={{ $json.data.text }}",
+                "type": "string"
+              },
+              {
+                "id": "dd9ec23a-dcf1-4170-b0d9-7c3108712d5f",
+                "name": "outputAntIA",
+                "value": "={{ $('AI Agent').item.json.output }}",
+                "type": "string"
+              },
+              {
+                "id": "343611a1-3944-4ad5-951b-a9443fbc067d",
+                "name": "respuestas",
+                "value": "={{ $('Code in JavaScript').item.json.respuestas }}",
+                "type": "object"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1040,
+          32
+        ],
+        "id": "b9ad8064-d6db-45a2-ad39-de3a24bd771c",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\n{% if $json[\"documento_previo\"] %}\n──────────────────────────────────────\nDOCUMENTO APROBADO PREVIAMENTE:\n{{ $json.outputAntIA }}\n\nCORRECCIONES SOLICITADAS (versión {{ $json[\"iteracion\"] }}):\n{{ $json.correciones }}\n\nINSTRUCCIÓN: Devuelve el documento completo en HTML aplicando ÚNICAMENTE\nlas correcciones indicadas. No modifiques secciones que no fueron mencionadas.\n──────────────────────────────────────\n{% else %}\nGenera un informe de diagnóstico completo en formato HTML.\n{% endif %}\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+          "options": {
+            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 3.1,
+        "position": [
+          1200,
+          64
+        ],
+        "id": "6d0ebeab-3fa2-4099-a2c7-24816bcf9567",
+        "name": "AI Agent1"
+      },
+      {
+        "parameters": {
+          "model": "z-ai/glm-4.7-flash",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+        "typeVersion": 1,
+        "position": [
+          1248,
+          208
+        ],
+        "id": "3c2c6bd9-9d12-4cd5-9cfa-3a4dfbcc6cf3",
+        "name": "OpenRouter Chat Model2",
+        "credentials": {
+          "openRouterApi": {
+            "id": "n9ENnMrxLhhgNjf8",
+            "name": "OpenRouter account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Formulario Diagnóstico Express": {
+        "main": [
+          [
+            {
+              "node": "Normalizar campos",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Normalizar campos": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Guardar en Google Sheets": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
+        "main": [
+          [
+            {
+              "node": "Guardar en Google Sheets",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a message": {
+        "main": [
+          [
+            {
+              "node": "Text Classifier",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Text Classifier",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript1": {
+        "main": [
+          [
+            {
+              "node": "Convert HTML to PDF1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Convert HTML to PDF1": {
+        "main": [
+          [
+            {
+              "node": "Upload file",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Upload file": {
+        "main": [
+          [
+            {
+              "node": "Send a message",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Text Classifier": {
+        "main": [
+          [
+            {
+              "node": "Send a message2",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Code in JavaScript2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript2": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenRouter Chat Model2": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent1",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "AI Agent1": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Juan Castillo",
+    "name": "Version 7832c57d",
+    "description": "",
+    "autosaved": true
+  },
+  "activeVersionId": "7832c57d-62c4-4b1d-aace-55365eed099b",
+  "connections": {
+    "Formulario Diagnóstico Express": {
+      "main": [
+        [
+          {
+            "node": "Normalizar campos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizar campos": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar en Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Guardar en Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Convert HTML to PDF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert HTML to PDF1": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-04-17T22:49:13.264Z",
+  "id": "XAZh4KGaOFOwk9Io",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "EmpoderaFormularioExpress",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "d8ece794-7a4e-484f-9aa2-8e221201ed1b",
+        "formTitle": "Diagnóstico Express: Estado de Salud y Ruta de Crecimiento",
+        "formDescription": "Este cuestionario te tomará menos de 5 minutos y nos permitirá identificar el área de tu negocio que necesita intervención inmediata para alcanzar el siguiente nivel.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nombre completo",
+              "placeholder": "Tu nombre completo",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nombre de la Empresa o Emprendimiento",
+              "placeholder": "Nombre de tu empresa o emprendimiento",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Número de contacto",
+              "placeholder": "Ej: +57 300 000 0000",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Correo electrónico",
+              "fieldType": "email",
+              "placeholder": "tu@correo.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P1: ¿En qué etapa se encuentra tu proyecto o negocio?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Tengo una idea y quiero validarla para empezar."
+                  },
+                  {
+                    "option": "B) Mi negocio ya opera, pero me cuesta generar ventas constantes."
+                  },
+                  {
+                    "option": "C) Mi negocio es estable, pero el crecimiento se ha estancado."
+                  },
+                  {
+                    "option": "D) Mi empresa crece rápido, pero siento que el desorden me está consumiendo."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P2: ¿A qué sector pertenece tu actividad principal?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Comercio (Venta de productos físicos)."
+                  },
+                  {
+                    "option": "B) Servicios (Consultoría, educación, logística, salud, etc.)."
+                  },
+                  {
+                    "option": "C) Industria / Producción (Fabrico mis propios productos)."
+                  },
+                  {
+                    "option": "D) Tecnología / Digital (Software, apps, plataformas)."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P3: ¿En qué subsector te ubicas principalmente?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Alimentos, Bebidas y Restauración."
+                  },
+                  {
+                    "option": "B) Transporte, Logística y Distribución de Carga."
+                  },
+                  {
+                    "option": "C) Educación (Primera infancia, superior o formación técnica)."
+                  },
+                  {
+                    "option": "D) Salud, Pharma, Bienestar y Cuidado Personal."
+                  },
+                  {
+                    "option": "E) Servicios Profesionales (Consultoría, legal, contable, arquitectura)."
+                  },
+                  {
+                    "option": "F) Inmobiliario, Construcción e Infraestructura."
+                  },
+                  {
+                    "option": "G) Retail y Comercio Especializado (Moda, hogar, ferretería)."
+                  },
+                  {
+                    "option": "H) Agronegocios y Producción Primaria."
+                  },
+                  {
+                    "option": "I) Tecnología, Desarrollo de Software y Economía Digital."
+                  },
+                  {
+                    "option": "J) Turismo, Entretenimiento y Hospitalidad."
+                  },
+                  {
+                    "option": "K) Otro (Detalles, regalos, florería)."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Descripción breve de tu negocio (productos y servicios)",
+              "fieldType": "textarea",
+              "placeholder": "Describe brevemente qué hace tu empresa...",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P4: ¿Cuántas personas forman parte de tu equipo actualmente?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Solo yo (Emprendedor solitario)."
+                  },
+                  {
+                    "option": "B) Entre 2 y 10 personas."
+                  },
+                  {
+                    "option": "C) Entre 11 y 50 personas."
+                  },
+                  {
+                    "option": "D) Más de 50 personas."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Menos de US$ 100.000."
+                  },
+                  {
+                    "option": "B) Entre US$100.000 y US$300.000."
+                  },
+                  {
+                    "option": "C) Entre US$300.000 y US$500.000."
+                  },
+                  {
+                    "option": "D) Entre US$500.000 y US$1.000.000."
+                  },
+                  {
+                    "option": "E) Más de US$1.000.000."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) No tengo claro cuánto gané realmente después de pagar todo."
+                  },
+                  {
+                    "option": "B) Gano dinero, pero casi todo se va en pagar deudas o proveedores de inmediato."
+                  },
+                  {
+                    "option": "C) Sé cuánto gano, pero me falta capital para invertir en crecer."
+                  },
+                  {
+                    "option": "D) Mis finanzas están bajo control y tengo reportes claros cada mes."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Por recomendaciones; no tengo un plan para buscarlos."
+                  },
+                  {
+                    "option": "B) Publico en redes sociales, pero no sé cómo convertirlos en ventas reales."
+                  },
+                  {
+                    "option": "C) Tengo ventas, pero dependen demasiado de mi esfuerzo personal (si no estoy, no se vende)."
+                  },
+                  {
+                    "option": "D) Tengo un sistema de ventas claro y metas que mi equipo cumple mes a mes."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) El negocio se detendría por completo; nadie sabe qué hacer."
+                  },
+                  {
+                    "option": "B) Habría muchos errores y clientes quejándose; todo es improvisado."
+                  },
+                  {
+                    "option": "C) Funcionaría a medias, pero yo tendría que estar resolviendo dudas por teléfono."
+                  },
+                  {
+                    "option": "D) Funcionaría perfectamente; tenemos manuales y procesos escritos."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Todo es manual (papel, cuadernos o Excel básico)."
+                  },
+                  {
+                    "option": "B) Uso algunas herramientas, pero no se hablan entre sí (tengo la información dispersa)."
+                  },
+                  {
+                    "option": "C) Uso sistemas especializados, pero mi equipo no los aprovecha al 100%."
+                  },
+                  {
+                    "option": "D) Mi negocio corre sobre tecnología que automatiza gran parte de mi trabajo."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación)."
+                  },
+                  {
+                    "option": "B) El equipo cumple, pero no los veo comprometidos con mis metas de crecimiento."
+                  },
+                  {
+                    "option": "C) Siento que soy el \"todólogo\" y me cuesta delegar tareas importantes."
+                  },
+                  {
+                    "option": "D) Tengo líderes de confianza que se hacen cargo de sus áreas con autonomía."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P11: ¿Cuál de estas situaciones te quita más energía actualmente?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos."
+                  },
+                  {
+                    "option": "B) La frustración de ver que la competencia vende más con un producto peor que el mío."
+                  },
+                  {
+                    "option": "C) El cansancio de apagar \"incendios\" operativos todo el día en lugar de planear el futuro."
+                  },
+                  {
+                    "option": "D) La incertidumbre legal o tributaria que me impide dormir tranquilo."
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?",
+              "fieldType": "textarea",
+              "placeholder": "Cuéntanos con tus propias palabras...",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "buttonLabel": "Submit",
+          "respondWithOptions": {
+            "values": {}
+          },
+          "ignoreBots": true
+        }
+      },
+      "id": "c0e86d75-8ff7-43ed-b986-3595860efb57",
+      "name": "Formulario Diagnóstico Express",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [
+        -1072,
+        -112
+      ],
+      "webhookId": "d8ece794-7a4e-484f-9aa2-8e221201ed1b"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "738f43f6-384d-4b80-8f79-6d9cf310db4d",
+      "name": "Normalizar campos",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        -912,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1vWqE1mfDNH8qD-HEwURt3rv5NCJ1RoD8_fZPY-uH8m8",
+          "mode": "list",
+          "cachedResultName": "Empodera_formulario_Express",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vWqE1mfDNH8qD-HEwURt3rv5NCJ1RoD8_fZPY-uH8m8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "FormExpress",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1vWqE1mfDNH8qD-HEwURt3rv5NCJ1RoD8_fZPY-uH8m8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Telefono": "={{ $json.contacto }}",
+            "Datos form": "={{ $json.respuestas }}",
+            "Nombre": "={{ $json.nombre }}",
+            "Empresa": "={{ $json.empresa }}",
+            "Correo": "={{ $json.correo }}",
+            "fecha": "={{ $json.fechaActual }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Empresa",
+              "displayName": "Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Datos form",
+              "displayName": "Datos form",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "e309b8be-d237-4293-b8d5-449c1cdfa167",
+      "name": "Guardar en Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -592,
+        -112
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OLjMkf7h8HeC3hbt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+        "options": {
+          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -416,
+        -112
+      ],
+      "id": "19611548-1803-42a4-8bea-6c2c86e2e869",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.7-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        112
+      ],
+      "id": "5d4be7b9-94fc-4ca0-8d89-69dc709797bb",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -752,
+        -112
+      ],
+      "id": "c539488f-89cf-4f0f-a3b1-447937018042",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "xmaichel@hotmail.com",
+        "subject": "Aprobar mail - evaluación de formExpress.",
+        "message": "=Validar par enviar:\n\nDiagnostico {{ $json.webContentLink }}",
+        "responseType": "freeText",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        368,
+        -112
+      ],
+      "id": "1c5c4ffd-58b0-406f-9153-ce7b759a22b6",
+      "name": "Send a message",
+      "webhookId": "01f34e43-46f4-451d-aa30-567063c0545e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kTicbSOlrM56HEmj",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "HITL",
+        "height": 240,
+        "width": 166
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        336,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "8c9d9584-6278-4c8c-9e22-8a3ead42bc17",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.data.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Aprobado",
+              "description": "El revisor aprueba el documento sin cambios o con comentarios menores"
+            },
+            {
+              "category": "correccion",
+              "description": "El revisor solicita cambios, correcciones o ajustes al documento"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "Eres un asistente que evalúa respuestas de revisores sobre documentos.\nClasifica según la intención principal del mensaje, no palabras aisladas.\nEjemplo de respuestas de aprobación: \"OK\", \"aprobado\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1.1,
+      "position": [
+        576,
+        -112
+      ],
+      "id": "7cf6ff8e-c0d9-41dd-8c55-66b27f5fd5da",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        576,
+        48
+      ],
+      "id": "3a77fc11-d15c-43aa-9947-4c70be38ade2",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "https://app.pdf.co/signup",
+        "height": 80
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1072,
+        64
+      ],
+      "typeVersion": 1,
+      "id": "41984fdb-6852-454c-b1c0-00519e758461",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { html: $input.first().json.output.trim() } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        -112
+      ],
+      "id": "5b3bedec-3ed3-473a-ab61-1266714ce725",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "operation": "htmlToPdf",
+        "html": "={{ $json.html }}",
+        "outputFilenamePdf": "={{ $('Code in JavaScript').item.json.nombreArchivoPdf }}.pdf"
+      },
+      "type": "@custom-js/n8n-nodes-pdf-toolkit-v2.pdfToolkit",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -112
+      ],
+      "id": "2f066665-a238-4dc7-8510-fe515cc6f707",
+      "name": "Convert HTML to PDF1",
+      "credentials": {
+        "customJsApi": {
+          "id": "S7Abqfl03Z0C1VzP",
+          "name": "CustomJS account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "13LZLHxET8Zw0_g8cedl_Sdo4neSVqvVl",
+          "mode": "list",
+          "cachedResultName": "Diagnosticos",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/13LZLHxET8Zw0_g8cedl_Sdo4neSVqvVl"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        192,
+        -112
+      ],
+      "id": "e3d86bac-fe50-47c3-8360-80e8e8e159e9",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "J6R6kKGMM9vWyLM1",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Code in JavaScript').item.json.correo }}",
+        "subject": "=Documento de diagnóstico para {{ $('Code in JavaScript').item.json.empresa }}",
+        "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>,</p>  <p>Esperamos que se encuentre muy bien.</p>  <p>Hemos revisado su caso con base en la información entregada en el formulario y hemos preparado el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, ya que contiene observaciones y recomendaciones pensadas especialmente para su negocio.</p>  <p>Diagnostico: {{ $('Upload file').item.json.webContentLink }}</p>  <p>Esperamos que sea un punto de partida valioso para iniciar un proceso de mejora.</p>  <p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto de este informe.</p>  <p>Cordialmente,<br> <strong>Grupo Empodera </strong><br> </p>",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        -224
+      ],
+      "id": "3b12694e-2c3a-4b51-b031-eca28417d686",
+      "name": "Send a message2",
+      "webhookId": "5f98c91f-e497-443a-80f3-102a593272a2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kTicbSOlrM56HEmj",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const iteracion = $json[\"iteracion\"] || 0;\nif (iteracion >= 3) {\n  // escalar a revisión manual\n  return [{ json: { ...items[0].json, escalar: true } }];\n}\nreturn [{ json: { ...items[0].json, iteracion: iteracion + 1 } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        0
+      ],
+      "id": "06325f75-f883-4c71-9b45-9f9365bd445d",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5274789a-7be2-4cd1-a5b4-615304c4990c",
+              "name": "iteracion",
+              "value": "={{ $json.iteracion }}",
+              "type": "number"
+            },
+            {
+              "id": "3f622819-f76b-435d-a53a-32ced0307623",
+              "name": "correciones",
+              "value": "={{ $json.data.text }}",
+              "type": "string"
+            },
+            {
+              "id": "dd9ec23a-dcf1-4170-b0d9-7c3108712d5f",
+              "name": "outputAntIA",
+              "value": "={{ $('AI Agent').item.json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "343611a1-3944-4ad5-951b-a9443fbc067d",
+              "name": "respuestas",
+              "value": "={{ $('Code in JavaScript').item.json.respuestas }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1040,
+        32
+      ],
+      "id": "b9ad8064-d6db-45a2-ad39-de3a24bd771c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\n{% if $json[\"documento_previo\"] %}\n──────────────────────────────────────\nDOCUMENTO APROBADO PREVIAMENTE:\n{{ $json.outputAntIA }}\n\nCORRECCIONES SOLICITADAS (versión {{ $json[\"iteracion\"] }}):\n{{ $json.correciones }}\n\nINSTRUCCIÓN: Devuelve el documento completo en HTML aplicando ÚNICAMENTE\nlas correcciones indicadas. No modifiques secciones que no fueron mencionadas.\n──────────────────────────────────────\n{% else %}\nGenera un informe de diagnóstico completo en formato HTML.\n{% endif %}\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+        "options": {
+          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1200,
+        64
+      ],
+      "id": "6d0ebeab-3fa2-4099-a2c7-24816bcf9567",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": "z-ai/glm-4.7-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        208
+      ],
+      "id": "3c2c6bd9-9d12-4cd5-9cfa-3a4dfbcc6cf3",
+      "name": "OpenRouter Chat Model2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "n9ENnMrxLhhgNjf8",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "origin": "main",
+  "pinData": {
+    "Formulario Diagnóstico Express": [
+      {
+        "json": {
+          "Nombre completo": "Juan",
+          "Nombre de la Empresa o Emprendimiento": "Prueba ya",
+          "Número de contacto": "12346",
+          "Correo electrónico": "xmaichel@gmail.com",
+          "P1: ¿En qué etapa se encuentra tu proyecto o negocio?": "A) Tengo una idea y quiero validarla para empezar.",
+          "P2: ¿A qué sector pertenece tu actividad principal?": "A) Comercio (Venta de productos físicos).",
+          "P3: ¿En qué subsector te ubicas principalmente?": "A) Alimentos, Bebidas y Restauración.",
+          "Descripción breve de tu negocio (productos y servicios)": "Venta de comidas rápidas",
+          "P4: ¿Cuántas personas forman parte de tu equipo actualmente?": "A) Solo yo (Emprendedor solitario).",
+          "P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?": "B) Entre US$100.000 y US$300.000.",
+          "P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?": "A) No tengo claro cuánto gané realmente después de pagar todo.",
+          "P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?": "A) Por recomendaciones; no tengo un plan para buscarlos.",
+          "P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?": "A) El negocio se detendría por completo; nadie sabe qué hacer.",
+          "P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?": "A) Todo es manual (papel, cuadernos o Excel básico).",
+          "P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?": "A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación).",
+          "P11: ¿Cuál de estas situaciones te quita más energía actualmente?": "A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos.",
+          "P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?": "No logro vender",
+          "submittedAt": "2026-04-18T01:09:06.365Z",
+          "formMode": "test"
+        }
+      }
+    ],
+    "Code in JavaScript": [
+      {
+        "json": {
+          "nombre": "Juan",
+          "empresa": "Prueba ya",
+          "contacto": "12346",
+          "correo": "xmaichel@gmail.com",
+          "fechaActual": "2026-05-01T12:52:00.933Z",
+          "nombreArchivoPdf": "Diagnostico_Prueba_ya_2026050112",
+          "respuestas": {
+            "P1": "A) Tengo una idea y quiero validarla para empezar.",
+            "P2": "A) Comercio (Venta de productos físicos).",
+            "P3": "A) Alimentos, Bebidas y Restauración.",
+            "P4": "A) Solo yo (Emprendedor solitario).",
+            "P5": "B) Entre US$100.000 y US$300.000.",
+            "P6": "A) No tengo claro cuánto gané realmente después de pagar todo.",
+            "P7": "A) Por recomendaciones; no tengo un plan para buscarlos.",
+            "P8": "A) El negocio se detendría por completo; nadie sabe qué hacer.",
+            "P9": "A) Todo es manual (papel, cuadernos o Excel básico).",
+            "P10": "A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación).",
+            "P11": "A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos.",
+            "P12": "No logro vender"
+          }
+        }
+      }
+    ],
+    "Send a message": [
+      {
+        "json": {
+          "data": {
+            "text": "el documentoe esta en el foramto inccorrecto volver a generar y ampliar la informacion o explciar por que la complejidad es alta"
+          }
+        }
+      }
+    ]
+  },
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-04-17T22:49:13.273Z",
+      "createdAt": "2026-04-17T22:49:13.273Z",
+      "role": "workflow:owner",
+      "workflowId": "XAZh4KGaOFOwk9Io",
+      "projectId": "TWUdlmfp5jAL6XiA"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "updatedAt": "2026-03-17T03:19:51.836Z",
+      "createdAt": "2026-03-17T03:19:51.836Z",
+      "id": "tLeoVtVO4wjWQ3Xi",
+      "name": "Empodera"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2026-05-01T13:56:26.136Z",
+  "versionId": "7832c57d-62c4-4b1d-aace-55365eed099b"
+}
