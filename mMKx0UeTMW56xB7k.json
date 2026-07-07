@@ -536,6 +536,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "linkedin-scraper-validaweb-save-bd",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
