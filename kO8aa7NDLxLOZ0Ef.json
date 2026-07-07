@@ -209,6 +209,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Generar Analisis grafico Subflujo",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
