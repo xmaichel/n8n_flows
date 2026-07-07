@@ -443,6 +443,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Agent Nivel",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
