@@ -254,6 +254,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Analisis Sentimiento Subflujo",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
