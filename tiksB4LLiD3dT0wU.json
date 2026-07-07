@@ -1459,6 +1459,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Automated n8n Workflow Backup to GitHub with Deletion Tracking",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {},
