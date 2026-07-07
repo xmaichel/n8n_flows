@@ -746,6 +746,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "linkedin-scraper",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
