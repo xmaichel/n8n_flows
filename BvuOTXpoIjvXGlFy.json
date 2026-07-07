@@ -2349,6 +2349,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "ws-evolution-ia",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
