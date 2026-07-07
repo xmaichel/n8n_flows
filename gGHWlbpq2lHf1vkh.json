@@ -1683,6 +1683,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Trading_V3",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
