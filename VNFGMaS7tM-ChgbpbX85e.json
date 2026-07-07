@@ -200,6 +200,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Agente Consultor Financiero",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
