@@ -422,6 +422,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Análisis Técnico Subflujo",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
