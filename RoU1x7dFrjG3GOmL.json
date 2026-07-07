@@ -262,6 +262,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "ChatBot_sendMail_enbber",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
