@@ -705,6 +705,7 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Trading",
+  "nodeGroups": [],
   "nodes": [
     {
       "parameters": {
