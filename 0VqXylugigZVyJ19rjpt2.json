@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-31T13:02:00.000Z",
-    "createdAt": "2026-01-31T13:01:03.388Z",
     "versionId": "e68517ce-b8a5-4581-b0b5-9e9ec4e838d5",
     "workflowId": "0VqXylugigZVyJ19rjpt2",
     "nodes": [
@@ -594,7 +592,9 @@
     "authors": "Juan Castillo",
     "name": "Version e68517ce",
     "description": "",
-    "autosaved": true
+    "autosaved": true,
+    "createdAt": "2026-01-31T13:01:03.388Z",
+    "updatedAt": "2026-01-31T13:02:00.000Z"
   },
   "activeVersionId": "e68517ce-b8a5-4581-b0b5-9e9ec4e838d5",
   "connections": {
@@ -1114,20 +1114,20 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-01-18T20:19:21.921Z",
-      "createdAt": "2026-01-18T20:19:21.921Z",
       "role": "workflow:owner",
       "workflowId": "0VqXylugigZVyJ19rjpt2",
-      "projectId": "TWUdlmfp5jAL6XiA"
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2026-01-18T20:19:21.921Z",
+      "updatedAt": "2026-01-18T20:19:21.921Z"
     }
   ],
   "staticData": null,
   "tags": [
     {
-      "updatedAt": "2026-01-27T14:36:01.232Z",
-      "createdAt": "2026-01-27T14:36:01.232Z",
       "id": "mAgmoazsewm9AToE",
-      "name": "youtube"
+      "name": "youtube",
+      "createdAt": "2026-01-27T14:36:01.232Z",
+      "updatedAt": "2026-01-27T14:36:01.232Z"
     }
   ],
   "triggerCount": 1,
