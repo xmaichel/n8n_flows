@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-04-12T03:39:06.000Z",
-    "createdAt": "2026-04-12T03:39:02.942Z",
     "versionId": "cd54ece0-0e4a-4eb4-a31d-fcb544c1aacc",
     "workflowId": "BvuOTXpoIjvXGlFy",
     "nodes": [
@@ -1983,7 +1981,9 @@
     "authors": "Juan Castillo",
     "name": "Version cd54ece0",
     "description": "",
-    "autosaved": true
+    "autosaved": true,
+    "createdAt": "2026-04-12T03:39:02.942Z",
+    "updatedAt": "2026-04-12T03:39:06.000Z"
   },
   "activeVersionId": "cd54ece0-0e4a-4eb4-a31d-fcb544c1aacc",
   "connections": {
@@ -4051,11 +4051,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2026-03-23T22:47:18.014Z",
-      "createdAt": "2026-03-23T22:47:18.014Z",
       "role": "workflow:owner",
       "workflowId": "BvuOTXpoIjvXGlFy",
-      "projectId": "TWUdlmfp5jAL6XiA"
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2026-03-23T22:47:18.014Z",
+      "updatedAt": "2026-03-23T22:47:18.014Z"
     }
   ],
   "staticData": null,
