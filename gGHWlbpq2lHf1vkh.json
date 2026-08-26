@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2026-01-12T12:09:23.000Z",
-    "createdAt": "2026-01-12T12:09:20.862Z",
     "versionId": "f068ab37-9f74-47c7-93ff-f236002b5116",
     "workflowId": "gGHWlbpq2lHf1vkh",
     "nodes": [
@@ -1342,7 +1340,9 @@
     "authors": "Juan Castillo",
     "name": "Version f068ab37",
     "description": "",
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2026-01-12T12:09:20.862Z",
+    "updatedAt": "2026-01-12T12:09:23.000Z"
   },
   "activeVersionId": "f068ab37-9f74-47c7-93ff-f236002b5116",
   "connections": {
@@ -2769,11 +2769,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-12-31T11:54:56.652Z",
-      "createdAt": "2025-12-31T11:54:56.652Z",
       "role": "workflow:owner",
       "workflowId": "gGHWlbpq2lHf1vkh",
-      "projectId": "TWUdlmfp5jAL6XiA"
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2025-12-31T11:54:56.652Z",
+      "updatedAt": "2025-12-31T11:54:56.652Z"
     }
   ],
   "staticData": {
@@ -2788,22 +2788,22 @@
   },
   "tags": [
     {
-      "updatedAt": "2025-10-05T11:30:47.138Z",
-      "createdAt": "2025-10-05T11:30:47.138Z",
       "id": "8kH0lewudRwSi32l",
-      "name": "Telegram"
+      "name": "Telegram",
+      "createdAt": "2025-10-05T11:30:47.138Z",
+      "updatedAt": "2025-10-05T11:30:47.138Z"
     },
     {
-      "updatedAt": "2025-08-27T02:32:53.805Z",
-      "createdAt": "2025-08-27T02:32:53.805Z",
       "id": "OQQq6eqfQ662GHrl",
-      "name": "googleSheets"
+      "name": "googleSheets",
+      "createdAt": "2025-08-27T02:32:53.805Z",
+      "updatedAt": "2025-08-27T02:32:53.805Z"
     },
     {
-      "updatedAt": "2025-12-14T16:54:32.060Z",
-      "createdAt": "2025-12-14T16:54:32.060Z",
       "id": "ofEzJAAOTKanxOGS",
-      "name": "Trading"
+      "name": "Trading",
+      "createdAt": "2025-12-14T16:54:32.060Z",
+      "updatedAt": "2025-12-14T16:54:32.060Z"
     }
   ],
   "triggerCount": 2,
