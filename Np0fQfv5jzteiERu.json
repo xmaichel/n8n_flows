@@ -1,8 +1,6 @@
 {
   "active": true,
   "activeVersion": {
-    "updatedAt": "2025-12-05T21:33:24.604Z",
-    "createdAt": "2025-12-05T21:33:24.604Z",
     "versionId": "edb6249b-4ddc-42fa-bec7-4267d23792f5",
     "workflowId": "Np0fQfv5jzteiERu",
     "nodes": [
@@ -1077,7 +1075,9 @@
     "authors": "system migration",
     "name": null,
     "description": null,
-    "autosaved": false
+    "autosaved": false,
+    "createdAt": "2025-12-05T21:33:24.604Z",
+    "updatedAt": "2025-12-05T21:33:24.604Z"
   },
   "activeVersionId": "edb6249b-4ddc-42fa-bec7-4267d23792f5",
   "connections": {
@@ -2203,11 +2203,11 @@
   },
   "shared": [
     {
-      "updatedAt": "2025-08-20T17:56:26.911Z",
-      "createdAt": "2025-08-20T17:56:26.911Z",
       "role": "workflow:owner",
       "workflowId": "Np0fQfv5jzteiERu",
-      "projectId": "TWUdlmfp5jAL6XiA"
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2025-08-20T17:56:26.911Z",
+      "updatedAt": "2025-08-20T17:56:26.911Z"
     }
   ],
   "staticData": {
@@ -2223,22 +2223,22 @@
   },
   "tags": [
     {
-      "updatedAt": "2025-08-27T02:32:53.805Z",
-      "createdAt": "2025-08-27T02:32:53.805Z",
       "id": "OQQq6eqfQ662GHrl",
-      "name": "googleSheets"
+      "name": "googleSheets",
+      "createdAt": "2025-08-27T02:32:53.805Z",
+      "updatedAt": "2025-08-27T02:32:53.805Z"
     },
     {
-      "updatedAt": "2025-08-27T02:32:24.288Z",
-      "createdAt": "2025-08-27T02:32:24.288Z",
       "id": "kOYgXbC3US2hjxds",
-      "name": "CAL"
+      "name": "CAL",
+      "createdAt": "2025-08-27T02:32:24.288Z",
+      "updatedAt": "2025-08-27T02:32:24.288Z"
     },
     {
-      "updatedAt": "2025-08-27T02:32:34.550Z",
-      "createdAt": "2025-08-27T02:32:34.550Z",
       "id": "pIwkmYhm1tCuzn9b",
-      "name": "OutLook"
+      "name": "OutLook",
+      "createdAt": "2025-08-27T02:32:34.550Z",
+      "updatedAt": "2025-08-27T02:32:34.550Z"
     }
   ],
   "triggerCount": 4,
