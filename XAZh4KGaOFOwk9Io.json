@@ -1,7 +1,7 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "9d81a1b6-08a3-4411-aa4a-f8ea69875753",
+    "versionId": "249e848f-4828-4dce-a8bb-c394c36ff52f",
     "workflowId": "XAZh4KGaOFOwk9Io",
     "nodes": [
       {
@@ -302,12 +302,11 @@
             ]
           },
           "options": {
-            "appendAttribution": false,
+            "appendAttribution": true,
+            "ipWhitelist": "",
             "buttonLabel": "Submit",
-            "respondWithOptions": {
-              "values": {}
-            },
-            "ignoreBots": true
+            "ignoreBots": true,
+            "showHeaders": false
           }
         },
         "id": "c0e86d75-8ff7-43ed-b986-3595860efb57",
@@ -318,7 +317,8 @@
           -1072,
           -112
         ],
-        "webhookId": "d8ece794-7a4e-484f-9aa2-8e221201ed1b"
+        "webhookId": "d8ece794-7a4e-484f-9aa2-8e221201ed1b",
+        "notesInFlow": true
       },
       {
         "parameters": {
@@ -992,13 +992,13 @@
     },
     "nodeGroups": [],
     "authors": "Juan Castillo",
-    "name": "Version 9d81a1b6",
-    "description": "",
+    "name": null,
+    "description": null,
     "autosaved": true,
-    "createdAt": "2026-08-26T01:12:04.599Z",
-    "updatedAt": "2026-08-26T01:12:21.000Z"
+    "createdAt": "2026-08-26T04:57:20.997Z",
+    "updatedAt": "2026-08-26T04:57:20.997Z"
   },
-  "activeVersionId": "9d81a1b6-08a3-4411-aa4a-f8ea69875753",
+  "activeVersionId": "249e848f-4828-4dce-a8bb-c394c36ff52f",
   "connections": {
     "Formulario Diagnóstico Express": {
       "main": [
