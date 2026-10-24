@@ -1,0 +1,234 @@
+{
+  "active": true,
+  "activeVersion": {
+    "versionId": "e4367cef-c705-4444-ac8a-488c8ca8d237",
+    "workflowId": "uPoGmmARN8qmisfs",
+    "nodes": [
+      {
+        "id": "7c770d17-2758-4459-8b67-cf0ebbd22e09",
+        "name": "Outsourcing quote intake",
+        "webhookId": "fb0ac5ba-c5ef-43b4-bff3-59506210b9e2",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2.1,
+        "position": [
+          0,
+          0
+        ],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "quote-outsourcing-56qGjYWWwXqHiuA0gOm8oT73zogNepqbs5L_OQ1z26c",
+          "responseMode": "lastNode",
+          "options": {}
+        }
+      },
+      {
+        "id": "68fc9ccd-830d-48c6-b992-fc9397e4c0ee",
+        "name": "Validate request and prepare PDF",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          260,
+          0
+        ],
+        "parameters": {
+          "mode": "runOnceForAllItems",
+          "language": "javaScript",
+          "jsCode": "const input = $input.first()?.json ?? {};\nconst body = input.body && typeof input.body === 'object' ? input.body : input;\nconst clean = (value, max) => String(value ?? '').replace(/[\\r\\n\\u0000-\\u001f\\u007f]/g, ' ').trim().slice(0, max);\nconst email = clean(body.email, 254);\nconst contactName = clean(body.contactName, 120);\nconst company = clean(body.company, 160);\nconst base64 = String(body.pdfBase64 ?? '');\n\nif (clean(body.website, 200)) throw new Error('Solicitud no válida.');\nif (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) throw new Error('Correo no válido.');\nif (!contactName || !company) throw new Error('Faltan datos de contacto.');\nif (!base64 || base64.length > 7_000_000 || base64.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64)) {\n  throw new Error('Adjunto PDF no válido.');\n}\nconst pdf = Buffer.from(base64, 'base64');\nif (pdf.length < 100 || pdf.length > 5 * 1024 * 1024 || pdf.subarray(0, 5).toString() !== '%PDF-') {\n  throw new Error('Adjunto PDF no válido.');\n}\nconst attachment = await this.helpers.prepareBinaryData(\n  pdf,\n  'Propuesta_Outsourcing_Grupo_Empodera.pdf',\n  'application/pdf',\n);\nreturn [{\n  json: {\n    email,\n    subject: 'Tu propuesta preliminar de Outsourcing | Grupo Empodera',\n    message: `Hola ${contactName},\\n\\nAdjuntamos la propuesta preliminar de Outsourcing para ${company}. La estimación se basa en la información que compartiste y los conceptos sujetos a revisión están indicados en el documento.\\n\\nSaludos,\\nGrupo Empodera`,\n  },\n  binary: { attachment },\n}];"
+        }
+      },
+      {
+        "id": "18e1f4c2-33d3-4f79-a18f-713ac812ed4e",
+        "name": "Email proposal with PDF",
+        "type": "n8n-nodes-base.gmail",
+        "typeVersion": 2.2,
+        "position": [
+          520,
+          0
+        ],
+        "parameters": {
+          "resource": "message",
+          "operation": "send",
+          "sendTo": "={{ $json.email }}",
+          "subject": "={{ $json.subject }}",
+          "emailType": "text",
+          "message": "={{ $json.message }}",
+          "options": {
+            "appendAttribution": false,
+            "attachmentsUi": {
+              "attachmentsBinary": [
+                {
+                  "property": "attachment"
+                }
+              ]
+            }
+          }
+        },
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "kTicbSOlrM56HEmj",
+            "name": "Gmail account"
+          }
+        },
+        "webhookId": "8cfa3f88-c152-4bdb-909f-34cb79691120"
+      }
+    ],
+    "connections": {
+      "Outsourcing quote intake": {
+        "main": [
+          [
+            {
+              "node": "Validate request and prepare PDF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Validate request and prepare PDF": {
+        "main": [
+          [
+            {
+              "node": "Email proposal with PDF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Juan Castillo",
+    "name": null,
+    "description": null,
+    "autosaved": false,
+    "createdAt": "2026-10-23T21:15:21.561Z",
+    "updatedAt": "2026-10-23T21:15:21.561Z"
+  },
+  "activeVersionId": "e4367cef-c705-4444-ac8a-488c8ca8d237",
+  "connections": {
+    "Outsourcing quote intake": {
+      "main": [
+        [
+          {
+            "node": "Validate request and prepare PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate request and prepare PDF": {
+      "main": [
+        [
+          {
+            "node": "Email proposal with PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-10-23T21:15:21.541Z",
+  "id": "uPoGmmARN8qmisfs",
+  "isArchived": false,
+  "meta": null,
+  "name": "EmpoderaOutsourcingQuoteEmail",
+  "nodeGroups": [],
+  "nodes": [
+    {
+      "id": "7c770d17-2758-4459-8b67-cf0ebbd22e09",
+      "name": "Outsourcing quote intake",
+      "webhookId": "fb0ac5ba-c5ef-43b4-bff3-59506210b9e2",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "quote-outsourcing-56qGjYWWwXqHiuA0gOm8oT73zogNepqbs5L_OQ1z26c",
+        "responseMode": "lastNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "68fc9ccd-830d-48c6-b992-fc9397e4c0ee",
+      "name": "Validate request and prepare PDF",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const input = $input.first()?.json ?? {};\nconst body = input.body && typeof input.body === 'object' ? input.body : input;\nconst clean = (value, max) => String(value ?? '').replace(/[\\r\\n\\u0000-\\u001f\\u007f]/g, ' ').trim().slice(0, max);\nconst email = clean(body.email, 254);\nconst contactName = clean(body.contactName, 120);\nconst company = clean(body.company, 160);\nconst base64 = String(body.pdfBase64 ?? '');\n\nif (clean(body.website, 200)) throw new Error('Solicitud no válida.');\nif (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) throw new Error('Correo no válido.');\nif (!contactName || !company) throw new Error('Faltan datos de contacto.');\nif (!base64 || base64.length > 7_000_000 || base64.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(base64)) {\n  throw new Error('Adjunto PDF no válido.');\n}\nconst pdf = Buffer.from(base64, 'base64');\nif (pdf.length < 100 || pdf.length > 5 * 1024 * 1024 || pdf.subarray(0, 5).toString() !== '%PDF-') {\n  throw new Error('Adjunto PDF no válido.');\n}\nconst attachment = await this.helpers.prepareBinaryData(\n  pdf,\n  'Propuesta_Outsourcing_Grupo_Empodera.pdf',\n  'application/pdf',\n);\nreturn [{\n  json: {\n    email,\n    subject: 'Tu propuesta preliminar de Outsourcing | Grupo Empodera',\n    message: `Hola ${contactName},\\n\\nAdjuntamos la propuesta preliminar de Outsourcing para ${company}. La estimación se basa en la información que compartiste y los conceptos sujetos a revisión están indicados en el documento.\\n\\nSaludos,\\nGrupo Empodera`,\n  },\n  binary: { attachment },\n}];"
+      }
+    },
+    {
+      "id": "18e1f4c2-33d3-4f79-a18f-713ac812ed4e",
+      "name": "Email proposal with PDF",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.message }}",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "attachment"
+              }
+            ]
+          }
+        }
+      },
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kTicbSOlrM56HEmj",
+          "name": "Gmail account"
+        }
+      },
+      "webhookId": "8cfa3f88-c152-4bdb-909f-34cb79691120"
+    }
+  ],
+  "origin": "main",
+  "pinData": null,
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "saveExecutionProgress": false,
+    "saveDataErrorExecution": "none",
+    "saveDataSuccessExecution": "none",
+    "timezone": "America/Bogota",
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "role": "workflow:owner",
+      "workflowId": "uPoGmmARN8qmisfs",
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2026-10-23T21:15:21.555Z",
+      "updatedAt": "2026-10-23T21:15:21.555Z"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-10-23T21:15:21.541Z",
+  "versionId": "e4367cef-c705-4444-ac8a-488c8ca8d237"
+}
