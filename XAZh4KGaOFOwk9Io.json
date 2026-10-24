@@ -1,7 +1,7 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "f857b84a-2351-4328-a8e7-045c1200f524",
+    "versionId": "0bcdefc7-4f26-4ae5-ac14-1aa68f3f01d3",
     "workflowId": "XAZh4KGaOFOwk9Io",
     "nodes": [
       {
@@ -812,7 +812,8 @@
         ],
         "id": "d69edd63-9030-461f-85b5-a1edf5b2cdd7",
         "name": "Form",
-        "webhookId": "ca7c41ff-d6bb-4cfc-b7d9-f5e0e913c371"
+        "webhookId": "ca7c41ff-d6bb-4cfc-b7d9-f5e0e913c371",
+        "disabled": true
       }
     ],
     "connections": {
@@ -1024,13 +1025,13 @@
     },
     "nodeGroups": [],
     "authors": "Juan Castillo",
-    "name": "Version f857b84a",
+    "name": "Version 0bcdefc7",
     "description": "",
     "autosaved": true,
-    "createdAt": "2026-09-23T21:39:58.815Z",
-    "updatedAt": "2026-09-23T21:40:22.000Z"
+    "createdAt": "2026-10-24T02:51:04.062Z",
+    "updatedAt": "2026-10-24T02:52:28.000Z"
   },
-  "activeVersionId": "f857b84a-2351-4328-a8e7-045c1200f524",
+  "activeVersionId": "0bcdefc7-4f26-4ae5-ac14-1aa68f3f01d3",
   "connections": {
     "Formulario Diagnóstico Express": {
       "main": [
@@ -2055,7 +2056,8 @@
       ],
       "id": "d69edd63-9030-461f-85b5-a1edf5b2cdd7",
       "name": "Form",
-      "webhookId": "ca7c41ff-d6bb-4cfc-b7d9-f5e0e913c371"
+      "webhookId": "ca7c41ff-d6bb-4cfc-b7d9-f5e0e913c371",
+      "disabled": true
     }
   ],
   "origin": "main",
@@ -2087,6 +2089,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2026-09-23T21:39:59.371Z",
-  "versionId": "f857b84a-2351-4328-a8e7-045c1200f524"
+  "updatedAt": "2026-10-24T02:51:04.013Z",
+  "versionId": "0bcdefc7-4f26-4ae5-ac14-1aa68f3f01d3"
 }
