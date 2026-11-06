@@ -1,7 +1,7 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "167e88b3-fc80-438e-a1d5-41401167ac92",
+    "versionId": "fea32ee1-5662-4287-ab44-6432d676cca6",
     "workflowId": "unfiEKMea5s06W0H",
     "nodes": [
       {
@@ -455,9 +455,9 @@
         ],
         "parameters": {
           "promptType": "define",
-          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $('Code in JavaScript').item.json.nombre }}\nEmpresa: {{ $('Code in JavaScript').item.json.empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
           "options": {
-            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>.\n\nusa la tool para generar el pdf"
+            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
           }
         }
       },
@@ -471,8 +471,10 @@
           -256
         ],
         "parameters": {
-          "model": "deepseek/deepseek-v4-pro-0813",
-          "options": {}
+          "model": "deepseek/deepseek-v4.1-flash-1017",
+          "options": {
+            "maxTokens": 8000
+          }
         },
         "credentials": {
           "openRouterApi": {
@@ -492,81 +494,6 @@
         ],
         "parameters": {
           "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}_${data.token || ''}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
-        }
-      },
-      {
-        "id": "5e792194-02c3-40dc-bfe1-87d87b05014c",
-        "name": "Send a message",
-        "webhookId": "098f4ec4-611e-43d0-b7fa-80444fdbf43e",
-        "type": "n8n-nodes-base.gmail",
-        "typeVersion": 2.2,
-        "position": [
-          736,
-          -688
-        ],
-        "parameters": {
-          "operation": "sendAndWait",
-          "sendTo": "belquiss.nunez@outlook.com",
-          "subject": "Aprobar mail - evaluación de formExpress.",
-          "message": "=Validar par enviar:\n\nDiagnostico {{ $json.webContentLink }}",
-          "responseType": "freeText",
-          "options": {
-            "appendAttribution": false
-          }
-        },
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "kTicbSOlrM56HEmj",
-            "name": "Gmail account"
-          }
-        }
-      },
-      {
-        "id": "62d0aa7f-fefb-4308-9708-3bc78c35b695",
-        "name": "Text Classifier",
-        "type": "@n8n/n8n-nodes-langchain.textClassifier",
-        "typeVersion": 1.1,
-        "position": [
-          1024,
-          -752
-        ],
-        "parameters": {
-          "inputText": "={{ $json.data.text }}",
-          "categories": {
-            "categories": [
-              {
-                "category": "Aprobado",
-                "description": "El revisor aprueba el documento sin cambios o con comentarios menores"
-              },
-              {
-                "category": "correccion",
-                "description": "El revisor solicita cambios, correcciones o ajustes al documento"
-              }
-            ]
-          },
-          "options": {
-            "systemPromptTemplate": "Eres un asistente que evalúa respuestas de revisores sobre documentos.\nClasifica según la intención principal del mensaje, no palabras aisladas.\nEjemplo de respuestas de aprobación: \"OK\", \"aprobado\""
-          }
-        }
-      },
-      {
-        "id": "1151779a-08ed-4946-9034-491de389bb36",
-        "name": "OpenRouter Chat Model1",
-        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-        "typeVersion": 1,
-        "position": [
-          1072,
-          -640
-        ],
-        "parameters": {
-          "model": "deepseek/deepseek-v4-pro-0813",
-          "options": {}
-        },
-        "credentials": {
-          "openRouterApi": {
-            "id": "n9ENnMrxLhhgNjf8",
-            "name": "OpenRouter account"
-          }
         }
       },
       {
@@ -593,7 +520,7 @@
           -480
         ],
         "parameters": {
-          "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst tieneFormato = raw.includes('<div class=\"container\">') && /<\\/body>/i.test(raw);\n\nlet sharedStyles = '';\nlet paginatedContent = '';\n\nif (tieneFormato) {\n  const styleMatch = raw.match(/<style>([\\s\\S]*?)<\\/style>/);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n  const containerMatch = raw.match(/<div class=\"container\">([\\s\\S]*?)<\\/div>\\s*<\\/body>/);\n  const body = containerMatch ? containerMatch[1] : '';\n  const sections = body.split(/(?=<div class=\"section-title\">)/);\n  paginatedContent = sections\n    .filter((s) => s.trim())\n    .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n}\n\n// Respaldo determinista: si la IA no devolvió el formato esperado, el informe se arma\n// con los datos del formulario. Nunca se queda el lead sin documento.\nif (!paginatedContent.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:4px 8px;border-bottom:1px solid #dde3ea;\"><b>${k}</b></td><td style=\"padding:4px 8px;border-bottom:1px solid #dde3ea;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:11pt;} h1{color:#19325A;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 18px;} h2{color:#19325A;font-size:14pt;margin:18px 0 8px;}';\n  paginatedContent = `\n    <div class=\"page-block\">\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n}\n\nconst finalHtml = `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${paginatedContent}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = finalHtml;\nreturn items;"
+          "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst esHtml = /<body[\\s>]/i.test(raw) || /<div[\\s>]/i.test(raw);\n\nlet sharedStyles = '';\nlet paginatedContent = '';\n\nif (esHtml) {\n  const styleMatch = raw.match(/<style[^>]*>([\\s\\S]*?)<\\/style>/i);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n\n  // Preferimos el bloque .container; si no existe, usamos todo el <body>.\n  const containerMatch = raw.match(/<div[^>]*class=[\"'][^\"']*container[^\"']*[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/body>/i);\n  const bodyMatch = raw.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\n  let cuerpo = '';\n  if (containerMatch) cuerpo = containerMatch[1];\n  else if (bodyMatch) cuerpo = bodyMatch[1];\n  else cuerpo = raw.replace(/<!DOCTYPE[^>]*>/i, '').replace(/<\\/?html[^>]*>/gi, '').replace(/<head[\\s\\S]*?<\\/head>/i, '');\n\n  const sections = cuerpo.split(/(?=<h2|<div[^>]*class=[\"'][^\"']*(?:section-title|section)[^\"']*[\"'])/i);\n  paginatedContent = sections\n    .filter((s) => s && s.trim())\n    .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n}\n\n// Respaldo determinista: si la IA no devolvió HTML usable, el informe se arma\n// con las respuestas del formulario. Nunca se queda el lead sin documento.\nif (!paginatedContent.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;width:34%;\"><b>${k}</b></td><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:11pt;line-height:1.5;} h1{color:#19325A;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 20px;} h2{color:#19325A;font-size:14pt;margin:20px 0 8px;}';\n  paginatedContent = `\n    <div class=\"page-block\">\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n}\n\nconst finalHtml = `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${paginatedContent}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = finalHtml;\nreturn items;"
         }
       },
       {
@@ -641,124 +568,23 @@
         "parameters": {
           "sendTo": "={{ $('Code in JavaScript').item.json.correo }}",
           "subject": "=Documento de diagnóstico para {{ $('Code in JavaScript').item.json.empresa }}",
-          "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>,</p>  <p>Esperamos que se encuentre muy bien.</p>  <p>Hemos revisado su caso con base en la información entregada en el formulario y hemos preparado el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, ya que contiene observaciones y recomendaciones pensadas especialmente para su negocio.</p>  <p>También puede descargarlo aquí: <a href=\"https://www.grupoempodera.com/api/diagnostico/archivo?t={{ $('Code in JavaScript').item.json.nombreArchivoPdf.split('_').pop() }}\">descargar mi diagnóstico</a></p>  <p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto de este informe.</p>  <p>Cordialmente,<br> <strong>Grupo Empodera</strong></p>",
+          "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Hemos revisado su caso con base en la información entregada en el formulario y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, porque contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"https://www.grupoempodera.com/api/diagnostico/archivo?t={{ $('Code in JavaScript').item.json.nombreArchivoPdf.split('_').pop() }}\">descargar mi diagnóstico</a></p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>",
           "options": {
             "appendAttribution": false,
-            "replyTo": "xmaichel@gmail.com;belquiss.nunez@outlook.com"
+            "replyTo": "xmaichel@gmail.com;belquiss.nunez@outlook.com",
+            "attachmentsUi": {
+              "attachmentsBinary": [
+                {
+                  "property": "data"
+                }
+              ]
+            }
           }
         },
         "credentials": {
           "gmailOAuth2": {
             "id": "kTicbSOlrM56HEmj",
             "name": "Gmail account"
-          }
-        }
-      },
-      {
-        "id": "b94181f4-fb85-4b97-a819-352314168afa",
-        "name": "Code in JavaScript2",
-        "type": "n8n-nodes-base.code",
-        "typeVersion": 2,
-        "position": [
-          1568,
-          -288
-        ],
-        "parameters": {
-          "jsCode": "const iteracion = $json[\"iteracion\"] || 0;\nif (iteracion >= 3) {\n  // escalar a revisión manual\n  return [{ json: { ...items[0].json, escalar: true } }];\n}\nreturn [{ json: { ...items[0].json, iteracion: iteracion + 1 } }];"
-        }
-      },
-      {
-        "id": "b1395520-a82d-4f4b-9c52-a7c04d1280ba",
-        "name": "Edit Fields",
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          1776,
-          -288
-        ],
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5274789a-7be2-4cd1-a5b4-615304c4990c",
-                "name": "iteracion",
-                "value": "={{ $json.iteracion }}",
-                "type": "number"
-              },
-              {
-                "id": "3f622819-f76b-435d-a53a-32ced0307623",
-                "name": "correciones",
-                "value": "={{ $json.data.text }}",
-                "type": "string"
-              },
-              {
-                "id": "dd9ec23a-dcf1-4170-b0d9-7c3108712d5f",
-                "name": "outputAntIA",
-                "value": "={{ $('AI Agent').item.json.output }}",
-                "type": "string"
-              },
-              {
-                "id": "343611a1-3944-4ad5-951b-a9443fbc067d",
-                "name": "respuestas",
-                "value": "={{ $('Code in JavaScript').item.json.respuestas }}",
-                "type": "object"
-              }
-            ]
-          },
-          "options": {}
-        }
-      },
-      {
-        "id": "231fc196-040e-4520-bb03-843d9a7bffe3",
-        "name": "AI Agent1",
-        "type": "@n8n/n8n-nodes-langchain.agent",
-        "typeVersion": 3.1,
-        "position": [
-          2000,
-          -288
-        ],
-        "parameters": {
-          "promptType": "define",
-          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\n{% if $json[\"documento_previo\"] %}\n──────────────────────────────────────\nDOCUMENTO APROBADO PREVIAMENTE:\n{{ $json.outputAntIA }}\n\nCORRECCIONES SOLICITADAS (versión {{ $json[\"iteracion\"] }}):\n{{ $json.correciones }}\n\nINSTRUCCIÓN: Devuelve el documento completo en HTML aplicando ÚNICAMENTE\nlas correcciones indicadas. No modifiques secciones que no fueron mencionadas.\n──────────────────────────────────────\n{% else %}\nGenera un informe de diagnóstico completo en formato HTML.\n{% endif %}\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
-          "options": {
-            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
-          }
-        }
-      },
-      {
-        "id": "24af976a-e2e5-492a-bc0f-845782b2fd4b",
-        "name": "OpenRouter Chat Model2",
-        "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-        "typeVersion": 1,
-        "position": [
-          2000,
-          -64
-        ],
-        "parameters": {
-          "model": "deepseek/deepseek-v4-pro-0813",
-          "options": {}
-        },
-        "credentials": {
-          "openRouterApi": {
-            "id": "n9ENnMrxLhhgNjf8",
-            "name": "OpenRouter account"
-          }
-        }
-      },
-      {
-        "id": "4c93e507-4e0c-4a8f-9ff7-495419bdc636",
-        "name": "Convert HTML to PDF in HTML to PDF",
-        "type": "n8n-nodes-htmlcsstopdf.htmlcsstopdfTool",
-        "typeVersion": 1,
-        "position": [
-          -80,
-          -240
-        ],
-        "parameters": {},
-        "credentials": {
-          "htmlcsstopdfApi": {
-            "id": "q7esfeEXtIrciQi2",
-            "name": "HTML to PDF account"
           }
         }
       },
@@ -781,23 +607,6 @@
           "customJsApi": {
             "id": "S7Abqfl03Z0C1VzP",
             "name": "CustomJS account"
-          }
-        }
-      },
-      {
-        "id": "77e04b2d-8efd-438d-a3be-62a926ddb8ff",
-        "name": "Form",
-        "webhookId": "1fe6b41d-50be-4de6-ba77-06add184068e",
-        "disabled": true,
-        "type": "n8n-nodes-base.form",
-        "typeVersion": 2.5,
-        "position": [
-          -1216,
-          -464
-        ],
-        "parameters": {
-          "options": {
-            "customCss": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Diagnóstico Empresarial - Grupo Empodera</title>\n  <style>\n    :root {\n      --font-family: 'Montserrat', 'Open Sans', sans-serif;\n      --font-weight-normal: 400;\n      --font-weight-bold: 700;\n      --font-size-body: 13px;\n      --font-size-label: 14px;\n      --font-size-input: 14px;\n      --font-size-header: 22px;\n      --font-size-paragraph: 14px;\n\n      /* Colors - Identidad Grupo Empodera */\n      --color-background: #f4f6f9;\n      --color-card-bg: #ffffff;\n      --color-card-border: #e2e7ec;\n      --color-card-shadow: rgba(14, 43, 82, 0.08);\n      --color-header: #0e2440;\n      --color-label: #2c3e50;\n      --color-input-border: #cfd8dc;\n      --color-input-text: #2c3e50;\n      --color-focus-border: #0077b6;\n      --color-submit-btn-bg: #0077b6;\n      --color-submit-btn-text: #ffffff;\n      --color-required: #e63946;\n      --color-header-subtext: #607d8b;\n\n      /* Spacing & Radii */\n      --border-radius-card: 10px;\n      --border-radius-input: 6px;\n      --container-width: 480px;\n      --submit-btn-height: 44px;\n    }\n\n    * {\n      box-sizing: border-box;\n      margin: 0;\n      padding: 0;\n    }\n\n    body {\n      background-color: var(--color-background);\n      font-family: var(--font-family);\n      color: var(--color-input-text);\n      display: flex;\n      justify-content: center;\n      padding: 40px 16px;\n    }\n\n    .form-container {\n      background-color: var(--color-card-bg);\n      border: 1px solid var(--color-card-border);\n      border-radius: var(--border-radius-card);\n      box-shadow: 0 8px 24px 0 var(--color-card-shadow);\n      width: 100%;\n      max-width: var(--container-width);\n      padding: 28px;\n    }\n\n    header {\n      margin-bottom: 24px;\n    }\n\n    h1 {\n      color: var(--color-header);\n      font-size: var(--font-size-header);\n      font-weight: var(--font-weight-bold);\n      margin-bottom: 8px;\n    }\n\n    header p {\n      color: var(--color-header-subtext);\n      font-size: var(--font-size-paragraph);\n      line-height: 1.5;\n    }\n\n    .form-group {\n      margin-bottom: 20px;\n      display: flex;\n      flex-direction: column;\n    }\n\n    label {\n      color: var(--color-label);\n      font-size: var(--font-size-label);\n      font-weight: var(--font-weight-bold);\n      margin-bottom: 8px;\n      line-height: 1.4;\n    }\n\n    .required {\n      color: var(--color-required);\n      margin-left: 2px;\n    }\n\n    input[type=\"text\"],\n    input[type=\"email\"],\n    select,\n    textarea {\n      font-family: inherit;\n      font-size: var(--font-size-input);\n      color: var(--color-input-text);\n      border: 1px solid var(--color-input-border);\n      border-radius: var(--border-radius-input);\n      padding: 10px 12px;\n      background-color: #fff;\n      outline: none;\n      transition: border-color 0.2s, box-shadow 0.2s;\n      width: 100%;\n    }\n\n    input:focus,\n    select:focus,\n    textarea:focus {\n      border-color: var(--color-focus-border);\n      box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);\n    }\n\n    textarea {\n      resize: vertical;\n      min-height: 80px;\n    }\n\n    select {\n      cursor: pointer;\n      appearance: none;\n      background-image: url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23607d8b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\");\n      background-repeat: no-repeat;\n      background-position: right 12px center;\n      background-size: 16px;\n      padding-right: 36px;\n    }\n\n    button[type=\"submit\"] {\n      width: 100%;\n      height: var(--submit-btn-height);\n      background-color: var(--color-submit-btn-bg);\n      color: var(--color-submit-btn-text);\n      font-size: var(--font-size-input);\n      font-weight: var(--font-weight-bold);\n      border: none;\n      border-radius: var(--border-radius-input);\n      cursor: pointer;\n      margin-top: 10px;\n      transition: background-color 0.2s, transform 0.1s;\n    }\n\n    button[type=\"submit\"]:hover {\n      background-color: #005f92;\n    }\n\n    button[type=\"submit\"]:active {\n      transform: scale(0.99);\n    }\n  </style>\n</head>\n<body>\n  <div class=\"form-container\">\n    <header>\n      <h1>Diagnóstico Empresarial</h1>\n      <p>Este cuestionario te tomará menos de 5 minutos y nos permitirá identificar el área de tu negocio que necesita intervención inmediata para alcanzar el siguiente nivel.</p>\n    </header>\n\n    <form action=\"d8ece794-7a4e-484f-9aa2-8e221201ed1b\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"nombre\">Nombre completo <span class=\"required\">*</span></label>\n        <input type=\"text\" id=\"nombre\" name=\"Nombre completo\" placeholder=\"Tu nombre completo\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"empresa\">Nombre de la Empresa o Emprendimiento <span class=\"required\">*</span></label>\n        <input type=\"text\" id=\"empresa\" name=\"Nombre de la Empresa o Emprendimiento\" placeholder=\"Nombre de tu empresa o emprendimiento\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"contacto\">Número de contacto <span class=\"required\">*</span></label>\n        <input type=\"text\" id=\"contacto\" name=\"Número de contacto\" placeholder=\"Ej: +57 300 000 0000\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"correo\">Correo electrónico <span class=\"required\">*</span></label>\n        <input type=\"email\" id=\"correo\" name=\"Correo electrónico\" placeholder=\"tu@correo.com\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p1\">P1: ¿En qué etapa se encuentra tu proyecto o negocio? <span class=\"required\">*</span></label>\n        <select id=\"p1\" name=\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Tengo una idea y quiero validarla para empezar.\">A) Tengo una idea y quiero validarla para empezar.</option>\n          <option value=\"B) Mi negocio ya opera, pero me cuesta generar ventas constantes.\">B) Mi negocio ya opera, pero me cuesta generar ventas constantes.</option>\n          <option value=\"C) Mi negocio es estable, pero el crecimiento se ha estancado.\">C) Mi negocio es estable, pero el crecimiento se ha estancado.</option>\n          <option value=\"D) Mi empresa crece rápido, pero siento que el desorden me está consumiendo.\">D) Mi empresa crece rápido, pero siento que el desorden me está consumiendo.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p2\">P2: ¿A qué sector pertenece tu actividad principal? <span class=\"required\">*</span></label>\n        <select id=\"p2\" name=\"P2: ¿A qué sector pertenece tu actividad principal?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Comercio (Venta de productos físicos).\">A) Comercio (Venta de productos físicos).</option>\n          <option value=\"B) Servicios (Consultoría, educación, logística, salud, etc.).\">B) Servicios (Consultoría, educación, logística, salud, etc.).</option>\n          <option value=\"C) Industria / Producción (Fabrico mis propios productos).\">C) Industria / Producción (Fabrico mis propios productos).</option>\n          <option value=\"D) Tecnología / Digital (Software, apps, plataformas).\">D) Tecnología / Digital (Software, apps, plataformas).</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p3\">P3: ¿En qué subsector te ubicas principalmente? <span class=\"required\">*</span></label>\n        <select id=\"p3\" name=\"P3: ¿En qué subsector te ubicas principalmente?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Alimentos, Bebidas y Restauración.\">A) Alimentos, Bebidas y Restauración.</option>\n          <option value=\"B) Transporte, Logística y Distribución de Carga.\">B) Transporte, Logística y Distribución de Carga.</option>\n          <option value=\"C) Educación (Primera infancia, superior o formación técnica).\">C) Educación (Primera infancia, superior o formación técnica).</option>\n          <option value=\"D) Salud, Pharma, Bienestar y Cuidado Personal.\">D) Salud, Pharma, Bienestar y Cuidado Personal.</option>\n          <option value=\"E) Servicios Profesionales (Consultoría, legal, contable, arquitectura).\">E) Servicios Profesionales (Consultoría, legal, contable, arquitectura).</option>\n          <option value=\"F) Inmobiliario, Construcción e Infraestructura.\">F) Inmobiliario, Construcción e Infraestructura.</option>\n          <option value=\"G) Retail y Comercio Especializado (Moda, hogar, ferretería).\">G) Retail y Comercio Especializado (Moda, hogar, ferretería).</option>\n          <option value=\"H) Agronegocios y Producción Primaria.\">H) Agronegocios y Producción Primaria.</option>\n          <option value=\"I) Tecnología, Desarrollo de Software y Economía Digital.\">I) Tecnología, Desarrollo de Software y Economía Digital.</option>\n          <option value=\"J) Turismo, Entretenimiento y Hospitalidad.\">J) Turismo, Entretenimiento y Hospitalidad.</option>\n          <option value=\"K) Otro (Detalles, regalos, florería).\">K) Otro (Detalles, regalos, florería).</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"descripcion\">Descripción breve de tu negocio (productos y servicios) <span class=\"required\">*</span></label>\n        <textarea id=\"descripcion\" name=\"Descripción breve de tu negocio (productos y servicios)\" placeholder=\"Describe brevemente qué hace tu empresa...\" required></textarea>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p4\">P4: ¿Cuántas personas forman parte de tu equipo actualmente? <span class=\"required\">*</span></label>\n        <select id=\"p4\" name=\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Solo yo (Emprendedor solitario).\">A) Solo yo (Emprendedor solitario).</option>\n          <option value=\"B) Entre 2 y 10 personas.\">B) Entre 2 y 10 personas.</option>\n          <option value=\"C) Entre 11 y 50 personas.\">C) Entre 11 y 50 personas.</option>\n          <option value=\"D) Más de 50 personas.\">D) Más de 50 personas.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p5\">P5: ¿Cuál es su volumen anual de ingresos expresados en dólares? <span class=\"required\">*</span></label>\n        <select id=\"p5\" name=\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Menos de US$ 100.000.\">A) Menos de US$ 100.000.</option>\n          <option value=\"B) Entre US$100.000 y US$300.000.\">B) Entre US$100.000 y US$300.000.</option>\n          <option value=\"C) Entre US$300.000 y US$500.000.\">C) Entre US$300.000 y US$500.000.</option>\n          <option value=\"D) Entre US$500.000 y US$1.000.000.\">D) Entre US$500.000 y US$1.000.000.</option>\n          <option value=\"E) Más de US$1.000.000.\">E) Más de US$1.000.000.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p6\">P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder? <span class=\"required\">*</span></label>\n        <select id=\"p6\" name=\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) No tengo claro cuánto gané realmente después de pagar todo.\">A) No tengo claro cuánto gané realmente después de pagar todo.</option>\n          <option value=\"B) Gano dinero, pero casi todo se va en pagar deudas o proveedores de inmediato.\">B) Gano dinero, pero casi todo se va en pagar deudas o proveedores de inmediato.</option>\n          <option value=\"C) Sé cuánto gano, pero me falta capital para invertir en crecer.\">C) Sé cuánto gano, pero me falta capital para invertir en crecer.</option>\n          <option value=\"D) Mis finanzas están bajo control y tengo reportes claros cada mes.\">D) Mis finanzas están bajo control y tengo reportes claros cada mes.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p7\">P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio? <span class=\"required\">*</span></label>\n        <select id=\"p7\" name=\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Por recomendaciones; no tengo un plan para buscarlos.\">A) Por recomendaciones; no tengo un plan para buscarlos.</option>\n          <option value=\"B) Publico en redes sociales, pero no sé cómo convertirlos en ventas reales.\">B) Publico en redes sociales, pero no sé cómo convertirlos en ventas reales.</option>\n          <option value=\"C) Tengo ventas, pero dependen demasiado de mi esfuerzo personal (si no estoy, no se vende).\">C) Tengo ventas, pero dependen demasiado de mi esfuerzo personal (si no estoy, no se vende).</option>\n          <option value=\"D) Tengo un sistema de ventas claro y metas que mi equipo cumple mes a mes.\">D) Tengo un sistema de ventas claro y metas que mi equipo cumple mes a mes.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p8\">P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio? <span class=\"required\">*</span></label>\n        <select id=\"p8\" name=\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) El negocio se detendría por completo; nadie sabe qué hacer.\">A) El negocio se detendría por completo; nadie sabe qué hacer.</option>\n          <option value=\"B) Habría muchos errores y clientes quejándose; todo es improvisado.\">B) Habría muchos errores y clientes quejándose; todo es improvisado.</option>\n          <option value=\"C) Funcionaría a medias, pero yo tendría que estar resolviendo dudas por teléfono.\">C) Funcionaría a medias, pero yo tendría que estar resolviendo dudas por teléfono.</option>\n          <option value=\"D) Funcionaría perfectamente; tenemos manuales y procesos escritos.\">D) Funcionaría perfectamente; tenemos manuales y procesos escritos.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p9\">P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria? <span class=\"required\">*</span></label>\n        <select id=\"p9\" name=\"P9 (Gestión Tecnológica): ¿Qué tan &quot;digital&quot; es tu operación diaria?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Todo es manual (papel, cuadernos o Excel básico).\">A) Todo es manual (papel, cuadernos o Excel básico).</option>\n          <option value=\"B) Uso algunas herramientas, pero no se hablan entre sí (tengo la información dispersa).\">B) Uso algunas herramientas, pero no se hablan entre sí (tengo la información dispersa).</option>\n          <option value=\"C) Uso sistemas especializados, pero mi equipo no los aprovecha al 100%.\">C) Uso sistemas especializados, pero mi equipo no los aprovecha al 100%.</option>\n          <option value=\"D) Mi negocio corre sobre tecnología que automatiza gran parte de mi trabajo.\">D) Mi negocio corre sobre tecnología que automatiza gran parte de mi trabajo.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p10\">P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo? <span class=\"required\">*</span></label>\n        <select id=\"p10\" name=\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación).\">A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación).</option>\n          <option value=\"B) El equipo cumple, pero no los veo comprometidos con mis metas de crecimiento.\">B) El equipo cumple, pero no los veo comprometidos con mis metas de crecimiento.</option>\n          <option value=\"C) Siento que soy el &quot;todólogo&quot; y me cuesta delegar tareas importantes.\">C) Siento que soy el \"todólogo\" y me cuesta delegar tareas importantes.</option>\n          <option value=\"D) Tengo líderes de confianza que se hacen cargo de sus áreas con autonomía.\">D) Tengo líderes de confianza que se hacen cargo de sus áreas con autonomía.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p11\">P11: ¿Cuál de estas situaciones te quita más energía actualmente? <span class=\"required\">*</span></label>\n        <select id=\"p11\" name=\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos.\">A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos.</option>\n          <option value=\"B) La frustración de ver que la competencia vende más con un producto peor que el mío.\">B) La frustración de ver que la competencia vende más con un producto peor que el mío.</option>\n          <option value=\"C) El cansancio de apagar &quot;incendios&quot; operativos todo el día en lugar de planear el futuro.\">C) El cansancio de apagar \"incendios\" operativos todo el día en lugar de planear el futuro.</option>\n          <option value=\"D) La incertidumbre legal o tributaria que me impide dormir tranquilo.\">D) La incertidumbre legal o tributaria que me impide dormir tranquilo.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p12\">P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio? <span class=\"required\">*</span></label>\n        <textarea id=\"p12\" name=\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\" placeholder=\"Cuéntanos con tus propias palabras...\" required></textarea>\n      </div>\n\n      <button type=\"submit\">Enviar diagnóstico</button>\n    </form>\n  </div>\n</body>\n</html>"
           }
         }
       },
@@ -1094,11 +903,49 @@
           592
         ],
         "parameters": {
-          "respondWith": "json",
-          "responseBody": "={{ JSON.stringify({ error: 'archivo_no_disponible' }) }}",
+          "respondWith": "text",
+          "responseBody": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"robots\" content=\"noindex\">\n<title>Tu diagnóstico no está disponible | Grupo Empodera</title>\n<style>\n  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;\n       background:#f4f7fb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#12233d;}\n  .card{background:#fff;max-width:520px;margin:24px;padding:40px 32px;border-radius:14px;\n        box-shadow:0 12px 40px rgba(14,43,82,.10);text-align:center;}\n  .badge{display:inline-block;background:#fff3e0;color:#b45309;font-size:12px;font-weight:700;\n         letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:18px;}\n  h1{font-size:22px;margin:0 0 12px;line-height:1.3;}\n  p{font-size:15px;line-height:1.6;color:#41506b;margin:0 0 12px;}\n  .acciones{margin-top:24px;display:flex;flex-direction:column;gap:10px;}\n  a.btn{display:block;padding:13px 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;}\n  a.primary{background:#f97316;color:#fff;}\n  a.secondary{background:#eef3fa;color:#12233d;}\n  .nota{margin-top:18px;font-size:12px;color:#8794a8;}\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <span class=\"badge\">Enlace no disponible</span>\n    <h1>Este diagnóstico ya no está en línea</h1>\n    <p>El documento se generó y se envió a tu correo, pero el archivo ya no está publicado en este enlace\n       (los enlaces de descarga tienen vigencia).</p>\n    <p>Revisa el correo que te enviamos: ahí está el PDF adjunto. Si no lo encuentras, escríbenos y te lo\n       reenviamos en minutos.</p>\n    <div class=\"acciones\">\n      <a class=\"btn primary\" href=\"https://wa.me/51977183432?text=Hola%2C%20necesito%20que%20me%20reenv%C3%ADen%20mi%20diagn%C3%B3stico%20Express\">Pedirlo por WhatsApp</a>\n      <a class=\"btn secondary\" href=\"https://www.grupoempodera.com/contacto\">Volver al formulario</a>\n    </div>\n    <p class=\"nota\">Grupo Empodera · contacto@pe.grupoempodera.com</p>\n  </div>\n</body>\n</html>",
           "options": {
-            "responseCode": 404
+            "responseCode": 404,
+            "responseHeaders": {
+              "entries": [
+                {
+                  "name": "Content-Type",
+                  "value": "text/html; charset=utf-8"
+                },
+                {
+                  "name": "Cache-Control",
+                  "value": "no-store"
+                }
+              ]
+            }
           }
+        }
+      },
+      {
+        "id": "4fd0046c-368f-4445-b25b-5b98c8405d34",
+        "name": "Nombrar adjunto",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1300,
+          -320
+        ],
+        "parameters": {
+          "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nif (b && !/\\.pdf$/i.test(b.fileName || '')) {\n  b.fileName = (b.fileName || 'diagnostico') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
+        }
+      },
+      {
+        "id": "preparar-form-0001",
+        "name": "Preparar form",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          -1100,
+          -420
+        ],
+        "parameters": {
+          "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
         }
       }
     ],
@@ -1107,7 +954,7 @@
         "main": [
           [
             {
-              "node": "Form",
+              "node": "Preparar form",
               "type": "main",
               "index": 0
             }
@@ -1127,13 +974,7 @@
       },
       "Guardar en Google Sheets": {
         "main": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "main",
-              "index": 0
-            }
-          ]
+          []
         ]
       },
       "OpenRouter Chat Model": {
@@ -1150,6 +991,11 @@
       "Code in JavaScript": {
         "main": [
           [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            },
             {
               "node": "Guardar en Google Sheets",
               "type": "main",
@@ -1169,28 +1015,6 @@
           ]
         ]
       },
-      "Send a message": {
-        "main": [
-          [
-            {
-              "node": "Text Classifier",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "OpenRouter Chat Model1": {
-        "ai_languageModel": [
-          [
-            {
-              "node": "Text Classifier",
-              "type": "ai_languageModel",
-              "index": 0
-            }
-          ]
-        ]
-      },
       "Code in JavaScript1": {
         "main": [
           [
@@ -1204,98 +1028,19 @@
       },
       "Upload file": {
         "main": [
-          [
-            {
-              "node": "Send a message2",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Text Classifier": {
-        "main": [
-          [
-            {
-              "node": "Send a message2",
-              "type": "main",
-              "index": 0
-            }
-          ],
-          [
-            {
-              "node": "Code in JavaScript2",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Code in JavaScript2": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Edit Fields": {
-        "main": [
-          [
-            {
-              "node": "AI Agent1",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "OpenRouter Chat Model2": {
-        "ai_languageModel": [
-          [
-            {
-              "node": "AI Agent1",
-              "type": "ai_languageModel",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "AI Agent1": {
-        "main": [
           []
-        ]
-      },
-      "Convert HTML to PDF in HTML to PDF": {
-        "ai_tool": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "ai_tool",
-              "index": 0
-            }
-          ]
         ]
       },
       "Convert HTML to PDF": {
         "main": [
           [
             {
-              "node": "Upload file",
+              "node": "Nombrar adjunto",
               "type": "main",
               "index": 0
-            }
-          ]
-        ]
-      },
-      "Form": {
-        "main": [
-          [
+            },
             {
-              "node": "Normalizar campos",
+              "node": "Upload file",
               "type": "main",
               "index": 0
             }
@@ -1436,6 +1181,33 @@
             }
           ]
         ]
+      },
+      "Send a message2": {
+        "main": [
+          []
+        ]
+      },
+      "Nombrar adjunto": {
+        "main": [
+          [
+            {
+              "node": "Send a message2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Preparar form": {
+        "main": [
+          [
+            {
+              "node": "Normalizar campos",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
       }
     },
     "nodeGroups": [],
@@ -1443,16 +1215,16 @@
     "name": null,
     "description": null,
     "autosaved": false,
-    "createdAt": "2026-11-03T12:28:28.596Z",
-    "updatedAt": "2026-11-03T12:28:28.596Z"
+    "createdAt": "2026-11-06T02:09:17.102Z",
+    "updatedAt": "2026-11-06T02:09:17.102Z"
   },
-  "activeVersionId": "167e88b3-fc80-438e-a1d5-41401167ac92",
+  "activeVersionId": "fea32ee1-5662-4287-ab44-6432d676cca6",
   "connections": {
     "Formulario Diagnóstico Express": {
       "main": [
         [
           {
-            "node": "Form",
+            "node": "Preparar form",
             "type": "main",
             "index": 0
           }
@@ -1472,13 +1244,7 @@
     },
     "Guardar en Google Sheets": {
       "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "OpenRouter Chat Model": {
@@ -1495,6 +1261,11 @@
     "Code in JavaScript": {
       "main": [
         [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
           {
             "node": "Guardar en Google Sheets",
             "type": "main",
@@ -1514,28 +1285,6 @@
         ]
       ]
     },
-    "Send a message": {
-      "main": [
-        [
-          {
-            "node": "Text Classifier",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Text Classifier",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Code in JavaScript1": {
       "main": [
         [
@@ -1549,98 +1298,19 @@
     },
     "Upload file": {
       "main": [
-        [
-          {
-            "node": "Send a message2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Text Classifier": {
-      "main": [
-        [
-          {
-            "node": "Send a message2",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Code in JavaScript2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code in JavaScript2": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenRouter Chat Model2": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent1": {
-      "main": [
         []
-      ]
-    },
-    "Convert HTML to PDF in HTML to PDF": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
       ]
     },
     "Convert HTML to PDF": {
       "main": [
         [
           {
-            "node": "Upload file",
+            "node": "Nombrar adjunto",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Form": {
-      "main": [
-        [
+          },
           {
-            "node": "Normalizar campos",
+            "node": "Upload file",
             "type": "main",
             "index": 0
           }
@@ -1776,6 +1446,33 @@
         [
           {
             "node": "Respond archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message2": {
+      "main": [
+        []
+      ]
+    },
+    "Nombrar adjunto": {
+      "main": [
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar form": {
+      "main": [
+        [
+          {
+            "node": "Normalizar campos",
             "type": "main",
             "index": 0
           }
@@ -2243,9 +1940,9 @@
       ],
       "parameters": {
         "promptType": "define",
-        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $('Code in JavaScript').item.json.nombre }}\nEmpresa: {{ $('Code in JavaScript').item.json.empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
         "options": {
-          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>.\n\nusa la tool para generar el pdf"
+          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
         }
       }
     },
@@ -2259,8 +1956,10 @@
         -256
       ],
       "parameters": {
-        "model": "deepseek/deepseek-v4-pro-0813",
-        "options": {}
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "options": {
+          "maxTokens": 8000
+        }
       },
       "credentials": {
         "openRouterApi": {
@@ -2280,81 +1979,6 @@
       ],
       "parameters": {
         "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}_${data.token || ''}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
-      }
-    },
-    {
-      "id": "5e792194-02c3-40dc-bfe1-87d87b05014c",
-      "name": "Send a message",
-      "webhookId": "098f4ec4-611e-43d0-b7fa-80444fdbf43e",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.2,
-      "position": [
-        736,
-        -688
-      ],
-      "parameters": {
-        "operation": "sendAndWait",
-        "sendTo": "belquiss.nunez@outlook.com",
-        "subject": "Aprobar mail - evaluación de formExpress.",
-        "message": "=Validar par enviar:\n\nDiagnostico {{ $json.webContentLink }}",
-        "responseType": "freeText",
-        "options": {
-          "appendAttribution": false
-        }
-      },
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "kTicbSOlrM56HEmj",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "id": "62d0aa7f-fefb-4308-9708-3bc78c35b695",
-      "name": "Text Classifier",
-      "type": "@n8n/n8n-nodes-langchain.textClassifier",
-      "typeVersion": 1.1,
-      "position": [
-        1024,
-        -752
-      ],
-      "parameters": {
-        "inputText": "={{ $json.data.text }}",
-        "categories": {
-          "categories": [
-            {
-              "category": "Aprobado",
-              "description": "El revisor aprueba el documento sin cambios o con comentarios menores"
-            },
-            {
-              "category": "correccion",
-              "description": "El revisor solicita cambios, correcciones o ajustes al documento"
-            }
-          ]
-        },
-        "options": {
-          "systemPromptTemplate": "Eres un asistente que evalúa respuestas de revisores sobre documentos.\nClasifica según la intención principal del mensaje, no palabras aisladas.\nEjemplo de respuestas de aprobación: \"OK\", \"aprobado\""
-        }
-      }
-    },
-    {
-      "id": "1151779a-08ed-4946-9034-491de389bb36",
-      "name": "OpenRouter Chat Model1",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        1072,
-        -640
-      ],
-      "parameters": {
-        "model": "deepseek/deepseek-v4-pro-0813",
-        "options": {}
-      },
-      "credentials": {
-        "openRouterApi": {
-          "id": "n9ENnMrxLhhgNjf8",
-          "name": "OpenRouter account"
-        }
       }
     },
     {
@@ -2381,7 +2005,7 @@
         -480
       ],
       "parameters": {
-        "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst tieneFormato = raw.includes('<div class=\"container\">') && /<\\/body>/i.test(raw);\n\nlet sharedStyles = '';\nlet paginatedContent = '';\n\nif (tieneFormato) {\n  const styleMatch = raw.match(/<style>([\\s\\S]*?)<\\/style>/);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n  const containerMatch = raw.match(/<div class=\"container\">([\\s\\S]*?)<\\/div>\\s*<\\/body>/);\n  const body = containerMatch ? containerMatch[1] : '';\n  const sections = body.split(/(?=<div class=\"section-title\">)/);\n  paginatedContent = sections\n    .filter((s) => s.trim())\n    .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n}\n\n// Respaldo determinista: si la IA no devolvió el formato esperado, el informe se arma\n// con los datos del formulario. Nunca se queda el lead sin documento.\nif (!paginatedContent.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:4px 8px;border-bottom:1px solid #dde3ea;\"><b>${k}</b></td><td style=\"padding:4px 8px;border-bottom:1px solid #dde3ea;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:11pt;} h1{color:#19325A;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 18px;} h2{color:#19325A;font-size:14pt;margin:18px 0 8px;}';\n  paginatedContent = `\n    <div class=\"page-block\">\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n}\n\nconst finalHtml = `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${paginatedContent}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = finalHtml;\nreturn items;"
+        "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst esHtml = /<body[\\s>]/i.test(raw) || /<div[\\s>]/i.test(raw);\n\nlet sharedStyles = '';\nlet paginatedContent = '';\n\nif (esHtml) {\n  const styleMatch = raw.match(/<style[^>]*>([\\s\\S]*?)<\\/style>/i);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n\n  // Preferimos el bloque .container; si no existe, usamos todo el <body>.\n  const containerMatch = raw.match(/<div[^>]*class=[\"'][^\"']*container[^\"']*[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/body>/i);\n  const bodyMatch = raw.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\n  let cuerpo = '';\n  if (containerMatch) cuerpo = containerMatch[1];\n  else if (bodyMatch) cuerpo = bodyMatch[1];\n  else cuerpo = raw.replace(/<!DOCTYPE[^>]*>/i, '').replace(/<\\/?html[^>]*>/gi, '').replace(/<head[\\s\\S]*?<\\/head>/i, '');\n\n  const sections = cuerpo.split(/(?=<h2|<div[^>]*class=[\"'][^\"']*(?:section-title|section)[^\"']*[\"'])/i);\n  paginatedContent = sections\n    .filter((s) => s && s.trim())\n    .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n}\n\n// Respaldo determinista: si la IA no devolvió HTML usable, el informe se arma\n// con las respuestas del formulario. Nunca se queda el lead sin documento.\nif (!paginatedContent.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;width:34%;\"><b>${k}</b></td><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:11pt;line-height:1.5;} h1{color:#19325A;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 20px;} h2{color:#19325A;font-size:14pt;margin:20px 0 8px;}';\n  paginatedContent = `\n    <div class=\"page-block\">\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n}\n\nconst finalHtml = `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${paginatedContent}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = finalHtml;\nreturn items;"
       }
     },
     {
@@ -2429,124 +2053,23 @@
       "parameters": {
         "sendTo": "={{ $('Code in JavaScript').item.json.correo }}",
         "subject": "=Documento de diagnóstico para {{ $('Code in JavaScript').item.json.empresa }}",
-        "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>,</p>  <p>Esperamos que se encuentre muy bien.</p>  <p>Hemos revisado su caso con base en la información entregada en el formulario y hemos preparado el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, ya que contiene observaciones y recomendaciones pensadas especialmente para su negocio.</p>  <p>También puede descargarlo aquí: <a href=\"https://www.grupoempodera.com/api/diagnostico/archivo?t={{ $('Code in JavaScript').item.json.nombreArchivoPdf.split('_').pop() }}\">descargar mi diagnóstico</a></p>  <p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto de este informe.</p>  <p>Cordialmente,<br> <strong>Grupo Empodera</strong></p>",
+        "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Hemos revisado su caso con base en la información entregada en el formulario y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, porque contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"https://www.grupoempodera.com/api/diagnostico/archivo?t={{ $('Code in JavaScript').item.json.nombreArchivoPdf.split('_').pop() }}\">descargar mi diagnóstico</a></p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>",
         "options": {
           "appendAttribution": false,
-          "replyTo": "xmaichel@gmail.com;belquiss.nunez@outlook.com"
+          "replyTo": "xmaichel@gmail.com;belquiss.nunez@outlook.com",
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "data"
+              }
+            ]
+          }
         }
       },
       "credentials": {
         "gmailOAuth2": {
           "id": "kTicbSOlrM56HEmj",
           "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "id": "b94181f4-fb85-4b97-a819-352314168afa",
-      "name": "Code in JavaScript2",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1568,
-        -288
-      ],
-      "parameters": {
-        "jsCode": "const iteracion = $json[\"iteracion\"] || 0;\nif (iteracion >= 3) {\n  // escalar a revisión manual\n  return [{ json: { ...items[0].json, escalar: true } }];\n}\nreturn [{ json: { ...items[0].json, iteracion: iteracion + 1 } }];"
-      }
-    },
-    {
-      "id": "b1395520-a82d-4f4b-9c52-a7c04d1280ba",
-      "name": "Edit Fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1776,
-        -288
-      ],
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "5274789a-7be2-4cd1-a5b4-615304c4990c",
-              "name": "iteracion",
-              "value": "={{ $json.iteracion }}",
-              "type": "number"
-            },
-            {
-              "id": "3f622819-f76b-435d-a53a-32ced0307623",
-              "name": "correciones",
-              "value": "={{ $json.data.text }}",
-              "type": "string"
-            },
-            {
-              "id": "dd9ec23a-dcf1-4170-b0d9-7c3108712d5f",
-              "name": "outputAntIA",
-              "value": "={{ $('AI Agent').item.json.output }}",
-              "type": "string"
-            },
-            {
-              "id": "343611a1-3944-4ad5-951b-a9443fbc067d",
-              "name": "respuestas",
-              "value": "={{ $('Code in JavaScript').item.json.respuestas }}",
-              "type": "object"
-            }
-          ]
-        },
-        "options": {}
-      }
-    },
-    {
-      "id": "231fc196-040e-4520-bb03-843d9a7bffe3",
-      "name": "AI Agent1",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3.1,
-      "position": [
-        2000,
-        -288
-      ],
-      "parameters": {
-        "promptType": "define",
-        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $json.Nombre }}\nEmpresa: {{ $json.Empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\n{% if $json[\"documento_previo\"] %}\n──────────────────────────────────────\nDOCUMENTO APROBADO PREVIAMENTE:\n{{ $json.outputAntIA }}\n\nCORRECCIONES SOLICITADAS (versión {{ $json[\"iteracion\"] }}):\n{{ $json.correciones }}\n\nINSTRUCCIÓN: Devuelve el documento completo en HTML aplicando ÚNICAMENTE\nlas correcciones indicadas. No modifiques secciones que no fueron mencionadas.\n──────────────────────────────────────\n{% else %}\nGenera un informe de diagnóstico completo en formato HTML.\n{% endif %}\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
-        "options": {
-          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
-        }
-      }
-    },
-    {
-      "id": "24af976a-e2e5-492a-bc0f-845782b2fd4b",
-      "name": "OpenRouter Chat Model2",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
-      "typeVersion": 1,
-      "position": [
-        2000,
-        -64
-      ],
-      "parameters": {
-        "model": "deepseek/deepseek-v4-pro-0813",
-        "options": {}
-      },
-      "credentials": {
-        "openRouterApi": {
-          "id": "n9ENnMrxLhhgNjf8",
-          "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "id": "4c93e507-4e0c-4a8f-9ff7-495419bdc636",
-      "name": "Convert HTML to PDF in HTML to PDF",
-      "type": "n8n-nodes-htmlcsstopdf.htmlcsstopdfTool",
-      "typeVersion": 1,
-      "position": [
-        -80,
-        -240
-      ],
-      "parameters": {},
-      "credentials": {
-        "htmlcsstopdfApi": {
-          "id": "q7esfeEXtIrciQi2",
-          "name": "HTML to PDF account"
         }
       }
     },
@@ -2569,23 +2092,6 @@
         "customJsApi": {
           "id": "S7Abqfl03Z0C1VzP",
           "name": "CustomJS account"
-        }
-      }
-    },
-    {
-      "id": "77e04b2d-8efd-438d-a3be-62a926ddb8ff",
-      "name": "Form",
-      "webhookId": "1fe6b41d-50be-4de6-ba77-06add184068e",
-      "disabled": true,
-      "type": "n8n-nodes-base.form",
-      "typeVersion": 2.5,
-      "position": [
-        -1216,
-        -464
-      ],
-      "parameters": {
-        "options": {
-          "customCss": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Diagnóstico Empresarial - Grupo Empodera</title>\n  <style>\n    :root {\n      --font-family: 'Montserrat', 'Open Sans', sans-serif;\n      --font-weight-normal: 400;\n      --font-weight-bold: 700;\n      --font-size-body: 13px;\n      --font-size-label: 14px;\n      --font-size-input: 14px;\n      --font-size-header: 22px;\n      --font-size-paragraph: 14px;\n\n      /* Colors - Identidad Grupo Empodera */\n      --color-background: #f4f6f9;\n      --color-card-bg: #ffffff;\n      --color-card-border: #e2e7ec;\n      --color-card-shadow: rgba(14, 43, 82, 0.08);\n      --color-header: #0e2440;\n      --color-label: #2c3e50;\n      --color-input-border: #cfd8dc;\n      --color-input-text: #2c3e50;\n      --color-focus-border: #0077b6;\n      --color-submit-btn-bg: #0077b6;\n      --color-submit-btn-text: #ffffff;\n      --color-required: #e63946;\n      --color-header-subtext: #607d8b;\n\n      /* Spacing & Radii */\n      --border-radius-card: 10px;\n      --border-radius-input: 6px;\n      --container-width: 480px;\n      --submit-btn-height: 44px;\n    }\n\n    * {\n      box-sizing: border-box;\n      margin: 0;\n      padding: 0;\n    }\n\n    body {\n      background-color: var(--color-background);\n      font-family: var(--font-family);\n      color: var(--color-input-text);\n      display: flex;\n      justify-content: center;\n      padding: 40px 16px;\n    }\n\n    .form-container {\n      background-color: var(--color-card-bg);\n      border: 1px solid var(--color-card-border);\n      border-radius: var(--border-radius-card);\n      box-shadow: 0 8px 24px 0 var(--color-card-shadow);\n      width: 100%;\n      max-width: var(--container-width);\n      padding: 28px;\n    }\n\n    header {\n      margin-bottom: 24px;\n    }\n\n    h1 {\n      color: var(--color-header);\n      font-size: var(--font-size-header);\n      font-weight: var(--font-weight-bold);\n      margin-bottom: 8px;\n    }\n\n    header p {\n      color: var(--color-header-subtext);\n      font-size: var(--font-size-paragraph);\n      line-height: 1.5;\n    }\n\n    .form-group {\n      margin-bottom: 20px;\n      display: flex;\n      flex-direction: column;\n    }\n\n    label {\n      color: var(--color-label);\n      font-size: var(--font-size-label);\n      font-weight: var(--font-weight-bold);\n      margin-bottom: 8px;\n      line-height: 1.4;\n    }\n\n    .required {\n      color: var(--color-required);\n      margin-left: 2px;\n    }\n\n    input[type=\"text\"],\n    input[type=\"email\"],\n    select,\n    textarea {\n      font-family: inherit;\n      font-size: var(--font-size-input);\n      color: var(--color-input-text);\n      border: 1px solid var(--color-input-border);\n      border-radius: var(--border-radius-input);\n      padding: 10px 12px;\n      background-color: #fff;\n      outline: none;\n      transition: border-color 0.2s, box-shadow 0.2s;\n      width: 100%;\n    }\n\n    input:focus,\n    select:focus,\n    textarea:focus {\n      border-color: var(--color-focus-border);\n      box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);\n    }\n\n    textarea {\n      resize: vertical;\n      min-height: 80px;\n    }\n\n    select {\n      cursor: pointer;\n      appearance: none;\n      background-image: url(\"data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23607d8b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e\");\n      background-repeat: no-repeat;\n      background-position: right 12px center;\n      background-size: 16px;\n      padding-right: 36px;\n    }\n\n    button[type=\"submit\"] {\n      width: 100%;\n      height: var(--submit-btn-height);\n      background-color: var(--color-submit-btn-bg);\n      color: var(--color-submit-btn-text);\n      font-size: var(--font-size-input);\n      font-weight: var(--font-weight-bold);\n      border: none;\n      border-radius: var(--border-radius-input);\n      cursor: pointer;\n      margin-top: 10px;\n      transition: background-color 0.2s, transform 0.1s;\n    }\n\n    button[type=\"submit\"]:hover {\n      background-color: #005f92;\n    }\n\n    button[type=\"submit\"]:active {\n      transform: scale(0.99);\n    }\n  </style>\n</head>\n<body>\n  <div class=\"form-container\">\n    <header>\n      <h1>Diagnóstico Empresarial</h1>\n      <p>Este cuestionario te tomará menos de 5 minutos y nos permitirá identificar el área de tu negocio que necesita intervención inmediata para alcanzar el siguiente nivel.</p>\n    </header>\n\n    <form action=\"d8ece794-7a4e-484f-9aa2-8e221201ed1b\" method=\"POST\">\n      <div class=\"form-group\">\n        <label for=\"nombre\">Nombre completo <span class=\"required\">*</span></label>\n        <input type=\"text\" id=\"nombre\" name=\"Nombre completo\" placeholder=\"Tu nombre completo\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"empresa\">Nombre de la Empresa o Emprendimiento <span class=\"required\">*</span></label>\n        <input type=\"text\" id=\"empresa\" name=\"Nombre de la Empresa o Emprendimiento\" placeholder=\"Nombre de tu empresa o emprendimiento\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"contacto\">Número de contacto <span class=\"required\">*</span></label>\n        <input type=\"text\" id=\"contacto\" name=\"Número de contacto\" placeholder=\"Ej: +57 300 000 0000\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"correo\">Correo electrónico <span class=\"required\">*</span></label>\n        <input type=\"email\" id=\"correo\" name=\"Correo electrónico\" placeholder=\"tu@correo.com\" required>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p1\">P1: ¿En qué etapa se encuentra tu proyecto o negocio? <span class=\"required\">*</span></label>\n        <select id=\"p1\" name=\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Tengo una idea y quiero validarla para empezar.\">A) Tengo una idea y quiero validarla para empezar.</option>\n          <option value=\"B) Mi negocio ya opera, pero me cuesta generar ventas constantes.\">B) Mi negocio ya opera, pero me cuesta generar ventas constantes.</option>\n          <option value=\"C) Mi negocio es estable, pero el crecimiento se ha estancado.\">C) Mi negocio es estable, pero el crecimiento se ha estancado.</option>\n          <option value=\"D) Mi empresa crece rápido, pero siento que el desorden me está consumiendo.\">D) Mi empresa crece rápido, pero siento que el desorden me está consumiendo.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p2\">P2: ¿A qué sector pertenece tu actividad principal? <span class=\"required\">*</span></label>\n        <select id=\"p2\" name=\"P2: ¿A qué sector pertenece tu actividad principal?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Comercio (Venta de productos físicos).\">A) Comercio (Venta de productos físicos).</option>\n          <option value=\"B) Servicios (Consultoría, educación, logística, salud, etc.).\">B) Servicios (Consultoría, educación, logística, salud, etc.).</option>\n          <option value=\"C) Industria / Producción (Fabrico mis propios productos).\">C) Industria / Producción (Fabrico mis propios productos).</option>\n          <option value=\"D) Tecnología / Digital (Software, apps, plataformas).\">D) Tecnología / Digital (Software, apps, plataformas).</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p3\">P3: ¿En qué subsector te ubicas principalmente? <span class=\"required\">*</span></label>\n        <select id=\"p3\" name=\"P3: ¿En qué subsector te ubicas principalmente?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Alimentos, Bebidas y Restauración.\">A) Alimentos, Bebidas y Restauración.</option>\n          <option value=\"B) Transporte, Logística y Distribución de Carga.\">B) Transporte, Logística y Distribución de Carga.</option>\n          <option value=\"C) Educación (Primera infancia, superior o formación técnica).\">C) Educación (Primera infancia, superior o formación técnica).</option>\n          <option value=\"D) Salud, Pharma, Bienestar y Cuidado Personal.\">D) Salud, Pharma, Bienestar y Cuidado Personal.</option>\n          <option value=\"E) Servicios Profesionales (Consultoría, legal, contable, arquitectura).\">E) Servicios Profesionales (Consultoría, legal, contable, arquitectura).</option>\n          <option value=\"F) Inmobiliario, Construcción e Infraestructura.\">F) Inmobiliario, Construcción e Infraestructura.</option>\n          <option value=\"G) Retail y Comercio Especializado (Moda, hogar, ferretería).\">G) Retail y Comercio Especializado (Moda, hogar, ferretería).</option>\n          <option value=\"H) Agronegocios y Producción Primaria.\">H) Agronegocios y Producción Primaria.</option>\n          <option value=\"I) Tecnología, Desarrollo de Software y Economía Digital.\">I) Tecnología, Desarrollo de Software y Economía Digital.</option>\n          <option value=\"J) Turismo, Entretenimiento y Hospitalidad.\">J) Turismo, Entretenimiento y Hospitalidad.</option>\n          <option value=\"K) Otro (Detalles, regalos, florería).\">K) Otro (Detalles, regalos, florería).</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"descripcion\">Descripción breve de tu negocio (productos y servicios) <span class=\"required\">*</span></label>\n        <textarea id=\"descripcion\" name=\"Descripción breve de tu negocio (productos y servicios)\" placeholder=\"Describe brevemente qué hace tu empresa...\" required></textarea>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p4\">P4: ¿Cuántas personas forman parte de tu equipo actualmente? <span class=\"required\">*</span></label>\n        <select id=\"p4\" name=\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Solo yo (Emprendedor solitario).\">A) Solo yo (Emprendedor solitario).</option>\n          <option value=\"B) Entre 2 y 10 personas.\">B) Entre 2 y 10 personas.</option>\n          <option value=\"C) Entre 11 y 50 personas.\">C) Entre 11 y 50 personas.</option>\n          <option value=\"D) Más de 50 personas.\">D) Más de 50 personas.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p5\">P5: ¿Cuál es su volumen anual de ingresos expresados en dólares? <span class=\"required\">*</span></label>\n        <select id=\"p5\" name=\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Menos de US$ 100.000.\">A) Menos de US$ 100.000.</option>\n          <option value=\"B) Entre US$100.000 y US$300.000.\">B) Entre US$100.000 y US$300.000.</option>\n          <option value=\"C) Entre US$300.000 y US$500.000.\">C) Entre US$300.000 y US$500.000.</option>\n          <option value=\"D) Entre US$500.000 y US$1.000.000.\">D) Entre US$500.000 y US$1.000.000.</option>\n          <option value=\"E) Más de US$1.000.000.\">E) Más de US$1.000.000.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p6\">P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder? <span class=\"required\">*</span></label>\n        <select id=\"p6\" name=\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) No tengo claro cuánto gané realmente después de pagar todo.\">A) No tengo claro cuánto gané realmente después de pagar todo.</option>\n          <option value=\"B) Gano dinero, pero casi todo se va en pagar deudas o proveedores de inmediato.\">B) Gano dinero, pero casi todo se va en pagar deudas o proveedores de inmediato.</option>\n          <option value=\"C) Sé cuánto gano, pero me falta capital para invertir en crecer.\">C) Sé cuánto gano, pero me falta capital para invertir en crecer.</option>\n          <option value=\"D) Mis finanzas están bajo control y tengo reportes claros cada mes.\">D) Mis finanzas están bajo control y tengo reportes claros cada mes.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p7\">P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio? <span class=\"required\">*</span></label>\n        <select id=\"p7\" name=\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Por recomendaciones; no tengo un plan para buscarlos.\">A) Por recomendaciones; no tengo un plan para buscarlos.</option>\n          <option value=\"B) Publico en redes sociales, pero no sé cómo convertirlos en ventas reales.\">B) Publico en redes sociales, pero no sé cómo convertirlos en ventas reales.</option>\n          <option value=\"C) Tengo ventas, pero dependen demasiado de mi esfuerzo personal (si no estoy, no se vende).\">C) Tengo ventas, pero dependen demasiado de mi esfuerzo personal (si no estoy, no se vende).</option>\n          <option value=\"D) Tengo un sistema de ventas claro y metas que mi equipo cumple mes a mes.\">D) Tengo un sistema de ventas claro y metas que mi equipo cumple mes a mes.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p8\">P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio? <span class=\"required\">*</span></label>\n        <select id=\"p8\" name=\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) El negocio se detendría por completo; nadie sabe qué hacer.\">A) El negocio se detendría por completo; nadie sabe qué hacer.</option>\n          <option value=\"B) Habría muchos errores y clientes quejándose; todo es improvisado.\">B) Habría muchos errores y clientes quejándose; todo es improvisado.</option>\n          <option value=\"C) Funcionaría a medias, pero yo tendría que estar resolviendo dudas por teléfono.\">C) Funcionaría a medias, pero yo tendría que estar resolviendo dudas por teléfono.</option>\n          <option value=\"D) Funcionaría perfectamente; tenemos manuales y procesos escritos.\">D) Funcionaría perfectamente; tenemos manuales y procesos escritos.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p9\">P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria? <span class=\"required\">*</span></label>\n        <select id=\"p9\" name=\"P9 (Gestión Tecnológica): ¿Qué tan &quot;digital&quot; es tu operación diaria?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Todo es manual (papel, cuadernos o Excel básico).\">A) Todo es manual (papel, cuadernos o Excel básico).</option>\n          <option value=\"B) Uso algunas herramientas, pero no se hablan entre sí (tengo la información dispersa).\">B) Uso algunas herramientas, pero no se hablan entre sí (tengo la información dispersa).</option>\n          <option value=\"C) Uso sistemas especializados, pero mi equipo no los aprovecha al 100%.\">C) Uso sistemas especializados, pero mi equipo no los aprovecha al 100%.</option>\n          <option value=\"D) Mi negocio corre sobre tecnología que automatiza gran parte de mi trabajo.\">D) Mi negocio corre sobre tecnología que automatiza gran parte de mi trabajo.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p10\">P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo? <span class=\"required\">*</span></label>\n        <select id=\"p10\" name=\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación).\">A) Me cuesta mucho encontrar gente buena o se van muy rápido (alta rotación).</option>\n          <option value=\"B) El equipo cumple, pero no los veo comprometidos con mis metas de crecimiento.\">B) El equipo cumple, pero no los veo comprometidos con mis metas de crecimiento.</option>\n          <option value=\"C) Siento que soy el &quot;todólogo&quot; y me cuesta delegar tareas importantes.\">C) Siento que soy el \"todólogo\" y me cuesta delegar tareas importantes.</option>\n          <option value=\"D) Tengo líderes de confianza que se hacen cargo de sus áreas con autonomía.\">D) Tengo líderes de confianza que se hacen cargo de sus áreas con autonomía.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p11\">P11: ¿Cuál de estas situaciones te quita más energía actualmente? <span class=\"required\">*</span></label>\n        <select id=\"p11\" name=\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\" required>\n          <option value=\"\" disabled selected>Selecciona una opción</option>\n          <option value=\"A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos.\">A) La angustia de no saber si tendré dinero para pagar la nómina o gastos fijos.</option>\n          <option value=\"B) La frustración de ver que la competencia vende más con un producto peor que el mío.\">B) La frustración de ver que la competencia vende más con un producto peor que el mío.</option>\n          <option value=\"C) El cansancio de apagar &quot;incendios&quot; operativos todo el día en lugar de planear el futuro.\">C) El cansancio de apagar \"incendios\" operativos todo el día en lugar de planear el futuro.</option>\n          <option value=\"D) La incertidumbre legal o tributaria que me impide dormir tranquilo.\">D) La incertidumbre legal o tributaria que me impide dormir tranquilo.</option>\n        </select>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"p12\">P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio? <span class=\"required\">*</span></label>\n        <textarea id=\"p12\" name=\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\" placeholder=\"Cuéntanos con tus propias palabras...\" required></textarea>\n      </div>\n\n      <button type=\"submit\">Enviar diagnóstico</button>\n    </form>\n  </div>\n</body>\n</html>"
         }
       }
     },
@@ -2882,11 +2388,49 @@
         592
       ],
       "parameters": {
-        "respondWith": "json",
-        "responseBody": "={{ JSON.stringify({ error: 'archivo_no_disponible' }) }}",
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"robots\" content=\"noindex\">\n<title>Tu diagnóstico no está disponible | Grupo Empodera</title>\n<style>\n  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;\n       background:#f4f7fb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#12233d;}\n  .card{background:#fff;max-width:520px;margin:24px;padding:40px 32px;border-radius:14px;\n        box-shadow:0 12px 40px rgba(14,43,82,.10);text-align:center;}\n  .badge{display:inline-block;background:#fff3e0;color:#b45309;font-size:12px;font-weight:700;\n         letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:18px;}\n  h1{font-size:22px;margin:0 0 12px;line-height:1.3;}\n  p{font-size:15px;line-height:1.6;color:#41506b;margin:0 0 12px;}\n  .acciones{margin-top:24px;display:flex;flex-direction:column;gap:10px;}\n  a.btn{display:block;padding:13px 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;}\n  a.primary{background:#f97316;color:#fff;}\n  a.secondary{background:#eef3fa;color:#12233d;}\n  .nota{margin-top:18px;font-size:12px;color:#8794a8;}\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <span class=\"badge\">Enlace no disponible</span>\n    <h1>Este diagnóstico ya no está en línea</h1>\n    <p>El documento se generó y se envió a tu correo, pero el archivo ya no está publicado en este enlace\n       (los enlaces de descarga tienen vigencia).</p>\n    <p>Revisa el correo que te enviamos: ahí está el PDF adjunto. Si no lo encuentras, escríbenos y te lo\n       reenviamos en minutos.</p>\n    <div class=\"acciones\">\n      <a class=\"btn primary\" href=\"https://wa.me/51977183432?text=Hola%2C%20necesito%20que%20me%20reenv%C3%ADen%20mi%20diagn%C3%B3stico%20Express\">Pedirlo por WhatsApp</a>\n      <a class=\"btn secondary\" href=\"https://www.grupoempodera.com/contacto\">Volver al formulario</a>\n    </div>\n    <p class=\"nota\">Grupo Empodera · contacto@pe.grupoempodera.com</p>\n  </div>\n</body>\n</html>",
         "options": {
-          "responseCode": 404
+          "responseCode": 404,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "text/html; charset=utf-8"
+              },
+              {
+                "name": "Cache-Control",
+                "value": "no-store"
+              }
+            ]
+          }
         }
+      }
+    },
+    {
+      "id": "4fd0046c-368f-4445-b25b-5b98c8405d34",
+      "name": "Nombrar adjunto",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        -320
+      ],
+      "parameters": {
+        "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nif (b && !/\\.pdf$/i.test(b.fileName || '')) {\n  b.fileName = (b.fileName || 'diagnostico') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
+      }
+    },
+    {
+      "id": "preparar-form-0001",
+      "name": "Preparar form",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1100,
+        -420
+      ],
+      "parameters": {
+        "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
       }
     }
   ],
@@ -2936,6 +2480,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-11-03T12:28:28.588Z",
-  "versionId": "167e88b3-fc80-438e-a1d5-41401167ac92"
+  "updatedAt": "2026-11-06T02:09:17.091Z",
+  "versionId": "fea32ee1-5662-4287-ab44-6432d676cca6"
 }
