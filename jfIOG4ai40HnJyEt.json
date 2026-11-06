@@ -1,0 +1,271 @@
+{
+  "active": true,
+  "activeVersion": {
+    "versionId": "87e1a284-b084-4408-b75f-4437532c5a8d",
+    "workflowId": "jfIOG4ai40HnJyEt",
+    "nodes": [
+      {
+        "id": "e1709903-43e4-4b66-b759-ccb21ed5be11",
+        "name": "Cada semana",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          0,
+          0
+        ],
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "weeks",
+                "weeksInterval": 1,
+                "triggerAtDay": [
+                  0
+                ],
+                "triggerAtHour": 3,
+                "triggerAtMinute": 0
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "57a80d32-2f0c-4260-b0d2-281ae208ad91",
+        "name": "Buscar antiguos",
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          240,
+          0
+        ],
+        "parameters": {
+          "resource": "fileFolder",
+          "operation": "search",
+          "searchMethod": "query",
+          "queryString": "=name contains 'Diagnostico_' and trashed = false and '13LZLHxET8Zw0_g8cedl_Sdo4neSVqvVl' in parents and createdTime < '{{ new Date(Date.now() - 30 * 86400000).toISOString() }}'",
+          "returnAll": true,
+          "options": {}
+        },
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "J6R6kKGMM9vWyLM1",
+            "name": "Google Drive account"
+          }
+        }
+      },
+      {
+        "id": "610a0a95-2f5d-4d0f-8fd1-015b6ed4df62",
+        "name": "Mover a papelera",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "onError": "continueRegularOutput",
+        "position": [
+          500,
+          0
+        ],
+        "parameters": {
+          "method": "PATCH",
+          "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.id }}",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "googleDriveOAuth2Api",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify({ trashed: true }) }}",
+          "options": {
+            "response": {
+              "response": {
+                "neverError": true,
+                "responseFormat": "json"
+              }
+            }
+          }
+        },
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "J6R6kKGMM9vWyLM1",
+            "name": "Google Drive account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Cada semana": {
+        "main": [
+          [
+            {
+              "node": "Buscar antiguos",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Buscar antiguos": {
+        "main": [
+          [
+            {
+              "node": "Mover a papelera",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Juan Castillo",
+    "name": null,
+    "description": null,
+    "autosaved": false,
+    "createdAt": "2026-11-06T02:09:45.226Z",
+    "updatedAt": "2026-11-06T02:09:45.226Z"
+  },
+  "activeVersionId": "87e1a284-b084-4408-b75f-4437532c5a8d",
+  "connections": {
+    "Cada semana": {
+      "main": [
+        [
+          {
+            "node": "Buscar antiguos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar antiguos": {
+      "main": [
+        [
+          {
+            "node": "Mover a papelera",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-11-06T02:09:45.212Z",
+  "id": "jfIOG4ai40HnJyEt",
+  "isArchived": false,
+  "meta": null,
+  "name": "Diagnostico - archivar PDF de mas de 30 dias",
+  "nodeGroups": [],
+  "nodes": [
+    {
+      "id": "e1709903-43e4-4b66-b759-ccb21ed5be11",
+      "name": "Cada semana",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "weeksInterval": 1,
+              "triggerAtDay": [
+                0
+              ],
+              "triggerAtHour": 3,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "57a80d32-2f0c-4260-b0d2-281ae208ad91",
+      "name": "Buscar antiguos",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "resource": "fileFolder",
+        "operation": "search",
+        "searchMethod": "query",
+        "queryString": "=name contains 'Diagnostico_' and trashed = false and '13LZLHxET8Zw0_g8cedl_Sdo4neSVqvVl' in parents and createdTime < '{{ new Date(Date.now() - 30 * 86400000).toISOString() }}'",
+        "returnAll": true,
+        "options": {}
+      },
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "J6R6kKGMM9vWyLM1",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "id": "610a0a95-2f5d-4d0f-8fd1-015b6ed4df62",
+      "name": "Mover a papelera",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "onError": "continueRegularOutput",
+      "position": [
+        500,
+        0
+      ],
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ trashed: true }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "J6R6kKGMM9vWyLM1",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "origin": "main",
+  "pinData": null,
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "role": "workflow:owner",
+      "workflowId": "jfIOG4ai40HnJyEt",
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2026-11-06T02:09:45.224Z",
+      "updatedAt": "2026-11-06T02:09:45.224Z"
+    }
+  ],
+  "staticData": {
+    "node:Cada semana": {
+      "recurrenceRules": [
+        null
+      ],
+      "recurrenceRuleSignatures": [
+        null
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-11-06T02:09:45.212Z",
+  "versionId": "87e1a284-b084-4408-b75f-4437532c5a8d"
+}
