@@ -1,7 +1,7 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "fea32ee1-5662-4287-ab44-6432d676cca6",
+    "versionId": "99508107-faf3-4cc9-a017-b5f24a677de6",
     "workflowId": "unfiEKMea5s06W0H",
     "nodes": [
       {
@@ -556,61 +556,6 @@
         }
       },
       {
-        "id": "b4db7e70-7e62-46c3-803c-1e67b3db3f1d",
-        "name": "Send a message2",
-        "webhookId": "bca001de-ce52-43c8-970d-f62b715eff59",
-        "type": "n8n-nodes-base.gmail",
-        "typeVersion": 2.2,
-        "position": [
-          1552,
-          -480
-        ],
-        "parameters": {
-          "sendTo": "={{ $('Code in JavaScript').item.json.correo }}",
-          "subject": "=Documento de diagnóstico para {{ $('Code in JavaScript').item.json.empresa }}",
-          "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Hemos revisado su caso con base en la información entregada en el formulario y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, porque contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"https://www.grupoempodera.com/api/diagnostico/archivo?t={{ $('Code in JavaScript').item.json.nombreArchivoPdf.split('_').pop() }}\">descargar mi diagnóstico</a></p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>",
-          "options": {
-            "appendAttribution": false,
-            "replyTo": "xmaichel@gmail.com;belquiss.nunez@outlook.com",
-            "attachmentsUi": {
-              "attachmentsBinary": [
-                {
-                  "property": "data"
-                }
-              ]
-            }
-          }
-        },
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "kTicbSOlrM56HEmj",
-            "name": "Gmail account"
-          }
-        }
-      },
-      {
-        "id": "91ab4ed4-e289-4fa2-af47-9dc0a82b57eb",
-        "name": "Convert HTML to PDF",
-        "type": "@custom-js/n8n-nodes-pdf-toolkit-v2.pdfToolkit",
-        "typeVersion": 1,
-        "executeOnce": false,
-        "position": [
-          320,
-          -480
-        ],
-        "parameters": {
-          "operation": "htmlToPdf",
-          "html": "={{ $json.html_paginado }}",
-          "outputFilenamePdf": "={{ $('Code in JavaScript').item.json.nombreArchivoPdf }}.pdf"
-        },
-        "credentials": {
-          "customJsApi": {
-            "id": "S7Abqfl03Z0C1VzP",
-            "name": "CustomJS account"
-          }
-        }
-      },
-      {
         "id": "6937aed5-cb99-483b-bbc0-26f61a145de9",
         "name": "Web Diagnostico",
         "webhookId": "6b286410-4a22-48e9-bb88-2498ddd71dad",
@@ -947,6 +892,95 @@
         "parameters": {
           "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
         }
+      },
+      {
+        "id": "977f43ef-bd57-410e-839e-adca0cd58b2e",
+        "name": "Generar PDF",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          140,
+          -112
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "https://rest.apitemplate.io/v2/create-pdf-from-html",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "apiTemplateIoApi",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify({ body: $json.html_paginado, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
+          "options": {}
+        },
+        "credentials": {
+          "apiTemplateIoApi": {
+            "id": "28yk0Ff9nHCB476a",
+            "name": "APITemplate.io account"
+          }
+        }
+      },
+      {
+        "id": "ba687a07-d7d6-4694-9331-41807b1cad36",
+        "name": "Descargar PDF",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          360,
+          -112
+        ],
+        "parameters": {
+          "url": "={{ $json.download_url }}",
+          "options": {
+            "response": {
+              "response": {
+                "responseFormat": "file",
+                "outputPropertyName": "data"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "d45f3c00-c395-4027-aa64-2bf3924bd4bd",
+        "name": "Preparar correo",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1292,
+          -480
+        ],
+        "parameters": {
+          "jsCode": "const datos = $('Code in JavaScript').item.json;\nconst item = items[0];\nconst bin = (item.binary && item.binary.data) || {};\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = bin.data || '';\n}\nif (!base64) throw new Error('No hay PDF binario para adjuntar');\nconst nombreArchivo = String(datos.nombreArchivoPdf || 'diagnostico').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\nconst token = String(datos.nombreArchivoPdf || '').split('_').pop();\nconst enlace = 'https://www.grupoempodera.com/api/diagnostico/archivo?t=' + token;\nconst nombreLead = datos.nombre || 'estimado/a';\nconst html = `<p>Estimado/a <strong>${nombreLead}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Revisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento: contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"${enlace}\">descargar mi diagnóstico</a> (el enlace está activo 30 días).</p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>\n<p style=\"font-size:12px;color:#666\">Recibe este correo porque solicitó su diagnóstico en grupoempodera.com.</p>`;\nconst text = `Estimado/a ${nombreLead}:\n\nRevisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto.\n\nTambién puede descargarlo desde aquí: ${enlace} (enlace activo 30 días).\n\nQuedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.\n\nCordialmente,\nGrupo Empodera\n\nRecibe este correo porque solicitó su diagnóstico en grupoempodera.com.`;\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: [datos.correo],\n  reply_to: 'contacto@pe.grupoempodera.com',\n  subject: 'Documento de diagnóstico para ' + (datos.empresa || 'su negocio'),\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
+        }
+      },
+      {
+        "id": "c7b2cbe2-4603-4129-b49d-7c7980472e57",
+        "name": "Enviar con Resend",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 3000,
+        "position": [
+          1552,
+          -480
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.resend.com/emails",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify($json) }}",
+          "options": {}
+        },
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "blpQ2KzIFNYBZRjZ",
+            "name": "Resend API"
+          }
+        }
       }
     ],
     "connections": {
@@ -1019,7 +1053,7 @@
         "main": [
           [
             {
-              "node": "Convert HTML to PDF",
+              "node": "Generar PDF",
               "type": "main",
               "index": 0
             }
@@ -1029,22 +1063,6 @@
       "Upload file": {
         "main": [
           []
-        ]
-      },
-      "Convert HTML to PDF": {
-        "main": [
-          [
-            {
-              "node": "Nombrar adjunto",
-              "type": "main",
-              "index": 0
-            },
-            {
-              "node": "Upload file",
-              "type": "main",
-              "index": 0
-            }
-          ]
         ]
       },
       "Web Diagnostico": {
@@ -1182,16 +1200,11 @@
           ]
         ]
       },
-      "Send a message2": {
-        "main": [
-          []
-        ]
-      },
       "Nombrar adjunto": {
         "main": [
           [
             {
-              "node": "Send a message2",
+              "node": "Preparar correo",
               "type": "main",
               "index": 0
             }
@@ -1208,6 +1221,49 @@
             }
           ]
         ]
+      },
+      "Generar PDF": {
+        "main": [
+          [
+            {
+              "node": "Descargar PDF",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Descargar PDF": {
+        "main": [
+          [
+            {
+              "node": "Nombrar adjunto",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Upload file",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Preparar correo": {
+        "main": [
+          [
+            {
+              "node": "Enviar con Resend",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Enviar con Resend": {
+        "main": [
+          []
+        ]
       }
     },
     "nodeGroups": [],
@@ -1215,10 +1271,10 @@
     "name": null,
     "description": null,
     "autosaved": false,
-    "createdAt": "2026-11-06T02:09:17.102Z",
-    "updatedAt": "2026-11-06T02:09:17.102Z"
+    "createdAt": "2026-11-11T04:41:18.917Z",
+    "updatedAt": "2026-11-11T04:41:18.917Z"
   },
-  "activeVersionId": "fea32ee1-5662-4287-ab44-6432d676cca6",
+  "activeVersionId": "99508107-faf3-4cc9-a017-b5f24a677de6",
   "connections": {
     "Formulario Diagnóstico Express": {
       "main": [
@@ -1289,7 +1345,7 @@
       "main": [
         [
           {
-            "node": "Convert HTML to PDF",
+            "node": "Generar PDF",
             "type": "main",
             "index": 0
           }
@@ -1299,22 +1355,6 @@
     "Upload file": {
       "main": [
         []
-      ]
-    },
-    "Convert HTML to PDF": {
-      "main": [
-        [
-          {
-            "node": "Nombrar adjunto",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Upload file",
-            "type": "main",
-            "index": 0
-          }
-        ]
       ]
     },
     "Web Diagnostico": {
@@ -1452,16 +1492,11 @@
         ]
       ]
     },
-    "Send a message2": {
-      "main": [
-        []
-      ]
-    },
     "Nombrar adjunto": {
       "main": [
         [
           {
-            "node": "Send a message2",
+            "node": "Preparar correo",
             "type": "main",
             "index": 0
           }
@@ -1477,6 +1512,49 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Generar PDF": {
+      "main": [
+        [
+          {
+            "node": "Descargar PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar PDF": {
+      "main": [
+        [
+          {
+            "node": "Nombrar adjunto",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar correo": {
+      "main": [
+        [
+          {
+            "node": "Enviar con Resend",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar con Resend": {
+      "main": [
+        []
       ]
     }
   },
@@ -2041,61 +2119,6 @@
       }
     },
     {
-      "id": "b4db7e70-7e62-46c3-803c-1e67b3db3f1d",
-      "name": "Send a message2",
-      "webhookId": "bca001de-ce52-43c8-970d-f62b715eff59",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.2,
-      "position": [
-        1552,
-        -480
-      ],
-      "parameters": {
-        "sendTo": "={{ $('Code in JavaScript').item.json.correo }}",
-        "subject": "=Documento de diagnóstico para {{ $('Code in JavaScript').item.json.empresa }}",
-        "message": "=<p>Estimado/a <strong>{{ $('Code in JavaScript').item.json.nombre }}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Hemos revisado su caso con base en la información entregada en el formulario y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento, porque contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"https://www.grupoempodera.com/api/diagnostico/archivo?t={{ $('Code in JavaScript').item.json.nombreArchivoPdf.split('_').pop() }}\">descargar mi diagnóstico</a></p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>",
-        "options": {
-          "appendAttribution": false,
-          "replyTo": "xmaichel@gmail.com;belquiss.nunez@outlook.com",
-          "attachmentsUi": {
-            "attachmentsBinary": [
-              {
-                "property": "data"
-              }
-            ]
-          }
-        }
-      },
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "kTicbSOlrM56HEmj",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "id": "91ab4ed4-e289-4fa2-af47-9dc0a82b57eb",
-      "name": "Convert HTML to PDF",
-      "type": "@custom-js/n8n-nodes-pdf-toolkit-v2.pdfToolkit",
-      "typeVersion": 1,
-      "executeOnce": false,
-      "position": [
-        320,
-        -480
-      ],
-      "parameters": {
-        "operation": "htmlToPdf",
-        "html": "={{ $json.html_paginado }}",
-        "outputFilenamePdf": "={{ $('Code in JavaScript').item.json.nombreArchivoPdf }}.pdf"
-      },
-      "credentials": {
-        "customJsApi": {
-          "id": "S7Abqfl03Z0C1VzP",
-          "name": "CustomJS account"
-        }
-      }
-    },
-    {
       "id": "6937aed5-cb99-483b-bbc0-26f61a145de9",
       "name": "Web Diagnostico",
       "webhookId": "6b286410-4a22-48e9-bb88-2498ddd71dad",
@@ -2432,6 +2455,95 @@
       "parameters": {
         "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
       }
+    },
+    {
+      "id": "977f43ef-bd57-410e-839e-adca0cd58b2e",
+      "name": "Generar PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        140,
+        -112
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://rest.apitemplate.io/v2/create-pdf-from-html",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "apiTemplateIoApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ body: $json.html_paginado, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
+        "options": {}
+      },
+      "credentials": {
+        "apiTemplateIoApi": {
+          "id": "28yk0Ff9nHCB476a",
+          "name": "APITemplate.io account"
+        }
+      }
+    },
+    {
+      "id": "ba687a07-d7d6-4694-9331-41807b1cad36",
+      "name": "Descargar PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        -112
+      ],
+      "parameters": {
+        "url": "={{ $json.download_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "d45f3c00-c395-4027-aa64-2bf3924bd4bd",
+      "name": "Preparar correo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1292,
+        -480
+      ],
+      "parameters": {
+        "jsCode": "const datos = $('Code in JavaScript').item.json;\nconst item = items[0];\nconst bin = (item.binary && item.binary.data) || {};\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = bin.data || '';\n}\nif (!base64) throw new Error('No hay PDF binario para adjuntar');\nconst nombreArchivo = String(datos.nombreArchivoPdf || 'diagnostico').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\nconst token = String(datos.nombreArchivoPdf || '').split('_').pop();\nconst enlace = 'https://www.grupoempodera.com/api/diagnostico/archivo?t=' + token;\nconst nombreLead = datos.nombre || 'estimado/a';\nconst html = `<p>Estimado/a <strong>${nombreLead}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Revisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento: contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"${enlace}\">descargar mi diagnóstico</a> (el enlace está activo 30 días).</p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>\n<p style=\"font-size:12px;color:#666\">Recibe este correo porque solicitó su diagnóstico en grupoempodera.com.</p>`;\nconst text = `Estimado/a ${nombreLead}:\n\nRevisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto.\n\nTambién puede descargarlo desde aquí: ${enlace} (enlace activo 30 días).\n\nQuedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.\n\nCordialmente,\nGrupo Empodera\n\nRecibe este correo porque solicitó su diagnóstico en grupoempodera.com.`;\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: [datos.correo],\n  reply_to: 'contacto@pe.grupoempodera.com',\n  subject: 'Documento de diagnóstico para ' + (datos.empresa || 'su negocio'),\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
+      }
+    },
+    {
+      "id": "c7b2cbe2-4603-4129-b49d-7c7980472e57",
+      "name": "Enviar con Resend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "position": [
+        1552,
+        -480
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "blpQ2KzIFNYBZRjZ",
+          "name": "Resend API"
+        }
+      }
     }
   ],
   "origin": "main",
@@ -2480,6 +2592,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-11-06T02:09:17.091Z",
-  "versionId": "fea32ee1-5662-4287-ab44-6432d676cca6"
+  "updatedAt": "2026-11-11T04:41:18.908Z",
+  "versionId": "99508107-faf3-4cc9-a017-b5f24a677de6"
 }
