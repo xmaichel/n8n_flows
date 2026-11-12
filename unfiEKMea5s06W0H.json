@@ -1,21 +1,10 @@
 {
   "active": true,
   "activeVersion": {
-    "versionId": "99508107-faf3-4cc9-a017-b5f24a677de6",
+    "versionId": "e595ce34-df3e-47b9-8a85-dc570a2d3484",
     "workflowId": "unfiEKMea5s06W0H",
     "nodes": [
       {
-        "id": "56c27c3c-bec4-4fb2-8f28-78ff382b6492",
-        "name": "Formulario Diagnóstico Express",
-        "webhookId": "3f0c3919-105b-41c8-9fa6-c1fa3f791373",
-        "notesInFlow": true,
-        "type": "n8n-nodes-base.formTrigger",
-        "typeVersion": 2,
-        "alwaysOutputData": false,
-        "position": [
-          -1440,
-          -464
-        ],
         "parameters": {
           "path": "3f0c3919-105b-41c8-9fa6-c1fa3f791373",
           "formTitle": "Diagnóstico Empresarial",
@@ -323,9 +312,23 @@
             "useWorkflowTimezone": false,
             "showHeaders": false
           }
-        }
+        },
+        "id": "56c27c3c-bec4-4fb2-8f28-78ff382b6492",
+        "name": "Formulario Diagnóstico Express",
+        "webhookId": "3f0c3919-105b-41c8-9fa6-c1fa3f791373",
+        "notesInFlow": true,
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2,
+        "alwaysOutputData": false,
+        "position": [
+          -1440,
+          -464
+        ]
       },
       {
+        "parameters": {
+          "options": {}
+        },
         "id": "8077e4b6-ca2e-4df1-9ed6-69544ccf483e",
         "name": "Normalizar campos",
         "type": "n8n-nodes-base.set",
@@ -333,20 +336,9 @@
         "position": [
           -960,
           -464
-        ],
-        "parameters": {
-          "options": {}
-        }
+        ]
       },
       {
-        "id": "5364d54b-a167-4cc7-810f-ca69b0252d0c",
-        "name": "Guardar en Google Sheets",
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4,
-        "position": [
-          -544,
-          -464
-        ],
         "parameters": {
           "operation": "append",
           "documentId": {
@@ -437,6 +429,14 @@
           },
           "options": {}
         },
+        "id": "5364d54b-a167-4cc7-810f-ca69b0252d0c",
+        "name": "Guardar en Google Sheets",
+        "type": "n8n-nodes-base.googleSheets",
+        "typeVersion": 4,
+        "position": [
+          -544,
+          -464
+        ],
         "credentials": {
           "googleSheetsOAuth2Api": {
             "id": "OLjMkf7h8HeC3hbt",
@@ -445,6 +445,13 @@
         }
       },
       {
+        "parameters": {
+          "promptType": "define",
+          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $('Code in JavaScript').item.json.nombre }}\nEmpresa: {{ $('Code in JavaScript').item.json.empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+          "options": {
+            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #172230; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #F5F6F8; }\n  .container { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 4px 15px rgba(9,27,51,0.06); }\n  .brand-bar { background: #091B33; padding: 14px 20px; border-radius: 4px; margin: 0 0 22px; }\n  .brand-bar img { height: 28px; display: block; }\n  .doc-label { font-size: 10px; color: #4A5866; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #091B33; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #CFD8E3; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #19325A; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #091B33; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: #CFD8E3; font-size: 10px; }\n  .profile-section { background: #F5F6F8; border-left: 4px solid #EA560D; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; border-radius: 4px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #091B33; border-bottom: 2px solid #EA560D; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #19325A; color: white; padding: 9px 10px; text-align: center; border: 1px solid #19325A; font-size: 11px; }\n  table.data-table td { border: 1px solid #DDE3EA; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #F5F6F8; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #A32020; color: white; }\n  .tag-alto { background: #EA560D; color: white; }\n  .tag-medio { background: #F2A33C; color: #1A1A1A; }\n  .tag-moderado { background: #19325A; color: white; }\n  .callout { background: #FFF4EC; border-left: 4px solid #EA560D; padding: 12px 16px; margin: 14px 0; font-size: 12px; border-radius: 4px; }\n  .priority-label { font-weight: bold; color: #091B33; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #091B33; color: #FFFFFF; padding: 18px 22px; margin: 16px 0; font-size: 13px; border-radius: 4px; }\n  .conclusion-block strong { color: #F26B23; }\n  .footer-note { border-top: 1px solid #CFD8E3; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #4A5866; text-align: center; }\n  .check { color: #EA560D; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### MARCA (obligatorio)\n\nEl documento es de Grupo Empodera. Respeta esta identidad:\n\n- **Primer elemento del documento**, antes de cualquier otra cosa:\n  `<div class=\"brand-bar\"><img src=\"https://www.grupoempodera.com/img/logo-horiz-white.png\" alt=\"Grupo Empodera\"></div>`\n- **Último elemento del documento**, después de la conclusión:\n  `<div class=\"footer-note\">Grupo Empodera · grupoempodera.com · Documento confidencial</div>`\n- No añadas otros colores fuera de la paleta de los estilos ni uses los azules antiguos del diseño previo.\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
+          }
+        },
         "id": "452c37d9-012e-4271-bd55-ca5259af2898",
         "name": "AI Agent",
         "type": "@n8n/n8n-nodes-langchain.agent",
@@ -452,16 +459,15 @@
         "position": [
           -256,
           -480
-        ],
-        "parameters": {
-          "promptType": "define",
-          "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $('Code in JavaScript').item.json.nombre }}\nEmpresa: {{ $('Code in JavaScript').item.json.empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
-          "options": {
-            "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
-          }
-        }
+        ]
       },
       {
+        "parameters": {
+          "model": "deepseek/deepseek-v4.1-flash-1017",
+          "options": {
+            "maxTokens": 8000
+          }
+        },
         "id": "b0029e13-e061-467c-b019-d274a2708b95",
         "name": "OpenRouter Chat Model",
         "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
@@ -470,12 +476,6 @@
           -336,
           -256
         ],
-        "parameters": {
-          "model": "deepseek/deepseek-v4.1-flash-1017",
-          "options": {
-            "maxTokens": 8000
-          }
-        },
         "credentials": {
           "openRouterApi": {
             "id": "n9ENnMrxLhhgNjf8",
@@ -484,6 +484,9 @@
         }
       },
       {
+        "parameters": {
+          "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}_${data.token || ''}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
+        },
         "id": "52a6a29a-3051-460a-8b59-14af720c6035",
         "name": "Code in JavaScript",
         "type": "n8n-nodes-base.code",
@@ -491,26 +494,26 @@
         "position": [
           -736,
           -464
-        ],
-        "parameters": {
-          "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}_${data.token || ''}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
-        }
+        ]
       },
       {
+        "parameters": {
+          "content": "https://app.pdf.co/signup",
+          "height": 528
+        },
         "id": "246ed116-46c9-4c2e-a79d-b64235eb2193",
         "name": "Sticky Note1",
         "type": "n8n-nodes-base.stickyNote",
         "typeVersion": 1,
         "position": [
-          -1392,
-          144
-        ],
-        "parameters": {
-          "content": "https://app.pdf.co/signup",
-          "height": 80
-        }
+          -1792,
+          -480
+        ]
       },
       {
+        "parameters": {
+          "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst esHtml = /<body[\\s>]/i.test(raw) || /<div[\\s>]/i.test(raw);\n\nlet sharedStyles = '';\nlet secciones = [];\n\nif (esHtml) {\n  const styleMatch = raw.match(/<style[^>]*>([\\s\\S]*?)<\\/style>/i);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n\n  // Preferimos el bloque .container; si no existe, usamos todo el <body>.\n  const containerMatch = raw.match(/<div[^>]*class=[\"'][^\"']*container[^\"']*[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/body>/i);\n  const bodyMatch = raw.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\n  let cuerpo = '';\n  if (containerMatch) cuerpo = containerMatch[1];\n  else if (bodyMatch) cuerpo = bodyMatch[1];\n  else cuerpo = raw.replace(/<!DOCTYPE[^>]*>/i, '').replace(/<\\/?html[^>]*>/gi, '').replace(/<head[\\s\\S]*?<\\/head>/i, '');\n\n  secciones = cuerpo\n    .split(/(?=<h2|<div[^>]*class=[\"'][^\"']*(?:section-title|section)[^\"']*[\"'])/i)\n    .filter((s) => s && s.trim());\n}\n\n// La sección 3 es la propuesta comercial: solo va en el PDF interno.\n// Se detecta por título, no por posición, para no romperse si cambia el orden.\nconst esPropuesta = (s) => {\n  const t = s.replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim();\n  return /PROPUESTA DE SERVICIO/i.test(t.slice(0, 120));\n};\n\nconst envolver = (secs) => secs\n  .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n\nlet contenidoInterno = envolver(secciones);\nlet contenidoCliente = envolver(secciones.filter((s) => !esPropuesta(s)));\nconst propuestaDetectada = secciones.some(esPropuesta);\n\n// Respaldo determinista: si la IA no devolvió HTML usable, el informe se arma\n// con las respuestas del formulario. Nunca se queda el lead sin documento.\nif (!contenidoInterno.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:6px 10px;border-bottom:1px solid #DDE3EA;width:34%;\"><b>${k}</b></td><td style=\"padding:6px 10px;border-bottom:1px solid #DDE3EA;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#172230;font-size:11pt;line-height:1.5;} h1{color:#091B33;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 20px;} h2{color:#091B33;font-size:14pt;margin:20px 0 8px;} .brand-bar{background:#091B33;padding:14px 20px;border-radius:4px;margin:0 0 20px;} .brand-bar img{height:28px;display:block;}';\n  contenidoInterno = `\n    <div class=\"page-block\">\n      <div class=\"brand-bar\"><img src=\"https://www.grupoempodera.com/img/logo-horiz-white.png\" alt=\"Grupo Empodera\"></div>\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n  contenidoCliente = contenidoInterno;\n}\n\nconst armarHtml = (contenido) => `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${contenido}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = armarHtml(contenidoInterno);   // compatibilidad\nitems[0].json.html_completo = armarHtml(contenidoInterno);   // flujo interno\nitems[0].json.html_cliente = armarHtml(contenidoCliente);    // correo al lead\n// Nombre del PDF interno, derivado del que ya calculó el nodo anterior.\nconst datosLead = $('Code in JavaScript').item.json || {};\nitems[0].json.nombreArchivoPropuesta = String(datosLead.nombreArchivoPdf || 'Propuesta')\n  .replace(/^Diagnostico/i, 'Propuesta');\nitems[0].json.propuestaDetectada = propuestaDetectada;\nreturn items;"
+        },
         "id": "42fdddba-1c64-4b69-b18e-1692e3bfa000",
         "name": "Code in JavaScript1",
         "type": "n8n-nodes-base.code",
@@ -518,20 +521,9 @@
         "position": [
           80,
           -480
-        ],
-        "parameters": {
-          "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst esHtml = /<body[\\s>]/i.test(raw) || /<div[\\s>]/i.test(raw);\n\nlet sharedStyles = '';\nlet paginatedContent = '';\n\nif (esHtml) {\n  const styleMatch = raw.match(/<style[^>]*>([\\s\\S]*?)<\\/style>/i);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n\n  // Preferimos el bloque .container; si no existe, usamos todo el <body>.\n  const containerMatch = raw.match(/<div[^>]*class=[\"'][^\"']*container[^\"']*[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/body>/i);\n  const bodyMatch = raw.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\n  let cuerpo = '';\n  if (containerMatch) cuerpo = containerMatch[1];\n  else if (bodyMatch) cuerpo = bodyMatch[1];\n  else cuerpo = raw.replace(/<!DOCTYPE[^>]*>/i, '').replace(/<\\/?html[^>]*>/gi, '').replace(/<head[\\s\\S]*?<\\/head>/i, '');\n\n  const sections = cuerpo.split(/(?=<h2|<div[^>]*class=[\"'][^\"']*(?:section-title|section)[^\"']*[\"'])/i);\n  paginatedContent = sections\n    .filter((s) => s && s.trim())\n    .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n}\n\n// Respaldo determinista: si la IA no devolvió HTML usable, el informe se arma\n// con las respuestas del formulario. Nunca se queda el lead sin documento.\nif (!paginatedContent.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;width:34%;\"><b>${k}</b></td><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:11pt;line-height:1.5;} h1{color:#19325A;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 20px;} h2{color:#19325A;font-size:14pt;margin:20px 0 8px;}';\n  paginatedContent = `\n    <div class=\"page-block\">\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n}\n\nconst finalHtml = `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${paginatedContent}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = finalHtml;\nreturn items;"
-        }
+        ]
       },
       {
-        "id": "10745ce2-5207-41ac-9e3a-dbf67949c781",
-        "name": "Upload file",
-        "type": "n8n-nodes-base.googleDrive",
-        "typeVersion": 3,
-        "position": [
-          560,
-          -480
-        ],
         "parameters": {
           "name": "={{ $('Code in JavaScript').item.json.nombreArchivoPdf }}",
           "driveId": {
@@ -548,6 +540,14 @@
           },
           "options": {}
         },
+        "id": "10745ce2-5207-41ac-9e3a-dbf67949c781",
+        "name": "Upload file",
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          944,
+          -544
+        ],
         "credentials": {
           "googleDriveOAuth2Api": {
             "id": "J6R6kKGMM9vWyLM1",
@@ -556,6 +556,12 @@
         }
       },
       {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "diagnostico",
+          "responseMode": "responseNode",
+          "options": {}
+        },
         "id": "6937aed5-cb99-483b-bbc0-26f61a145de9",
         "name": "Web Diagnostico",
         "webhookId": "6b286410-4a22-48e9-bb88-2498ddd71dad",
@@ -563,37 +569,23 @@
         "typeVersion": 2,
         "position": [
           -1440,
-          -64
-        ],
-        "parameters": {
-          "httpMethod": "POST",
-          "path": "diagnostico",
-          "responseMode": "responseNode",
-          "options": {}
-        }
+          80
+        ]
       },
       {
+        "parameters": {
+          "jsCode": "const input = $input.first().json || {};\nconst body = input.body || input;\nconst t = (v) => (typeof v === 'string' ? v.trim() : '');\n\nconst campos = body.campos || {};\nconst nombre = t(body.nombre) || t(campos['Nombre completo']);\nconst empresa = t(body.empresa) || t(campos['Nombre de la Empresa o Emprendimiento']);\nconst telefono = t(body.telefono) || t(body.contacto) || t(campos['Número de contacto']);\nconst correo = (t(body.correo) || t(campos['Correo electrónico'])).toLowerCase();\nconst respuestas = body.respuestas || {};\n\nconst faltan = [];\nif (!nombre) faltan.push('nombre');\nif (!empresa) faltan.push('empresa');\nif (telefono.replace(/\\D/g, '').length < 7) faltan.push('telefono');\nif (!/^[^\\s@]+@[^\\s@]+\\.[a-z]{2,}$/i.test(correo)) faltan.push('correo');\n\nif (faltan.length) return [{ json: { ok: false, faltan } }];\n\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\n\nreturn [{\n  json: Object.assign({}, campos, {\n    'Nombre completo': nombre,\n    'Nombre de la Empresa o Emprendimiento': empresa,\n    'Número de contacto': telefono,\n    'Correo electrónico': correo,\n    submittedAt: new Date().toISOString(),\n    formMode: 'web',\n    ok: true,\n    token,\n    correo,\n    empresa,\n    respuestas,\n  }),\n}];"
+        },
         "id": "0965d23f-2869-40c9-bec1-f3b4b995c699",
         "name": "Validar y token",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
           -1216,
-          -64
-        ],
-        "parameters": {
-          "jsCode": "const input = $input.first().json || {};\nconst body = input.body || input;\nconst t = (v) => (typeof v === 'string' ? v.trim() : '');\n\nconst campos = body.campos || {};\nconst nombre = t(body.nombre) || t(campos['Nombre completo']);\nconst empresa = t(body.empresa) || t(campos['Nombre de la Empresa o Emprendimiento']);\nconst telefono = t(body.telefono) || t(body.contacto) || t(campos['Número de contacto']);\nconst correo = (t(body.correo) || t(campos['Correo electrónico'])).toLowerCase();\nconst respuestas = body.respuestas || {};\n\nconst faltan = [];\nif (!nombre) faltan.push('nombre');\nif (!empresa) faltan.push('empresa');\nif (telefono.replace(/\\D/g, '').length < 7) faltan.push('telefono');\nif (!/^[^\\s@]+@[^\\s@]+\\.[a-z]{2,}$/i.test(correo)) faltan.push('correo');\n\nif (faltan.length) return [{ json: { ok: false, faltan } }];\n\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\n\nreturn [{\n  json: Object.assign({}, campos, {\n    'Nombre completo': nombre,\n    'Nombre de la Empresa o Emprendimiento': empresa,\n    'Número de contacto': telefono,\n    'Correo electrónico': correo,\n    submittedAt: new Date().toISOString(),\n    formMode: 'web',\n    ok: true,\n    token,\n    correo,\n    empresa,\n    respuestas,\n  }),\n}];"
-        }
+          80
+        ]
       },
       {
-        "id": "053fa2fd-dbca-4e88-a9dd-c8d8da28a1aa",
-        "name": "Datos OK",
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2,
-        "position": [
-          -960,
-          -48
-        ],
         "parameters": {
           "conditions": {
             "options": {
@@ -617,43 +609,56 @@
             "combinator": "and"
           },
           "options": {}
-        }
+        },
+        "id": "053fa2fd-dbca-4e88-a9dd-c8d8da28a1aa",
+        "name": "Datos OK",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          -976,
+          80
+        ]
       },
       {
-        "id": "6effa07b-9a69-47d0-9728-b7eb840703be",
-        "name": "Respond token",
-        "type": "n8n-nodes-base.respondToWebhook",
-        "typeVersion": 1.1,
-        "position": [
-          -544,
-          -272
-        ],
         "parameters": {
           "respondWith": "json",
           "responseBody": "={{ JSON.stringify({ token: $json.token }) }}",
           "options": {
             "responseCode": 200
           }
-        }
-      },
-      {
-        "id": "cddd44e6-43c0-4ac6-860e-dbf2f77bdc2b",
-        "name": "Respond error",
+        },
+        "id": "6effa07b-9a69-47d0-9728-b7eb840703be",
+        "name": "Respond token",
         "type": "n8n-nodes-base.respondToWebhook",
         "typeVersion": 1.1,
         "position": [
-          -544,
-          48
-        ],
+          -672,
+          -160
+        ]
+      },
+      {
         "parameters": {
           "respondWith": "json",
           "responseBody": "={{ JSON.stringify({ error: 'datos_incompletos', faltan: $json.faltan }) }}",
           "options": {
             "responseCode": 422
           }
-        }
+        },
+        "id": "cddd44e6-43c0-4ac6-860e-dbf2f77bdc2b",
+        "name": "Respond error",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          -656,
+          192
+        ]
       },
       {
+        "parameters": {
+          "path": "diagnostico-estado",
+          "responseMode": "responseNode",
+          "options": {}
+        },
         "id": "068df7bc-09cd-450c-8360-b0c5e0487979",
         "name": "Web Estado",
         "webhookId": "793dad87-59b3-4f4d-9d20-e873befc04e2",
@@ -662,14 +667,17 @@
         "position": [
           128,
           96
-        ],
-        "parameters": {
-          "path": "diagnostico-estado",
-          "responseMode": "responseNode",
-          "options": {}
-        }
+        ]
       },
       {
+        "parameters": {
+          "resource": "fileFolder",
+          "searchMethod": "query",
+          "queryString": "=name contains '{{ $('Web Estado').item.json.query.t }}' and trashed = false",
+          "limit": 1,
+          "filter": {},
+          "options": {}
+        },
         "id": "f26da599-1c48-4050-9916-fff96bdb8507",
         "name": "Buscar PDF estado",
         "type": "n8n-nodes-base.googleDrive",
@@ -679,14 +687,6 @@
           352,
           96
         ],
-        "parameters": {
-          "resource": "fileFolder",
-          "searchMethod": "query",
-          "queryString": "=name contains '{{ $('Web Estado').item.json.query.t }}' and trashed = false",
-          "limit": 1,
-          "filter": {},
-          "options": {}
-        },
         "credentials": {
           "googleDriveOAuth2Api": {
             "id": "J6R6kKGMM9vWyLM1",
@@ -695,6 +695,9 @@
         }
       },
       {
+        "parameters": {
+          "jsCode": "const q = $('Web Estado').item.json.query || {};\nconst t = String(q.t || '').trim();\nconst items = $input.all();\nconst found = items.some((i) => i.json && i.json.id);\n\nif (!found) {\n  return [{ json: { estado: 'procesando', progreso: 45, descarga: '', correo: '', mensaje: '' } }];\n}\nreturn [{ json: {\n  estado: 'listo',\n  progreso: 100,\n  descarga: `/api/diagnostico/archivo?t=${t}`,\n  correo: '',\n  mensaje: '',\n} }];"
+        },
         "id": "9f8a4293-6465-4e1b-97f3-f6a4b54b01bc",
         "name": "Armar estado",
         "type": "n8n-nodes-base.code",
@@ -702,12 +705,16 @@
         "position": [
           576,
           96
-        ],
-        "parameters": {
-          "jsCode": "const q = $('Web Estado').item.json.query || {};\nconst t = String(q.t || '').trim();\nconst items = $input.all();\nconst found = items.some((i) => i.json && i.json.id);\n\nif (!found) {\n  return [{ json: { estado: 'procesando', progreso: 45, descarga: '', correo: '', mensaje: '' } }];\n}\nreturn [{ json: {\n  estado: 'listo',\n  progreso: 100,\n  descarga: `/api/diagnostico/archivo?t=${t}`,\n  correo: '',\n  mensaje: '',\n} }];"
-        }
+        ]
       },
       {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ JSON.stringify($json) }}",
+          "options": {
+            "responseCode": 200
+          }
+        },
         "id": "f0b6c4a9-1a09-4de7-8130-403b803ddfa4",
         "name": "Respond estado",
         "type": "n8n-nodes-base.respondToWebhook",
@@ -715,16 +722,14 @@
         "position": [
           800,
           96
-        ],
-        "parameters": {
-          "respondWith": "json",
-          "responseBody": "={{ JSON.stringify($json) }}",
-          "options": {
-            "responseCode": 200
-          }
-        }
+        ]
       },
       {
+        "parameters": {
+          "path": "diagnostico-archivo",
+          "responseMode": "responseNode",
+          "options": {}
+        },
         "id": "46d86f83-b795-43fd-8235-2521aac15601",
         "name": "Web Archivo",
         "webhookId": "0df19d51-4d1f-4327-9de4-9c5c8141a257",
@@ -733,14 +738,17 @@
         "position": [
           128,
           448
-        ],
-        "parameters": {
-          "path": "diagnostico-archivo",
-          "responseMode": "responseNode",
-          "options": {}
-        }
+        ]
       },
       {
+        "parameters": {
+          "resource": "fileFolder",
+          "searchMethod": "query",
+          "queryString": "=name contains '{{ $('Web Archivo').item.json.query.t }}' and trashed = false",
+          "limit": 1,
+          "filter": {},
+          "options": {}
+        },
         "id": "8c0ee9e7-4972-47d9-ac98-f75acb0f4f51",
         "name": "Buscar PDF archivo",
         "type": "n8n-nodes-base.googleDrive",
@@ -750,14 +758,6 @@
           352,
           448
         ],
-        "parameters": {
-          "resource": "fileFolder",
-          "searchMethod": "query",
-          "queryString": "=name contains '{{ $('Web Archivo').item.json.query.t }}' and trashed = false",
-          "limit": 1,
-          "filter": {},
-          "options": {}
-        },
         "credentials": {
           "googleDriveOAuth2Api": {
             "id": "J6R6kKGMM9vWyLM1",
@@ -766,14 +766,6 @@
         }
       },
       {
-        "id": "3910a619-d67f-4eaa-ba79-f316927ae90a",
-        "name": "Archivo existe",
-        "type": "n8n-nodes-base.if",
-        "typeVersion": 2,
-        "position": [
-          576,
-          448
-        ],
         "parameters": {
           "conditions": {
             "options": {
@@ -797,17 +789,17 @@
             "combinator": "and"
           },
           "options": {}
-        }
+        },
+        "id": "3910a619-d67f-4eaa-ba79-f316927ae90a",
+        "name": "Archivo existe",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          576,
+          448
+        ]
       },
       {
-        "id": "89530c57-d757-43b4-a4e0-b6cd6abcf821",
-        "name": "Drive descargar",
-        "type": "n8n-nodes-base.googleDrive",
-        "typeVersion": 3,
-        "position": [
-          784,
-          368
-        ],
         "parameters": {
           "operation": "download",
           "fileId": {
@@ -817,6 +809,14 @@
           },
           "options": {}
         },
+        "id": "89530c57-d757-43b4-a4e0-b6cd6abcf821",
+        "name": "Drive descargar",
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [
+          784,
+          368
+        ],
         "credentials": {
           "googleDriveOAuth2Api": {
             "id": "J6R6kKGMM9vWyLM1",
@@ -825,6 +825,10 @@
         }
       },
       {
+        "parameters": {
+          "respondWith": "binary",
+          "options": {}
+        },
         "id": "4980ba60-de39-42d5-9dea-b9783582015f",
         "name": "Respond archivo",
         "type": "n8n-nodes-base.respondToWebhook",
@@ -832,21 +836,9 @@
         "position": [
           1008,
           368
-        ],
-        "parameters": {
-          "respondWith": "binary",
-          "options": {}
-        }
+        ]
       },
       {
-        "id": "0062f3c8-13e4-406f-8fe6-1878a3ca9b88",
-        "name": "Respond archivo 404",
-        "type": "n8n-nodes-base.respondToWebhook",
-        "typeVersion": 1.1,
-        "position": [
-          784,
-          592
-        ],
         "parameters": {
           "respondWith": "text",
           "responseBody": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"robots\" content=\"noindex\">\n<title>Tu diagnóstico no está disponible | Grupo Empodera</title>\n<style>\n  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;\n       background:#f4f7fb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#12233d;}\n  .card{background:#fff;max-width:520px;margin:24px;padding:40px 32px;border-radius:14px;\n        box-shadow:0 12px 40px rgba(14,43,82,.10);text-align:center;}\n  .badge{display:inline-block;background:#fff3e0;color:#b45309;font-size:12px;font-weight:700;\n         letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:18px;}\n  h1{font-size:22px;margin:0 0 12px;line-height:1.3;}\n  p{font-size:15px;line-height:1.6;color:#41506b;margin:0 0 12px;}\n  .acciones{margin-top:24px;display:flex;flex-direction:column;gap:10px;}\n  a.btn{display:block;padding:13px 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;}\n  a.primary{background:#f97316;color:#fff;}\n  a.secondary{background:#eef3fa;color:#12233d;}\n  .nota{margin-top:18px;font-size:12px;color:#8794a8;}\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <span class=\"badge\">Enlace no disponible</span>\n    <h1>Este diagnóstico ya no está en línea</h1>\n    <p>El documento se generó y se envió a tu correo, pero el archivo ya no está publicado en este enlace\n       (los enlaces de descarga tienen vigencia).</p>\n    <p>Revisa el correo que te enviamos: ahí está el PDF adjunto. Si no lo encuentras, escríbenos y te lo\n       reenviamos en minutos.</p>\n    <div class=\"acciones\">\n      <a class=\"btn primary\" href=\"https://wa.me/51977183432?text=Hola%2C%20necesito%20que%20me%20reenv%C3%ADen%20mi%20diagn%C3%B3stico%20Express\">Pedirlo por WhatsApp</a>\n      <a class=\"btn secondary\" href=\"https://www.grupoempodera.com/contacto\">Volver al formulario</a>\n    </div>\n    <p class=\"nota\">Grupo Empodera · contacto@pe.grupoempodera.com</p>\n  </div>\n</body>\n</html>",
@@ -865,43 +857,43 @@
               ]
             }
           }
-        }
+        },
+        "id": "0062f3c8-13e4-406f-8fe6-1878a3ca9b88",
+        "name": "Respond archivo 404",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          784,
+          592
+        ]
       },
       {
+        "parameters": {
+          "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nif (b && !/\\.pdf$/i.test(b.fileName || '')) {\n  b.fileName = (b.fileName || 'diagnostico') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
+        },
         "id": "4fd0046c-368f-4445-b25b-5b98c8405d34",
         "name": "Nombrar adjunto",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1300,
-          -320
-        ],
-        "parameters": {
-          "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nif (b && !/\\.pdf$/i.test(b.fileName || '')) {\n  b.fileName = (b.fileName || 'diagnostico') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
-        }
+          960,
+          -288
+        ]
       },
       {
+        "parameters": {
+          "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
+        },
         "id": "preparar-form-0001",
         "name": "Preparar form",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          -1100,
-          -420
-        ],
-        "parameters": {
-          "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
-        }
+          -1216,
+          -464
+        ]
       },
       {
-        "id": "977f43ef-bd57-410e-839e-adca0cd58b2e",
-        "name": "Generar PDF",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.2,
-        "position": [
-          140,
-          -112
-        ],
         "parameters": {
           "method": "POST",
           "url": "https://rest.apitemplate.io/v2/create-pdf-from-html",
@@ -909,9 +901,17 @@
           "nodeCredentialType": "apiTemplateIoApi",
           "sendBody": true,
           "specifyBody": "json",
-          "jsonBody": "={{ JSON.stringify({ body: $json.html_paginado, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
+          "jsonBody": "={{ JSON.stringify({ body: $json.html_cliente, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
           "options": {}
         },
+        "id": "977f43ef-bd57-410e-839e-adca0cd58b2e",
+        "name": "Generar PDF",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          384,
+          -480
+        ],
         "credentials": {
           "apiTemplateIoApi": {
             "id": "28yk0Ff9nHCB476a",
@@ -920,51 +920,39 @@
         }
       },
       {
-        "id": "ba687a07-d7d6-4694-9331-41807b1cad36",
-        "name": "Descargar PDF",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.2,
-        "position": [
-          360,
-          -112
-        ],
         "parameters": {
           "url": "={{ $json.download_url }}",
           "options": {
             "response": {
               "response": {
-                "responseFormat": "file",
-                "outputPropertyName": "data"
+                "responseFormat": "file"
               }
             }
           }
-        }
+        },
+        "id": "ba687a07-d7d6-4694-9331-41807b1cad36",
+        "name": "Descargar PDF",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          608,
+          -464
+        ]
       },
       {
+        "parameters": {
+          "jsCode": "const datos = $('Code in JavaScript').item.json;\nconst item = items[0];\nconst bin = (item.binary && item.binary.data) || {};\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = bin.data || '';\n}\nif (!base64) throw new Error('No hay PDF binario para adjuntar');\nconst nombreArchivo = String(datos.nombreArchivoPdf || 'diagnostico').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\nconst token = String(datos.nombreArchivoPdf || '').split('_').pop();\nconst enlace = 'https://www.grupoempodera.com/api/diagnostico/archivo?t=' + token;\nconst nombreLead = datos.nombre || 'estimado/a';\nconst html = `<p>Estimado/a <strong>${nombreLead}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Revisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento: contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"${enlace}\">descargar mi diagnóstico</a> (el enlace está activo 30 días).</p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>\n<p style=\"font-size:12px;color:#666\">Recibe este correo porque solicitó su diagnóstico en grupoempodera.com.</p>`;\nconst text = `Estimado/a ${nombreLead}:\n\nRevisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto.\n\nTambién puede descargarlo desde aquí: ${enlace} (enlace activo 30 días).\n\nQuedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.\n\nCordialmente,\nGrupo Empodera\n\nRecibe este correo porque solicitó su diagnóstico en grupoempodera.com.`;\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: [datos.correo],\n  reply_to: 'contacto@pe.grupoempodera.com',\n  subject: 'Documento de diagnóstico para ' + (datos.empresa || 'su negocio'),\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
+        },
         "id": "d45f3c00-c395-4027-aa64-2bf3924bd4bd",
         "name": "Preparar correo",
         "type": "n8n-nodes-base.code",
         "typeVersion": 2,
         "position": [
-          1292,
-          -480
-        ],
-        "parameters": {
-          "jsCode": "const datos = $('Code in JavaScript').item.json;\nconst item = items[0];\nconst bin = (item.binary && item.binary.data) || {};\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = bin.data || '';\n}\nif (!base64) throw new Error('No hay PDF binario para adjuntar');\nconst nombreArchivo = String(datos.nombreArchivoPdf || 'diagnostico').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\nconst token = String(datos.nombreArchivoPdf || '').split('_').pop();\nconst enlace = 'https://www.grupoempodera.com/api/diagnostico/archivo?t=' + token;\nconst nombreLead = datos.nombre || 'estimado/a';\nconst html = `<p>Estimado/a <strong>${nombreLead}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Revisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento: contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"${enlace}\">descargar mi diagnóstico</a> (el enlace está activo 30 días).</p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>\n<p style=\"font-size:12px;color:#666\">Recibe este correo porque solicitó su diagnóstico en grupoempodera.com.</p>`;\nconst text = `Estimado/a ${nombreLead}:\n\nRevisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto.\n\nTambién puede descargarlo desde aquí: ${enlace} (enlace activo 30 días).\n\nQuedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.\n\nCordialmente,\nGrupo Empodera\n\nRecibe este correo porque solicitó su diagnóstico en grupoempodera.com.`;\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: [datos.correo],\n  reply_to: 'contacto@pe.grupoempodera.com',\n  subject: 'Documento de diagnóstico para ' + (datos.empresa || 'su negocio'),\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
-        }
+          1184,
+          -288
+        ]
       },
       {
-        "id": "c7b2cbe2-4603-4129-b49d-7c7980472e57",
-        "name": "Enviar con Resend",
-        "type": "n8n-nodes-base.httpRequest",
-        "typeVersion": 4.2,
-        "retryOnFail": true,
-        "maxTries": 2,
-        "waitBetweenTries": 3000,
-        "position": [
-          1552,
-          -480
-        ],
         "parameters": {
           "method": "POST",
           "url": "https://api.resend.com/emails",
@@ -975,12 +963,45 @@
           "jsonBody": "={{ JSON.stringify($json) }}",
           "options": {}
         },
+        "id": "c7b2cbe2-4603-4129-b49d-7c7980472e57",
+        "name": "Enviar con Resend",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "retryOnFail": true,
+        "maxTries": 2,
+        "waitBetweenTries": 3000,
+        "position": [
+          1408,
+          -288
+        ],
         "credentials": {
           "httpHeaderAuth": {
             "id": "blpQ2KzIFNYBZRjZ",
             "name": "Resend API"
           }
         }
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "XjQztJhJFFThnqnV",
+            "mode": "list",
+            "cachedResultName": "EmpoderaPropuestaInterna"
+          },
+          "options": {
+            "waitForSubWorkflow": false
+          }
+        },
+        "id": "0dd97842-f52d-40eb-8cca-e8997a473b44",
+        "name": "Enviar a flujo interno",
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.2,
+        "position": [
+          384,
+          -272
+        ],
+        "onError": "continueRegularOutput"
       }
     ],
     "connections": {
@@ -1054,6 +1075,11 @@
           [
             {
               "node": "Generar PDF",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Enviar a flujo interno",
               "type": "main",
               "index": 0
             }
@@ -1268,13 +1294,13 @@
     },
     "nodeGroups": [],
     "authors": "Juan Castillo",
-    "name": null,
-    "description": null,
-    "autosaved": false,
-    "createdAt": "2026-11-11T04:41:18.917Z",
-    "updatedAt": "2026-11-11T04:41:18.917Z"
+    "name": "Version e595ce34",
+    "description": "",
+    "autosaved": true,
+    "createdAt": "2026-11-12T00:54:13.472Z",
+    "updatedAt": "2026-11-12T00:54:20.000Z"
   },
-  "activeVersionId": "99508107-faf3-4cc9-a017-b5f24a677de6",
+  "activeVersionId": "e595ce34-df3e-47b9-8a85-dc570a2d3484",
   "connections": {
     "Formulario Diagnóstico Express": {
       "main": [
@@ -1346,6 +1372,11 @@
         [
           {
             "node": "Generar PDF",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Enviar a flujo interno",
             "type": "main",
             "index": 0
           }
@@ -1568,17 +1599,6 @@
   "nodeGroups": [],
   "nodes": [
     {
-      "id": "56c27c3c-bec4-4fb2-8f28-78ff382b6492",
-      "name": "Formulario Diagnóstico Express",
-      "webhookId": "3f0c3919-105b-41c8-9fa6-c1fa3f791373",
-      "notesInFlow": true,
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2,
-      "alwaysOutputData": false,
-      "position": [
-        -1440,
-        -464
-      ],
       "parameters": {
         "path": "3f0c3919-105b-41c8-9fa6-c1fa3f791373",
         "formTitle": "Diagnóstico Empresarial",
@@ -1886,9 +1906,23 @@
           "useWorkflowTimezone": false,
           "showHeaders": false
         }
-      }
+      },
+      "id": "56c27c3c-bec4-4fb2-8f28-78ff382b6492",
+      "name": "Formulario Diagnóstico Express",
+      "webhookId": "3f0c3919-105b-41c8-9fa6-c1fa3f791373",
+      "notesInFlow": true,
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "alwaysOutputData": false,
+      "position": [
+        -1440,
+        -464
+      ]
     },
     {
+      "parameters": {
+        "options": {}
+      },
       "id": "8077e4b6-ca2e-4df1-9ed6-69544ccf483e",
       "name": "Normalizar campos",
       "type": "n8n-nodes-base.set",
@@ -1896,20 +1930,9 @@
       "position": [
         -960,
         -464
-      ],
-      "parameters": {
-        "options": {}
-      }
+      ]
     },
     {
-      "id": "5364d54b-a167-4cc7-810f-ca69b0252d0c",
-      "name": "Guardar en Google Sheets",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        -544,
-        -464
-      ],
       "parameters": {
         "operation": "append",
         "documentId": {
@@ -2000,6 +2023,14 @@
         },
         "options": {}
       },
+      "id": "5364d54b-a167-4cc7-810f-ca69b0252d0c",
+      "name": "Guardar en Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -544,
+        -464
+      ],
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "OLjMkf7h8HeC3hbt",
@@ -2008,6 +2039,13 @@
       }
     },
     {
+      "parameters": {
+        "promptType": "define",
+        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $('Code in JavaScript').item.json.nombre }}\nEmpresa: {{ $('Code in JavaScript').item.json.empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
+        "options": {
+          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #172230; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #F5F6F8; }\n  .container { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 4px 15px rgba(9,27,51,0.06); }\n  .brand-bar { background: #091B33; padding: 14px 20px; border-radius: 4px; margin: 0 0 22px; }\n  .brand-bar img { height: 28px; display: block; }\n  .doc-label { font-size: 10px; color: #4A5866; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #091B33; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #CFD8E3; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #19325A; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #091B33; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: #CFD8E3; font-size: 10px; }\n  .profile-section { background: #F5F6F8; border-left: 4px solid #EA560D; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; border-radius: 4px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #091B33; border-bottom: 2px solid #EA560D; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #19325A; color: white; padding: 9px 10px; text-align: center; border: 1px solid #19325A; font-size: 11px; }\n  table.data-table td { border: 1px solid #DDE3EA; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #F5F6F8; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #A32020; color: white; }\n  .tag-alto { background: #EA560D; color: white; }\n  .tag-medio { background: #F2A33C; color: #1A1A1A; }\n  .tag-moderado { background: #19325A; color: white; }\n  .callout { background: #FFF4EC; border-left: 4px solid #EA560D; padding: 12px 16px; margin: 14px 0; font-size: 12px; border-radius: 4px; }\n  .priority-label { font-weight: bold; color: #091B33; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #091B33; color: #FFFFFF; padding: 18px 22px; margin: 16px 0; font-size: 13px; border-radius: 4px; }\n  .conclusion-block strong { color: #F26B23; }\n  .footer-note { border-top: 1px solid #CFD8E3; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #4A5866; text-align: center; }\n  .check { color: #EA560D; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### MARCA (obligatorio)\n\nEl documento es de Grupo Empodera. Respeta esta identidad:\n\n- **Primer elemento del documento**, antes de cualquier otra cosa:\n  `<div class=\"brand-bar\"><img src=\"https://www.grupoempodera.com/img/logo-horiz-white.png\" alt=\"Grupo Empodera\"></div>`\n- **Último elemento del documento**, después de la conclusión:\n  `<div class=\"footer-note\">Grupo Empodera · grupoempodera.com · Documento confidencial</div>`\n- No añadas otros colores fuera de la paleta de los estilos ni uses los azules antiguos del diseño previo.\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
+        }
+      },
       "id": "452c37d9-012e-4271-bd55-ca5259af2898",
       "name": "AI Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -2015,16 +2053,15 @@
       "position": [
         -256,
         -480
-      ],
-      "parameters": {
-        "promptType": "define",
-        "text": "=A continuación están las respuestas del formulario de Diagnóstico Express. Genera el informe completo siguiendo las instrucciones del sistema.\n\n---\n\n## BLOQUE 1 — IDENTIFICACIÓN Y ALCANCE\nNombre: {{ $('Code in JavaScript').item.json.nombre }}\nEmpresa: {{ $('Code in JavaScript').item.json.empresa }}\n- **P1 – Etapa del negocio:** {{ $('Normalizar campos').item.json['P1: ¿En qué etapa se encuentra tu proyecto o negocio?'] }}\n- **P2 – Sector principal:** {{ $('Normalizar campos').item.json['P2: ¿A qué sector pertenece tu actividad principal?'] }}\n- **P3 – Subsector:** {{ $('Normalizar campos').item.json['P3: ¿En qué subsector te ubicas principalmente?'] }}\n- **Descripción del negocio:** {{ $('Normalizar campos').item.json['Descripción breve de tu negocio (productos y servicios)'] }} \n- **P4 – Tamaño del equipo:** {{ $('Normalizar campos').item.json['P4: ¿Cuántas personas forman parte de tu equipo actualmente?'] }}\n- **P5 – Volumen anual de ingresos:** {{ $('Normalizar campos').item.json['P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?'] }}\n\n---\n\n## BLOQUE 2 — GESTIÓN POR ÁREAS\n\n- **P6 – Gestión Financiera:** {{ $('Normalizar campos').item.json['P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?'] }}\n- **P7 – Gestión Comercial:** {{ $('Normalizar campos').item.json['P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?'] }}\n- **P8 – Gestión de Procesos:** {{ $('Normalizar campos').item.json['P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?'] }}\n- **P9 – Gestión Tecnológica:** {{ $('Normalizar campos').item.json['P9 (Gestión Tecnológica): ¿Qué tan \"digital\" es tu operación diaria?'] }}\n- **P10 – Gestión de Personas:** {{ $('Normalizar campos').item.json['P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?'] }}\n\n---\n\n## BLOQUE 3 — DRENAJES DE ENERGÍA Y DOLOR MAYOR\n\n- **P11 – Principal drenaje de energía:** {{ $('Normalizar campos').item.json['P11: ¿Cuál de estas situaciones te quita más energía actualmente?'] }}\n- **P12 – Problema #1 a resolver:** {{ $('Normalizar campos').item.json['P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?'] }}\n\n---\n\nGenera el Resumen Ejecutivo de Diagnóstico completo para este caso.",
-        "options": {
-          "systemMessage": "=Eres un consultor estratégico senior de Empodera, firma de consultoría financiera y empresarial. Tu tarea es generar un Resumen Ejecutivo de Diagnóstico profesional y personalizado a partir de las respuestas de un cuestionario de diagnóstico express completado por un empresario o emprendedor.\n\nEl informe debe sentirse como si hubiera sido redactado por un consultor humano que leyó las respuestas con atención, identificó patrones y elaboró un análisis específico para esa empresa — no un reporte genérico.\n---\n\n## REGLAS DE SELECCIÓN DE PLAN\n\nSelecciona el plan recomendado aplicando estas dos reglas en orden:\n\n**Regla 1 — Ingresos (criterio primario, no negociable):**\n- Menos de US$100,000 / año → Plan ESSENTIAL\n- Entre US$100,000 y US$300,000 / año → Plan GROWTH\n- Más de US$300,000 / año → Plan LEADERSHIP\n\n**Regla 2 — Calibración por sector (solo aplica en bordes):**\nSi los ingresos están cerca del límite entre rangos, el sector puede subir o bajar un nivel:\n- Sectores de alta complejidad operativa (Alimentos, Manufactura, Retail, Agronegocios): tienden al plan superior\n- Sectores de complejidad media (Salud, Educación, E-commerce, Inmobiliario): se mantienen en el rango\n- Sectores de baja complejidad (Consultoría, Tecnología, Agencias de servicios): pueden quedarse en el rango inferior\n\n**Regla de excepción:** Ingresos superiores a US$1M nunca pueden ser Plan Essential.\n---\n\n## ALCANCE FINANCIERO — LOS CUATRO SERVICIOS ESTÁNDAR\n\n**I. Estructura Financiera**\nPreguntas orientadoras: ¿Cuánto gano por cada unidad monetaria que vendo? ¿Cuáles son mis márgenes reales? ¿Cuáles son los benchmarks del sector? ¿Qué costos debo ajustar?\n\n**II. Diagnóstico Tributario, Laboral y Legal + Plan de Subsanación**\nPreguntas orientadoras: ¿Qué pasaría si la autoridad fiscal de mi país me audita? ¿Estoy expuesto a contingencias laborales? ¿Qué alternativas legales existen para optimizar mi carga tributaria? ¿Cómo puedo reducir significativamente el impacto de multas e intereses si hay contingencias acumuladas?\n\n**III. Presupuesto Maestro**\nPreguntas orientadoras: ¿Cuánto debo vender para alcanzar mi meta de utilidad? ¿Cuánto puedo invertir en crecer? ¿Cuáles son los límites de gasto que no debo superar? ¿Cuánta gente puedo contratar y cuándo?\n\n**IV. Flujo de Caja Proyectado (90 días y anual)**\nPreguntas orientadoras: ¿Cuánto dinero entra y sale semana a semana? ¿Cuánto cuesta operar el negocio? ¿Cuál es mi nivel de deuda real? ¿Cómo mejoro mi liquidez?\n---\n\n## ESTRUCTURA COMPLETA DEL INFORME\n\nGenera el informe completo como un único documento HTML. No incluyas bloques ```html ni texto fuera del HTML. El documento debe comenzar directamente con <!DOCTYPE html>.\n\nUsa EXACTAMENTE los siguientes estilos CSS — no los modifiques:\n\n<style>\n  body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #333; max-width: 780px; margin: 0 auto; padding: 40px 24px; background: #f9f9f9; }\n  .container { background: white; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 4px; }\n  .doc-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1.5px; }\n  .doc-title { font-size: 22px; font-weight: bold; color: #003366; margin: 6px 0 4px; }\n  .client-table { width: 100%; border-collapse: collapse; margin: 12px 0 4px; }\n  .client-table td { border: 1px solid #ccc; padding: 9px 12px; font-size: 12px; vertical-align: top; }\n  .client-table td strong { color: #003366; display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }\n  .client-table .header-row td { background: #003366; color: white; text-align: center; font-size: 13px; font-weight: bold; }\n  .client-table .header-row td strong { color: white; font-size: 10px; }\n  .profile-section { background: #f0f4f8; border-left: 4px solid #0056b3; padding: 16px 20px; margin: 20px 0; font-style: italic; font-size: 13px; }\n  .section-title { font-size: 13px; font-weight: bold; color: #003366; border-bottom: 1px solid #ddd; padding-bottom: 6px; margin: 24px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }\n  .body-text { font-size: 13px; margin-bottom: 12px; }\n  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }\n  table.data-table th { background: #003366; color: white; padding: 9px 10px; text-align: center; border: 1px solid #003366; font-size: 11px; }\n  table.data-table td { border: 1px solid #ddd; padding: 9px 10px; vertical-align: top; text-align: left; }\n  table.data-table tr:nth-child(even) td { background: #f7f9fc; }\n  .tag { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 10px; font-weight: bold; }\n  .tag-critico { background: #d32f2f; color: white; }\n  .tag-alto { background: #FFC107; color: #000; }\n  .tag-medio { background: #ff9800; color: #000; }\n  .tag-moderado { background: #2196F3; color: white; }\n  .callout { background: #fff8e1; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 14px 0; font-size: 12px; }\n  .priority-label { font-weight: bold; color: #003366; font-size: 13px; margin: 16px 0 4px; }\n  .priority-list { font-size: 12px; padding-left: 18px; margin: 4px 0 10px; }\n  .priority-list li { margin-bottom: 3px; }\n  .conclusion-block { background: #f0f4f8; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; font-style: italic; font-size: 13px; }\n  .footer-note { border-top: 1px solid #ddd; margin-top: 28px; padding-top: 10px; font-size: 11px; color: #888; text-align: center; }\n  .check { color: #003366; font-weight: bold; font-size: 15px; }\n</style>\n\n---\n\n### ENCABEZADO\n\nRenderizar como ficha HTML con tabla (.client-table):\n- Fila 1 (clase header-row, dos celdas colspan=2): EMPRESA | GERENTE GENERAL\n- Fila 2 (cuatro celdas): Sector | Etapa | Equipo | Ingresos Anuales\n- Fila 3 (dos celdas colspan=2): Tecnología | Fecha del informe\n\nCada celda usa <strong> para la etiqueta (en uppercase) y un <span> para el valor.\nFecha del informe: usar el mes y año real al momento de generar.\n---\n\n### PERFIL ESTRATÉGICO\n\nRenderizar dentro de un <div class=\"profile-section\">.\nPárrafo de 3–5 líneas en tono directo: qué tiene de singular este negocio, cuál es la tensión principal, por qué la intervención es urgente. Si hay contradicciones en las respuestas, identificarlas aquí.\n---\n\n### 1. RESUMEN DE HALLAZGOS Y RIESGOS\n\nPárrafo introductorio (.body-text) de 3–4 líneas contextualizando el negocio.\n\nTabla (.data-table) con columnas:\n| Hallazgo / Diagnóstico | Riesgo si no se resuelve | Nivel de Urgencia |\n\n- 4 a 6 filas específicas al sector, tamaño y realidad del cliente.\n- Urgencia con <span class=\"tag tag-critico/alto/medio/moderado\">TEXTO</span>\n- Texto de urgencia va DENTRO del span: CRÍTICO, ALTO, MEDIO o MODERADO\n\nDespués de la tabla: callout (.callout) con benchmark o contexto sectorial relevante.\n---\n\n### 2. PRIORIDADES ESTRATÉGICAS\n\nPárrafo introductorio (.body-text) de 2–3 líneas explicando el orden lógico.\n\nPor cada prioridad:\n- <div class=\"priority-label\">PRIORIDAD N — Nombre</div>\n- <p class=\"body-text\"> contexto de 2–3 líneas </p>\n- <ul class=\"priority-list\"> con 4–5 bullets accionables </ul>\n\n3 a 5 prioridades. Deben responder directamente al dolor declarado.\n---\n\n### 3. PROPUESTA DE SERVICIO\n\nPárrafo de justificación del plan (.body-text).\n\nTabla de selección (.data-table) con columnas ESSENTIAL / GROWTH / LEADERSHIP:\n- Fila: Sector objetivo\n- Fila: Rango de ingresos\n- Fila: Complejidad operativa\n- Fila: Plan seleccionado → ✓ solo en la columna correcta\n\nTabla de alcance (.data-table) con columnas:\n| # | Servicio incluido | Preguntas que te permitirá responder | Beneficio clave para [EMPRESA] |\n\nFilas I, II, III, IV — preguntas en primera persona del cliente, beneficio conectado al dolor específico declarado.\nNo incluir módulos adicionales en esta sección.\n---\n\n### CONCLUSIÓN ESTRATÉGICA\n\nRenderizar dentro de <div class=\"conclusion-block\">.\nPárrafo de 4–6 líneas:\n- Reconoce activos y fortalezas reales del negocio\n- Nombra el plan recomendado y el servicio asociado\n- Describe el horizonte de resultados (semanas o meses)\n- Cierra con frase que conecte con el dolor declarado\n\nTerminar con:\n<div class=\"footer-note\">*Documento preparado por el equipo de consultoría — [MES Y AÑO ACTUAL]*</div>\n---\n\n## REGLAS GENERALES DE REDACCIÓN\n\n- Tono: profesional, directo, empático. Sin lenguaje corporativo vacío.\n- Cada sección debe sentirse específica a este negocio — no intercambiable con otro caso.\n- Las preguntas de la tabla de alcance deben estar en primera persona del cliente.\n- Nunca usar frases genéricas sin especificar qué significa para este negocio.\n- Las referencias a autoridades tributarias o laborales deben ser genéricas.\n- Si hay contradicciones en las respuestas, identificarlas como hallazgos.\n- Fecha del informe: usar siempre el mes y año real al momento de generar.\n- RESPONDE ÚNICAMENTE CON EL HTML. Sin texto previo, sin bloques ```html, sin explicaciones. El output debe comenzar con <!DOCTYPE html> y terminar con </html>."
-        }
-      }
+      ]
     },
     {
+      "parameters": {
+        "model": "deepseek/deepseek-v4.1-flash-1017",
+        "options": {
+          "maxTokens": 8000
+        }
+      },
       "id": "b0029e13-e061-467c-b019-d274a2708b95",
       "name": "OpenRouter Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
@@ -2033,12 +2070,6 @@
         -336,
         -256
       ],
-      "parameters": {
-        "model": "deepseek/deepseek-v4.1-flash-1017",
-        "options": {
-          "maxTokens": 8000
-        }
-      },
       "credentials": {
         "openRouterApi": {
           "id": "n9ENnMrxLhhgNjf8",
@@ -2047,6 +2078,9 @@
       }
     },
     {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}_${data.token || ''}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
+      },
       "id": "52a6a29a-3051-460a-8b59-14af720c6035",
       "name": "Code in JavaScript",
       "type": "n8n-nodes-base.code",
@@ -2054,26 +2088,26 @@
       "position": [
         -736,
         -464
-      ],
-      "parameters": {
-        "jsCode": "return items.map(item => {\n  const data = item.json;\n  \n  const now = new Date();\n  const fechaArchivo = now.getFullYear().toString() +\n    String(now.getMonth() + 1).padStart(2, '0') +\n    String(now.getDate()).padStart(2, '0') +\n    String(now.getHours()).padStart(2, '0');\n  \n  const empresa = (data[\"Nombre de la Empresa o Emprendimiento\"] || \"SinNombre\")\n    .trim()\n    .replace(/\\s+/g, '_')\n    .replace(/[^a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]/g, '');\n\n  return {\n    json: {\n      nombre: data[\"Nombre completo\"],\n      empresa: data[\"Nombre de la Empresa o Emprendimiento\"],\n      contacto: data[\"Número de contacto\"],\n      correo: data[\"Correo electrónico\"],\n      fechaActual: now.toISOString(),\n      nombreArchivoPdf: `Diagnostico_${empresa}_${fechaArchivo}_${data.token || ''}`,\n      respuestas: {\n        P1: data[\"P1: ¿En qué etapa se encuentra tu proyecto o negocio?\"],\n        P2: data[\"P2: ¿A qué sector pertenece tu actividad principal?\"],\n        P3: data[\"P3: ¿En qué subsector te ubicas principalmente?\"],\n        P4: data[\"P4: ¿Cuántas personas forman parte de tu equipo actualmente?\"],\n        P5: data[\"P5: ¿Cuál es su volumen anual de ingresos expresados en dólares?\"],\n        P6: data[\"P6 (Gestión Financiera): Cuando revisas tus cuentas a fin de mes, ¿qué suele suceder?\"],\n        P7: data[\"P7 (Gestión Comercial): ¿Cómo llegan los clientes a tu negocio?\"],\n        P8: data[\"P8 (Gestión de Procesos): Si mañana tuvieras que ausentarte por 15 días, ¿qué pasaría con el negocio?\"],\n        P9: data[\"P9 (Gestión Tecnológica): ¿Qué tan \\\"digital\\\" es tu operación diaria?\"],\n        P10: data[\"P10 (Gestión de Personas): ¿Cómo te sientes respecto a tu equipo de trabajo?\"],\n        P11: data[\"P11: ¿Cuál de estas situaciones te quita más energía actualmente?\"],\n        P12: data[\"P12 (Dolor Mayor): ¿Cuál es el problema #1 que, si lográramos resolver hoy mismo, cambiaría por completo el rumbo de tu negocio?\"]\n      }\n    }\n  };\n});"
-      }
+      ]
     },
     {
+      "parameters": {
+        "content": "https://app.pdf.co/signup",
+        "height": 528
+      },
       "id": "246ed116-46c9-4c2e-a79d-b64235eb2193",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1392,
-        144
-      ],
-      "parameters": {
-        "content": "https://app.pdf.co/signup",
-        "height": 80
-      }
+        -1792,
+        -480
+      ]
     },
     {
+      "parameters": {
+        "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst esHtml = /<body[\\s>]/i.test(raw) || /<div[\\s>]/i.test(raw);\n\nlet sharedStyles = '';\nlet secciones = [];\n\nif (esHtml) {\n  const styleMatch = raw.match(/<style[^>]*>([\\s\\S]*?)<\\/style>/i);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n\n  // Preferimos el bloque .container; si no existe, usamos todo el <body>.\n  const containerMatch = raw.match(/<div[^>]*class=[\"'][^\"']*container[^\"']*[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/body>/i);\n  const bodyMatch = raw.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\n  let cuerpo = '';\n  if (containerMatch) cuerpo = containerMatch[1];\n  else if (bodyMatch) cuerpo = bodyMatch[1];\n  else cuerpo = raw.replace(/<!DOCTYPE[^>]*>/i, '').replace(/<\\/?html[^>]*>/gi, '').replace(/<head[\\s\\S]*?<\\/head>/i, '');\n\n  secciones = cuerpo\n    .split(/(?=<h2|<div[^>]*class=[\"'][^\"']*(?:section-title|section)[^\"']*[\"'])/i)\n    .filter((s) => s && s.trim());\n}\n\n// La sección 3 es la propuesta comercial: solo va en el PDF interno.\n// Se detecta por título, no por posición, para no romperse si cambia el orden.\nconst esPropuesta = (s) => {\n  const t = s.replace(/<[^>]+>/g, ' ').replace(/\\s+/g, ' ').trim();\n  return /PROPUESTA DE SERVICIO/i.test(t.slice(0, 120));\n};\n\nconst envolver = (secs) => secs\n  .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n\nlet contenidoInterno = envolver(secciones);\nlet contenidoCliente = envolver(secciones.filter((s) => !esPropuesta(s)));\nconst propuestaDetectada = secciones.some(esPropuesta);\n\n// Respaldo determinista: si la IA no devolvió HTML usable, el informe se arma\n// con las respuestas del formulario. Nunca se queda el lead sin documento.\nif (!contenidoInterno.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:6px 10px;border-bottom:1px solid #DDE3EA;width:34%;\"><b>${k}</b></td><td style=\"padding:6px 10px;border-bottom:1px solid #DDE3EA;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#172230;font-size:11pt;line-height:1.5;} h1{color:#091B33;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 20px;} h2{color:#091B33;font-size:14pt;margin:20px 0 8px;} .brand-bar{background:#091B33;padding:14px 20px;border-radius:4px;margin:0 0 20px;} .brand-bar img{height:28px;display:block;}';\n  contenidoInterno = `\n    <div class=\"page-block\">\n      <div class=\"brand-bar\"><img src=\"https://www.grupoempodera.com/img/logo-horiz-white.png\" alt=\"Grupo Empodera\"></div>\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n  contenidoCliente = contenidoInterno;\n}\n\nconst armarHtml = (contenido) => `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${contenido}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = armarHtml(contenidoInterno);   // compatibilidad\nitems[0].json.html_completo = armarHtml(contenidoInterno);   // flujo interno\nitems[0].json.html_cliente = armarHtml(contenidoCliente);    // correo al lead\n// Nombre del PDF interno, derivado del que ya calculó el nodo anterior.\nconst datosLead = $('Code in JavaScript').item.json || {};\nitems[0].json.nombreArchivoPropuesta = String(datosLead.nombreArchivoPdf || 'Propuesta')\n  .replace(/^Diagnostico/i, 'Propuesta');\nitems[0].json.propuestaDetectada = propuestaDetectada;\nreturn items;"
+      },
       "id": "42fdddba-1c64-4b69-b18e-1692e3bfa000",
       "name": "Code in JavaScript1",
       "type": "n8n-nodes-base.code",
@@ -2081,20 +2115,9 @@
       "position": [
         80,
         -480
-      ],
-      "parameters": {
-        "jsCode": "const input = $input.first().json || {};\nconst raw = typeof input.output === 'string' ? input.output.trim() : '';\n\nconst esHtml = /<body[\\s>]/i.test(raw) || /<div[\\s>]/i.test(raw);\n\nlet sharedStyles = '';\nlet paginatedContent = '';\n\nif (esHtml) {\n  const styleMatch = raw.match(/<style[^>]*>([\\s\\S]*?)<\\/style>/i);\n  sharedStyles = styleMatch ? styleMatch[1] : '';\n\n  // Preferimos el bloque .container; si no existe, usamos todo el <body>.\n  const containerMatch = raw.match(/<div[^>]*class=[\"'][^\"']*container[^\"']*[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/body>/i);\n  const bodyMatch = raw.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);\n  let cuerpo = '';\n  if (containerMatch) cuerpo = containerMatch[1];\n  else if (bodyMatch) cuerpo = bodyMatch[1];\n  else cuerpo = raw.replace(/<!DOCTYPE[^>]*>/i, '').replace(/<\\/?html[^>]*>/gi, '').replace(/<head[\\s\\S]*?<\\/head>/i, '');\n\n  const sections = cuerpo.split(/(?=<h2|<div[^>]*class=[\"'][^\"']*(?:section-title|section)[^\"']*[\"'])/i);\n  paginatedContent = sections\n    .filter((s) => s && s.trim())\n    .map((section, i, arr) => `\n    <div class=\"page-block\" ${i < arr.length - 1 ? 'style=\"page-break-after: always;\"' : ''}>\n      ${section}\n    </div>\n  `).join('');\n}\n\n// Respaldo determinista: si la IA no devolvió HTML usable, el informe se arma\n// con las respuestas del formulario. Nunca se queda el lead sin documento.\nif (!paginatedContent.trim()) {\n  const c = $('Code in JavaScript').item.json || {};\n  const r = c.respuestas || {};\n  const filas = Object.keys(r)\n    .map((k) => `<tr><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;width:34%;\"><b>${k}</b></td><td style=\"padding:6px 10px;border-bottom:1px solid #dde3ea;\">${String(r[k] || '—')}</td></tr>`)\n    .join('');\n  sharedStyles = 'body{font-family:Helvetica,Arial,sans-serif;color:#1a1a1a;font-size:11pt;line-height:1.5;} h1{color:#19325A;font-size:20pt;margin:0 0 6px;} .sub{color:#5C6B7E;margin:0 0 20px;} h2{color:#19325A;font-size:14pt;margin:20px 0 8px;}';\n  paginatedContent = `\n    <div class=\"page-block\">\n      <h1>Diagnóstico Empresarial Express</h1>\n      <p class=\"sub\">${c.empresa || ''} · ${new Date().toLocaleDateString('es-PE')}</p>\n      <h2>Resumen</h2>\n      <p>Este documento reúne las respuestas registradas en el Diagnóstico Express. Un consultor de Grupo Empodera revisará el caso y ampliará los hallazgos en la sesión de acompañamiento.</p>\n      <h2>Respuestas registradas</h2>\n      <table style=\"border-collapse:collapse;width:100%;\">${filas}</table>\n    </div>`;\n}\n\nconst finalHtml = `\n<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Resumen Ejecutivo</title>\n  <style>\n    ${sharedStyles}\n    @page { margin: 20mm; }\n    .page-block { page-break-inside: avoid; }\n  </style>\n</head>\n<body>\n<div class=\"container\">\n  ${paginatedContent}\n</div>\n</body>\n</html>`;\n\nitems[0].json.html_paginado = finalHtml;\nreturn items;"
-      }
+      ]
     },
     {
-      "id": "10745ce2-5207-41ac-9e3a-dbf67949c781",
-      "name": "Upload file",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        560,
-        -480
-      ],
       "parameters": {
         "name": "={{ $('Code in JavaScript').item.json.nombreArchivoPdf }}",
         "driveId": {
@@ -2111,6 +2134,14 @@
         },
         "options": {}
       },
+      "id": "10745ce2-5207-41ac-9e3a-dbf67949c781",
+      "name": "Upload file",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        944,
+        -544
+      ],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "J6R6kKGMM9vWyLM1",
@@ -2119,6 +2150,12 @@
       }
     },
     {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "diagnostico",
+        "responseMode": "responseNode",
+        "options": {}
+      },
       "id": "6937aed5-cb99-483b-bbc0-26f61a145de9",
       "name": "Web Diagnostico",
       "webhookId": "6b286410-4a22-48e9-bb88-2498ddd71dad",
@@ -2126,37 +2163,23 @@
       "typeVersion": 2,
       "position": [
         -1440,
-        -64
-      ],
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "diagnostico",
-        "responseMode": "responseNode",
-        "options": {}
-      }
+        80
+      ]
     },
     {
+      "parameters": {
+        "jsCode": "const input = $input.first().json || {};\nconst body = input.body || input;\nconst t = (v) => (typeof v === 'string' ? v.trim() : '');\n\nconst campos = body.campos || {};\nconst nombre = t(body.nombre) || t(campos['Nombre completo']);\nconst empresa = t(body.empresa) || t(campos['Nombre de la Empresa o Emprendimiento']);\nconst telefono = t(body.telefono) || t(body.contacto) || t(campos['Número de contacto']);\nconst correo = (t(body.correo) || t(campos['Correo electrónico'])).toLowerCase();\nconst respuestas = body.respuestas || {};\n\nconst faltan = [];\nif (!nombre) faltan.push('nombre');\nif (!empresa) faltan.push('empresa');\nif (telefono.replace(/\\D/g, '').length < 7) faltan.push('telefono');\nif (!/^[^\\s@]+@[^\\s@]+\\.[a-z]{2,}$/i.test(correo)) faltan.push('correo');\n\nif (faltan.length) return [{ json: { ok: false, faltan } }];\n\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\n\nreturn [{\n  json: Object.assign({}, campos, {\n    'Nombre completo': nombre,\n    'Nombre de la Empresa o Emprendimiento': empresa,\n    'Número de contacto': telefono,\n    'Correo electrónico': correo,\n    submittedAt: new Date().toISOString(),\n    formMode: 'web',\n    ok: true,\n    token,\n    correo,\n    empresa,\n    respuestas,\n  }),\n}];"
+      },
       "id": "0965d23f-2869-40c9-bec1-f3b4b995c699",
       "name": "Validar y token",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
         -1216,
-        -64
-      ],
-      "parameters": {
-        "jsCode": "const input = $input.first().json || {};\nconst body = input.body || input;\nconst t = (v) => (typeof v === 'string' ? v.trim() : '');\n\nconst campos = body.campos || {};\nconst nombre = t(body.nombre) || t(campos['Nombre completo']);\nconst empresa = t(body.empresa) || t(campos['Nombre de la Empresa o Emprendimiento']);\nconst telefono = t(body.telefono) || t(body.contacto) || t(campos['Número de contacto']);\nconst correo = (t(body.correo) || t(campos['Correo electrónico'])).toLowerCase();\nconst respuestas = body.respuestas || {};\n\nconst faltan = [];\nif (!nombre) faltan.push('nombre');\nif (!empresa) faltan.push('empresa');\nif (telefono.replace(/\\D/g, '').length < 7) faltan.push('telefono');\nif (!/^[^\\s@]+@[^\\s@]+\\.[a-z]{2,}$/i.test(correo)) faltan.push('correo');\n\nif (faltan.length) return [{ json: { ok: false, faltan } }];\n\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\n\nreturn [{\n  json: Object.assign({}, campos, {\n    'Nombre completo': nombre,\n    'Nombre de la Empresa o Emprendimiento': empresa,\n    'Número de contacto': telefono,\n    'Correo electrónico': correo,\n    submittedAt: new Date().toISOString(),\n    formMode: 'web',\n    ok: true,\n    token,\n    correo,\n    empresa,\n    respuestas,\n  }),\n}];"
-      }
+        80
+      ]
     },
     {
-      "id": "053fa2fd-dbca-4e88-a9dd-c8d8da28a1aa",
-      "name": "Datos OK",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        -960,
-        -48
-      ],
       "parameters": {
         "conditions": {
           "options": {
@@ -2180,43 +2203,56 @@
           "combinator": "and"
         },
         "options": {}
-      }
+      },
+      "id": "053fa2fd-dbca-4e88-a9dd-c8d8da28a1aa",
+      "name": "Datos OK",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -976,
+        80
+      ]
     },
     {
-      "id": "6effa07b-9a69-47d0-9728-b7eb840703be",
-      "name": "Respond token",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [
-        -544,
-        -272
-      ],
       "parameters": {
         "respondWith": "json",
         "responseBody": "={{ JSON.stringify({ token: $json.token }) }}",
         "options": {
           "responseCode": 200
         }
-      }
-    },
-    {
-      "id": "cddd44e6-43c0-4ac6-860e-dbf2f77bdc2b",
-      "name": "Respond error",
+      },
+      "id": "6effa07b-9a69-47d0-9728-b7eb840703be",
+      "name": "Respond token",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        -544,
-        48
-      ],
+        -672,
+        -160
+      ]
+    },
+    {
       "parameters": {
         "respondWith": "json",
         "responseBody": "={{ JSON.stringify({ error: 'datos_incompletos', faltan: $json.faltan }) }}",
         "options": {
           "responseCode": 422
         }
-      }
+      },
+      "id": "cddd44e6-43c0-4ac6-860e-dbf2f77bdc2b",
+      "name": "Respond error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -656,
+        192
+      ]
     },
     {
+      "parameters": {
+        "path": "diagnostico-estado",
+        "responseMode": "responseNode",
+        "options": {}
+      },
       "id": "068df7bc-09cd-450c-8360-b0c5e0487979",
       "name": "Web Estado",
       "webhookId": "793dad87-59b3-4f4d-9d20-e873befc04e2",
@@ -2225,14 +2261,17 @@
       "position": [
         128,
         96
-      ],
-      "parameters": {
-        "path": "diagnostico-estado",
-        "responseMode": "responseNode",
-        "options": {}
-      }
+      ]
     },
     {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "=name contains '{{ $('Web Estado').item.json.query.t }}' and trashed = false",
+        "limit": 1,
+        "filter": {},
+        "options": {}
+      },
       "id": "f26da599-1c48-4050-9916-fff96bdb8507",
       "name": "Buscar PDF estado",
       "type": "n8n-nodes-base.googleDrive",
@@ -2242,14 +2281,6 @@
         352,
         96
       ],
-      "parameters": {
-        "resource": "fileFolder",
-        "searchMethod": "query",
-        "queryString": "=name contains '{{ $('Web Estado').item.json.query.t }}' and trashed = false",
-        "limit": 1,
-        "filter": {},
-        "options": {}
-      },
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "J6R6kKGMM9vWyLM1",
@@ -2258,6 +2289,9 @@
       }
     },
     {
+      "parameters": {
+        "jsCode": "const q = $('Web Estado').item.json.query || {};\nconst t = String(q.t || '').trim();\nconst items = $input.all();\nconst found = items.some((i) => i.json && i.json.id);\n\nif (!found) {\n  return [{ json: { estado: 'procesando', progreso: 45, descarga: '', correo: '', mensaje: '' } }];\n}\nreturn [{ json: {\n  estado: 'listo',\n  progreso: 100,\n  descarga: `/api/diagnostico/archivo?t=${t}`,\n  correo: '',\n  mensaje: '',\n} }];"
+      },
       "id": "9f8a4293-6465-4e1b-97f3-f6a4b54b01bc",
       "name": "Armar estado",
       "type": "n8n-nodes-base.code",
@@ -2265,12 +2299,16 @@
       "position": [
         576,
         96
-      ],
-      "parameters": {
-        "jsCode": "const q = $('Web Estado').item.json.query || {};\nconst t = String(q.t || '').trim();\nconst items = $input.all();\nconst found = items.some((i) => i.json && i.json.id);\n\nif (!found) {\n  return [{ json: { estado: 'procesando', progreso: 45, descarga: '', correo: '', mensaje: '' } }];\n}\nreturn [{ json: {\n  estado: 'listo',\n  progreso: 100,\n  descarga: `/api/diagnostico/archivo?t=${t}`,\n  correo: '',\n  mensaje: '',\n} }];"
-      }
+      ]
     },
     {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
       "id": "f0b6c4a9-1a09-4de7-8130-403b803ddfa4",
       "name": "Respond estado",
       "type": "n8n-nodes-base.respondToWebhook",
@@ -2278,16 +2316,14 @@
       "position": [
         800,
         96
-      ],
-      "parameters": {
-        "respondWith": "json",
-        "responseBody": "={{ JSON.stringify($json) }}",
-        "options": {
-          "responseCode": 200
-        }
-      }
+      ]
     },
     {
+      "parameters": {
+        "path": "diagnostico-archivo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
       "id": "46d86f83-b795-43fd-8235-2521aac15601",
       "name": "Web Archivo",
       "webhookId": "0df19d51-4d1f-4327-9de4-9c5c8141a257",
@@ -2296,14 +2332,17 @@
       "position": [
         128,
         448
-      ],
-      "parameters": {
-        "path": "diagnostico-archivo",
-        "responseMode": "responseNode",
-        "options": {}
-      }
+      ]
     },
     {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "queryString": "=name contains '{{ $('Web Archivo').item.json.query.t }}' and trashed = false",
+        "limit": 1,
+        "filter": {},
+        "options": {}
+      },
       "id": "8c0ee9e7-4972-47d9-ac98-f75acb0f4f51",
       "name": "Buscar PDF archivo",
       "type": "n8n-nodes-base.googleDrive",
@@ -2313,14 +2352,6 @@
         352,
         448
       ],
-      "parameters": {
-        "resource": "fileFolder",
-        "searchMethod": "query",
-        "queryString": "=name contains '{{ $('Web Archivo').item.json.query.t }}' and trashed = false",
-        "limit": 1,
-        "filter": {},
-        "options": {}
-      },
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "J6R6kKGMM9vWyLM1",
@@ -2329,14 +2360,6 @@
       }
     },
     {
-      "id": "3910a619-d67f-4eaa-ba79-f316927ae90a",
-      "name": "Archivo existe",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [
-        576,
-        448
-      ],
       "parameters": {
         "conditions": {
           "options": {
@@ -2360,17 +2383,17 @@
           "combinator": "and"
         },
         "options": {}
-      }
+      },
+      "id": "3910a619-d67f-4eaa-ba79-f316927ae90a",
+      "name": "Archivo existe",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        576,
+        448
+      ]
     },
     {
-      "id": "89530c57-d757-43b4-a4e0-b6cd6abcf821",
-      "name": "Drive descargar",
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        784,
-        368
-      ],
       "parameters": {
         "operation": "download",
         "fileId": {
@@ -2380,6 +2403,14 @@
         },
         "options": {}
       },
+      "id": "89530c57-d757-43b4-a4e0-b6cd6abcf821",
+      "name": "Drive descargar",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        784,
+        368
+      ],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "J6R6kKGMM9vWyLM1",
@@ -2388,6 +2419,10 @@
       }
     },
     {
+      "parameters": {
+        "respondWith": "binary",
+        "options": {}
+      },
       "id": "4980ba60-de39-42d5-9dea-b9783582015f",
       "name": "Respond archivo",
       "type": "n8n-nodes-base.respondToWebhook",
@@ -2395,21 +2430,9 @@
       "position": [
         1008,
         368
-      ],
-      "parameters": {
-        "respondWith": "binary",
-        "options": {}
-      }
+      ]
     },
     {
-      "id": "0062f3c8-13e4-406f-8fe6-1878a3ca9b88",
-      "name": "Respond archivo 404",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [
-        784,
-        592
-      ],
       "parameters": {
         "respondWith": "text",
         "responseBody": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"robots\" content=\"noindex\">\n<title>Tu diagnóstico no está disponible | Grupo Empodera</title>\n<style>\n  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;\n       background:#f4f7fb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#12233d;}\n  .card{background:#fff;max-width:520px;margin:24px;padding:40px 32px;border-radius:14px;\n        box-shadow:0 12px 40px rgba(14,43,82,.10);text-align:center;}\n  .badge{display:inline-block;background:#fff3e0;color:#b45309;font-size:12px;font-weight:700;\n         letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:18px;}\n  h1{font-size:22px;margin:0 0 12px;line-height:1.3;}\n  p{font-size:15px;line-height:1.6;color:#41506b;margin:0 0 12px;}\n  .acciones{margin-top:24px;display:flex;flex-direction:column;gap:10px;}\n  a.btn{display:block;padding:13px 20px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;}\n  a.primary{background:#f97316;color:#fff;}\n  a.secondary{background:#eef3fa;color:#12233d;}\n  .nota{margin-top:18px;font-size:12px;color:#8794a8;}\n</style>\n</head>\n<body>\n  <div class=\"card\">\n    <span class=\"badge\">Enlace no disponible</span>\n    <h1>Este diagnóstico ya no está en línea</h1>\n    <p>El documento se generó y se envió a tu correo, pero el archivo ya no está publicado en este enlace\n       (los enlaces de descarga tienen vigencia).</p>\n    <p>Revisa el correo que te enviamos: ahí está el PDF adjunto. Si no lo encuentras, escríbenos y te lo\n       reenviamos en minutos.</p>\n    <div class=\"acciones\">\n      <a class=\"btn primary\" href=\"https://wa.me/51977183432?text=Hola%2C%20necesito%20que%20me%20reenv%C3%ADen%20mi%20diagn%C3%B3stico%20Express\">Pedirlo por WhatsApp</a>\n      <a class=\"btn secondary\" href=\"https://www.grupoempodera.com/contacto\">Volver al formulario</a>\n    </div>\n    <p class=\"nota\">Grupo Empodera · contacto@pe.grupoempodera.com</p>\n  </div>\n</body>\n</html>",
@@ -2428,43 +2451,43 @@
             ]
           }
         }
-      }
+      },
+      "id": "0062f3c8-13e4-406f-8fe6-1878a3ca9b88",
+      "name": "Respond archivo 404",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        784,
+        592
+      ]
     },
     {
+      "parameters": {
+        "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nif (b && !/\\.pdf$/i.test(b.fileName || '')) {\n  b.fileName = (b.fileName || 'diagnostico') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
+      },
       "id": "4fd0046c-368f-4445-b25b-5b98c8405d34",
       "name": "Nombrar adjunto",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1300,
-        -320
-      ],
-      "parameters": {
-        "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nif (b && !/\\.pdf$/i.test(b.fileName || '')) {\n  b.fileName = (b.fileName || 'diagnostico') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
-      }
+        960,
+        -288
+      ]
     },
     {
+      "parameters": {
+        "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
+      },
       "id": "preparar-form-0001",
       "name": "Preparar form",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1100,
-        -420
-      ],
-      "parameters": {
-        "jsCode": "const d = items[0].json || {};\nconst rnd = () => Math.random().toString(36).slice(2);\nconst token = (rnd() + rnd() + rnd() + Date.now().toString(36)).replace(/[^a-z0-9]/g, '').slice(0, 40);\nitems[0].json = Object.assign({}, d, { token, origen: 'form_n8n' });\nreturn items;"
-      }
+        -1216,
+        -464
+      ]
     },
     {
-      "id": "977f43ef-bd57-410e-839e-adca0cd58b2e",
-      "name": "Generar PDF",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        140,
-        -112
-      ],
       "parameters": {
         "method": "POST",
         "url": "https://rest.apitemplate.io/v2/create-pdf-from-html",
@@ -2472,9 +2495,17 @@
         "nodeCredentialType": "apiTemplateIoApi",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ body: $json.html_paginado, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
+        "jsonBody": "={{ JSON.stringify({ body: $json.html_cliente, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
         "options": {}
       },
+      "id": "977f43ef-bd57-410e-839e-adca0cd58b2e",
+      "name": "Generar PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        384,
+        -480
+      ],
       "credentials": {
         "apiTemplateIoApi": {
           "id": "28yk0Ff9nHCB476a",
@@ -2483,51 +2514,39 @@
       }
     },
     {
-      "id": "ba687a07-d7d6-4694-9331-41807b1cad36",
-      "name": "Descargar PDF",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        360,
-        -112
-      ],
       "parameters": {
         "url": "={{ $json.download_url }}",
         "options": {
           "response": {
             "response": {
-              "responseFormat": "file",
-              "outputPropertyName": "data"
+              "responseFormat": "file"
             }
           }
         }
-      }
+      },
+      "id": "ba687a07-d7d6-4694-9331-41807b1cad36",
+      "name": "Descargar PDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        608,
+        -480
+      ]
     },
     {
+      "parameters": {
+        "jsCode": "const datos = $('Code in JavaScript').item.json;\nconst item = items[0];\nconst bin = (item.binary && item.binary.data) || {};\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = bin.data || '';\n}\nif (!base64) throw new Error('No hay PDF binario para adjuntar');\nconst nombreArchivo = String(datos.nombreArchivoPdf || 'diagnostico').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\nconst token = String(datos.nombreArchivoPdf || '').split('_').pop();\nconst enlace = 'https://www.grupoempodera.com/api/diagnostico/archivo?t=' + token;\nconst nombreLead = datos.nombre || 'estimado/a';\nconst html = `<p>Estimado/a <strong>${nombreLead}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Revisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento: contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"${enlace}\">descargar mi diagnóstico</a> (el enlace está activo 30 días).</p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>\n<p style=\"font-size:12px;color:#666\">Recibe este correo porque solicitó su diagnóstico en grupoempodera.com.</p>`;\nconst text = `Estimado/a ${nombreLead}:\n\nRevisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto.\n\nTambién puede descargarlo desde aquí: ${enlace} (enlace activo 30 días).\n\nQuedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.\n\nCordialmente,\nGrupo Empodera\n\nRecibe este correo porque solicitó su diagnóstico en grupoempodera.com.`;\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: [datos.correo],\n  reply_to: 'contacto@pe.grupoempodera.com',\n  subject: 'Documento de diagnóstico para ' + (datos.empresa || 'su negocio'),\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
+      },
       "id": "d45f3c00-c395-4027-aa64-2bf3924bd4bd",
       "name": "Preparar correo",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1292,
-        -480
-      ],
-      "parameters": {
-        "jsCode": "const datos = $('Code in JavaScript').item.json;\nconst item = items[0];\nconst bin = (item.binary && item.binary.data) || {};\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = bin.data || '';\n}\nif (!base64) throw new Error('No hay PDF binario para adjuntar');\nconst nombreArchivo = String(datos.nombreArchivoPdf || 'diagnostico').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\nconst token = String(datos.nombreArchivoPdf || '').split('_').pop();\nconst enlace = 'https://www.grupoempodera.com/api/diagnostico/archivo?t=' + token;\nconst nombreLead = datos.nombre || 'estimado/a';\nconst html = `<p>Estimado/a <strong>${nombreLead}</strong>:</p>\n<p>Esperamos que se encuentre muy bien.</p>\n<p>Revisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto. Le pedimos leerlo con detenimiento: contiene observaciones y recomendaciones pensadas para su negocio.</p>\n<p>También puede descargarlo desde aquí: <a href=\"${enlace}\">descargar mi diagnóstico</a> (el enlace está activo 30 días).</p>\n<p>Quedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.</p>\n<p>Cordialmente,<br><strong>Grupo Empodera</strong></p>\n<p style=\"font-size:12px;color:#666\">Recibe este correo porque solicitó su diagnóstico en grupoempodera.com.</p>`;\nconst text = `Estimado/a ${nombreLead}:\n\nRevisamos su caso con la información que nos compartió y preparamos el documento que encontrará adjunto.\n\nTambién puede descargarlo desde aquí: ${enlace} (enlace activo 30 días).\n\nQuedamos a su disposición para agendar un espacio y ampliar cualquier punto del informe.\n\nCordialmente,\nGrupo Empodera\n\nRecibe este correo porque solicitó su diagnóstico en grupoempodera.com.`;\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: [datos.correo],\n  reply_to: 'contacto@pe.grupoempodera.com',\n  subject: 'Documento de diagnóstico para ' + (datos.empresa || 'su negocio'),\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
-      }
+        1184,
+        -288
+      ]
     },
     {
-      "id": "c7b2cbe2-4603-4129-b49d-7c7980472e57",
-      "name": "Enviar con Resend",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "retryOnFail": true,
-      "maxTries": 2,
-      "waitBetweenTries": 3000,
-      "position": [
-        1552,
-        -480
-      ],
       "parameters": {
         "method": "POST",
         "url": "https://api.resend.com/emails",
@@ -2538,12 +2557,45 @@
         "jsonBody": "={{ JSON.stringify($json) }}",
         "options": {}
       },
+      "id": "c7b2cbe2-4603-4129-b49d-7c7980472e57",
+      "name": "Enviar con Resend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 3000,
+      "position": [
+        1408,
+        -288
+      ],
       "credentials": {
         "httpHeaderAuth": {
           "id": "blpQ2KzIFNYBZRjZ",
           "name": "Resend API"
         }
       }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "XjQztJhJFFThnqnV",
+          "mode": "list",
+          "cachedResultName": "EmpoderaPropuestaInterna"
+        },
+        "options": {
+          "waitForSubWorkflow": false
+        }
+      },
+      "id": "0dd97842-f52d-40eb-8cca-e8997a473b44",
+      "name": "Enviar a flujo interno",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        384,
+        -272
+      ],
+      "onError": "continueRegularOutput"
     }
   ],
   "origin": "main",
@@ -2592,6 +2644,6 @@
     }
   ],
   "triggerCount": 4,
-  "updatedAt": "2026-11-11T04:41:18.908Z",
-  "versionId": "99508107-faf3-4cc9-a017-b5f24a677de6"
+  "updatedAt": "2026-11-12T00:55:44.258Z",
+  "versionId": "2d248a60-fc15-402c-b0f8-ea3eea97d862"
 }
