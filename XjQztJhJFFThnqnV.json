@@ -1,0 +1,386 @@
+{
+  "active": true,
+  "activeVersion": {
+    "versionId": "5a06ccec-4e6e-424a-bc7a-c6cf1534d57b",
+    "workflowId": "XjQztJhJFFThnqnV",
+    "nodes": [
+      {
+        "id": "a8956000-fd24-43f9-bf18-de41e9be02f8",
+        "name": "Entrada",
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "parameters": {
+          "inputSource": "passthrough"
+        }
+      },
+      {
+        "id": "da5615d8-e708-4b89-9dc6-ff12c51d317a",
+        "name": "Generar propuesta",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          220,
+          0
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "https://rest.apitemplate.io/v2/create-pdf-from-html",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "apiTemplateIoApi",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify({ body: $json.html_completo, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
+          "options": {}
+        },
+        "credentials": {
+          "apiTemplateIoApi": {
+            "id": "28yk0Ff9nHCB476a",
+            "name": "APITemplate.io account"
+          }
+        }
+      },
+      {
+        "id": "0e945531-50b5-412c-9e01-9eeaae9fd9c4",
+        "name": "Descargar propuesta",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          440,
+          0
+        ],
+        "parameters": {
+          "url": "={{ $json.download_url }}",
+          "options": {
+            "response": {
+              "response": {
+                "responseFormat": "file",
+                "outputPropertyName": "data"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "f1710160-79ad-4d7a-8820-bdd0963c29d7",
+        "name": "Nombrar adjunto",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          660,
+          0
+        ],
+        "parameters": {
+          "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nconst d = $('Entrada').first().json || {};\nif (b) {\n  b.fileName = String(d.nombreArchivoPropuesta || 'Propuesta').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
+        }
+      },
+      {
+        "id": "de2e681c-312d-4dd9-9304-bc4d309028e7",
+        "name": "Preparar correo interno",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          880,
+          0
+        ],
+        "parameters": {
+          "jsCode": "const d = $('Entrada').first().json || {};\nconst bin = items[0].binary && items[0].binary.data;\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = (bin && bin.data) || '';\n}\nif (!base64) throw new Error('No hay PDF de propuesta para adjuntar');\n\nconst PREGUNTAS = [[\"P1 · Etapa del negocio\", \"P1\"], [\"P2 · Sector principal\", \"P2\"], [\"P3 · Subsector\", \"P3\"], [\"P4 · Tamaño del equipo\", \"P4\"], [\"P5 · Volumen anual de ingresos\", \"P5\"], [\"P6 · Gestión Financiera\", \"P6\"], [\"P7 · Gestión Comercial\", \"P7\"], [\"P8 · Gestión de Procesos\", \"P8\"], [\"P9 · Gestión Tecnológica\", \"P9\"], [\"P10 · Gestión de Personas\", \"P10\"], [\"P11 · Principal drenaje de energía\", \"P11\"], [\"P12 · Problema #1 a resolver\", \"P12\"]];\nconst r = d.respuestas || {};\nconst esc = (s) => String(s == null ? '—' : s)\n  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\n\nconst filas = PREGUNTAS.map(([label, k]) => `\n  <tr>\n    <td style=\"padding:7px 10px;border-bottom:1px solid #DDE3EA;width:36%;color:#19325A;font-weight:600;\">${esc(label)}</td>\n    <td style=\"padding:7px 10px;border-bottom:1px solid #DDE3EA;\">${esc(r[k])}</td>\n  </tr>`).join('');\n\nconst nombreArchivo = String(d.nombreArchivoPropuesta || 'Propuesta').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\n\nconst html = `\n<div style=\"font-family:Helvetica,Arial,sans-serif;color:#172230;font-size:14px;line-height:1.6\">\n  <div style=\"background:#091B33;padding:18px 22px;margin-bottom:22px\">\n    <img src=\"https://www.grupoempodera.com/img/logo-horiz-white.png\" alt=\"Grupo Empodera\" style=\"height:30px;display:block\">\n  </div>\n  <p style=\"margin:0 0 14px\">Se completó un nuevo <strong>Diagnóstico Express</strong> y se generó la propuesta sugerida para el cliente.</p>\n  <table style=\"width:100%;border-collapse:collapse;margin:0 0 20px;font-size:13px\">\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8;width:26%\"><b>Empresa</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.empresa)}</td></tr>\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8\"><b>Contacto</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.nombre)}</td></tr>\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8\"><b>Correo</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.correo)}</td></tr>\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8\"><b>Teléfono</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.contacto)}</td></tr>\n  </table>\n\n  <h3 style=\"color:#091B33;font-size:15px;margin:0 0 8px;border-bottom:2px solid #EA560D;padding-bottom:6px\">Preguntas y respuestas del diagnóstico</h3>\n  <table style=\"width:100%;border-collapse:collapse;font-size:12px\">${filas}</table>\n\n  <p style=\"margin:22px 0 0;font-size:12px;color:#5C6B7E\">El PDF con la propuesta completa va adjunto. El cliente recibió su versión sin la sección de propuesta.</p>\n</div>`;\n\nconst text = `Nuevo Diagnóstico Express — ${d.empresa || 'sin empresa'}\n\nContacto: ${d.nombre || '—'}\nCorreo: ${d.correo || '—'}\nTeléfono: ${d.contacto || '—'}\n\nPreguntas y respuestas:\n${PREGUNTAS.map(([label, k]) => `- ${label}: ${r[k] == null ? '—' : r[k]}`).join('\\n')}\n\nEl PDF con la propuesta completa va adjunto.`;\n\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: ['fpaz@pe.grupoempodera.com', 'bnunez@co.grupoempodera.com', 'jcastillo@co.grupoempodera.com'],\n  reply_to: d.correo || 'contacto@pe.grupoempodera.com',\n  subject: `Diagnóstico + propuesta — ${d.empresa || 'sin empresa'}`,\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
+        }
+      },
+      {
+        "id": "b4ae0d2c-f0f9-4945-8acc-5ad5a6609150",
+        "name": "Enviar interno",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          1100,
+          0
+        ],
+        "parameters": {
+          "method": "POST",
+          "url": "https://api.resend.com/emails",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendBody": true,
+          "specifyBody": "json",
+          "jsonBody": "={{ JSON.stringify($json) }}",
+          "options": {}
+        },
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "blpQ2KzIFNYBZRjZ",
+            "name": "Resend API"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Entrada": {
+        "main": [
+          [
+            {
+              "node": "Generar propuesta",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Generar propuesta": {
+        "main": [
+          [
+            {
+              "node": "Descargar propuesta",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Descargar propuesta": {
+        "main": [
+          [
+            {
+              "node": "Nombrar adjunto",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Nombrar adjunto": {
+        "main": [
+          [
+            {
+              "node": "Preparar correo interno",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Preparar correo interno": {
+        "main": [
+          [
+            {
+              "node": "Enviar interno",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Juan Castillo",
+    "name": null,
+    "description": null,
+    "autosaved": false,
+    "createdAt": "2026-11-12T02:18:32.122Z",
+    "updatedAt": "2026-11-12T02:18:32.122Z"
+  },
+  "activeVersionId": "5a06ccec-4e6e-424a-bc7a-c6cf1534d57b",
+  "connections": {
+    "Entrada": {
+      "main": [
+        [
+          {
+            "node": "Generar propuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generar propuesta": {
+      "main": [
+        [
+          {
+            "node": "Descargar propuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar propuesta": {
+      "main": [
+        [
+          {
+            "node": "Nombrar adjunto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nombrar adjunto": {
+      "main": [
+        [
+          {
+            "node": "Preparar correo interno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar correo interno": {
+      "main": [
+        [
+          {
+            "node": "Enviar interno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-11-11T13:19:07.462Z",
+  "id": "XjQztJhJFFThnqnV",
+  "isArchived": false,
+  "meta": null,
+  "name": "EmpoderaPropuestaInterna",
+  "nodeGroups": [],
+  "nodes": [
+    {
+      "id": "a8956000-fd24-43f9-bf18-de41e9be02f8",
+      "name": "Entrada",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "inputSource": "passthrough"
+      }
+    },
+    {
+      "id": "da5615d8-e708-4b89-9dc6-ff12c51d317a",
+      "name": "Generar propuesta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://rest.apitemplate.io/v2/create-pdf-from-html",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "apiTemplateIoApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ body: $json.html_completo, settings: { paper_size: 'A4', margin_top: '15', margin_bottom: '15', margin_left: '12', margin_right: '12' } }) }}",
+        "options": {}
+      },
+      "credentials": {
+        "apiTemplateIoApi": {
+          "id": "28yk0Ff9nHCB476a",
+          "name": "APITemplate.io account"
+        }
+      }
+    },
+    {
+      "id": "0e945531-50b5-412c-9e01-9eeaae9fd9c4",
+      "name": "Descargar propuesta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        0
+      ],
+      "parameters": {
+        "url": "={{ $json.download_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "f1710160-79ad-4d7a-8820-bdd0963c29d7",
+      "name": "Nombrar adjunto",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const it = items[0];\nconst b = it.binary && it.binary.data;\nconst d = $('Entrada').first().json || {};\nif (b) {\n  b.fileName = String(d.nombreArchivoPropuesta || 'Propuesta').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\n  b.mimeType = 'application/pdf';\n}\nreturn items;"
+      }
+    },
+    {
+      "id": "de2e681c-312d-4dd9-9304-bc4d309028e7",
+      "name": "Preparar correo interno",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ],
+      "parameters": {
+        "jsCode": "const d = $('Entrada').first().json || {};\nconst bin = items[0].binary && items[0].binary.data;\nlet base64 = '';\ntry {\n  const buf = await this.helpers.getBinaryDataBuffer(0, 'data');\n  base64 = buf.toString('base64');\n} catch (e) {\n  base64 = (bin && bin.data) || '';\n}\nif (!base64) throw new Error('No hay PDF de propuesta para adjuntar');\n\nconst PREGUNTAS = [[\"P1 · Etapa del negocio\", \"P1\"], [\"P2 · Sector principal\", \"P2\"], [\"P3 · Subsector\", \"P3\"], [\"P4 · Tamaño del equipo\", \"P4\"], [\"P5 · Volumen anual de ingresos\", \"P5\"], [\"P6 · Gestión Financiera\", \"P6\"], [\"P7 · Gestión Comercial\", \"P7\"], [\"P8 · Gestión de Procesos\", \"P8\"], [\"P9 · Gestión Tecnológica\", \"P9\"], [\"P10 · Gestión de Personas\", \"P10\"], [\"P11 · Principal drenaje de energía\", \"P11\"], [\"P12 · Problema #1 a resolver\", \"P12\"]];\nconst r = d.respuestas || {};\nconst esc = (s) => String(s == null ? '—' : s)\n  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\n\nconst filas = PREGUNTAS.map(([label, k]) => `\n  <tr>\n    <td style=\"padding:7px 10px;border-bottom:1px solid #DDE3EA;width:36%;color:#19325A;font-weight:600;\">${esc(label)}</td>\n    <td style=\"padding:7px 10px;border-bottom:1px solid #DDE3EA;\">${esc(r[k])}</td>\n  </tr>`).join('');\n\nconst nombreArchivo = String(d.nombreArchivoPropuesta || 'Propuesta').replace(/[^\\w.\\-]+/g, '_') + '.pdf';\n\nconst html = `\n<div style=\"font-family:Helvetica,Arial,sans-serif;color:#172230;font-size:14px;line-height:1.6\">\n  <div style=\"background:#091B33;padding:18px 22px;margin-bottom:22px\">\n    <img src=\"https://www.grupoempodera.com/img/logo-horiz-white.png\" alt=\"Grupo Empodera\" style=\"height:30px;display:block\">\n  </div>\n  <p style=\"margin:0 0 14px\">Se completó un nuevo <strong>Diagnóstico Express</strong> y se generó la propuesta sugerida para el cliente.</p>\n  <table style=\"width:100%;border-collapse:collapse;margin:0 0 20px;font-size:13px\">\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8;width:26%\"><b>Empresa</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.empresa)}</td></tr>\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8\"><b>Contacto</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.nombre)}</td></tr>\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8\"><b>Correo</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.correo)}</td></tr>\n    <tr><td style=\"padding:6px 10px;border:1px solid #DDE3EA;background:#F5F6F8\"><b>Teléfono</b></td><td style=\"padding:6px 10px;border:1px solid #DDE3EA\">${esc(d.contacto)}</td></tr>\n  </table>\n\n  <h3 style=\"color:#091B33;font-size:15px;margin:0 0 8px;border-bottom:2px solid #EA560D;padding-bottom:6px\">Preguntas y respuestas del diagnóstico</h3>\n  <table style=\"width:100%;border-collapse:collapse;font-size:12px\">${filas}</table>\n\n  <p style=\"margin:22px 0 0;font-size:12px;color:#5C6B7E\">El PDF con la propuesta completa va adjunto. El cliente recibió su versión sin la sección de propuesta.</p>\n</div>`;\n\nconst text = `Nuevo Diagnóstico Express — ${d.empresa || 'sin empresa'}\n\nContacto: ${d.nombre || '—'}\nCorreo: ${d.correo || '—'}\nTeléfono: ${d.contacto || '—'}\n\nPreguntas y respuestas:\n${PREGUNTAS.map(([label, k]) => `- ${label}: ${r[k] == null ? '—' : r[k]}`).join('\\n')}\n\nEl PDF con la propuesta completa va adjunto.`;\n\nreturn [{ json: {\n  from: 'Diagnóstico Empodera <diagnostico@contact.grupoempodera.com>',\n  to: ['fpaz@pe.grupoempodera.com', 'bnunez@co.grupoempodera.com', 'jcastillo@co.grupoempodera.com'],\n  reply_to: d.correo || 'contacto@pe.grupoempodera.com',\n  subject: `Diagnóstico + propuesta — ${d.empresa || 'sin empresa'}`,\n  html,\n  text,\n  attachments: [{ filename: nombreArchivo, content: base64 }],\n} }];"
+      }
+    },
+    {
+      "id": "b4ae0d2c-f0f9-4945-8acc-5ad5a6609150",
+      "name": "Enviar interno",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "blpQ2KzIFNYBZRjZ",
+          "name": "Resend API"
+        }
+      }
+    }
+  ],
+  "origin": "main",
+  "pinData": null,
+  "repo": {
+    "owner": "xmaichel",
+    "name": "n8n_flows"
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "shared": [
+    {
+      "role": "workflow:owner",
+      "workflowId": "XjQztJhJFFThnqnV",
+      "projectId": "TWUdlmfp5jAL6XiA",
+      "createdAt": "2026-11-11T13:19:07.478Z",
+      "updatedAt": "2026-11-11T13:19:07.478Z"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-11-12T02:18:32.112Z",
+  "versionId": "5a06ccec-4e6e-424a-bc7a-c6cf1534d57b"
+}
